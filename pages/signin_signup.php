@@ -22,7 +22,7 @@
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" name="password" placeholder="Password" style="font-size: 12px;" />
+                        <input type="password" name="password"  placeholder="Password" style="font-size: 12px;" />
                     </div>
                     <input type="submit" value="Login" class="btn solid" />
                     <p class="social-text">Sign in to access your account</p>
