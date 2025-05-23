@@ -153,7 +153,10 @@ form.sign-in-form {
   border: none;
   outline: none;
   height: 49px;
+  border-radius: 49px;
+  color: #fff;
   text-transform: uppercase;
+
   cursor: pointer;
   transition: 0.5s;
 }
