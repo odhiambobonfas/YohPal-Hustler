@@ -27,6 +27,38 @@ if (!isset($_SESSION['token'])) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=YohPal+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            z-index: 1050;
+            transition: all 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .sidebar.show {
+            left: 0;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1049;
+            display: none;
+        }
+
+        .sidebar-overlay.show {
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
@@ -38,13 +70,21 @@ if (!isset($_SESSION['token'])) {
                     class="profile_image p-1">
                 <span class="fw-bold">YohPal Hustler Platform</span>
             </a>
-
+            <svg width="30" height="30" onclick="toggleSidebar()" class="hamburger" viewBox="0 0 100 100">
+                <path class="line line1"
+                    d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" />
+                <path class="line line2" d="M 20,50 H 80" />
+                <path class="line line3"
+                    d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942" />
+            </svg>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">My Bookings</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Find Service</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?url=find_service">Find Service</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownDocumentation"
                             role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -121,12 +161,63 @@ if (!isset($_SESSION['token'])) {
         </div>
     </div>
 
+    <!-- side navigation -->
+    <div id="sidebar" class="sidebar bg-white border-end shadow">
+        <div class="header-cont "
+            style="background: url(assets/images/people/img3.jpg); background-position: center; background-repeat: no-repeat; background-size: cover; color: white;">
+            <div class="cover-transparent p-3" style="background: rgba(0, 0, 0, 0.7); ">
+                <div class="d-flex justify-content-end align-items-end">
+
+                    <div class="text-end close-button d-flex justify-content-center align-items-center">
+
+                        <svg width="20" height="20" onclick="toggleSidebar()" viewBox="0 0 100 100">
+                            <line x1="20" y1="20" x2="80" y2="80" stroke="white" stroke-width="10"
+                                stroke-linecap="round" />
+                            <line x1="80" y1="20" x2="20" y2="80" stroke="white" stroke-width="10"
+                                stroke-linecap="round" />
+                        </svg>
+                    </div>
+                </div>
+                <img src="./assets/images/people/img1.jpg" class="profile_image dropdown-toggle mt-2" style="top:0;"
+                    alt="Profile" height="32" data-bs-toggle="dropdown">
+                <p class="my-1 fw-bold">email@yohpal.com</p>
+            </div>
+
+
+        </div>
+
+        <ul class="list-unstyled p-4">
+            <li><a href="#" class="d-block py-2 fw-bold">Home</a></li>
+            <li><a href="#" class="d-block py-2 fw-bold">About</a></li>
+            <li><a href="#" class="d-block py-2 fw-bold">My Bookings</a></li>
+            <li><a href="?url=find_service" class="d-block py-2 fw-bold">Find Service</a></li>
+            <li><a href="#" class="d-block py-2 fw-bold">Categories</a></li>
+            <li><a href="logout.php" class="d-block py-2 text-danger fw-bold">Logout</a></li>
+        </ul>
+    </div>
+
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script src="script.js"></script>
     <script src="./assets/js/dashboard.js"></script>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            sidebar.classList.toggle('show');
+            overlay.classList.toggle('show');
+        }
+
+        // Close sidebar if overlay is clicked
+        document.getElementById('sidebar-overlay').addEventListener('click', () => {
+            document.getElementById('sidebar').classList.remove('show');
+            document.getElementById('sidebar-overlay').classList.remove('show');
+        });
+    </script>
 
 </body>
 

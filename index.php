@@ -14,6 +14,10 @@ switch ($segments[0]) {
   case 'profile':
     include 'pages/profile.php';
     break;
+
+  case "find_service":
+    include 'pages/find_service.php';
+    break;
   // links for pages with functions
   /* authentication functions */
   case 'signin_function':
