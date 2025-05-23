@@ -80,7 +80,6 @@
   height: 50px;
   width: 50px;
   cursor: pointer;
-  
 }
 /* ------- */
 /* CSS */
@@ -144,4 +143,31 @@
   font-weight: bold;
   box-shadow: rgba(246, 245, 245, 0.65) 0px 5px 15px;
 }
+/* ----- */
+.sidebar_item {
+  list-style-type: none;
+  color: grey;
+  list-style: none;
+  text-decoration: none;
+  background-color: rgb(249, 246, 246);
+  padding: 5px;
+  border-radius: 10px;
+  margin-top: 5px;
+  padding-left: 10px;
+}
+.sidebar_li_item {
+  list-style-type: none;
+}
 
+.sidebar_item:hover {
+  color: rgb(56, 56, 56);
+  background-color: rgb(249, 246, 246);
+}
+.active_sidebar {
+  list-style-type: none;
+  color: rgb(90, 89, 89);
+  list-style: none;
+  text-decoration: none;
+  background-color: rgb(235, 232, 232);
+
+}

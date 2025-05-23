@@ -187,12 +187,14 @@ if (!isset($_SESSION['token'])) {
         </div>
 
         <ul class="list-unstyled p-4">
-            <li><a href="#" class="d-block py-2 fw-bold">Home</a></li>
-            <li><a href="#" class="d-block py-2 fw-bold">About</a></li>
-            <li><a href="#" class="d-block py-2 fw-bold">My Bookings</a></li>
-            <li><a href="?url=find_service" class="d-block py-2 fw-bold">Find Service</a></li>
-            <li><a href="#" class="d-block py-2 fw-bold">Categories</a></li>
-            <li><a href="logout.php" class="d-block py-2 text-danger fw-bold">Logout</a></li>
+            <li class="sidebar_li_item "><a href="#" class="d-block py-2 fw-bold sidebar_item active_sidebar">Home</a></li>
+            <li class="sidebar_li_item"><a href="#" class="d-block py-2 fw-bold sidebar_item">About</a></li><hr>
+            <li class="sidebar_li_item"><a href="#" class="d-block py-2 fw-bold sidebar_item">Profile</a></li>
+            <li class="sidebar_li_item"><a href="#" class="d-block py-2 fw-bold sidebar_item">Settings</a></li>
+            <li class="sidebar_li_item"><a href="#" class="d-block py-2 fw-bold sidebar_item">My Bookings</a></li><hr>
+            <li class="sidebar_li_item"><a href="?url=find_service" class="d-block py-2 fw-bold sidebar_item">Find Service</a></li>
+            <li class="sidebar_li_item"><a href="#" class="d-block py-2 fw-bold sidebar_item">Categories</a></li> <hr>
+            <li class="sidebar_li_item"><a href="logout.php" class="d-block py-2 btn btn-danger fw-bold ">Logout</a></li>
         </ul>
     </div>
 
