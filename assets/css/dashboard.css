@@ -1,0 +1,96 @@
+.custom-search-input {
+  border: 1px solid #dadce0;
+  /* Light grey border */
+  border-radius: 4px;
+  background-color: #f8f9fa;
+  /* Light background */
+}
+
+.custom-search-bar {
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  /* More rounded for the main search bar */
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+  /* Subtle shadow */
+  max-width: 500px;
+  /* Constrain width */
+}
+
+.custom-search-bar .form-control,
+.custom-search-bar .input-group-text {
+  background-color: white;
+  border: none;
+  color: #5f6368;
+}
+
+.custom-search-bar .form-control:focus {
+  box-shadow: none;
+  /* Remove Bootstrap's default focus shadow */
+  border-color: transparent;
+}
+
+/* Cookie Banner */
+.cookie-banner {
+  background-color: #cccdd1ff;
+  /* Dark background */
+
+  font-size: 0.85rem;
+  padding: 1rem 0;
+  /* Vertical padding */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  /* Shadow at the top */
+  z-index: 1050;
+  /* Ensure it's above other content */
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    order: 1;
+    /* Move collapse menu to the left on smaller screens */
+  }
+
+  .navbar-brand {
+    order: 2;
+    margin-right: auto;
+  }
+
+  .d-flex.ms-auto {
+    order: 3;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .custom-search-bar {
+    width: 90% !important;
+    /* Make search bar wider on small screens */
+  }
+
+  .lead {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+.profile_image {
+  border-radius: 50px;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+}
+/* ------- */
+/* CSS */
+
+.profile-dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0; /* Remove pop-up spacing delay */
+}
+.profile-dropdown .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+}
+.profile-dropdown {
+  position: relative;
+  cursor: pointer;
+}
