@@ -80,8 +80,8 @@ if (!isset($_SESSION['token'])) {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">My Bookings</a></li>
+                    <li class="nav-item"><a class="nav-link" href="?url=about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="?url=my_bookings">My Bookings</a></li>
                     <li class="nav-item">
                         <a class="nav-link" href="?url=find_service">Find Service</a>
                     </li>
@@ -163,7 +163,7 @@ if (!isset($_SESSION['token'])) {
 
     <!-- side navigation -->
     <div id="sidebar" class="sidebar bg-white border-end shadow">
-        <div class="header-cont "
+        <div class="header-cont"
             style="background: url(assets/images/people/img3.jpg); background-position: center; background-repeat: no-repeat; background-size: cover; color: white;">
             <div class="cover-transparent p-3" style="background: rgba(0, 0, 0, 0.7); ">
                 <div class="d-flex justify-content-end align-items-end">
@@ -187,19 +187,25 @@ if (!isset($_SESSION['token'])) {
         </div>
 
         <ul class="list-unstyled p-4">
-            <li class="sidebar_li_item "><a href="#" class="d-block py-2 fw-bold sidebar_item active_sidebar">Home</a></li>
-            <li class="sidebar_li_item"><a href="#" class="d-block py-2 fw-bold sidebar_item">About</a></li><hr>
+            <li class="sidebar_li_item "><a href="#" class="d-block py-2 fw-bold sidebar_item active_sidebar">Home</a>
+            </li>
+            <li class="sidebar_li_item"><a href="?url=about" class="d-block py-2 fw-bold sidebar_item">About</a></li>
+            <hr>
             <li class="sidebar_li_item"><a href="#" class="d-block py-2 fw-bold sidebar_item">Profile</a></li>
             <li class="sidebar_li_item"><a href="#" class="d-block py-2 fw-bold sidebar_item">Settings</a></li>
-            <li class="sidebar_li_item"><a href="#" class="d-block py-2 fw-bold sidebar_item">My Bookings</a></li><hr>
-            <li class="sidebar_li_item"><a href="?url=find_service" class="d-block py-2 fw-bold sidebar_item">Find Service</a></li>
-            <li class="sidebar_li_item"><a href="#" class="d-block py-2 fw-bold sidebar_item">Categories</a></li> <hr>
-            <li class="sidebar_li_item"><a href="logout.php" class="d-block py-2 btn btn-danger fw-bold ">Logout</a></li>
+            <li class="sidebar_li_item"><a href="?url=my_bookings" class="d-block py-2 fw-bold sidebar_item">My
+                    Bookings</a></li>
+            <hr>
+            <li class="sidebar_li_item"><a href="?url=find_service" class="d-block py-2 fw-bold sidebar_item">Find
+                    Service</a></li>
+            <li class="sidebar_li_item"><a href="#" class="d-block py-2 fw-bold sidebar_item">Categories</a></li>
+            <hr>
+            <li class="sidebar_li_item"><a href="logout.php" class="d-block py-2 btn btn-danger fw-bold ">Logout</a>
+            </li>
         </ul>
     </div>
 
     <div id="sidebar-overlay" class="sidebar-overlay"></div>
-
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -213,7 +219,7 @@ if (!isset($_SESSION['token'])) {
             sidebar.classList.toggle('show');
             overlay.classList.toggle('show');
         }
-
+        h
         // Close sidebar if overlay is clicked
         document.getElementById('sidebar-overlay').addEventListener('click', () => {
             document.getElementById('sidebar').classList.remove('show');
