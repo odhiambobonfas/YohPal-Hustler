@@ -64,7 +64,11 @@ form {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
 }
-
+.spacer {
+  height: 2px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 form.sign-up-form {
   opacity: 0;
   z-index: 1;
@@ -73,7 +77,10 @@ form.sign-up-form {
 form.sign-in-form {
   z-index: 2;
 }
-
+.sign-in-form a{
+  text-decoration: none;
+  color: red;
+}
 .title {
   font-size: 2.2rem;
   color: #444;

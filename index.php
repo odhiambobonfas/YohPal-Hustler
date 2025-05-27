@@ -26,9 +26,13 @@ switch ($segments[0]) {
   case "my_bookings":
     include 'pages/my_bookings.php';
     break;
+
+  case "forgot_pass":
+    include 'pages/forgot_pass.php';
+    break;
   // links for pages with functions
   /* authentication functions */
-  case 'signin_function':
+  case 'signin_function';
     include 'api_integrations/authentication/signin.php';
     break;
 

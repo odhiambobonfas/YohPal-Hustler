@@ -41,6 +41,8 @@ if (isset($_GET['status']) && $_GET['status'] === "signup") {
                         <input type="password" name="password" placeholder="Password" style="font-size: 12px;" />
                     </div>
                     <input type="submit" value="Login" class="btn solid" />
+                    <div class="spacer"></div>
+                    <a href="./index.php?url=forgot_pass">Forgot your password?</a>
                     <p class="social-text">Sign in to access your account</p>
 
                 </form>
