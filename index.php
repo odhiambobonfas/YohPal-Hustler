@@ -4,7 +4,7 @@ $segments = explode('/', $url);
 
 switch ($segments[0]) {
   case '':
-    include_once 'pages/signin_signup.php'; // Homepage
+    include_once 'pages/landing_page.php'; // Homepage
     break;
 
   case 'dash':
@@ -26,7 +26,9 @@ switch ($segments[0]) {
   case "my_bookings":
     include 'pages/my_bookings.php';
     break;
-
+  case "log_in":
+    include 'pages/signin_signup.php';
+    break;
   case "forgot_pass":
     include 'pages/forgot_pass.php';
     break;

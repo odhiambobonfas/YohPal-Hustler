@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./assets/css/main.css" />
-    
 </head>
 
 <body>
@@ -16,7 +15,7 @@
         <div class="form-container">
             <div class="signin-signup">
                 <form action="./index.php?url=forgot_pass" method="POST" class="sign-in-form" id="forgotPasswordForm">
-                    <!-- <img src="assets/logos/logo_no_background.png" class="logo" alt=""> -->
+                <img src="assets/logos/logo.jpg" class="logo" alt="">
                     <h2 class="title">Forgot Password</h2>
                     
                     <?php if (isset($_GET['success']) && $_GET['status'] === "reset"): ?>
@@ -34,7 +33,7 @@
                     </div>
                     <input type="submit" value="Submit" class="btn solid" />
                     <div class="spacer"></div>
-                    <a href="./index.php">Back to Sign in</a>
+                    <a href="./index.php?url=log_in">Back to Sign in</a>
                 </form>
             </div>
         </div>

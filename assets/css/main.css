@@ -5,17 +5,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-/* signup and signin style */
-.logo{
-  width: 18%;
-  height: 22%;
-  padding-bottom: 12px;
-}
 @media (max-width: 570px) {
-  .logo{
-    width: 30%;
-    height: 22%;
-  }
 }
 .error{
   color: #f0443e;
@@ -63,6 +53,11 @@ form {
   overflow: hidden;
   grid-column: 1 / 2;
   grid-row: 1 / 2;
+}
+.logo{
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
 }
 .spacer {
   height: 2px;
@@ -295,7 +290,7 @@ form.sign-in-form {
   .container {
     min-height: 800px;
     height: 100vh;
-  }
+  }  
   .signin-signup {
     width: 100%;
     top: 95%;
@@ -315,14 +310,16 @@ form.sign-in-form {
 
   .panel {
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    padding: 2.5rem 8%;
+    text-align: center;
+    padding: 1.5rem 5%;
     grid-column: 1 / 2;
   }
 
   .right-panel {
     grid-row: 3 / 4;
+
   }
 
   .left-panel {

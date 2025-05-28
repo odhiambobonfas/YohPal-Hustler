@@ -27,7 +27,7 @@ if (isset($_GET['status']) && $_GET['status'] === "signup") {
         <div class="forms-container">
             <div class="signin-signup">
                 <form action="?url=signin_function" method="POST" class="sign-in-form">
-                    <!-- <img src="assets/logos/logo_no_background.png" class="logo" alt=""> -->
+                    <img src="assets/logos/logo.jpg" class="logo" alt="">
                     <h2 class="title">Sign in</h2>
                     <?php if (isset($_GET['error']) && $_GET['status'] !== "signup"): ?>
                         <P class="error"><?php echo $_GET['error']; ?></P>
@@ -47,7 +47,7 @@ if (isset($_GET['status']) && $_GET['status'] === "signup") {
 
                 </form>
                 <form action="?url=signup_function" method="POST" class="sign-up-form">
-                    <!-- <img src="assets/logos/logo_no_background.png" class="logo" alt=""> -->
+                    <img src="assets/logos/logo.jpg" class="logo" alt="">
                     <h2 class="title">Sign up</h2>
                     <?php if (isset($_GET['error']) && $_GET['status'] === "signup"): ?>
                         <P class="error"><?php echo $_GET['error']; ?></P>
