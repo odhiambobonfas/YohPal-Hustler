@@ -6,13 +6,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Basic validation
     if (empty($email)) {
-        header("Location: ?url=&error=" . urlencode("Email field is required") . "&status=reset");
+        header("Location: ?url=forgot_pass&error=" . urlencode("Email field is required") . "&status=reset");
         exit;
     }
 
     // Validate email format
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        header("Location: ?url=&error=" . urlencode("Please enter a valid email address") . "&status=reset");
+        header("Location: ?url=forgot_pass&error=" . urlencode("Please enter a valid email address") . "&status=reset");
         exit;
     }
 
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = curl_error($ch);
         curl_close($ch);
         error_log("cURL Error: $error, HTTP Code: $httpCode");
-        header("Location: ?url=&error=" . urlencode("Server connection failed: $error") . "&status=reset");
+        header("Location: ?url=forgot_pass&error=" . urlencode("Server connection failed: $error") . "&status=reset");
         exit;
     }
 
@@ -63,20 +63,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $responseData = json_decode($body, true);
     if (json_last_error() !== JSON_ERROR_NONE) {
         error_log("JSON Decode Error: " . json_last_error_msg());
-        header("Location: ?url=&error=" . urlencode("Invalid API response") . "&status=reset");
+        header("Location: ?url=forgot_pass&error=" . urlencode("Invalid API response") . "&status=reset");
         exit;
     }
 
     // Handle successful or failed password reset request
-    if (isset($responseData['success']) && $responseData['success'] && isset($responseData['message']) && strpos($responseData['message'], 'sent') !== false) {
+    if ($httpCode >= 200 && $httpCode < 300) {
         // Success - redirect with success message
-        $successMessage = $responseData['message'] ?? "Password reset email sent successfully.";
-        header("Location: ?url=&success=" . urlencode($successMessage) . "&status=reset");
+        $successMessage = isset($responseData['message']) && !empty($responseData['message']) ? $responseData['message'] : "Password reset email sent successfully.";
+        header("Location: ?url=forgot_pass&success=" . urlencode($successMessage) . "&status=reset");
         exit;
     } else {
         // Failed - redirect with error message
         $errorMessage = isset($responseData['message']) && !empty($responseData['message']) ? $responseData['message'] : "Password reset failed. Please try again later.";
-        header("Location: ?url=&error=" . urlencode($errorMessage) . "&status=reset");
+        header("Location: ?url=forgot_pass&error=" . urlencode($errorMessage) . "&status=reset");
         exit;
     }
 }

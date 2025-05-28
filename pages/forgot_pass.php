@@ -18,9 +18,15 @@
                 <form action="./index.php?url=forgot_pass" method="POST" class="sign-in-form" id="forgotPasswordForm">
                     <!-- <img src="assets/logos/logo_no_background.png" class="logo" alt=""> -->
                     <h2 class="title">Forgot Password</h2>
-                    <?php if (isset($_GET['error']) && $_GET['status'] !== "signup"): ?>
-                        <p class="error"><?php echo htmlspecialchars($_GET['error']); ?></p>
+                    
+                    <?php if (isset($_GET['success']) && $_GET['status'] === "reset"): ?>
+                        <p class="success" style="color: green;"><?php echo htmlspecialchars($_GET['success']); ?></p>
                     <?php endif; ?>
+                    
+                    <?php if (isset($_GET['error']) && $_GET['status'] === "reset"): ?>
+                        <p class="error" style="color: red;"><?php echo htmlspecialchars($_GET['error']); ?></p>
+                    <?php endif; ?>
+                    
                     <div class="input-field">
                         <i class="fas fa-user"></i>
                         <input type="email" placeholder="Email" name="email" id="emailInput" style="font-size: 12px;"
@@ -45,7 +51,7 @@
             </div>
         </div>
     </div>
-<!-- <script src="../assets/js/forgot_pass.js"></script> -->
+    <script src="../assets/js/forgot_pass.js"></script>
 </body>
 
 </html>

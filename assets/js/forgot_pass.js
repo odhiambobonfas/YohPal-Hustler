@@ -1,5 +1,5 @@
-  // Function to show popup
-        function showPopup() {
+          // Function to show popup
+          function showPopup() {
             document.getElementById('successPopup').style.display = 'flex';
         }
 
