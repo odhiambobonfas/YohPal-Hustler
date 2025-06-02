@@ -15,10 +15,6 @@ switch ($segments[0]) {
     include 'pages/profile.php';
     break;
 
-  case 'about':
-    include 'pages/about.php';
-    break;
-
   case "find_service":
     include 'pages/find_service.php';
     break;
