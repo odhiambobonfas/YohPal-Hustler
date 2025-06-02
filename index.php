@@ -15,6 +15,10 @@ switch ($segments[0]) {
     include 'pages/profile.php';
     break;
 
+  case 'public_prof':
+    include 'pages/public_prof.php';
+    break;
+
   case 'about':
     include 'pages/about.php';
     break;

@@ -116,7 +116,7 @@ if (!isset($_SESSION['token'])) {
                     <img src="./assets/images/people/img1.jpg" class="profile_image dropdown-toggle" alt="Profile"
                         height="32" data-bs-toggle="dropdown">
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#">My Profile</a></li>
+                        <li><a class="dropdown-item" href="./index.php?url=profile">My Profile</a></li>
                         <li><a class="dropdown-item" href="#">Settings</a></li>
                         <li>
                             <hr class="dropdown-divider">
