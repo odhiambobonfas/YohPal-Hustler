@@ -16,7 +16,7 @@ if (isset($_GET['status']) && $_GET['status'] === "signup") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./assets/css/main.css" />
-    <title>YohPal Hustle App</title>
+    <title>YohPal Hustler App</title>
 
 </head>
 
@@ -75,7 +75,7 @@ if (isset($_GET['status']) && $_GET['status'] === "signup") {
         <div class="panels-container">
             <div class="panel left-panel">
                 <div class="content">
-                    <h3>Welcome to YohPal Hustle </h3><br />
+                    <h3>Welcome to YohPal Hustler </h3><br />
                     <h3>New here ?</h3>
                     <p>
                         Join us today and unlock exclusive features! Sign up now to get started on your journey.
@@ -91,7 +91,7 @@ if (isset($_GET['status']) && $_GET['status'] === "signup") {
             </div>
             <div class="panel right-panel">
                 <div class="content">
-                    <h3>Welcome to YohPal Hustle </h3><br />
+                    <h3>Welcome to YohPal Hustler </h3><br />
                     <h3>One of us ?</h3>
                     <p>
                         Welcome back! Sign in now to access amazing content and exclusive benefits made just for you.
