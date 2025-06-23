@@ -1,5 +1,5 @@
 {
-    "name": "yohpal/marketplace",
+    "name": "yohpal/hustler",
     "type": "library",
     "description": "A dynamic, scalable, and secure platform where users can easily buy and sell products",
     "keywords": [
@@ -7,7 +7,7 @@
         "mvc",
         "scalable",
         "application",
-        "marketplace"
+        "hustler"
     ],
     "homepage": "https://github.com/byteforge254/Yohpal-Market.git",
     "support": {
