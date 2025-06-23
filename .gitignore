@@ -1,0 +1,16 @@
+
+src/tests
+.DS_Store
+src/documentation
+src/node_modules 
+
+api_integrations
+assets
+bindings
+data
+features
+localization
+pages
+partials
+utils
+index.php
