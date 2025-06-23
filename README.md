@@ -156,7 +156,7 @@ npm run build
 
 * Move the `src/` folder into your `htdocs/` directory.
 * Visit:
-  `http://localhost/yohpal_market`
+  `http://localhost/src`
 
 #### Option 2: Using PHP's Built-In Server
 
