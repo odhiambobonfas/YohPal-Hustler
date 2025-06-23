@@ -1,0 +1,527 @@
+[2025-06-13T12:47:31.512553+00:00] app.ERROR: Exception: View 'crm/products/edit-product' not found in any configured application views directory. in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php:238
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/ProductController.php(383): view('crm/products/ed...', Array, true)
+#1 [internal function]: App\Controllers\Web\ProductController->editProduct(Object(Yohpal\Application\YPRequest), Array)
+#2 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(116): ReflectionMethod->invokeArgs(Object(App\Controllers\Web\ProductController), Array)
+#3 [internal function]: Yohpal\Application\YPRouter->Yohpal\Application\{closure}('luVUcrTXiCQfBzG...')
+#4 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(130): call_user_func_array(Object(Closure), Array)
+#5 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(199): Yohpal\Application\YPRouter->dispatch()
+#6 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(303): setRouter()
+#7 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/index.php(15): include_once('/Applications/X...')
+#8 {main}  
+[2025-06-13T13:01:43.423370+00:00] app.ERROR: Error: Call to undefined method Yohpal\Models\ProductCategory::getCategoriesList() in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/ProductController.php:225
+Stack trace:
+#0 [internal function]: App\Controllers\Web\ProductController->categories(Object(Yohpal\Application\YPRequest))
+#1 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(116): ReflectionMethod->invokeArgs(Object(App\Controllers\Web\ProductController), Array)
+#2 [internal function]: Yohpal\Application\YPRouter->Yohpal\Application\{closure}()
+#3 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(130): call_user_func_array(Object(Closure), Array)
+#4 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(199): Yohpal\Application\YPRouter->dispatch()
+#5 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(303): setRouter()
+#6 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/index.php(15): include_once('/Applications/X...')
+#7 {main}  
+[2025-06-13T13:03:30.404542+00:00] app.ERROR: Error: Call to undefined method Yohpal\Models\ProductCategory::getCategoriesList() in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/ProductController.php:224
+Stack trace:
+#0 [internal function]: App\Controllers\Web\ProductController->categories(Object(Yohpal\Application\YPRequest))
+#1 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(116): ReflectionMethod->invokeArgs(Object(App\Controllers\Web\ProductController), Array)
+#2 [internal function]: Yohpal\Application\YPRouter->Yohpal\Application\{closure}()
+#3 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(130): call_user_func_array(Object(Closure), Array)
+#4 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(199): Yohpal\Application\YPRouter->dispatch()
+#5 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(303): setRouter()
+#6 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/index.php(15): include_once('/Applications/X...')
+#7 {main}  
+[2025-06-13T13:03:43.933447+00:00] app.ERROR: GuzzleHttp\Exception\ClientException: Client error: `GET https://yohpal-market-apis-test.onrender.com/products/l2Ux0edbwtY5Je0PUDze` resulted in a `401 Unauthorized` response:
+{"message":"Invalid token"}
+ in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Exception/RequestException.php:111
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Middleware.php(72): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response), NULL, Array, NULL)
+#1 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(209): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
+#2 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(158): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), NULL)
+#3 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/TaskQueue.php(52): GuzzleHttp\Promise\Promise::GuzzleHttp\Promise\{closure}()
+#4 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(251): GuzzleHttp\Promise\TaskQueue->run(true)
+#5 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(227): GuzzleHttp\Promise\Promise->invokeWaitFn()
+#6 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(272): GuzzleHttp\Promise\Promise->waitIfPending()
+#7 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(229): GuzzleHttp\Promise\Promise->invokeWaitList()
+#8 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(69): GuzzleHttp\Promise\Promise->waitIfPending()
+#9 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Client.php(189): GuzzleHttp\Promise\Promise->wait()
+#10 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/ClientTrait.php(44): GuzzleHttp\Client->request('GET', 'https://yohpal-...', Array)
+#11 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/data/models/Product.php(57): GuzzleHttp\Client->get('https://yohpal-...', Array)
+#12 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/ProductController.php(377): Yohpal\Models\Product->getProductById(Object(stdClass), Array)
+#13 [internal function]: App\Controllers\Web\ProductController->editProduct(Object(Yohpal\Application\YPRequest), Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(116): ReflectionMethod->invokeArgs(Object(App\Controllers\Web\ProductController), Array)
+#15 [internal function]: Yohpal\Application\YPRouter->Yohpal\Application\{closure}('l2Ux0edbwtY5Je0...')
+#16 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(130): call_user_func_array(Object(Closure), Array)
+#17 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(199): Yohpal\Application\YPRouter->dispatch()
+#18 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(303): setRouter()
+#19 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/index.php(15): include_once('/Applications/X...')
+#20 {main}  
+[2025-06-14T05:32:10.758772+00:00] app.ERROR: GuzzleHttp\Exception\ClientException: Client error: `DELETE https://yohpal-market-apis-test.onrender.com/store/8r2HIk5ARcdwWgsz78wo/delete/o8V68i1lTEXVv6T5SP0r` resulted in a `404 Not Found` response:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot DELETE /s (truncated...)
+ in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Exception/RequestException.php:111
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Middleware.php(72): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response), NULL, Array, NULL)
+#1 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(209): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
+#2 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(158): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), NULL)
+#3 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/TaskQueue.php(52): GuzzleHttp\Promise\Promise::GuzzleHttp\Promise\{closure}()
+#4 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(251): GuzzleHttp\Promise\TaskQueue->run(true)
+#5 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(227): GuzzleHttp\Promise\Promise->invokeWaitFn()
+#6 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(272): GuzzleHttp\Promise\Promise->waitIfPending()
+#7 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(229): GuzzleHttp\Promise\Promise->invokeWaitList()
+#8 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(69): GuzzleHttp\Promise\Promise->waitIfPending()
+#9 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Client.php(189): GuzzleHttp\Promise\Promise->wait()
+#10 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/ClientTrait.php(129): GuzzleHttp\Client->request('DELETE', 'https://yohpal-...', Array)
+#11 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/Http/StoreUtil.php(90): GuzzleHttp\Client->delete('https://yohpal-...', Array)
+#12 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/StoreLocationsController.php(333): Yohpal\Utils\StoreUtil->deleteStoreLocation(Array)
+#13 [internal function]: App\Controllers\Web\StoreLocationsController->deleteStoreLocation(Object(Yohpal\Application\YPRequest), Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(116): ReflectionMethod->invokeArgs(Object(App\Controllers\Web\StoreLocationsController), Array)
+#15 [internal function]: Yohpal\Application\YPRouter->Yohpal\Application\{closure}('o8V68i1lTEXVv6T...')
+#16 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(130): call_user_func_array(Object(Closure), Array)
+#17 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(199): Yohpal\Application\YPRouter->dispatch()
+#18 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(303): setRouter()
+#19 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/index.php(15): include_once('/Applications/X...')
+#20 {main}  
+[2025-06-14T07:08:21.168639+00:00] app.ERROR: TypeError: Yohpal\Models\Authentication::sendResetEmail(): Argument #2 ($input) must be of type array, string given, called in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/AuthController.php on line 123 and defined in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/data/models/Authentication.php:54
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/AuthController.php(123): Yohpal\Models\Authentication->sendResetEmail(Object(stdClass), '')
+#1 [internal function]: App\Controllers\Web\AuthController->initResetPassord(Object(Yohpal\Application\YPRequest))
+#2 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(116): ReflectionMethod->invokeArgs(Object(App\Controllers\Web\AuthController), Array)
+#3 [internal function]: Yohpal\Application\YPRouter->Yohpal\Application\{closure}()
+#4 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(130): call_user_func_array(Object(Closure), Array)
+#5 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(199): Yohpal\Application\YPRouter->dispatch()
+#6 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(303): setRouter()
+#7 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/index.php(15): include_once('/Applications/X...')
+#8 {main}  
+[2025-06-14T07:09:46.372023+00:00] app.ERROR: TypeError: Yohpal\Models\Authentication::sendResetEmail(): Argument #2 ($input) must be of type array, null given, called in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/AuthController.php on line 123 and defined in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/data/models/Authentication.php:54
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/AuthController.php(123): Yohpal\Models\Authentication->sendResetEmail(Object(stdClass), NULL)
+#1 [internal function]: App\Controllers\Web\AuthController->initResetPassord(Object(Yohpal\Application\YPRequest))
+#2 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(116): ReflectionMethod->invokeArgs(Object(App\Controllers\Web\AuthController), Array)
+#3 [internal function]: Yohpal\Application\YPRouter->Yohpal\Application\{closure}()
+#4 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(130): call_user_func_array(Object(Closure), Array)
+#5 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(199): Yohpal\Application\YPRouter->dispatch()
+#6 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(303): setRouter()
+#7 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/index.php(15): include_once('/Applications/X...')
+#8 {main}  
+[2025-06-14T07:11:21.931422+00:00] app.ERROR: TypeError: Yohpal\Models\Authentication::sendResetEmail(): Argument #2 ($input) must be of type array, null given, called in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/AuthController.php on line 123 and defined in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/data/models/Authentication.php:54
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/AuthController.php(123): Yohpal\Models\Authentication->sendResetEmail(Object(stdClass), NULL)
+#1 [internal function]: App\Controllers\Web\AuthController->initResetPassord(Object(Yohpal\Application\YPRequest))
+#2 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(116): ReflectionMethod->invokeArgs(Object(App\Controllers\Web\AuthController), Array)
+#3 [internal function]: Yohpal\Application\YPRouter->Yohpal\Application\{closure}()
+#4 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(130): call_user_func_array(Object(Closure), Array)
+#5 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(199): Yohpal\Application\YPRouter->dispatch()
+#6 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(303): setRouter()
+#7 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/index.php(15): include_once('/Applications/X...')
+#8 {main}  
+[2025-06-14T07:12:56.946601+00:00] app.ERROR: TypeError: Yohpal\Models\Authentication::sendResetEmail(): Argument #2 ($input) must be of type array, null given, called in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/AuthController.php on line 123 and defined in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/data/models/Authentication.php:54
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/AuthController.php(123): Yohpal\Models\Authentication->sendResetEmail(Object(stdClass), NULL)
+#1 [internal function]: App\Controllers\Web\AuthController->initResetPassord(Object(Yohpal\Application\YPRequest))
+#2 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(116): ReflectionMethod->invokeArgs(Object(App\Controllers\Web\AuthController), Array)
+#3 [internal function]: Yohpal\Application\YPRouter->Yohpal\Application\{closure}()
+#4 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(130): call_user_func_array(Object(Closure), Array)
+#5 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(199): Yohpal\Application\YPRouter->dispatch()
+#6 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(303): setRouter()
+#7 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/index.php(15): include_once('/Applications/X...')
+#8 {main}  
+[2025-06-14T07:14:06.137629+00:00] app.ERROR: TypeError: Yohpal\Models\Authentication::sendResetEmail(): Argument #2 ($input) must be of type array, string given, called in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/AuthController.php on line 123 and defined in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/data/models/Authentication.php:54
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/AuthController.php(123): Yohpal\Models\Authentication->sendResetEmail(Object(stdClass), 'gicehajunior76@...')
+#1 [internal function]: App\Controllers\Web\AuthController->initResetPassord(Object(Yohpal\Application\YPRequest))
+#2 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(116): ReflectionMethod->invokeArgs(Object(App\Controllers\Web\AuthController), Array)
+#3 [internal function]: Yohpal\Application\YPRouter->Yohpal\Application\{closure}()
+#4 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(130): call_user_func_array(Object(Closure), Array)
+#5 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(199): Yohpal\Application\YPRouter->dispatch()
+#6 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(303): setRouter()
+#7 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/index.php(15): include_once('/Applications/X...')
+#8 {main}  
+[2025-06-14T07:14:54.822091+00:00] app.ERROR: TypeError: Yohpal\Models\Authentication::sendResetEmail(): Argument #2 ($input) must be of type array, string given, called in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/AuthController.php on line 123 and defined in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/data/models/Authentication.php:54
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/AuthController.php(123): Yohpal\Models\Authentication->sendResetEmail(Object(stdClass), 'gicehajunior76@...')
+#1 [internal function]: App\Controllers\Web\AuthController->initResetPassord(Object(Yohpal\Application\YPRequest))
+#2 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(116): ReflectionMethod->invokeArgs(Object(App\Controllers\Web\AuthController), Array)
+#3 [internal function]: Yohpal\Application\YPRouter->Yohpal\Application\{closure}()
+#4 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(130): call_user_func_array(Object(Closure), Array)
+#5 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(199): Yohpal\Application\YPRouter->dispatch()
+#6 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(303): setRouter()
+#7 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/index.php(15): include_once('/Applications/X...')
+#8 {main}  
+[2025-06-16T07:23:22.051410+00:00] app.ERROR: GuzzleHttp\Exception\ClientException: Client error: `GET https://yohpal-market-apis-test.onrender.com/roles/store/8r2HIk5ARcdwWgsz78wo?roleId=auth` resulted in a `404 Not Found` response:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot GET /role (truncated...)
+ in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Exception/RequestException.php:111
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Middleware.php(72): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response), NULL, Array, NULL)
+#1 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(209): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
+#2 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(158): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), NULL)
+#3 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/TaskQueue.php(52): GuzzleHttp\Promise\Promise::GuzzleHttp\Promise\{closure}()
+#4 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(251): GuzzleHttp\Promise\TaskQueue->run(true)
+#5 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(227): GuzzleHttp\Promise\Promise->invokeWaitFn()
+#6 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(272): GuzzleHttp\Promise\Promise->waitIfPending()
+#7 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(229): GuzzleHttp\Promise\Promise->invokeWaitList()
+#8 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(69): GuzzleHttp\Promise\Promise->waitIfPending()
+#9 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Client.php(189): GuzzleHttp\Promise\Promise->wait()
+#10 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/ClientTrait.php(44): GuzzleHttp\Client->request('GET', 'https://yohpal-...', Array)
+#11 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/data/models/Roles.php(65): GuzzleHttp\Client->get('https://yohpal-...', Array)
+#12 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/RolesController.php(127): Yohpal\Models\Roles->getRoleById(Object(stdClass), Array, Array)
+#13 [internal function]: App\Controllers\Web\RolesController->editRole(Object(Yohpal\Application\YPRequest), Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(116): ReflectionMethod->invokeArgs(Object(App\Controllers\Web\RolesController), Array)
+#15 [internal function]: Yohpal\Application\YPRouter->Yohpal\Application\{closure}('auth')
+#16 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(130): call_user_func_array(Object(Closure), Array)
+#17 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(199): Yohpal\Application\YPRouter->dispatch()
+#18 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(303): setRouter()
+#19 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/index.php(15): include_once('/Applications/X...')
+#20 {main}  
+[2025-06-16T07:30:36.441724+00:00] app.ERROR: GuzzleHttp\Exception\ClientException: Client error: `GET https://yohpal-market-apis-test.onrender.com/roles/store/8r2HIk5ARcdwWgsz78wo?roleId=auth` resulted in a `404 Not Found` response:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot GET /role (truncated...)
+ in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Exception/RequestException.php:111
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Middleware.php(72): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response), NULL, Array, NULL)
+#1 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(209): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
+#2 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(158): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), NULL)
+#3 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/TaskQueue.php(52): GuzzleHttp\Promise\Promise::GuzzleHttp\Promise\{closure}()
+#4 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(251): GuzzleHttp\Promise\TaskQueue->run(true)
+#5 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(227): GuzzleHttp\Promise\Promise->invokeWaitFn()
+#6 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(272): GuzzleHttp\Promise\Promise->waitIfPending()
+#7 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(229): GuzzleHttp\Promise\Promise->invokeWaitList()
+#8 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(69): GuzzleHttp\Promise\Promise->waitIfPending()
+#9 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Client.php(189): GuzzleHttp\Promise\Promise->wait()
+#10 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/ClientTrait.php(44): GuzzleHttp\Client->request('GET', 'https://yohpal-...', Array)
+#11 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/data/models/Roles.php(65): GuzzleHttp\Client->get('https://yohpal-...', Array)
+#12 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/RolesController.php(127): Yohpal\Models\Roles->getRoleById(Object(stdClass), Array, Array)
+#13 [internal function]: App\Controllers\Web\RolesController->editRole(Object(Yohpal\Application\YPRequest), Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(116): ReflectionMethod->invokeArgs(Object(App\Controllers\Web\RolesController), Array)
+#15 [internal function]: Yohpal\Application\YPRouter->Yohpal\Application\{closure}('auth')
+#16 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(130): call_user_func_array(Object(Closure), Array)
+#17 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(199): Yohpal\Application\YPRouter->dispatch()
+#18 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(303): setRouter()
+#19 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/index.php(15): include_once('/Applications/X...')
+#20 {main}  
+[2025-06-16T07:30:39.201236+00:00] app.ERROR: Error: Call to a member function res() on null in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/RolesController.php:174
+Stack trace:
+#0 [internal function]: App\Controllers\Web\RolesController->trash()
+#1 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(116): ReflectionMethod->invokeArgs(Object(App\Controllers\Web\RolesController), Array)
+#2 [internal function]: Yohpal\Application\YPRouter->Yohpal\Application\{closure}('auth')
+#3 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(130): call_user_func_array(Object(Closure), Array)
+#4 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(199): Yohpal\Application\YPRouter->dispatch()
+#5 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(303): setRouter()
+#6 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/index.php(15): include_once('/Applications/X...')
+#7 {main}  
+[2025-06-16T07:31:23.620591+00:00] app.ERROR: GuzzleHttp\Exception\ClientException: Client error: `GET https://yohpal-market-apis-test.onrender.com/roles/store/8r2HIk5ARcdwWgsz78wo?roleId=auth` resulted in a `404 Not Found` response:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot GET /role (truncated...)
+ in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Exception/RequestException.php:111
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Middleware.php(72): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response), NULL, Array, NULL)
+#1 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(209): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
+#2 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(158): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), NULL)
+#3 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/TaskQueue.php(52): GuzzleHttp\Promise\Promise::GuzzleHttp\Promise\{closure}()
+#4 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(251): GuzzleHttp\Promise\TaskQueue->run(true)
+#5 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(227): GuzzleHttp\Promise\Promise->invokeWaitFn()
+#6 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(272): GuzzleHttp\Promise\Promise->waitIfPending()
+#7 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(229): GuzzleHttp\Promise\Promise->invokeWaitList()
+#8 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(69): GuzzleHttp\Promise\Promise->waitIfPending()
+#9 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Client.php(189): GuzzleHttp\Promise\Promise->wait()
+#10 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/ClientTrait.php(44): GuzzleHttp\Client->request('GET', 'https://yohpal-...', Array)
+#11 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/data/models/Roles.php(65): GuzzleHttp\Client->get('https://yohpal-...', Array)
+#12 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/RolesController.php(127): Yohpal\Models\Roles->getRoleById(Object(stdClass), Array, Array)
+#13 [internal function]: App\Controllers\Web\RolesController->editRole(Object(Yohpal\Application\YPRequest), Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(116): ReflectionMethod->invokeArgs(Object(App\Controllers\Web\RolesController), Array)
+#15 [internal function]: Yohpal\Application\YPRouter->Yohpal\Application\{closure}('auth')
+#16 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(130): call_user_func_array(Object(Closure), Array)
+#17 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(199): Yohpal\Application\YPRouter->dispatch()
+#18 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(303): setRouter()
+#19 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/index.php(15): include_once('/Applications/X...')
+#20 {main}  
+[2025-06-16T07:31:26.402503+00:00] app.ERROR: TypeError: getIdParam(): Argument #1 ($path) must be of type array, null given, called in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/RolesController.php on line 157 and defined in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/helpers/functions.php:152
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/RolesController.php(157): getIdParam(NULL)
+#1 [internal function]: App\Controllers\Web\RolesController->viewRole(Object(Yohpal\Application\YPRequest))
+#2 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(116): ReflectionMethod->invokeArgs(Object(App\Controllers\Web\RolesController), Array)
+#3 [internal function]: Yohpal\Application\YPRouter->Yohpal\Application\{closure}('auth')
+#4 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(130): call_user_func_array(Object(Closure), Array)
+#5 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(199): Yohpal\Application\YPRouter->dispatch()
+#6 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(303): setRouter()
+#7 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/index.php(15): include_once('/Applications/X...')
+#8 {main}  
+[2025-06-16T09:04:58.010636+00:00] app.ERROR: GuzzleHttp\Exception\ClientException: Client error: `GET https://yohpal-market-apis-test.onrender.com/roles/store/8r2HIk5ARcdwWgsz78wo?roleId=auth` resulted in a `404 Not Found` response:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot GET /role (truncated...)
+ in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Exception/RequestException.php:111
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Middleware.php(72): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response), NULL, Array, NULL)
+#1 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(209): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
+#2 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(158): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), NULL)
+#3 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/TaskQueue.php(52): GuzzleHttp\Promise\Promise::GuzzleHttp\Promise\{closure}()
+#4 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(251): GuzzleHttp\Promise\TaskQueue->run(true)
+#5 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(227): GuzzleHttp\Promise\Promise->invokeWaitFn()
+#6 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(272): GuzzleHttp\Promise\Promise->waitIfPending()
+#7 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(229): GuzzleHttp\Promise\Promise->invokeWaitList()
+#8 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(69): GuzzleHttp\Promise\Promise->waitIfPending()
+#9 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Client.php(189): GuzzleHttp\Promise\Promise->wait()
+#10 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/ClientTrait.php(44): GuzzleHttp\Client->request('GET', 'https://yohpal-...', Array)
+#11 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/data/models/Roles.php(65): GuzzleHttp\Client->get('https://yohpal-...', Array)
+#12 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/RolesController.php(127): Yohpal\Models\Roles->getRoleById(Object(stdClass), Array, Array)
+#13 [internal function]: App\Controllers\Web\RolesController->editRole(Object(Yohpal\Application\YPRequest), Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(116): ReflectionMethod->invokeArgs(Object(App\Controllers\Web\RolesController), Array)
+#15 [internal function]: Yohpal\Application\YPRouter->Yohpal\Application\{closure}('auth')
+#16 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(130): call_user_func_array(Object(Closure), Array)
+#17 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(199): Yohpal\Application\YPRouter->dispatch()
+#18 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(303): setRouter()
+#19 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/index.php(15): include_once('/Applications/X...')
+#20 {main}  
+[2025-06-16T09:07:13.144856+00:00] app.ERROR: GuzzleHttp\Exception\ClientException: Client error: `GET https://yohpal-market-apis-test.onrender.com/roles/store/8r2HIk5ARcdwWgsz78wo?roleId=auth` resulted in a `404 Not Found` response:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot GET /role (truncated...)
+ in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Exception/RequestException.php:111
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Middleware.php(72): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response), NULL, Array, NULL)
+#1 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(209): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
+#2 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(158): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), NULL)
+#3 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/TaskQueue.php(52): GuzzleHttp\Promise\Promise::GuzzleHttp\Promise\{closure}()
+#4 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(251): GuzzleHttp\Promise\TaskQueue->run(true)
+#5 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(227): GuzzleHttp\Promise\Promise->invokeWaitFn()
+#6 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(272): GuzzleHttp\Promise\Promise->waitIfPending()
+#7 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(229): GuzzleHttp\Promise\Promise->invokeWaitList()
+#8 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(69): GuzzleHttp\Promise\Promise->waitIfPending()
+#9 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Client.php(189): GuzzleHttp\Promise\Promise->wait()
+#10 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/ClientTrait.php(44): GuzzleHttp\Client->request('GET', 'https://yohpal-...', Array)
+#11 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/data/models/Roles.php(65): GuzzleHttp\Client->get('https://yohpal-...', Array)
+#12 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/RolesController.php(127): Yohpal\Models\Roles->getRoleById(Object(stdClass), Array, Array)
+#13 [internal function]: App\Controllers\Web\RolesController->editRole(Object(Yohpal\Application\YPRequest), Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(116): ReflectionMethod->invokeArgs(Object(App\Controllers\Web\RolesController), Array)
+#15 [internal function]: Yohpal\Application\YPRouter->Yohpal\Application\{closure}('auth')
+#16 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(130): call_user_func_array(Object(Closure), Array)
+#17 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(199): Yohpal\Application\YPRouter->dispatch()
+#18 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(303): setRouter()
+#19 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/index.php(15): include_once('/Applications/X...')
+#20 {main}  
+[2025-06-16T09:09:04.143922+00:00] app.ERROR: GuzzleHttp\Exception\ClientException: Client error: `GET https://yohpal-market-apis-test.onrender.com/roles/store/8r2HIk5ARcdwWgsz78wo?roleId=auth` resulted in a `404 Not Found` response:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot GET /role (truncated...)
+ in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Exception/RequestException.php:111
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Middleware.php(72): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response), NULL, Array, NULL)
+#1 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(209): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
+#2 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(158): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), NULL)
+#3 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/TaskQueue.php(52): GuzzleHttp\Promise\Promise::GuzzleHttp\Promise\{closure}()
+#4 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(251): GuzzleHttp\Promise\TaskQueue->run(true)
+#5 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(227): GuzzleHttp\Promise\Promise->invokeWaitFn()
+#6 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(272): GuzzleHttp\Promise\Promise->waitIfPending()
+#7 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(229): GuzzleHttp\Promise\Promise->invokeWaitList()
+#8 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(69): GuzzleHttp\Promise\Promise->waitIfPending()
+#9 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Client.php(189): GuzzleHttp\Promise\Promise->wait()
+#10 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/ClientTrait.php(44): GuzzleHttp\Client->request('GET', 'https://yohpal-...', Array)
+#11 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/data/models/Roles.php(65): GuzzleHttp\Client->get('https://yohpal-...', Array)
+#12 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/RolesController.php(160): Yohpal\Models\Roles->getRoleById(Object(stdClass), Array, Array)
+#13 [internal function]: App\Controllers\Web\RolesController->viewRole(Object(Yohpal\Application\YPRequest), Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(116): ReflectionMethod->invokeArgs(Object(App\Controllers\Web\RolesController), Array)
+#15 [internal function]: Yohpal\Application\YPRouter->Yohpal\Application\{closure}('auth')
+#16 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(130): call_user_func_array(Object(Closure), Array)
+#17 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(199): Yohpal\Application\YPRouter->dispatch()
+#18 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(303): setRouter()
+#19 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/index.php(15): include_once('/Applications/X...')
+#20 {main}  
+[2025-06-16T09:23:48.363805+00:00] app.ERROR: GuzzleHttp\Exception\ClientException: Client error: `GET https://yohpal-market-apis-test.onrender.com/roles/store/8r2HIk5ARcdwWgsz78wo?roleId=auth` resulted in a `404 Not Found` response:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot GET /role (truncated...)
+ in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Exception/RequestException.php:111
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Middleware.php(72): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response), NULL, Array, NULL)
+#1 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(209): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
+#2 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(158): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), NULL)
+#3 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/TaskQueue.php(52): GuzzleHttp\Promise\Promise::GuzzleHttp\Promise\{closure}()
+#4 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(251): GuzzleHttp\Promise\TaskQueue->run(true)
+#5 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(227): GuzzleHttp\Promise\Promise->invokeWaitFn()
+#6 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(272): GuzzleHttp\Promise\Promise->waitIfPending()
+#7 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(229): GuzzleHttp\Promise\Promise->invokeWaitList()
+#8 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(69): GuzzleHttp\Promise\Promise->waitIfPending()
+#9 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Client.php(189): GuzzleHttp\Promise\Promise->wait()
+#10 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/ClientTrait.php(44): GuzzleHttp\Client->request('GET', 'https://yohpal-...', Array)
+#11 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/data/models/Roles.php(65): GuzzleHttp\Client->get('https://yohpal-...', Array)
+#12 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/RolesController.php(127): Yohpal\Models\Roles->getRoleById(Object(stdClass), Array, Array)
+#13 [internal function]: App\Controllers\Web\RolesController->editRole(Object(Yohpal\Application\YPRequest), Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(116): ReflectionMethod->invokeArgs(Object(App\Controllers\Web\RolesController), Array)
+#15 [internal function]: Yohpal\Application\YPRouter->Yohpal\Application\{closure}('auth')
+#16 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(130): call_user_func_array(Object(Closure), Array)
+#17 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(199): Yohpal\Application\YPRouter->dispatch()
+#18 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(303): setRouter()
+#19 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/index.php(15): include_once('/Applications/X...')
+#20 {main}  
+[2025-06-16T09:23:52.255397+00:00] app.ERROR: GuzzleHttp\Exception\ClientException: Client error: `GET https://yohpal-market-apis-test.onrender.com/roles/store/8r2HIk5ARcdwWgsz78wo?roleId=auth` resulted in a `404 Not Found` response:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot GET /role (truncated...)
+ in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Exception/RequestException.php:111
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Middleware.php(72): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response), NULL, Array, NULL)
+#1 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(209): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
+#2 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(158): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), NULL)
+#3 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/TaskQueue.php(52): GuzzleHttp\Promise\Promise::GuzzleHttp\Promise\{closure}()
+#4 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(251): GuzzleHttp\Promise\TaskQueue->run(true)
+#5 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(227): GuzzleHttp\Promise\Promise->invokeWaitFn()
+#6 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(272): GuzzleHttp\Promise\Promise->waitIfPending()
+#7 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(229): GuzzleHttp\Promise\Promise->invokeWaitList()
+#8 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(69): GuzzleHttp\Promise\Promise->waitIfPending()
+#9 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Client.php(189): GuzzleHttp\Promise\Promise->wait()
+#10 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/ClientTrait.php(44): GuzzleHttp\Client->request('GET', 'https://yohpal-...', Array)
+#11 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/data/models/Roles.php(65): GuzzleHttp\Client->get('https://yohpal-...', Array)
+#12 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/RolesController.php(160): Yohpal\Models\Roles->getRoleById(Object(stdClass), Array, Array)
+#13 [internal function]: App\Controllers\Web\RolesController->viewRole(Object(Yohpal\Application\YPRequest), Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(116): ReflectionMethod->invokeArgs(Object(App\Controllers\Web\RolesController), Array)
+#15 [internal function]: Yohpal\Application\YPRouter->Yohpal\Application\{closure}('auth')
+#16 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(130): call_user_func_array(Object(Closure), Array)
+#17 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(199): Yohpal\Application\YPRouter->dispatch()
+#18 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(303): setRouter()
+#19 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/index.php(15): include_once('/Applications/X...')
+#20 {main}  
+[2025-06-16T09:27:14.960167+00:00] app.ERROR: GuzzleHttp\Exception\ClientException: Client error: `GET https://yohpal-market-apis-test.onrender.com/roles/store/8r2HIk5ARcdwWgsz78wo?roleId=auth` resulted in a `404 Not Found` response:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot GET /role (truncated...)
+ in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Exception/RequestException.php:111
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Middleware.php(72): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response), NULL, Array, NULL)
+#1 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(209): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
+#2 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(158): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), NULL)
+#3 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/TaskQueue.php(52): GuzzleHttp\Promise\Promise::GuzzleHttp\Promise\{closure}()
+#4 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(251): GuzzleHttp\Promise\TaskQueue->run(true)
+#5 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(227): GuzzleHttp\Promise\Promise->invokeWaitFn()
+#6 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(272): GuzzleHttp\Promise\Promise->waitIfPending()
+#7 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(229): GuzzleHttp\Promise\Promise->invokeWaitList()
+#8 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(69): GuzzleHttp\Promise\Promise->waitIfPending()
+#9 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Client.php(189): GuzzleHttp\Promise\Promise->wait()
+#10 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/ClientTrait.php(44): GuzzleHttp\Client->request('GET', 'https://yohpal-...', Array)
+#11 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/data/models/Roles.php(65): GuzzleHttp\Client->get('https://yohpal-...', Array)
+#12 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/RolesController.php(160): Yohpal\Models\Roles->getRoleById(Object(stdClass), Array, Array)
+#13 [internal function]: App\Controllers\Web\RolesController->viewRole(Object(Yohpal\Application\YPRequest), Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(116): ReflectionMethod->invokeArgs(Object(App\Controllers\Web\RolesController), Array)
+#15 [internal function]: Yohpal\Application\YPRouter->Yohpal\Application\{closure}('auth')
+#16 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(130): call_user_func_array(Object(Closure), Array)
+#17 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(199): Yohpal\Application\YPRouter->dispatch()
+#18 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(303): setRouter()
+#19 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/index.php(15): include_once('/Applications/X...')
+#20 {main}  
+[2025-06-16T09:31:36.902983+00:00] app.ERROR: GuzzleHttp\Exception\ClientException: Client error: `GET https://yohpal-market-apis-test.onrender.com/roles/store/8r2HIk5ARcdwWgsz78wo?roleId=auth` resulted in a `404 Not Found` response:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot GET /role (truncated...)
+ in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Exception/RequestException.php:111
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Middleware.php(72): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response), NULL, Array, NULL)
+#1 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(209): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
+#2 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(158): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), NULL)
+#3 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/TaskQueue.php(52): GuzzleHttp\Promise\Promise::GuzzleHttp\Promise\{closure}()
+#4 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(251): GuzzleHttp\Promise\TaskQueue->run(true)
+#5 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(227): GuzzleHttp\Promise\Promise->invokeWaitFn()
+#6 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(272): GuzzleHttp\Promise\Promise->waitIfPending()
+#7 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(229): GuzzleHttp\Promise\Promise->invokeWaitList()
+#8 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(69): GuzzleHttp\Promise\Promise->waitIfPending()
+#9 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Client.php(189): GuzzleHttp\Promise\Promise->wait()
+#10 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/ClientTrait.php(44): GuzzleHttp\Client->request('GET', 'https://yohpal-...', Array)
+#11 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/data/models/Roles.php(65): GuzzleHttp\Client->get('https://yohpal-...', Array)
+#12 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/RolesController.php(127): Yohpal\Models\Roles->getRoleById(Object(stdClass), Array, Array)
+#13 [internal function]: App\Controllers\Web\RolesController->editRole(Object(Yohpal\Application\YPRequest), Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(116): ReflectionMethod->invokeArgs(Object(App\Controllers\Web\RolesController), Array)
+#15 [internal function]: Yohpal\Application\YPRouter->Yohpal\Application\{closure}('auth')
+#16 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(130): call_user_func_array(Object(Closure), Array)
+#17 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(199): Yohpal\Application\YPRouter->dispatch()
+#18 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(303): setRouter()
+#19 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/index.php(15): include_once('/Applications/X...')
+#20 {main}  
+[2025-06-16T09:51:08.631788+00:00] app.ERROR: GuzzleHttp\Exception\ClientException: Client error: `GET https://yohpal-market-apis-test.onrender.com/roles/store/8r2HIk5ARcdwWgsz78wo?roleId=auth` resulted in a `404 Not Found` response:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot GET /role (truncated...)
+ in /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Exception/RequestException.php:111
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Middleware.php(72): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response), NULL, Array, NULL)
+#1 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(209): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
+#2 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(158): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), NULL)
+#3 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/TaskQueue.php(52): GuzzleHttp\Promise\Promise::GuzzleHttp\Promise\{closure}()
+#4 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(251): GuzzleHttp\Promise\TaskQueue->run(true)
+#5 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(227): GuzzleHttp\Promise\Promise->invokeWaitFn()
+#6 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(272): GuzzleHttp\Promise\Promise->waitIfPending()
+#7 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(229): GuzzleHttp\Promise\Promise->invokeWaitList()
+#8 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/promises/src/Promise.php(69): GuzzleHttp\Promise\Promise->waitIfPending()
+#9 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/Client.php(189): GuzzleHttp\Promise\Promise->wait()
+#10 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/assets/vendor_modules/guzzlehttp/guzzle/src/ClientTrait.php(44): GuzzleHttp\Client->request('GET', 'https://yohpal-...', Array)
+#11 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/data/models/Roles.php(65): GuzzleHttp\Client->get('https://yohpal-...', Array)
+#12 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/features/controllers/Web/RolesController.php(160): Yohpal\Models\Roles->getRoleById(Object(stdClass), Array, Array)
+#13 [internal function]: App\Controllers\Web\RolesController->viewRole(Object(Yohpal\Application\YPRequest), Array)
+#14 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(116): ReflectionMethod->invokeArgs(Object(App\Controllers\Web\RolesController), Array)
+#15 [internal function]: Yohpal\Application\YPRouter->Yohpal\Application\{closure}('auth')
+#16 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/app/YPRouter.php(130): call_user_func_array(Object(Closure), Array)
+#17 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(199): Yohpal\Application\YPRouter->dispatch()
+#18 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/utils/config/index.php(303): setRouter()
+#19 /Applications/XAMPP/xamppfiles/htdocs/Projects/ICS_YOHPAL/Yohpal_Market/Yohpal-Market/yohpal_market/index.php(15): include_once('/Applications/X...')
+#20 {main}  
