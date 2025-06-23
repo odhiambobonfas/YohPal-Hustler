@@ -1,0 +1,45 @@
+{
+    "name": "yohpal/marketplace",
+    "type": "library",
+    "description": "A dynamic, scalable, and secure platform where users can easily buy and sell products",
+    "keywords": [
+        "php", 
+        "mvc",
+        "scalable",
+        "application",
+        "marketplace"
+    ],
+    "homepage": "https://github.com/byteforge254/Yohpal-Market.git",
+    "support": {
+        "email": "info@yohpal.com"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "license": "MIT",
+    "config": {
+        "vendor-dir": "assets/vendor_modules"
+    },
+    "require": { 
+        "php": "^8.2", 
+        "altorouter/altorouter": "1.1.0",
+        "sp-datatables/sp-datatables": "^1.6",
+        "monolog/monolog": "^3.9",
+        "guzzlehttp/guzzle": "^7.9",
+        "nesbot/carbon": "^3.9"
+    },
+    "require-dev": { 
+        "vlucas/phpdotenv": "^5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "/",
+            "Vendor\\Package\\": "assets/vendor_modules",
+            "Yohpal\\Application\\": "utils/config/app",
+            "Yohpal\\Models\\": "data/models",
+            "Yohpal\\Utils\\": "utils/Http",
+            "App\\Controllers\\Web\\": "features/controllers/Web",
+            "App\\Controllers\\Api\\": "features/controllers/Api",
+            "App\\Middlewares\\": "features/middlewares"
+        }
+    }
+}
