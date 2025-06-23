@@ -1,21 +1,22 @@
 <!-- header -->
-<?php include "partials/layout/header.php" ?>
+<?php include 'partials/layout/web/header.php'; ?>
 <!-- /header -->
 
 <!-- custom Styles -->
-<link rel="stylesheet" href="<?= asset_url('css/global/404.css') ?>">
+<link type="text/css" rel="stylesheet" href="<?= asset_url('/css/app/web/landing.css') ?>">
+<link type="text/css" rel="stylesheet" href="<?= asset_url('/css/global/404.css') ?>">
 <!-- /custom Styles -->
 
 <div class="main">
     <!-- navbar section -->
-    <div class="navbar-section">
-        <?php include "partials/layout/navbar.php" ?>
+    <div class="navbar-section ms-3">
+        <?php include "partials/layout/web/navbar.php" ?>
     </div>
     <!-- /navbar section -->
 
     <!-- sidebar section -->
     <div class="sidebar-section">
-        <?php include "partials/layout/header.php" ?>
+        <?php include "partials/layout/web/header.php" ?>
     </div>
     <!-- /sidebar section -->
 
@@ -29,5 +30,9 @@
 </div>
 
 <!-- footer -->
-<?php include "partials/layout/footer.php" ?>
+<?php include 'partials/layout/web/footer.php'; ?>
 <!-- /footer -->
+
+<!-- closure -->
+<?php include 'partials/layout/global/closure.php'; ?>
+<!-- /closure -->
