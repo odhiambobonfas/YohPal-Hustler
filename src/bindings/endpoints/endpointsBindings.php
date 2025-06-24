@@ -30,49 +30,49 @@ return [
     // ==============================
     'auth_user' => [
         'method' => 'POST',
-        'route'  => 'https://yohpal-market-apis-test.onrender.com/auth/signin',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/signin',
         'action' => 'Sign In User',
     ],
 
     'auth_forgot_password' => [
         'method' => 'POST',
-        'route'  => 'https://yohpal-market-apis-test.onrender.com/auth/password_reset',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/password_reset',
         'action' => 'Initiate forgot password request',
     ],
     
     'get_user_profile' => [
         'method' => 'GET',
-        'route'  => 'https://yohpal-market-apis-test.onrender.com/profile/',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/profile/{uid}',
         'action' => 'Gets Single User Profile',
     ],
     
     'get_all_users' => [
         'method' => 'GET',
-        'route'  => 'https://yohpal-market-apis-test.onrender.com/api/users',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/api/users',
         'action' => 'List all users',
     ],
 
     'create_user' => [
         'method' => 'POST',
-        'route'  => 'https://yohpal-market-apis-test.onrender.com/api/users',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/api/users',
         'action' => 'Create a new user',
     ],
 
     'get_single_user' => [
         'method' => 'GET',
-        'route'  => 'https://yohpal-market-apis-test.onrender.com/api/users/{id}',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/api/users/{id}',
         'action' => 'Retrieve a specific user\'s details',
     ],
 
     'update_user' => [
         'method' => 'PUT',
-        'route'  => 'https://yohpal-market-apis-test.onrender.com/api/users/{id}',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/api/users/{id}',
         'action' => 'Update an existing user',
     ],
 
     'delete_user' => [
         'method' => 'DELETE',
-        'route'  => 'https://yohpal-market-apis-test.onrender.com/api/users/{id}',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/api/users/{id}',
         'action' => 'Delete a user',
     ],
 
@@ -81,19 +81,19 @@ return [
     // ==============================
     'get_all_roles' => [
         'method' => 'GET',
-        'route'  => 'https://yohpal-market-apis-test.onrender.com/roles/store/{storeId}/all',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/roles/store/{storeId}/all',
         'action' => 'Gets list of all roles',
     ],
 
     'get_role_by_id' => [
         'method' => 'GET',
-        'route'  => 'https://yohpal-market-apis-test.onrender.com/roles/store/{storeId}',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/roles/store/{storeId}',
         'action' => 'Gets single role by role id, store id specified',
     ],
 
     'get_filtered_roles' => [
         'method' => 'GET',
-        'route'  => 'https://yohpal-market-apis-test.onrender.com/roles/store/{storeId}/filtered',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/roles/store/{storeId}/filtered',
         'action' => 'Gets list of filtered roles',
     ],
 
@@ -102,13 +102,13 @@ return [
     // ==============================
     'list_support_tickets' => [
         'method' => 'GET',
-        'route'  => 'https://yohpal-market-apis-test.onrender.com/api/tickets',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/api/tickets',
         'action' => 'List all support tickets',
     ],
 
     'reply_support_ticket' => [
         'method' => 'POST',
-        'route'  => 'https://yohpal-market-apis-test.onrender.com/api/tickets/{id}/reply',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/api/tickets/{id}/reply',
         'action' => 'Reply to a support ticket',
     ],
 ];
