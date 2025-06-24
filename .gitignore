@@ -2,8 +2,7 @@
 src/tests
 .DS_Store
 src/documentation
-src/node_modules 
-src/utils/config/app.php
+src/node_modules  
 
 /api_integrations
 /assets
