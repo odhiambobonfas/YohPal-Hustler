@@ -640,58 +640,9 @@ function __show_modal(modal) {
     } else {
         console.warn('No supported Bootstrap version detected.');
     }
-}
-
-/**
- * Toggle Overlay loader for UX improvements
- * 
- * @param {boolean} show 
- * @returns {void} void
- */
-function toggleLoadingOverlay(show = true) {
-    const overlay = document.getElementById('loadingOverlay');
-    if (!documentContains(overlay)) return;
-    overlay.classList.toggle('d-none', !show);
-}
-
-/**
- * Toggles CRM sidebar, enhancing UI/UX
- * 
- * @returns {void} void
- */
-function toggleCrmSideBar() {
-    const toggleBtn = document.getElementById('sidebarToggleBtn');
-    if (!documentContains(toggleBtn)) return;
-
-    // Restore previous state on load
-    if (localStorage.getItem('crmSidebarCollapsed') === 'true') {
-        document.body.classList.add('sidebar-collapsed');
-    }
-
-    toggleBtn.addEventListener('click', function () {
-        document.body.classList.toggle('sidebar-collapsed');
-
-        // Save current state to localStorage
-        const isCollapsed = document.body.classList.contains('sidebar-collapsed');
-        localStorage.setItem('crmSidebarCollapsed', isCollapsed);
-    });
-}
+} 
 
 // Call functions Below.
 document.addEventListener('DOMContentLoaded', async () => {
-    const masterClassInstance = new Master();
-    document.querySelectorAll('.searchToggle').forEach(toggler => {
-        toggler.addEventListener('click', handleShowNavbarSearchBarToggler);
-    });
-
-    toggleCrmSideBar(); 
-    stickNavbarOnScroll();
-    searchSelectInitializer();
-    initDragAndDropFileUpload();
-    masterClassInstance.initNoUiSliderFunc();
-    masterClassInstance.restrictAnauthImageResDownload();
-    masterClassInstance.handleProductFaceViewsCarousel();
-    await masterClassInstance.toggleAuthFormSections();
-    await masterClassInstance.productsLiveSearch();
-    await masterClassInstance.productFilterSearch();
+    const masterClassInstance = new Master(); 
 });
