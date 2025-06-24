@@ -121,6 +121,10 @@ class AuthController
      */
     public function initResetPassord(YPRequest $request) {
         try { 
+            if (!isAjaxRequest()) {
+                return view('auth/forgot-pass');
+            }
+
             $input = ['email' => $request->req('email')]; 
             $fp_endpoint = $this->util->getEndpoint('auth_forgot_password');
             $req = $this->model->sendResetEmail($fp_endpoint, $input);
