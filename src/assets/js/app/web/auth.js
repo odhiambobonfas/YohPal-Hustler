@@ -4,6 +4,11 @@ class AuthUI extends Master {
         // ANY CONSTRUCTOR LOGIC AVAILABLE
     }
 
+    /**
+     * Set up page by firing toggling functionalities and such
+     * 
+     * @returns {void} void
+     */
     setUpPage() {
         let toggleBtns = document.querySelectorAll('.auth-toggle-btn');
         console.log(toggleBtns);
