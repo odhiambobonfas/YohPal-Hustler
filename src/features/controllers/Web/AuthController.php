@@ -35,6 +35,10 @@ class AuthController
     public function index(YPRequest $request): mixed
     {
         try {
+            if (!isAjaxRequest()) {
+                return view('auth/auth');
+            }
+
             $output = null;
             $auth_user_endpoint = $this->util->getEndpoint('auth_user');
 

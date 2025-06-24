@@ -27,7 +27,7 @@ class Auth extends Master {
 
             $.ajax({
                 type: form.method,
-                url: '/auth/login',
+                url: '/auth/auth',
                 data: data,
                 dataType: "json", 
                 headers: {
