@@ -10,7 +10,7 @@
 <main class="container">
     <div class="forms-container">
         <div class="signin-signup">
-            <form action="/auth" method="POST" class="sign-in-form">
+            <form action="/auth/login" method="POST" class="sign-in-form">
                 <img src="https://yohpals.com/img/favicon.png" class="logo" alt="">
                 <h2 class="title">Sign in</h2> 
                 <div class="input-field">
@@ -27,7 +27,7 @@
                 <p class="social-text">Sign in to access your account</p>
             </form>
 
-            <form action="signup" method="POST" class="sign-up-form">
+            <form action="/auth" method="POST" class="sign-up-form">
                 <img src="https://yohpals.com/img/favicon.png" class="logo" alt="">
                 <h2 class="title">Sign up</h2> 
                 <div class="input-field">
@@ -56,9 +56,9 @@
                 <p>
                     Join us today and unlock exclusive features! Sign up now to get started on your journey.
                 </p>
-                <button class="btn transparent" id="sign-up-btn">Sign up</button>
+                <button class="btn transparent auth-toggle-btn sign-up-btn" id="sign-up-btn">Sign up</button>
             </div>
-            <img src="<?= asset_url('/images/log.svg') ?>" class="image" alt="" />
+            <img src="<?= asset_url('store/images/icons/log.svg') ?>" class="image" alt="" />
         </div>
         <div class="panel right-panel">
             <div class="content">
@@ -67,9 +67,9 @@
                 <p>
                     Welcome back! Sign in now to access amazing content and exclusive benefits made just for you.
                 </p>
-                <button class="btn transparent" id="sign-in-btn">Sign in</button>
+                <button class="btn transparent auth-toggle-btn sign-in-btn" id="sign-in-btn">Sign in</button>
             </div>
-            <img src="<?= asset_url('/images/register.svg') ?>" class="image" alt="" />
+            <img src="<?= asset_url('store/images/icons/register.svg') ?>" class="image" alt="" />
         </div>
     </div>
 </main>
@@ -83,7 +83,6 @@
 <!-- /footer -->
 
 <!-- xtra scripts -->
-<script type="text/javascript" src="<?= asset_url('js/app/web/auth.js') ?>"></script>
 <!-- xtra scripts -->
 
 <!-- closure -->
