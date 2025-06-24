@@ -1,5 +1,6 @@
-<?php 
+<?php
 
+use App\Controllers\Web\DashboardController;
 use App\Controllers\Web\YohPalController;   
 use App\Middlewares\AuthMiddleware;
 use Yohpal\Application\YPRouter;
@@ -11,3 +12,6 @@ $router = new YPRouter();
 // Landing page routes
 $router->req('GET', '/', [YohPalController::class, 'index']);
 $router->req('GET', '/index', [YohPalController::class, 'index']); 
+
+// Dashboard Routes
+$router->req('GET', '/dashboard', [DashboardController::class, 'index']); 

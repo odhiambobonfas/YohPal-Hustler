@@ -43,14 +43,13 @@ class AuthController
             $auth_user_endpoint = $this->util->getEndpoint('auth_user');
 
             $input = [
-                'email' => $request->req('username'),
+                'email' => $request->req('email'),
                 'password' => $request->req('password')
-            ];
-
+            ]; 
             // AUTHENTICATE USER
             $userData = $this->model->authUser($auth_user_endpoint, $input);
 
-            $user =  is_string($userData) ? json_decode(trim($userData), true) : $userData; 
+            $user =  is_string($userData) ? json_decode(trim($userData), true) : $userData;  
 
             if (!isset($user['user'])) {
                 throw new YPException('An error occurred while trying to log you in, please try again!!');
@@ -63,41 +62,24 @@ class AuthController
             $auth_profile_endpoint = $this->util->getEndpoint('get_user_profile');
 
             $profileData = $this->model->authUserProfile($auth_profile_endpoint, [
-                "user_id" => $user['user']['uid'],
+                "uid" => $user['user']['uid'],
                 "user_token" => $user['token']
             ]);
 
             $userProfile = is_string($profileData) ? json_decode(trim($profileData), true) : $profileData; 
-
+            
             if (!isset($userProfile['user'])) {
                 throw new YPException('An error occurred while trying to log you in, please try again!!!');
             }
-            // /GET USER PROFILE
+            // /GET USER PROFILE 
 
-            // GET USER AUTHENTICATED BUSINESS PROFILE
-            $get_auth_businesses_endpoint = $this->util->getEndpoint('get_auth_businesses');
-            $businessData = $this->model->getBusinessProfileByUid($get_auth_businesses_endpoint, [ 
-                "user_id" => $user['user']['uid'],
-                "user_token" => $user['token'],
-            ]);
-            
-            $businessData = is_string($businessData) ? json_decode(trim($businessData), true) : $businessData;  
-
-            if (!isset($businessData['stores'])) {
-                throw new YPException('An error occurred while trying to log you in, please try again!!!!!!');
-            }
-            // /GET USER AUTHENTICATED BUSINESS PROFILE
-
-            if (!isset($user['user']) && !isset($userProfile['user']) && !isset($businessData['stores'])) {
+            if (!isset($user['user']) && !isset($userProfile['user'])) {
                 throw new YPException('An error occurred while trying to log you in, please try again!!!!');
             }
 
-            $user['user'] = array_merge($user['user'] ?? [], $userProfile['user'], ['businesses' => $businessData['stores']]);
+            $user['user'] = array_merge($user['user'] ?? [], $userProfile['user']);
 
-            $route = '/dashboard';
-            if ($user['user']['roleName'] == 'buyer') {
-                $route = '/shop';
-            }
+            $route = '/dashboard'; 
 
             $user['user']['loginTime'] = date("Y-m-d H:i:s");
 
