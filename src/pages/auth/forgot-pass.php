@@ -15,8 +15,8 @@
                     <img src="https://yohpals.com/img/favicon.png" class="logo" alt="">
                     <h2 class="title">Forgot Password</h2> 
 
-                    <div class="input-field">
-                        <i class="fas fa-user"></i>
+                    <div class="input-field-email">
+                        <i class="fas fa-user md-3"></i>
                         <input type="email" placeholder="Email" name="email" id="email" style="font-size: 12px;" required />
                     </div>
                     <input type="submit" value="Submit" class="btn solid" />

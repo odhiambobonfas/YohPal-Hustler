@@ -93,8 +93,31 @@ form.sign-in-form {
   text-align: center;
   color: #918f8f!important;
   grid-template-columns: 15% 85%;
-  padding: 3px 30px;
+  padding: 3px 30px!important;
   position: relative;
+}
+.input-field-email {
+	max-width: 380px;
+	width: 100%;
+	background-color: #f0f0f0;
+	margin: 10px 0;
+	height: 55px;
+	border-radius: 55px;
+	display: grid;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	color: #918f8f!important;
+	grid-template-columns: 15% 85%;
+	padding: 3px 30px!important;
+	position: relative;
+  }
+.input-field i {
+  text-align: center;
+  line-height: 55px;
+  color: #acacac;
+  transition: 0.5s;
+  font-size: 1.1rem;
 }
 
 
@@ -108,12 +131,25 @@ form.sign-in-form {
   color: #333;
   
 }
+.input-field-email input {
+	background: none;
+	outline: none;
+	border: none;
+	line-height: 1;
+	font-weight: 600;
+	font-size: 1rem;
+	color: #333;
+	
+  }
 
 .input-field input::placeholder {
   color: #aaa;
   font-weight: 500;
 }
-
+.input-field-email input::placeholder {
+	color: #aaa;
+	font-weight: 500;
+  }
 .social-text {
   padding: 0.7rem 0;
   font-size: 1rem;
