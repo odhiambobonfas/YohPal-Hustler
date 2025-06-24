@@ -24,9 +24,18 @@
                     <a href="/auth">Back to Sign in</a>
                 </form>
             </div>
-        </div> 
-    </div>
+        </div>
 
+        <div class="panels-container">
+            <div class="panel left-panel">
+                <div class="content">
+                    <h3>Forgot your password?</h3>
+                    <p>Enter your email to recover your password</p>
+                </div>
+                <img src="<?= asset_url('store/images/icons/log.svg') ?>" class="image" alt="">
+            </div>
+        </div>
+    </div>
 </main>
 <!-- /main -->
 
