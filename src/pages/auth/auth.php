@@ -18,7 +18,7 @@
                     <input type="email" placeholder="Username" name="email" style="font-size: 12px;" />
                 </div>
                 <div class="input-field">
-                    <i class="fas fa-lock"></i>
+                    <i class="fas fa-lock mt-3"></i>
                     <input type="password" name="password" placeholder="Password" style="font-size: 12px;" />
                 </div>
                 <input type="submit" value="Login" class="btn solid" />

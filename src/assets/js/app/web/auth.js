@@ -7,6 +7,7 @@ class AuthUI extends Master {
     setUpPage() {
         // setup auth page
     }
+    
 }
 
 document.addEventListener('DOMContentLoaded', () => {
