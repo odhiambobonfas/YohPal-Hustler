@@ -1,4 +1,4 @@
-class AuthUI extends Master {
+class AuthWeb extends Master {
     constructor() {
         super();
         // ANY CONSTRUCTOR LOGIC AVAILABLE
@@ -10,8 +10,7 @@ class AuthUI extends Master {
      * @returns {void} void
      */
     setUpPage() {
-        let toggleBtns = document.querySelectorAll('.auth-toggle-btn');
-        console.log(toggleBtns);
+        let toggleBtns = document.querySelectorAll('.auth-toggle-btn'); 
         toggleBtns.forEach(btn => {
             if (!documentContains(btn)) return;
             btn = cloneNodeElement(btn);
@@ -44,16 +43,13 @@ class AuthUI extends Master {
             toggleButtonContent(btn);
             disableElement(btn);
             let form = btn.closest('form'); 
-            let data = {
-                username: document.querySelector('.username')?.value,
-                password: document.querySelector('.password')?.value
-            }
+            let data = serializeFormToArray(form);
 
             console.log(data);
 
             $.ajax({
                 type: form.method,
-                url: '/auth/auth',
+                url: '/auth/login',
                 data: data,
                 dataType: "json", 
                 headers: {
@@ -101,9 +97,7 @@ class AuthUI extends Master {
             disableElement(btn);
             let form = btn.closest('form'); 
             
-            let data = {
-                email: form.querySelector('.email')?.value, 
-            }
+            let data = serializeFormToArray(form);
 
             $.ajax({
                 type: form.method,
@@ -143,7 +137,7 @@ class AuthUI extends Master {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const authUiInstance = new AuthUI();
+    const authUiInstance = new AuthWeb();
     authUiInstance.setUpPage();
     authUiInstance.authLogin();
     authUiInstance.forgotPassword();

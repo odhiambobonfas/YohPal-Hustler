@@ -1,4 +1,4 @@
-class Auth extends Master {
+class AuthCRM extends Master {
     constructor () {
         super();
         // ANY CONSTRUCTOR LOGIC APPLICABLE
@@ -10,8 +10,7 @@ class Auth extends Master {
      * @returns {JSON} json response which denotes true or success and other associated response needed.
      */
     authLogout() {
-        let btns = document.querySelectorAll('.dropdown .logout-btn'); 
-
+        let btns = document.querySelectorAll('.logout-btn');  
         btns.forEach(btn => {
             if (!documentContains(btn)) return; 
 
@@ -59,6 +58,6 @@ class Auth extends Master {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const auth_instance = new Auth(); 
+    const auth_instance = new AuthCRM(); 
     auth_instance.authLogout(); 
 });
