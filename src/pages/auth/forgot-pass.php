@@ -13,13 +13,15 @@
             <div class="signin-signup">
                 <form action="/auth/forgot-password" method="POST" class="sign-in-form" id="forgot-password">
                     <img src="https://yohpals.com/img/favicon.png" class="logo" alt="">
-                    <h2 class="title">Forgot Password</h2> 
+                    <h2 class="title">Forgot Password</h2>
 
                     <div class="input-field-email">
                         <i class="fas fa-user md-3"></i>
                         <input type="email" placeholder="Email" name="email" id="email" style="font-size: 12px;" required />
                     </div>
-                    <input type="button" value="Submit" class="btn solid forgot-pass-submit-btn" />
+                    <div class="form-group">
+                        <button type="button" class="btn btn-danger btn solid forgot-pass-submit-btn w-100">Forgot Password Request</button>
+                    </div>
                     <div class="spacer"></div>
                     <a href="/auth">Back to Sign in</a>
                 </form>
