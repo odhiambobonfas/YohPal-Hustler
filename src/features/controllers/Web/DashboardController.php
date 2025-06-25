@@ -27,7 +27,17 @@ class DashboardController
     {
         try {
             if (!isAjaxRequest()) {
-                return view('crm/dashboard/index');
+                $hustleCategories = Model::hustleCategories();
+                $hustleCategoriesDropdown = Model::hustleCategoriesDropdownOptions();
+
+                $stats = [
+                    ['label' => 'Pending Users', 'value' => '18,316', 'class' => 'pending', 'dash' => '80'],
+                    ['label' => 'Active Users', 'value' => '540', 'class' => 'active', 'dash' => '170'],
+                    ['label' => 'Dormant Users', 'value' => '156', 'class' => 'dormant', 'dash' => '70'],
+                    ['label' => 'Deleted Users', 'value' => '50', 'class' => 'deleted', 'dash' => '60'],
+                ];
+
+                return view('crm/dashboard/index', compact('stats', 'hustleCategories', 'hustleCategoriesDropdown'));
             }
         }
         catch(\Throwable $th) {
