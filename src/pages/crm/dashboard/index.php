@@ -135,7 +135,7 @@
                                     <input class="form-check-input" type="checkbox" id="select-all-checkbox">
                                     <label class="form-check-label" for="select-all-checkbox">Select All</label>
                                 </div>
-                                <button class="btn btn-sm btn-outline-danger" disabled>Bulk Delete</button>
+                                <button type="button" class="btn btn-sm btn-outline-danger">Bulk Delete</button>
                             </div>
                         </div>
 
