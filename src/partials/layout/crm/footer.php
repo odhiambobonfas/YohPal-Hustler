@@ -1,12 +1,3 @@
-        <footer class="footer-area section_gap bg-white text-dark py-3 fixed-bottom">
-            <p class="footer-text m-0 px-0 text-center text-dark">
-                &copy; <script>
-                    document.write(new Date().getFullYear());
-                </script> All rights reserved | Made with
-                <i class="fa fa-heart text-danger" aria-hidden="true"></i> by
-                <a class="tdl-0" href="https://YohPal.com" target="_blank" rel="noopener noreferrer">YohPal</a>
-            </p>
-        </footer>
 
         <!-- Bootstrap core JavaScript-->
         <script type="text/javascript" src="<?= asset_url('build/jquery/js/jquery.min.js') ?>"></script>
