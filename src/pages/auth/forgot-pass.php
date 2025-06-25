@@ -8,8 +8,8 @@
 
 <!-- main -->
 <main class="main">
-    <div class="container">
-        <div class="form-container">
+    <div class="auth-section">
+        <div class="form-auth-section">
             <div class="signin-signup">
                 <form action="/forgot-password" method="POST" class="sign-in-form" id="forgot-password">
                     <img src="https://yohpals.com/img/favicon.png" class="logo" alt="">
@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <div class="panels-container">
+        <div class="panels-auth-section">
             <div class="panel left-panel">
                 <div class="content">
                     <h3>Forgot your password?</h3>

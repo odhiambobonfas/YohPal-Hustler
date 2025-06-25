@@ -15,7 +15,7 @@ class AuthWeb extends Master {
             if (!documentContains(btn)) return;
             btn = cloneNodeElement(btn);
             btn.addEventListener('click', (event) => {
-                const container = document.querySelector('.container');
+                const container = document.querySelector('.auth-section');
                 
                 if (!documentContains(container)) return;
                 

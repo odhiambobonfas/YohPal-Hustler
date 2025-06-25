@@ -7,8 +7,8 @@
 <!-- /styles --> 
  
 <!-- main -->
-<main class="container">
-    <div class="forms-container">
+<main class="auth-section">
+    <div class="forms-auth-section">
         <div class="signin-signup">
             <form action="/auth/login" method="POST" class="sign-in-form">
                 <img src="https://yohpals.com/img/favicon.png" class="logo" alt="">
@@ -48,7 +48,7 @@
         </div>
     </div>
 
-    <div class="panels-container">
+    <div class="panels-auth-section">
         <div class="panel left-panel">
             <div class="content">
                 <h3>Welcome to YohPal Hustler </h3><br />
