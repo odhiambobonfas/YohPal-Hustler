@@ -40,7 +40,7 @@
 
                 <!-- Stats Section -->
                 <div class="card bg-white border-0 rounded mb-3">
-                    <div class="stats-grid d-flex justify-content-around p-5 gap-3">
+                    <div class="d-flex justify-content-around p-5 gap-3">
                         <?php
                         foreach ($stats as $stat): ?>
                             <div class="stat-card <?= $stat['class'] ?>">
@@ -57,11 +57,11 @@
                 <!-- Stats Section -->
 
                 <!-- Graphical stats -->
-                <div class="card bg-white border-0 rounded mb-3">
+                <div class="card flex-wrap bg-white border-0 rounded mb-3">
                     <div class="chart-header m-3">
                         <h3 class="chart-title">Job status Details</h3>
                     </div>
-                    <div class="d-flex justify-content-between p-5 gap-1">
+                    <div class="d-flex flex-wrap justify-content-between p-5 gap-1">
                         <div class="col-8">
 
                             <canvas id="earningsChart" class="earningsChart"></canvas>
@@ -98,21 +98,21 @@
                         </div>
 
                         <div class="info-cards col-4">
-                            <div class="info-card job-seekers">
+                            <div class="info-card job-seekers w-100">
                                 <div class="val">69</div>
                                 <div class="cont">
                                     <h3>Total Job Seekers</h3>
                                     <p>A comprehensive view of all registered job seekers on the platform.</p>
                                 </div>
                             </div>
-                            <div class="info-card job-providers">
+                            <div class="info-card job-providers w-100">
                                 <div class="val">104</div>
                                 <div class="cont">
                                     <h3>Total Job Providers</h3>
                                     <p>A small river named Duden flows by their place and supplies necessary.</p>
                                 </div>
                             </div>
-                            <div class="info-card active-listings">
+                            <div class="info-card active-listings w-100">
                                 <div class="val">80</div>
                                 <div class="cont">
                                     <h3>Active Listings</h3>
