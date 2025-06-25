@@ -44,4 +44,5 @@ class Dashboard extends Master {
 document.addEventListener('DOMContentLoaded', () => {
     const dashboardInstance = new Dashboard();
     dashboardInstance.graphicalStatsDrawerFunc();
+    dashboardInstance.getActiveJobsAssigned();
 });

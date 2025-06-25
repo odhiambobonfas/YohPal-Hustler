@@ -141,7 +141,7 @@
 
                         <!-- Activities Table -->
                         <div class="table-responsive">
-                            <table class="table table-hover align-middle text-nowrap">
+                            <table class="table table-hover align-middle text-nowrap table-active-jobs-assigned" id="table-active-jobs-assigned">
                                 <thead class="table-light">
                                     <tr>
                                         <th><input type="checkbox" disabled style="visibility: hidden;"></th>

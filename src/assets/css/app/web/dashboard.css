@@ -1691,6 +1691,22 @@ body {
     }
 }
 
+/* Menus */
+.sidebar-sub-item {
+    color: var(--bs-dark);
+    cursor: pointer;
+    padding: 4px 0;
+    text-decoration-line: none;
+}
+
+.sidebar-sub-item:hover {
+    color: var(--bs-danger);
+    text-decoration-line: none;
+}
+
+
+/* /Menus */
+
 /* Graphical stats section */
 .number {
     font-weight: 600;

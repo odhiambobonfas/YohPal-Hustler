@@ -1,3 +1,4 @@
+/* generic */
 * .btn-link {
     text-decoration-line: none;
 }
@@ -12,3 +13,17 @@
 .fa-bars-span {
     cursor: pointer;
 }
+/* /generic */
+
+/* Data Table */
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter {
+    margin-bottom: 2rem !important;
+}
+
+.dataTables_wrapper .dataTables_filter input,
+.dataTables_wrapper .dataTables_length select {
+    border: 1px #212529 solid !important;
+}
+
+/* /Data Table */

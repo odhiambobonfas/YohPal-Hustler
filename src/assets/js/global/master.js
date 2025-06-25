@@ -97,4 +97,15 @@ class Master {
     formRouteParser(form) {
         return form.action || form.getAttribute('route')
     }
+
+    getActiveJobsAssigned() {
+        $('.table-active-jobs-assigned').DataTable({
+            destroy: true,
+            paging: true,
+            searching: true,
+            ordering: true,
+            info: true,
+            lengthChange: true
+        });
+    }
 }
