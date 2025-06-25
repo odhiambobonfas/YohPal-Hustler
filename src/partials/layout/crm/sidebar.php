@@ -49,7 +49,7 @@
                     <button class="accordion-button sidebar-item ms-2 collapsed bg-white shadow-none px-3 py-2" type="button"
                         data-bs-toggle="collapse" data-bs-target="#userCollapse" aria-expanded="false"
                         aria-controls="userCollapse">
-                        <i class="fas fa-users me-2"></i> User Management
+                        <i class="fas fa-users me-1"></i> User Management
                     </button>
                 </h2>
                 <div id="userCollapse" class="accordion-collapse collapse" aria-labelledby="userHeading"
