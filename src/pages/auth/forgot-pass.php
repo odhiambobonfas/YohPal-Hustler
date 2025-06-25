@@ -11,7 +11,7 @@
     <div class="auth-section">
         <div class="form-auth-section">
             <div class="signin-signup">
-                <form action="/forgot-password" method="POST" class="sign-in-form" id="forgot-password">
+                <form action="/auth/forgot-password" method="POST" class="sign-in-form" id="forgot-password">
                     <img src="https://yohpals.com/img/favicon.png" class="logo" alt="">
                     <h2 class="title">Forgot Password</h2> 
 
@@ -19,7 +19,7 @@
                         <i class="fas fa-user md-3"></i>
                         <input type="email" placeholder="Email" name="email" id="email" style="font-size: 12px;" required />
                     </div>
-                    <input type="submit" value="Submit" class="btn solid" />
+                    <input type="button" value="Submit" class="btn solid forgot-pass-submit-btn" />
                     <div class="spacer"></div>
                     <a href="/auth">Back to Sign in</a>
                 </form>
