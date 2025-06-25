@@ -14,4 +14,4 @@ $router->req('GET', '/', [YohPalController::class, 'index']);
 $router->req('GET', '/index', [YohPalController::class, 'index']); 
 
 // Dashboard Routes
-$router->req('GET', '/dashboard', [DashboardController::class, 'index']); 
+$router->req('GET', '/dashboard', [DashboardController::class, 'index'], [AuthMiddleware::class]); 
