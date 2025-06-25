@@ -143,8 +143,10 @@
     <hr>
     <!-- Session -->
     <div class="sidebar-section session">
-        <div class="btn btn-link text-start logout logout-btn" id="logout-btn">
-            <i class="fas fa-sign-out-alt"></i> Logout
+        <div class="ms-3">
+            <div class="btn btn-link logout logout-btn" id="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </div>
         </div>
     </div>
 </div>
