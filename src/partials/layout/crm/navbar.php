@@ -23,8 +23,8 @@
                 <li><a class="dropdown-item" href="/profile"><i class="bi bi-person-circle me-2"></i>Profile</a></li>
                 <li><a class="dropdown-item" target="_blank" href="https://chat.yohpal.com"><i class="fas fa-inbox me-2"></i>Live Chat</a></li>
                 <li><a class="dropdown-item" target="_blank" href="https://wallet.yohpal.com"><i class="bi bi-wallet2 me-2"></i>Wallet</a></li>
-                <li><a class="dropdown-item" href="/auth/settings"><i class="bi bi-gear me-2"></i>Settings</a></li>
-                <li><a class="dropdown-item" href="/auth/privacy"><i class="bi bi-shield-lock me-2"></i>Privacy</a></li>
+                <li><a class="dropdown-item" href="/settings"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                <li><a class="dropdown-item" href="/privacy"><i class="bi bi-shield-lock me-2"></i>Privacy</a></li>
                 <li>
                     <hr class="dropdown-divider">
                 </li>
