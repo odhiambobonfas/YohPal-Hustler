@@ -49,7 +49,10 @@
                                     <div class="profile-info">
                                         <img src="<?= asset_url('store/images/avatars/default-avatar.jpg') ?>" alt="" class="profile-img">
                                         <div class="profile-details">
-                                            <h2>JANE DOE</h2>
+                                            <h2>
+                                                <?= !empty(auth()->user()) ? auth()->user()->firstName : 'JANE DOE' ?>
+                                                <?= !empty(auth()->user()) ?  auth()->user()->lastName : null ?>
+                                            </h2>
                                             <p>FRONT-END DEVELOPER</p>
                                             <p>NAIROBI, KENYA</p>
                                         </div>
@@ -59,11 +62,15 @@
                                         <a href="#" class="edit-profile desktop-only">Edit Profile</a>
                                     </div>
                                 </div>
-                                <div class="welcome-message">Welcome back, Jane Doe</div>
+                                <div class="welcome-message">
+                                    Welcome back, 
+                                    <?= !empty(auth()->user()) ? auth()->user()->firstName : 'Jane Doe' ?>
+                                    <?= !empty(auth()->user()) ?  auth()->user()->lastName : null ?>
+                                </div>
                                 <div class="profile-metrics">
                                     <div class="metric-item">
                                         <p>EMAIL:</p>
-                                        <span>jane.doe@example.com</span>
+                                        <span><?= !empty(auth()->user()) ? auth()->user()->email : 'jane.doe@example.com' ?></span>
                                     </div>
                                     <div class="metric-item">
                                         <p>JOBS:</p>
@@ -222,7 +229,7 @@
                                 <h4>CURRENT STATUS:</h4>
                                 <button class="status-btn" id="statusButton">AVAILABLE NOW</button>
                                 <div class="activity-item">
-                                    <span>Jane Doe updated her profile</span>
+                                    <span><?= !empty(auth()->user()) ? auth()->user()->firstName : 'Jane Doe' ?> <?= !empty(auth()->user()) ?  auth()->user()->lastName : null ?> updated his/her profile</span>
                                     <span>10:33 AM EAT, Monday, June 02, 2025</span>
                                 </div>
                             </div>
@@ -288,7 +295,8 @@
 
 <!-- xtra scripts -->
 <script type="text/javascript" src="<?= asset_url('js/app/crm/auth.js') ?>"></script>
-<script type="text/javascript" src="<?= asset_url('js/app/web/dashboard.js') ?>"></script>
+<script type="text/javascript" src="<?= asset_url('js/app/crm/dashboard.js') ?>"></script>
+<script type="text/javascript" src="<?= asset_url('js/app/crm/profile.js') ?>"></script>
 <!-- xtra scripts -->
 
 <!-- closure -->
