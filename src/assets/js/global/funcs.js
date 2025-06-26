@@ -645,4 +645,5 @@ function __show_modal(modal) {
 // Call functions Below.
 document.addEventListener('DOMContentLoaded', async () => {
     const masterClassInstance = new Master(); 
+    stickNavbarOnScroll();
 });

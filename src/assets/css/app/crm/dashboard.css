@@ -277,23 +277,13 @@ body {
     display: block;
 }
 
-.crm-section main {
+.crm-section {
     padding-bottom: 100vh !important;
 }
 
 .btn-rounded {
     border-radius: 50px !important;
 }
-
-/* Stats Cards */
-/* .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    width: 100%;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);  
-} */
 
 .stat-card {
     padding: 10px;

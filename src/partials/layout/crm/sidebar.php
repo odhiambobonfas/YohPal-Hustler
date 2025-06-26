@@ -4,10 +4,10 @@
 <div class="sidebar" role="tablist">
     <!-- Core Navigation -->
     <div class="sidebar-section core-navigation">
-        <h1>Core</h1>
-        <div class="sidebar-item active" data-tab="dashboard" role="tab" aria-selected="true" tabindex="0">
+        <h1>Core</h1> 
+        <a href="/dashboard" class="sidebar-item d-flex align-items-center gap-2 text-decoration-none active">
             <img src="<?= asset_url('store/images/icons/dash.png') ?>" alt="Dashboard Icon"> Dashboard
-        </div> 
+        </a>
         <a href="/profile" class="sidebar-item d-flex align-items-center gap-2 text-decoration-none">
             <i class="fas fa-th-large"></i> Profile
         </a>

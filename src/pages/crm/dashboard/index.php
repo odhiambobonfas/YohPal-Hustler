@@ -11,7 +11,7 @@
 <!-- /navbar -->
 
 <!-- Main CRM Section -->
-<div class="crm-section mt-5">
+<div class="crm-section">
     <div class="d-flex gap-3">
         <!-- Sidebar -->
         <aside class="col-md-2 d-none d-md-block" id="sidebar">
@@ -21,9 +21,8 @@
         </aside>
 
         <!-- CRM Content -->
-        <main class="col-md-9 flex-grow-1 mt-3 bg-light">
+        <main class="col-md-9 flex-grow-1 bg-light">
             <div class="card bg-transparent border-0 m-3">
-
                 <!-- Header -->
                 <div class="d-flex justify-content-between align-items-center bg-white rounded p-2 mb-3">
                     <h4 class="m-0">
