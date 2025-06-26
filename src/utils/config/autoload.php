@@ -4,7 +4,7 @@
 |--------------------------------------------------------------------------
 | Application Autoloader Configuration
 |--------------------------------------------------------------------------
-| This section defines the PSR-4 autoloading rules for the Yohpal Marketplace
+| This section defines the PSR-4 autoloading rules for the Yohpal Hustle
 | Web Application, handcrafted and maintained by Bernard Kung'u Wang'ang'a.
 | 
 | Each namespace path mapping under this section is carefully structured
