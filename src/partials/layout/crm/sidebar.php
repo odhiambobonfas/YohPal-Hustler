@@ -7,10 +7,10 @@
         <h1>Core</h1>
         <div class="sidebar-item active" data-tab="dashboard" role="tab" aria-selected="true" tabindex="0">
             <img src="<?= asset_url('store/images/icons/dash.png') ?>" alt="Dashboard Icon"> Dashboard
-        </div>
-        <div class="sidebar-item" data-tab="profile" role="tab" aria-selected="false" tabindex="0">
+        </div> 
+        <a href="/profile" class="sidebar-item d-flex align-items-center gap-2 text-decoration-none">
             <i class="fas fa-th-large"></i> Profile
-        </div>
+        </a>
     </div>
 
     <!-- Career Management -->
