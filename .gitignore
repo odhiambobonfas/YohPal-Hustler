@@ -4,6 +4,7 @@ src/tests
 src/reports
 src/documentation
 src/node_modules  
+src/assets/store/logs/app.log
 
 /api_integrations
 /assets
