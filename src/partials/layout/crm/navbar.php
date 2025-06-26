@@ -10,7 +10,7 @@
 
         <!-- Search Form -->
         <form class="d-none d-md-flex flex-grow-1 justify-content-center px-3 w-50">
-            <input class="form-control form-control-sm me-2 w-100" type="search" placeholder="Search products..." aria-label="Search">
+            <input class="form-control form-control-sm me-2 w-100" type="search" placeholder="Search here..." aria-label="Search">
             <button class="btn btn-danger btn-sm" type="submit">Search</button>
         </form>
 
