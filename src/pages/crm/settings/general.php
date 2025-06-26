@@ -75,7 +75,7 @@
 
 <!-- xtra scripts -->
 <script type="text/javascript" src="<?= asset_url('js/app/crm/auth.js') ?>"></script>
-<script type="text/javascript" src="<?= asset_url('js/app/web/dashboard.js') ?>"></script>
+<script type="text/javascript" src="<?= asset_url('js/app/crm/dashboard.js') ?>"></script>
 <!-- xtra scripts -->
 
 <!-- closure -->
