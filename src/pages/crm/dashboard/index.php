@@ -3,7 +3,7 @@
 <!-- /header -->
 
 <!-- styles -->
-<link type="text/css" rel="stylesheet" href="<?= asset_url('/css/app/web/dashboard.css') ?>">
+<link type="text/css" rel="stylesheet" href="<?= asset_url('/css/app/crm/dashboard.css') ?>">
 <!-- /styles -->
 
 <!-- navbar -->
