@@ -37,7 +37,7 @@
                     id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="<?= asset_url('store/images/avatars/default-avatar.jpg') ?>" alt="Profile"
                         class="rounded-circle" width="36" height="36">
-                    <span class="fw-semibold"><?= auth()->user()->firstName ?> <?= auth()->user()->lastName ?></span>
+                    <span class="fw-semibold"><?= !empty(auth()->user()) ? auth()->user()->firstName : null ?> <?= !empty(auth()->user()) ?  auth()->user()->lastName : null ?></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="profileDropdown">
                     <li><a class="dropdown-item" href="/profile"><i class="bi bi-person me-2"></i> Profile</a></li>
