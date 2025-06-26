@@ -28,7 +28,6 @@
                 <li>
                     <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item searchToggle" id="searchToggle" href="javascript:void(0)"><i class="fas fa-search me-2"></i>Search</a></li>
                 <?php
                 if (empty(auth()->user())) { ?>
                     <li><a class="dropdown-item" href="/auth"><i class="bi bi-person-plus me-2"></i>Register</a></li>
