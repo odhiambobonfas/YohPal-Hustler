@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\Web\DashboardController;
+use App\Controllers\Web\JobsController;
 use App\Controllers\Web\ProfileController;
 use App\Controllers\Web\SettingsController;
 use App\Controllers\Web\YohPalController;   
@@ -24,3 +25,6 @@ $router->req('GET', '/profile', [ProfileController::class, 'index'], [AuthMiddle
 // Settings Routes
 $router->req('GET', '/settings/general', [SettingsController::class, 'generalSettings'], [AuthMiddleware::class]); 
 $router->req('GET', '/settings/payment-methods', [SettingsController::class, 'paymentMethods'], [AuthMiddleware::class]); 
+
+// Carreer section routes 
+$router->req('GET', '/job-portal', [JobsController::class, 'index'], [AuthMiddleware::class]); 

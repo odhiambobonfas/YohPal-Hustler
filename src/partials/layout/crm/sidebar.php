@@ -4,7 +4,7 @@
 <div class="sidebar" role="tablist">
     <!-- Core Navigation -->
     <div class="sidebar-section core-navigation">
-        <h1>Core</h1> 
+        <h1>Core</h1>
         <a href="/dashboard" class="sidebar-item d-flex align-items-center gap-2 text-decoration-none active">
             <img src="<?= asset_url('store/images/icons/dash.png') ?>" alt="Dashboard Icon"> Dashboard
         </a>
@@ -16,15 +16,15 @@
     <!-- Career Management -->
     <div class="sidebar-section career-management">
         <h3>Career</h3>
-        <div class="sidebar-item" data-tab="job-portal" role="tab" aria-selected="false" tabindex="0">
+        <a href="/job-portal" class="sidebar-item d-flex align-items-center gap-2 text-decoration-none">
             <i class="fas fa-briefcase"></i> Job Portal
-        </div>
-        <div class="sidebar-item" data-tab="applications" role="tab" aria-selected="false" tabindex="0">
+        </a>
+        <a href="/applications" class="sidebar-item d-flex align-items-center gap-2 text-decoration-none">
             <i class="fas fa-file-alt"></i> Applications
-        </div>
-        <div class="sidebar-item" data-tab="analytics" role="tab" aria-selected="false" tabindex="0">
+        </a>
+        <a href="/analytics" class="sidebar-item d-flex align-items-center gap-2 text-decoration-none">
             <i class="fas fa-chart-line"></i> Analytics
-        </div>
+        </a>
     </div>
 
     <!-- Communication -->
