@@ -4,7 +4,27 @@ class Dashboard extends Master {
         // ANY CONSTRUCTOR LOGIC AVAILABLE
     }
 
-    graphicalStatsDrawerFunc() {
+    getGraphicStatsData() {
+        $.ajax({
+            type: "GET",
+            url: "/dashboard/graphical/stats", 
+            dataType: "json",
+            success: function (response) {
+                if (response.status === 'success' && response.data) {
+                    (new Dashboard()).graphicalStatsDrawerFunc(response.data);
+                } else {
+                    toast('error', 5000, response.message || lang.undefined_error);
+                }
+            },
+            error: error => {
+                console.log(error.message || error); 
+                toast('error', 5000, lang.undefined_error);
+            }
+        });
+    }
+
+    graphicalStatsDrawerFunc(stats) {
+        console.log(stats)
         const ctxs = document.querySelectorAll('.earningsChart');
         ctxs.forEach(ctx => {
             if (!documentContains(ctx)) return;
@@ -13,10 +33,10 @@ class Dashboard extends Master {
             new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['02', '03', '04', '05', '06', '07', '08'],
+                    labels: stats.labels,
                     datasets: [{
                         label: 'Earnings',
-                        data: [12000, 8000, 16000, 6000, 14000, 10000, 18000],
+                        data: stats.earnings,
                         backgroundColor: 'rgba(9,132,227,0.7)',
                         borderRadius: 6
                     }]
@@ -27,7 +47,7 @@ class Dashboard extends Master {
                     scales: {
                         y: {
                             beginAtZero: true,
-                            max: 20000
+                            suggestedMax: Math.max(...stats.earnings) + 2000
                         }
                     },
                     plugins: {
@@ -43,6 +63,6 @@ class Dashboard extends Master {
 
 document.addEventListener('DOMContentLoaded', () => {
     const dashboardInstance = new Dashboard();
-    dashboardInstance.graphicalStatsDrawerFunc();
+    dashboardInstance.getGraphicStatsData();
     dashboardInstance.getActiveJobsAssigned();
 });
