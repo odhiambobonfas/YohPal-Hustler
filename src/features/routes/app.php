@@ -30,3 +30,4 @@ $router->req('GET', '/settings/payment-methods', [SettingsController::class, 'pa
 
 // Carreer section routes 
 $router->req('GET', '/job-portal', [JobsController::class, 'index'], [AuthMiddleware::class]); 
+$router->req('GET', '/portal/jobs/view/[**:path]', [JobsController::class, 'jobsListing'], [AuthMiddleware::class]); 

@@ -11,6 +11,50 @@ class Master {
     constructor() {
         // Any constructor logic applicable
         this.debounceTimer;
+        this.overlay = null;
+    } 
+
+    /**
+     * Creates and appends a reusable overlay element to the given container.
+     * If no container is provided, it defaults to document.body.
+     *
+     * @param {HTMLElement} [container=document.body] - The DOM element to contain the overlay.
+     */
+    initOverlay(container = document.body) {
+        this.overlay = document.createElement('div');
+        this.overlay.classList.add('global-overlay');
+
+        __append_html(
+            `<div class="loading-message text-center">
+                <div class="spinner-border text-danger mb-2" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div>Loading...</div>
+            </div>`, 
+            this.overlay
+        );
+
+        container.appendChild(this.overlay);
+        this.hideOverlay();
+    }
+
+    /**
+     * Displays the global overlay by adding the 'active' class.
+     * Useful for blocking UI and showing a loading state.
+     */
+    showOverlay() {
+        if (this.overlay) {
+            this.overlay.classList.add('active');
+        }
+    }
+
+    /**
+     * Hides the global overlay by removing the 'active' class.
+     */
+    hideOverlay() {
+        if (this.overlay) {
+            this.overlay.classList.remove('active');
+        }
     }
 
     /**

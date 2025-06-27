@@ -5,6 +5,9 @@ class Dashboard extends Master {
     }
 
     getGraphicStatsData() {
+        const ctx = document.querySelector('.earningsChart');
+        if (!documentContains(ctx)) return;
+
         $.ajax({
             type: "GET",
             url: "/dashboard/graphical/stats", 
@@ -23,8 +26,7 @@ class Dashboard extends Master {
         });
     }
 
-    graphicalStatsDrawerFunc(stats) {
-        console.log(stats)
+    graphicalStatsDrawerFunc(stats) { 
         const ctxs = document.querySelectorAll('.earningsChart');
         ctxs.forEach(ctx => {
             if (!documentContains(ctx)) return;

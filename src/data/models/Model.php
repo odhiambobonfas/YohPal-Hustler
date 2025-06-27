@@ -25,6 +25,7 @@ class Model
             'debug' => env('API_DEBUG', false)
         ]);
     }
+
     /**
      * Returns a raw array of hustle categories.
      *
@@ -32,7 +33,7 @@ class Model
      */
     public static function hustleCategories(): array
     {
-        $mixedCategories = self::hustleMixedCategories(); 
+        $mixedCategories = self::hustleMixedCategories();
 
         $count = 1;
         $superCategories = [];
@@ -1149,6 +1150,57 @@ class Model
         }
 
         return $rows;
+    }
+
+    /**
+     * Returns subcategories with their jobs for a given super category ID
+     * 
+     * @param int $superCategoryId The ID of the super category
+     * @return array<int, array<string, mixed>> List of subcategories with jobs
+     */
+    public static function hustleSubCategoriesBySuperCategoryId(int $superCategoryId): array
+    {
+        $superCategories = self::hustleCategories();
+        $mixedCategories = self::hustleMixedCategories();
+
+        // Find the super category name by ID
+        $superCategoryName = null;
+        foreach ($superCategories as $category) {
+            if ($category['id'] === $superCategoryId) {
+                $superCategoryName = $category['name'];
+                break;
+            }
+        }
+
+        if ($superCategoryName === null) {
+            return []; // Return empty array if super category not found
+        }
+
+        // Get all subcategories and their jobs for this super category
+        $subCategories = [];
+        foreach ($mixedCategories as $row) {
+            if ($row['category'] === $superCategoryName) {
+                $subCategoryName = $row['subcategory'];
+
+                // Initialize subcategory if not exists
+                if (!isset($subCategories[$subCategoryName])) {
+                    $subCategories[$subCategoryName] = [
+                        'name' => $subCategoryName,
+                        'icon' => $row['subcategory_icon'],
+                        'super_category_id' => $superCategoryId,
+                        'jobs' => []
+                    ];
+                }
+
+                // Add job to subcategory
+                $subCategories[$subCategoryName]['jobs'][] = [
+                    'name' => $row['role'],
+                    'icon' => $row['role_icon']
+                ];
+            }
+        }
+
+        return array_values($subCategories);
     }
 
     /**

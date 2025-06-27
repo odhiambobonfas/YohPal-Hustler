@@ -300,44 +300,49 @@
                 <!-- /Recent Activities -->
 
                 <!-- Map section -->
-                <div class="container-fluid bg-white rounded shadow-sm p-3 mb-4">
-                    <!-- Hustle Categories -->
-                    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
-                        <div class="d-flex flex-wrap gap-2 overflow-auto">
-                            <button class="btn btn-outline-primary btn-sm">All</button>
-                            <?php foreach ($hustleCategories as $category): ?>
-                                <button class="btn btn-outline-danger btn-sm <?= $category['id'] ?>" id="<?= $category['id'] ?>"><?= $category['name'] ?></button>
-                            <?php endforeach; ?> 
+                <div class="card shadow-sm mb-4">
+                    <!-- Card Header -->
+                    <div class="card-header bg-light d-flex align-items-center justify-content-between">
+                        <div class="d-flex bg-light d-flex align-items-center justify-content-between">
+                            <button class="btn btn-outline-primary btn-sm me-2">All</button>
+                            <div class="subcategory-scroll d-flex overflow-auto flex-nowrap">
+                                <?php foreach ($hustleCategories as $category): ?>
+                                    <button class="btn btn-outline-danger btn-sm text-dark me-2 text-nowrap" data-id="<?= $category['id'] ?>"><?= $category['name'] ?></button>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Map Placeholder -->
-                    <div class="position-relative rounded overflow-hidden border" style="height: 400px; background-color: #f2f2f2;">
-                        <div id="services-map" class="d-flex align-items-center justify-content-center h-100 text-muted">
-                            Map Placeholder (Google Maps API not included)
-                        </div>
-                        
-                        <div class="position-absolute top-50 start-50 translate-middle text-dark bg-white px-3 py-1 rounded shadow-sm">
-                            <small>📍 Current Location</small>
-                        </div> 
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <!-- Map Placeholder -->
+                        <div class="position-relative rounded overflow-hidden border" style="height: 400px; background-color: #f2f2f2;">
+                            <div id="services-map" class="d-flex align-items-center justify-content-center h-100 text-muted">
+                                Map Placeholder (Google Maps API not included)
+                            </div>
 
-                        <div class="position-absolute bottom-0 start-0 m-3">
-                            <button class="btn btn-outline-dark btn-sm d-flex align-items-center gap-1">
-                                <i class="material-icons">my_location</i> Locate
-                            </button>
-                        </div>
-                        
-                        <div class="position-absolute bottom-0 end-0 m-3 d-flex flex-column gap-2">
-                            <button class="btn btn-outline-dark btn-sm"><i class="material-icons">zoom_in</i></button>
-                            <button class="btn btn-outline-dark btn-sm"><i class="material-icons">zoom_out</i></button>
-                        </div>
-                        
-                        <div class="position-absolute bottom-0 start-50 translate-middle-x mb-2 text-muted small">
-                            © 2025 Map Provider
+                            <div class="position-absolute top-50 start-50 translate-middle text-dark bg-white px-3 py-1 rounded shadow-sm">
+                                <small>📍 Current Location</small>
+                            </div>
+
+                            <div class="position-absolute bottom-0 start-0 m-3">
+                                <button class="btn btn-outline-dark btn-sm d-flex align-items-center gap-1">
+                                    <i class="material-icons">my_location</i> Locate
+                                </button>
+                            </div>
+
+                            <div class="position-absolute bottom-0 end-0 m-3 d-flex flex-column gap-2">
+                                <button class="btn btn-outline-dark btn-sm"><i class="material-icons">zoom_in</i></button>
+                                <button class="btn btn-outline-dark btn-sm"><i class="material-icons">zoom_out</i></button>
+                            </div>
+
+                            <div class="position-absolute bottom-0 start-50 translate-middle-x mb-2 text-muted small">
+                                © 2025 Map Provider
+                            </div>
                         </div>
                     </div>
+                    <!-- /Map section -->
                 </div>
-                <!-- /Map section -->
             </div>
         </main>
     </div>

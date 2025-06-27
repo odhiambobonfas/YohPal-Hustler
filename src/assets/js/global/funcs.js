@@ -642,8 +642,24 @@ function __show_modal(modal) {
     }
 } 
 
+function mapCollapseToggles() { 
+    const collapseElems = document.querySelectorAll('[data-bs-toggle="collapse"]');
+    collapseElems.forEach(button => {
+        if (!documentContains(button)) return;
+        button = cloneNodeElement(button);
+        button.addEventListener('click', function() {
+            const icon = this.querySelector('.collapse-icon');
+            if (!documentContains(icon)) return;
+            icon.style.transform = this.getAttribute('aria-expanded') === 'true' 
+                ? 'rotate(0deg)' 
+                : 'rotate(180deg)'; 
+        });
+    });
+}
+
 // Call functions Below.
 document.addEventListener('DOMContentLoaded', async () => {
     const masterClassInstance = new Master(); 
     stickNavbarOnScroll();
+    mapCollapseToggles();
 });
