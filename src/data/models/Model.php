@@ -37,18 +37,48 @@ class Model
 
         $count = 1;
         $superCategories = [];
+
         foreach ($mixedCategories as $row) {
-            $category = $row['category'];
-            if (!isset($superCategories[$category])) {
-                $superCategories[$category] = [
-                    'id' => $count++,
-                    'name' => $category,
-                    'icon' => $row['category_icon']
+            $categoryName = $row['category'];
+            $subcategoryName = $row['subcategory'];
+            $count += 1;
+
+            // Initialize super category if not exists
+            if (!isset($superCategories[$categoryName])) {
+                $superCategories[$categoryName] = [
+                    'id' => $count,
+                    'name' => $categoryName,
+                    'icon' => $row['category_icon'],
+                    'subcategories' => []
                 ];
             }
+
+            // Initialize subcategory if not exists
+            if (!isset($superCategories[$categoryName]['subcategories'][$subcategoryName])) {
+                $superCategories[$categoryName]['subcategories'][$subcategoryName] = [
+                    'id' => $count,
+                    'name' => $subcategoryName,
+                    'icon' => $row['subcategory_icon'],
+                    'jobs' => []
+                ];
+            }
+
+            // Add job to subcategory
+            $superCategories[$categoryName]['subcategories'][$subcategoryName]['jobs'][] = [
+                'id' => $count,
+                'name' => $row['role'],
+                'icon' => $row['role_icon']
+            ];
         }
 
-        return $superCategories;
+        // Convert associative arrays to indexed arrays for cleaner output
+        $result = [];
+        foreach ($superCategories as $category) {
+            $category['subcategories'] = array_values($category['subcategories']);
+            $result[] = $category;
+        }
+
+        return $result;
     }
 
     /**
