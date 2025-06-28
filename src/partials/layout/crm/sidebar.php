@@ -36,7 +36,7 @@
         <div class="sidebar-item" data-tab="contacts" role="tab" aria-selected="false" tabindex="0">
             <i class="fas fa-address-book"></i> Contacts
         </div>
-    </div> 
+    </div>
 
     <!-- Communication -->
     <div class="sidebar-section communication">
@@ -48,9 +48,9 @@
             <i class="fas fa-address-book"></i> Reports
         </div>
         <div class="sidebar-item" data-tab="settings" role="tab" aria-selected="false" tabindex="0">
-            <i class="fas fa-address-book"></i> Settings
+            <i class="fas fa-cog me-2"></i> Settings
         </div>
-    </div> 
+    </div>
 
     <hr>
     <!-- Session -->
