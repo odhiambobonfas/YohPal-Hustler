@@ -2,14 +2,14 @@
     <!-- Card Header -->
     <div class="card-header bg-white d-flex align-items-center justify-content-between border-0">
         <div class="d-flex bg-transparent d-flex align-items-center justify-content-between">
-            <button class="btn btn-md btn-link me-2 text-nowrap">
+            <button class="btn btn-md btn-link me-2 text-nowrap backBtn" id="backBtn">
                 <i class="bi bi-arrow-left"></i>
             </button>
             <ul class="nav nav-tabs border-0 subcategory-scroll d-flex overflow-auto flex-nowrap">
                 <?php
                 $index = 0;
                 foreach ($viewableSubCategories as $category): ?>
-                    <li class="nav-item tab <?= $index++ === 0 ? 'active' : '' ?> text-dark text-nowrap">
+                    <li class="nav-item tab <?= $index++ === 0 ? 'active' : '' ?> text-dark text-nowrap sub-category-tab">
                         <?= htmlspecialchars($category['name']) ?>
                     </li>
                 <?php endforeach; ?>

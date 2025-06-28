@@ -105,7 +105,7 @@
 }
 
 .tab.active {
-	color: var(--primary);
+	color: var(--primary) !important;
 	border-bottom: 2px solid var(--primary);
 }
 

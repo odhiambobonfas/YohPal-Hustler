@@ -43,8 +43,9 @@ class Master {
      * Useful for blocking UI and showing a loading state.
      */
     showOverlay() {
+        this.overlay = document.querySelector('.global-overlay');
         if (this.overlay) {
-            this.overlay.classList.add('active');
+            this.overlay.classList.add('active'); 
         }
     }
 
@@ -52,6 +53,7 @@ class Master {
      * Hides the global overlay by removing the 'active' class.
      */
     hideOverlay() {
+        this.overlay = document.querySelector('.global-overlay');
         if (this.overlay) {
             this.overlay.classList.remove('active');
         }
@@ -151,5 +153,28 @@ class Master {
             info: true,
             lengthChange: true
         });
+    }
+
+    /**
+     * Select every tab element and apply navigation logic
+     * Activation is binded by use of 'active' class. 
+     * 
+     * @param {String} [selector] HTML selector  
+     * @param {Object} [callbackFuncs] Callback functions object 
+     */
+    bindTabClicks(selector, callbackFuncs={}) {
+        let subCategoryTabs = document.querySelectorAll(`${selector}`);
+        subCategoryTabs.forEach(tab => {
+            if (!documentContains(tab)) return;
+            tab = cloneNodeElement(tab); 
+            tab.addEventListener('click', () => {
+                subCategoryTabs = document.querySelectorAll(`${selector}`);
+                subCategoryTabs.forEach(sct => sct.classList.remove('active'));
+                tab.classList.add('active');
+
+                // Fire up the callback functions here...
+                
+            });
+        }); 
     }
 }
