@@ -20,19 +20,19 @@ class JobPortal extends Master {
                 this.showOverlay(); 
 
                 setTimeout(() => {
-                    this.categoryListing.classList.add('d-none');
-                    this.jobsListing.classList.remove('d-none');
                     $.ajax({
                         type: "GET",
                         url: `/portal/jobs/view/${categoryId}`, 
                         dataType: "json",
                         success: function (response) {
+                            (new JobPortal()).categoryListing.classList.add('d-none');
                             let jobsListing = (new JobPortal()).jobsListing;
                             if (!response.htmlContent) return;
                             __append_html(
                                 response.htmlContent, 
                                 jobsListing
                             );
+                            (new JobPortal()).jobsListing.classList.remove('d-none');
                             (new JobPortal()).hideOverlay();
                         },
                         error: error => {
