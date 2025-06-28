@@ -51,12 +51,13 @@
                                     <?php foreach ($hustleSuperCategories as $category): ?>
                                         <div class="col d-flex">
                                             <a href="javascript:void(0)" class="category-card-tag w-100 text-decoration-none" data-id="<?= $category['id'] ?>">
-                                                <div class="card category-card shadow-sm w-100 h-100">
+                                                <div class="card category-card shadow-sm w-100 h-100" id="cat-grid">
                                                     <div class="card-body text-center p-4 d-flex flex-column justify-content-center align-items-center">
-                                                        <div class="card-icon mb-3">
+                                                        <div class="card-icon mb-3 subcat-symbol d-flex align-items-center justify-content-center">
                                                             <i class="<?= htmlspecialchars($category['icon']) ?>"></i>
                                                         </div>
                                                         <h3 class="card-title h5 mb-0"><?= htmlspecialchars($category['name']) ?></h3>
+                                                        <span class="mx-auto"><?= count($category['subcategories']) ?> job categories</span>
                                                     </div>
                                                 </div>
                                             </a>
