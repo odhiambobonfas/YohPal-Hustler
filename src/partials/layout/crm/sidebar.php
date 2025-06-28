@@ -48,7 +48,7 @@
             <i class="fas fa-address-book"></i> Reports
         </div>
         <div class="sidebar-item" data-tab="settings" role="tab" aria-selected="false" tabindex="0">
-            <i class="fas fa-cog me-2"></i> Settings
+            <i class="fas fa-cog"></i> Settings
         </div>
     </div>
 
