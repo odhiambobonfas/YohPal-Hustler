@@ -23,29 +23,14 @@ class SettingsController
         $this->model = new Authentication();
     }
 
-    public function generalSettings(YPRequest $request): mixed
+    public function index(YPRequest $request): mixed
     {
         try {
-            if (!isAjaxRequest()) { 
-                return view('crm/settings/general');
-            }
+            // ANY index logic available
         }
         catch(\Throwable $th) {
             YPLogger::error($th);
             return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
         }
-    }
-
-    public function paymentMethods(YPRequest $request): mixed
-    {
-        try {
-            if (!isAjaxRequest()) { 
-                return view('crm/settings/payment-methods');
-            }
-        }
-        catch(\Throwable $th) {
-            YPLogger::error($th);
-            return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
-        }
-    }
+    } 
 }

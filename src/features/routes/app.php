@@ -24,10 +24,6 @@ $router->req('GET', '/dashboard/graphical/stats', [PaymentController::class, 'da
 // Profile Routes
 $router->req('GET', '/profile', [ProfileController::class, 'index'], [AuthMiddleware::class]); 
 
-// Settings Routes
-$router->req('GET', '/settings/general', [SettingsController::class, 'generalSettings'], [AuthMiddleware::class]); 
-$router->req('GET', '/settings/payment-methods', [SettingsController::class, 'paymentMethods'], [AuthMiddleware::class]); 
-
 // Carreer section routes 
 $router->req('GET', '/job-portal', [JobsController::class, 'index'], [AuthMiddleware::class]); 
 $router->req('GET', '/portal/jobs/view/[**:path]', [JobsController::class, 'jobsListing'], [AuthMiddleware::class]); 
