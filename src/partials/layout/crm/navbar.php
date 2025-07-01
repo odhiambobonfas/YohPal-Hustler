@@ -1,6 +1,6 @@
 <!-- Header / Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light scrollStickyNav" style="z-index: 9999;">
-    <div class="container-fluid d-flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center justify-content-between w-100 ms-3 me-3">
         <!-- Left Section: Brand and Search -->
         <div class="d-flex align-items-center w-100 gap-3">
             <!-- Brand and Icon -->
@@ -22,7 +22,7 @@
         </div>
 
         <!-- Toggler for Mobile -->
-        <div class="d-lg-none d-md-none d-sm-inline ms-auto flex-row dropdown">
+        <div class="d-lg-none d-md-none d-sm-inline ms-auto dropdown">
             <button class="btn btn-link tdl-0 dropdown-toggle" type="button" id="navbarDropdownToggle" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="bi bi-list fa-2x"></i>
             </button>
