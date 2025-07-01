@@ -14,8 +14,10 @@
 
             <!-- Search Form (Desktop only) -->
             <form class="d-none d-md-flex align-items-center flex-grow-1 px-2">
-                <input class="form-control form-control-sm me-2 w-50 p-2" type="search" placeholder="Search here..." aria-label="Search">
-                <button class="btn btn-danger btn-sm p-2" type="submit">Search</button>
+                <div class="input-group input-group-sm w-50">
+                    <button class="btn btn-outline-light border-dark text-dark p-2" type="submit"><i class="fas fa-search ms-2 me-2"></i></button>
+                    <input type="search" class="form-control border-dark p-2" placeholder="Search here..." aria-label="Search">
+                </div>
             </form>
         </div>
 
