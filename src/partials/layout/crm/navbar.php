@@ -1,18 +1,23 @@
 <!-- Header / Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light scrollStickyNav" style="z-index: 9999;">
     <div class="container-fluid d-flex align-items-center justify-content-between">
-        <!-- Brand -->
-        <a class="navbar-brand d-flex align-items-center gap-2" href="/">
-            <img src="https://yohpals.com/img/favicon.png" alt="Logo" class="img-fluid logo-resize">
-            <span class="fw-bold"><?= env('APP_NAME') ?></span>
-            <i class="fas fa-screwdriver-wrench text-secondary"></i>
-        </a>
+        <!-- Left Section: Brand and Search -->
+        <div class="d-flex align-items-center w-100 gap-3">
+            <!-- Brand and Icon -->
+            <div class="d-flex align-items-center gap-4">
+                <a class="navbar-brand d-flex align-items-center gap-2 mb-0" href="/">
+                    <img src="https://yohpals.com/img/favicon.png" alt="Logo" class="img-fluid logo-resize" style="height: 32px;">
+                    <span class="fw-bold mb-0"><?= env('APP_NAME') ?></span>
+                </a>
+                <i class="fas fa-screwdriver-wrench text-secondary"></i>
+            </div>
 
-        <!-- Search Form -->
-        <form class="d-none d-md-flex flex-grow-1 justify-content-center px-3 w-50">
-            <input class="form-control form-control-sm me-2 w-100" type="search" placeholder="Search here..." aria-label="Search">
-            <button class="btn btn-danger btn-sm" type="submit">Search</button>
-        </form>
+            <!-- Search Form (Desktop only) -->
+            <form class="d-none d-md-flex align-items-center flex-grow-1 px-2">
+                <input class="form-control form-control-sm me-2 w-50 p-2" type="search" placeholder="Search here..." aria-label="Search">
+                <button class="btn btn-danger btn-sm p-2" type="submit">Search</button>
+            </form>
+        </div>
 
         <!-- Toggler for Mobile -->
         <div class="d-lg-none d-md-none d-sm-inline ms-auto flex-row dropdown">
@@ -40,33 +45,37 @@
                     <li><a class="btn dropdown-item logout-btn" href="javascript:void(0)"><i class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
                 <?php
                 }
-                ?> 
+                ?>
             </ul>
         </div>
 
         <!-- Right Menu -->
         <div class="d-none d-md-inline justify-content-end">
             <ul class="navbar-nav align-items-center mb-2 mb-lg-0 gap-2">
-                <li class="nav-item">
+                <li class="nav-item text-nowrap">
                     <a class="nav-link active" href="#">
                         <i class="fa fa-envelope fa-2x text-secondary"></i>
                         <sup class="count-badge text-danger">0</sup>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item text-nowrap">
                     <a class="nav-link" href="#">
                         <i class="fas fa-bell fa-2x text-secondary"></i>
                         <sup class="count-badge text-warning">0</sup>
                     </a>
                 </li>
-                <li class="nav-item dropdown d-none d-md-flex align-items-center">
-                    <a class="nav-link dropdown-toggle text-dark d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="<?= asset_url('store/images/avatars/default-avatar.jpg') ?>" alt="Profile"
-                            class="rounded-circle me-2" width="36" height="36">
+                <li class="nav-item text-nowrap">
+                    <a class="nav-link" href="#">
+                        <img src="<?= asset_url('store/images/avatars/default-avatar.jpg') ?>" alt="Profile" class="rounded-circle me-2" width="36" height="36">
                         <span class="fw-semibold">
                             <?= !empty(auth()->user()) ? auth()->user()->firstName : 'Account' ?>
                             <?= !empty(auth()->user()) ?  auth()->user()->lastName : null ?>
                         </span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown d-none d-md-flex align-items-center">
+                    <a class="nav-link dropdown-toggle text-dark d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-list fa-2x"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="/profile"><i class="bi bi-person-circle me-2"></i>Profile</a></li>
