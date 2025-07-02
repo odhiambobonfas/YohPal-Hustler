@@ -34,6 +34,12 @@ return [
         'action' => 'Sign In User',
     ],
 
+    'auth_register_endpoint' => [
+        'method' => 'POST',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/signup',
+        'action' => 'Perform user registration',
+    ],
+
     'auth_forgot_password' => [
         'method' => 'POST',
         'route'  => 'https://yohpal-hustler-apis-test.onrender.com/password_reset',
