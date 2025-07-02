@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
-        'name' => 'yohpal/marketplace',
+        'name' => 'yohpal/hustler',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '1e38b080060c1b9e7231844f53a19c8985e60c22',
+        'reference' => 'da6a5c1b663d0d4577e7ee5fa26a8f7eb4ac3d73',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../../',
         'aliases' => array(),
@@ -271,10 +271,10 @@
             'aliases' => array(),
             'dev_requirement' => true,
         ),
-        'yohpal/marketplace' => array(
+        'yohpal/hustler' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '1e38b080060c1b9e7231844f53a19c8985e60c22',
+            'reference' => 'da6a5c1b663d0d4577e7ee5fa26a8f7eb4ac3d73',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../../',
             'aliases' => array(),
