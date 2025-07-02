@@ -42,7 +42,7 @@
                     <div class="collapse dropdown-content" id="subcat-<?= htmlspecialchars(str_replace(' ', '-', $category['name'])) ?>">
                         <ul class="list-group list-group-flush">
                             <?php foreach ($category['jobs'] as $job): ?>
-                                <li class="list-group-item bg-transparent d-flex align-items-center ps-5 py-2">
+                                <li data-id="<?= htmlspecialchars(isset($job['id']) ? $job['id'] : strtolower($job['name'])) ?>" class="list-group-item job-list-group bg-transparent d-flex align-items-center ps-5 py-2">
                                     <span class="subcat-symbol d-flex align-items-center justify-content-center me-2">
                                         <i class="<?= htmlspecialchars($job['icon']) ?> actual-icon m-0"></i>
                                     </span>

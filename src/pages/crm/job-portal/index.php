@@ -44,7 +44,7 @@
                 <div class="card bg-transparent border-0 rounded mb-3">
                     <div class="container-sm py-3">
                         <div class="content-section">
-                            <div class="category-listing">
+                            <div class="job-portal-step-section category-listing">
                                 <div style="background-image: url('<?= asset_url('store/images/banners/banner.png') ?>')" class="top-banner mb-3 text-dark" id="top-banner">
                                     <h1>7,000+ Browse Jobs</h1>
                                 </div>
@@ -67,8 +67,12 @@
                                 </div>
                             </div>
 
-                            <div class="jobs-listing d-none">
+                            <div class="job-portal-step-section jobs-listing d-none">
                                 <?php include "partials/job-portal/jobs-listing.php"; ?>
+                            </div>
+
+                            <div class="job-portal-step-section mapping-section d-none">
+                                <?php include "partials/job-portal/mapping-map.php"; ?>
                             </div>
                         </div>
                     </div>
@@ -80,6 +84,9 @@
 </div>
 
 <!-- modals -->
+<div class="modal fade create-job-modal" id="create-job-modal">
+    <?php include "partials/job-portal/create-job-modal.php" ?>
+</div>
 <!-- /modals -->
 
 <!-- footer -->
@@ -90,6 +97,7 @@
 <script type="text/javascript" src="<?= asset_url('js/app/crm/auth.js') ?>"></script>
 <script type="text/javascript" src="<?= asset_url('js/app/crm/dashboard.js') ?>"></script>
 <script type="text/javascript" src="<?= asset_url('js/app/crm/job-portal.js') ?>"></script>
+<script type="text/javascript" src="<?= asset_url('js/app/crm/hustle-map.js') ?>"></script>
 <!-- xtra scripts -->
 
 <!-- closure -->

@@ -2,11 +2,13 @@ class JobPortal extends Master {
     constructor() {
         super();
         // ANY Constructor logic applicable
+        this.stepperSections = document.querySelectorAll('.job-portal-step-section');
         this.categoryCards = document.querySelectorAll('.category-card-tag');
         this.contentSection = document.querySelector('.content-section');
         this.categoryListing = document.querySelector('.category-listing');
         this.jobsListing = document.querySelector('.jobs-listing');
-        this.backBtn = document.querySelector('.backBtn');
+        this.mapSection = document.querySelector('.mapping-section');
+        this.backBtns = undefined;
     }
 
     setupPage() {
@@ -26,7 +28,7 @@ class JobPortal extends Master {
                         type: "GET",
                         url: `/portal/jobs/view/${categoryId}`,
                         dataType: "json",
-                        success: function (response) {
+                        success: function (response) { 
                             (new JobPortal()).categoryListing.classList.add('d-none');
                             let jobsListing = (new JobPortal()).jobsListing;
                             if (!response.htmlContent) return;
@@ -38,6 +40,7 @@ class JobPortal extends Master {
                             (new JobPortal()).hideOverlay();
                             (new JobPortal()).bindBackBtnClick();
                             (new JobPortal()).bindTabClicks('.sub-category-tab');
+                            enableToggleHighlight('.job-list-group', [(new JobPortal()).createJobDraft]); 
                         },
                         error: error => {
                             console.log(error.message || error);
@@ -57,20 +60,80 @@ class JobPortal extends Master {
      * @return {void} void
      */
     bindBackBtnClick() {
-        if (!documentContains(this.backBtn)) return;
+        this.backBtns = document.querySelectorAll('.backBtn');
 
-        this.backBtn.addEventListener('click', () => {
-            this.showOverlay();
-            setTimeout(() => {
-                this.jobsListing.classList.add('d-none');
-                this.categoryListing.classList.remove('d-none');
-                this.hideOverlay();
-            }, 2000);
+        this.backBtns.forEach(backBtn => {
+            if (!documentContains(backBtn)) return;
+
+            backBtn.addEventListener('click', () => {
+                this.showOverlay();
+                setTimeout(() => {
+                    this.stepperSections.forEach(section => section.classList.add('d-none'));
+                    this.categoryListing.classList.remove('d-none');
+                    this.hideOverlay();
+                }, 2000);
+            });    
         });
     }
 
     filterOutSubCategoriesBodyContentUponTabClicks() {
         // Filter out jobs based on the sub category tab clicked.
+    }
+
+    createJobDraft(subCategoryId) { 
+        __show_modal('.create-job-modal');
+
+        let btn = document.querySelector('.create-job-submit-btn');
+        if (!documentContains(btn)) return;
+        btn = cloneNodeElement(btn);
+        btn.addEventListener('click', event => {
+            event.preventDefault();
+            toggleButtonContent(btn);
+            disableElement(btn); 
+            let form = btn.closest('form'); 
+            let data = serializeFormToArray(form);
+            
+            $.ajax({
+                type: 'POST',
+                url: `${form.action}/${subCategoryId}`, 
+                data: data,
+                dataType: "json", 
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                success: function (response) {
+                    console.log(response);
+                    toggleButtonContent(btn, '', true);
+                    enableElement(btn);
+
+                    if (response && response.status && response.status == 'success') {
+                        toast(response.status, 5000, response.message || lang.undefined_error);
+                        resetFormAndCloseModal(form); 
+                        (new JobPortal()).showOverlay();
+                        setTimeout(() => {
+                            (new JobPortal()).stepperSections.forEach(section => section.classList.add('d-none'));
+                            (new JobPortal()).mapSection.classList.remove('d-none');
+                            (new JobPortal()).hideOverlay();
+                            (new JobPortal()).bindBackBtnClick();
+                        }, 1000); // Avoid race condition...
+                        return;
+                    }
+
+                    if (response && response.status && response.status == 'error') {
+                        toast(response.status, 5000, response.message || lang.undefined_error);
+                        return;
+                    }
+
+                    toast('error', 5000, lang.undefined_error);
+                },
+                error: error => {
+                    console.log(error.message || error);
+                    toggleButtonContent(btn, '', true);
+                    enableElement(btn);
+                    toast('error', 5000, lang.undefined_error);
+                }
+            });
+        });
     }
 }
 

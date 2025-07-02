@@ -21,6 +21,6 @@
 
         <!-- Custom scripts for all pages -->
         <script type="text/javascript" src="<?= asset_url('js/lang/en.js') ?>"></script>
-        <script type="text/javascript" src="<?= asset_url('js/global/master.js') ?>"></script>
         <script type="text/javascript" src="<?= asset_url('js/global/funcs.js') ?>"></script>
+        <script type="text/javascript" src="<?= asset_url('js/global/master.js') ?>"></script>
         <script type="text/javascript" src="<?= asset_url('js/app/web/auth.js') ?>"></script>

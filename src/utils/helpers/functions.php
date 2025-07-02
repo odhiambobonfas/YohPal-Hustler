@@ -158,3 +158,16 @@ function getIdParam(array $path, bool $throwErr=false):?string {
 
     return count($path_slugs) >= 1 ? current($path_slugs) : null;
 }
+
+/**
+ * Get the ID from the URL for a specified resource from Frontend.
+ */
+function getIdParams(array $path, bool $throwErr=false):?array {
+    $path_slugs = explode('/', current($path)); 
+
+    if ($throwErr && count($path_slugs) > 1) {
+        throw new YPException("Oops, An error Occurred. The path appears to be invalid or not found!");
+    }
+
+    return count($path_slugs) >= 1 ? $path_slugs : null;
+}

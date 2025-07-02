@@ -657,6 +657,33 @@ function mapCollapseToggles() {
     });
 }
 
+/**
+ * Enables toggle highlight behavior on a group of elements.
+ * When an item is clicked, it receives the specified active class(es),
+ * and all other items in the group are cleared of that class.
+ *
+ * @param {string} selector - CSS selector for the elements to toggle.
+ * @param {string} activeClass - Space-separated class names to apply when active (default: 'active-clicked').
+ */
+function enableToggleHighlight(selector, callbackFuncs=[], activeClass = 'active-clicked') {
+    const items = document.querySelectorAll(selector); 
+
+    items.forEach(item => {
+        if (!documentContains(item)) return;
+        item = cloneNodeElement(item); 
+        item.addEventListener('click', (event) => {  
+            document.querySelectorAll(selector).forEach(listGroup => {
+                listGroup.classList.remove(activeClass);
+            }); 
+            item.classList.add(activeClass);
+
+            callbackFuncs.forEach(func => { 
+                func(item.getAttribute('data-id')); // call the callback functions if supplied.
+            });
+        });
+    });
+}
+
 // Call functions Below.
 document.addEventListener('DOMContentLoaded', async () => {
     const masterClassInstance = new Master(); 

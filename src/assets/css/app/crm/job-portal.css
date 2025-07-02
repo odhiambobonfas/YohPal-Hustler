@@ -420,3 +420,13 @@
 		font-size: 0.8rem;
 	}
 }
+
+/* Job listing */
+.job-list-group {
+	cursor: pointer;
+}
+
+.active-clicked {
+	background-color: cornsilk !important;
+}
+/* /Job listing */

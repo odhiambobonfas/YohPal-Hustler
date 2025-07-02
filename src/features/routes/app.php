@@ -18,12 +18,15 @@ $router->req('GET', '/', [YohPalController::class, 'index']);
 $router->req('GET', '/index', [YohPalController::class, 'index']); 
 
 // Dashboard Routes
-$router->req('GET', '/dashboard', [DashboardController::class, 'index'], [AuthMiddleware::class]); 
-$router->req('GET', '/dashboard/graphical/stats', [PaymentController::class, 'dashboardEarningsData'], [AuthMiddleware::class]); 
+$router->req('GET', '/dashboard', [DashboardController::class, 'index']); 
+$router->req('GET', '/dashboard/graphical/stats', [PaymentController::class, 'dashboardEarningsData']); 
 
 // Profile Routes
-$router->req('GET', '/profile', [ProfileController::class, 'index'], [AuthMiddleware::class]); 
+$router->req('GET', '/profile', [ProfileController::class, 'index']); 
 
 // Carreer section routes 
-$router->req('GET', '/job-portal', [JobsController::class, 'index'], [AuthMiddleware::class]); 
-$router->req('GET', '/portal/jobs/view/[**:path]', [JobsController::class, 'jobsListing'], [AuthMiddleware::class]); 
+$router->req('GET', '/job-portal', [JobsController::class, 'index']); 
+$router->req('GET', '/portal/jobs/view/[**:path]', [JobsController::class, 'jobsListing']); 
+
+// Onboarding routes
+$router->req('POST', '/job/create/[**:path]', [JobsController::class, 'createJobDraft']); 
