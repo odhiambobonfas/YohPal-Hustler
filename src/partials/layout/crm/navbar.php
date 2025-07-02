@@ -70,7 +70,7 @@
                     <a class="nav-link" href="#">
                         <img src="<?= asset_url('store/images/avatars/default-avatar.jpg') ?>" alt="Profile" class="rounded-circle me-2" width="36" height="36">
                         <span class="fw-semibold">
-                            <?= !empty(auth()->user()) ? auth()->user()->firstName : 'Account' ?>
+                            <?= !empty(auth()->user()) ? (!empty(auth()->user()->firstName) ? auth()->user()->firstName : auth()->user()->email) : 'Account' ?>
                             <?= !empty(auth()->user()) ?  auth()->user()->lastName : null ?>
                         </span>
                     </a>
