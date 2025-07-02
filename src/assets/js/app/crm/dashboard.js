@@ -2,6 +2,41 @@ class Dashboard extends Master {
     constructor() {
         super();
         // ANY CONSTRUCTOR LOGIC AVAILABLE
+        this.pending_users = document.querySelector('.pending_users_count');
+        this.active_users = document.querySelector('.active_users_count');
+        this.dormant_users = document.querySelector('.dormant_users_count');
+        this.deleted_users = document.querySelector('.deleted_users_count');
+        this.tjs_stat = document.querySelector('.total-job-seekers-count');
+        this.tjp_stat = document.querySelector('.total-job-providers-count');
+        this.active_listing_stat = document.querySelector('.active-listings-count');
+    }
+
+    getUsersCountStats() {
+        const usersCountSection = document.querySelector('.users-count-stats');
+        if (!documentContains(usersCountSection)) return;
+
+        $.ajax({
+            type: "GET",
+            url: "/users/count/stats",
+            data: "data",
+            dataType: "json",
+            success: function (response) {
+                if (response.status === 'success' && response.data) {
+                    let data = response.data;
+                    (new Dashboard()).pending_users = __append_html(data.pending_users || 0, (new Dashboard()).pending_users);
+                    (new Dashboard()).active_users = __append_html(data.active_users || 0, (new Dashboard()).active_users);
+                    (new Dashboard()).dormant_users = __append_html(data.dormant_users || 0, (new Dashboard()).dormant_users);
+                    (new Dashboard()).deleted_users = __append_html(data.deleted_users || 0, (new Dashboard()).deleted_users);
+                    (new Dashboard()).tjs_stat = __append_html(data.total_job_seekers || 0, (new Dashboard()).tjs_stat);
+                    (new Dashboard()).tjp_stat = __append_html(data.total_job_providers || 0, (new Dashboard()).tjp_stat);
+                    (new Dashboard()).active_listing_stat = __append_html(data.active_listings || 0, (new Dashboard()).active_listing_stat);
+                }
+            },
+            error: error => {
+                console.log(error.message || error); 
+                toast('error', 5000, lang.undefined_error);
+            }
+        });
     }
 
     getGraphicStatsData() {
@@ -65,6 +100,7 @@ class Dashboard extends Master {
 
 document.addEventListener('DOMContentLoaded', () => {
     const dashboardInstance = new Dashboard();
+    dashboardInstance.getUsersCountStats();
     dashboardInstance.getGraphicStatsData();
     dashboardInstance.getActiveJobsAssigned();
 });
