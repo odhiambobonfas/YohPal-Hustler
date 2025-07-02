@@ -92,3 +92,76 @@ Welcome to the YohPal App repository! This project aims to provide a fully funct
     - Example: adding pages to improve the app UI
 
 
+## How to Run the Hustler Web App Project
+
+### Requirements
+
+* PHP 8.1 or newer
+* Optional: Composer (for automatic class loading)
+* Optional: Node.js + npm (for asset bundling)
+* Local server setup (XAMPP, MAMP, or PHP built-in server)
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/byteforge254/Yohpal-Hustler.git
+cd Yohpal-Market/src
+```
+
+### 2. Configure the Environment
+
+* Open `utils/config/` and update your `app.php` and other config files as needed (e.g., paths, environment, database).
+* Set `PUBLIC_PATH` correctly.
+
+### 3. Set Up Autoloading (Choose One)
+
+#### Option 1: Manual Autoloading (No Composer)
+
+If you prefer not to use Composer:
+
+* Do **not** install or run Composer.
+* Extract the following asset bundles manually inside the `assets/` folder:
+
+  * `assets/bootstrap/` → from `bootstrap.zip`
+  * `assets/vendor_modules/` → from `vendor_modules.zip`
+  * `assets/build/` → from `build.zip`
+
+Classes will autoload via the custom PHP autoloader.
+
+#### Option 2: Composer Autoloading (Recommended for PHP Developers)
+
+If you choose to use Composer:
+
+```bash
+composer install
+composer dump-autoload
+```
+
+This installs dependencies and ensures classes autoload automatically. 
+
+### 4. (Optional) Build JavaScript & CSS Assets
+
+If you're using asset bundling with Webpack:
+
+```bash
+npm install
+npm run build
+```
+
+> This compiles and bundles your frontend assets (JS/CSS) into the `assets/build/` directory.
+
+### 5. Run the Application
+
+#### Option 1: Using XAMPP or MAMP
+
+* Move the `src/` folder into your `htdocs/` directory.
+* Visit:
+  `http://localhost/src`
+
+#### Option 2: Using PHP's Built-In Server
+
+```bash
+php -S localhost:8000 -t src
+```
+
+Then open [http://localhost:8000](http://localhost:8000) in your browser. 
