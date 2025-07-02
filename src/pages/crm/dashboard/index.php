@@ -40,7 +40,7 @@
 
                 <!-- Stats Section -->
                 <div class="card bg-white border-0 rounded mb-3">
-                    <div class="d-flex justify-content-around p-5 gap-3">
+                    <div class="d-flex justify-content-around p-5 gap-3 users-count-stats">
                         <?php
                         foreach ($stats as $stat): ?>
                             <div class="stat-card <?= $stat['class'] ?>">
@@ -48,7 +48,7 @@
                                     <circle class="progress-ring-bg" cx="40" cy="40" r="36"></circle>
                                     <circle class="progress-ring-fill" cx="40" cy="40" r="36" stroke-dasharray="<?= $stat['dash'] ?> 200"></circle>
                                 </svg>
-                                <div class="stat-number"><?= $stat['value'] ?></div>
+                                <div class="stat-number <?= $stat['slug'] ?>_count"><?= $stat['value'] ?></div>
                                 <div class="stat-label"><?= $stat['label'] ?></div>
                             </div>
                         <?php endforeach; ?>
@@ -99,21 +99,21 @@
 
                         <div class="info-cards col-4">
                             <div class="info-card job-seekers w-100">
-                                <div class="val">69</div>
+                                <div class="val total-job-seekers-count">69</div>
                                 <div class="cont">
                                     <h3>Total Job Seekers</h3>
                                     <p>A comprehensive view of all registered job seekers on the platform.</p>
                                 </div>
                             </div>
                             <div class="info-card job-providers w-100">
-                                <div class="val">104</div>
+                                <div class="val total-job-providers-count">104</div>
                                 <div class="cont">
                                     <h3>Total Job Providers</h3>
                                     <p>A small river named Duden flows by their place and supplies necessary.</p>
                                 </div>
                             </div>
                             <div class="info-card active-listings w-100">
-                                <div class="val">80</div>
+                                <div class="val active-listings-count">80</div>
                                 <div class="cont">
                                     <h3>Active Listings</h3>
                                     <p>Active and more recovery and editing.</p>

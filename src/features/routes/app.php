@@ -5,6 +5,7 @@ use App\Controllers\Web\JobsController;
 use App\Controllers\Web\PaymentController;
 use App\Controllers\Web\ProfileController;
 use App\Controllers\Web\SettingsController;
+use App\Controllers\Web\UsersController;
 use App\Controllers\Web\YohPalController;   
 use App\Middlewares\AuthMiddleware;
 use Yohpal\Application\YPRouter;
@@ -19,6 +20,7 @@ $router->req('GET', '/index', [YohPalController::class, 'index']);
 
 // Dashboard Routes
 $router->req('GET', '/dashboard', [DashboardController::class, 'index']); 
+$router->req('GET', '/users/count/stats', [UsersController::class, 'usersCount']); 
 $router->req('GET', '/dashboard/graphical/stats', [PaymentController::class, 'dashboardEarningsData']); 
 
 // Profile Routes
