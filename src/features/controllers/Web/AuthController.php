@@ -9,18 +9,22 @@ use Yohpal\Application\YPException;
 use Yohpal\Models\Model;
 use Yohpal\Models\Authentication; 
 use Yohpal\Utils\Util;
+use Yohpal\Utils\AuthUtil;
 
 class AuthController
 {
 
     public $util;
 
+    public $authUtil;
+
     public $model;
 
-    public function __construct(Util $util)
+    public function __construct(Util $util, AuthUtil $authUtil)
     {
         // ANY APPLICABLE LOGIC
         $this->util = $util;
+        $this->authUtil = $authUtil;
         $this->model = new Authentication();
     }
 
@@ -118,6 +122,48 @@ class AuthController
             }
 
             return $request->res(["status" => 'success', "message" => "Succesfully sent password reset link to the provided email address!", 'req' => $req]);
+
+        } catch (\Throwable $th) {
+            YPLogger::error($th);
+            return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
+        }
+    }
+    
+    /**
+     * This function handles auth registration, & returns a success response.
+     *
+     * If an error occurs during request, it logs the error and returns a generic error message.
+     *
+     * @param YPRequest $request The request instance containing the custom response method.
+     * @return mixed A JSON-formatted response instigating whether it is a success or failure.
+     */
+    public function registerUser(YPRequest $request):mixed {
+        try { 
+            if (!isAjaxRequest()) {
+                return view('auth/forgot-pass');
+            }
+
+            $password = $request->req('password1');
+            $confirmPassword = $request->req('password2');
+
+            if ($password !== $confirmPassword) {
+                throw new Exception('Password mismatch error occurred. Please confirm password to continue!'); 
+            }
+
+            $input = [
+                'email' => $request->req('email'),
+                'password' => $request->req('password1')
+            ]; 
+
+            $req = $this->authUtil->registerUser($input);
+
+            $req =  is_string($req) ? json_decode(trim($req), true) : $req; 
+
+            if (!$req) {
+                throw new YPException('An error occurred while trying to finalize registration, please try again!!');
+            }
+
+            return $request->res(["status" => 'success', "message" => "Registered successfully. Please go to login page to proceed with logging in!", 'req' => $req]);
 
         } catch (\Throwable $th) {
             YPLogger::error($th);

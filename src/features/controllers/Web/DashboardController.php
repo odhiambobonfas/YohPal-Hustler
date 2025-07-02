@@ -31,10 +31,10 @@ class DashboardController
                 $hustleCategoriesDropdown = Model::hustleCategoriesDropdownOptions();
 
                 $stats = [
-                    ['label' => 'Pending Users', 'value' => '18,316', 'class' => 'pending', 'dash' => '80'],
-                    ['label' => 'Active Users', 'value' => '540', 'class' => 'active', 'dash' => '170'],
-                    ['label' => 'Dormant Users', 'value' => '156', 'class' => 'dormant', 'dash' => '70'],
-                    ['label' => 'Deleted Users', 'value' => '50', 'class' => 'deleted', 'dash' => '60'],
+                    ['label' => 'Pending Users', 'slug' => 'pending_users', 'value' => '18,316', 'class' => 'pending', 'dash' => '80'],
+                    ['label' => 'Active Users', 'slug' => 'active_users', 'value' => '540', 'class' => 'active', 'dash' => '170'],
+                    ['label' => 'Dormant Users', 'slug' => 'dormant_users', 'value' => '156', 'class' => 'dormant', 'dash' => '70'],
+                    ['label' => 'Deleted Users', 'slug' => 'deleted_users', 'value' => '50', 'class' => 'deleted', 'dash' => '60'],
                 ];
 
                 return view('crm/dashboard/index', compact('stats', 'hustleCategories', 'hustleCategoriesDropdown'));

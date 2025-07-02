@@ -59,7 +59,7 @@ class JobsController
             $params = getIdParams($path); 
             $superCategoryId = $params[0];
             $subCategoryId = $params[1];
-            return $request->res(['status' => 'success', 'message' => "Job created successfully!", 'categoryObj' => (['superCategory' => $superCategoryId, 'subCategory' => $subCategoryId])]);
+            return $request->res(['status' => 'success', 'message' => "Job created successfully!", 'categoryObj' => ['superCategory' => $superCategoryId, 'subCategory' => $subCategoryId]]);
         } 
         catch(\Throwable $th) {
             YPLogger::error($th);
