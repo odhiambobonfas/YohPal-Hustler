@@ -31,7 +31,7 @@ class AuthMaster extends Master {
                     enableElement(btn);
 
                     if (response && response.status && response.status == 'success') {
-                        route(response.route);
+                        toast(response.status, 5000, response.message || lang.undefined_error);
                         return;
                     }
 

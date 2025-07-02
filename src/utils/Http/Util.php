@@ -24,6 +24,8 @@ class Util
 
     protected $endpoint;
 
+    protected $user_token;
+
     public function __construct()
     {
         // ANY LOGIC APPLICABLE 
