@@ -19,6 +19,8 @@ class Util
 {
 
     protected $client;
+    
+    protected $input;
 
     protected $endpoint;
 

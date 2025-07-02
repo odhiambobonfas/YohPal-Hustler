@@ -2,6 +2,7 @@
 
 use Yohpal\Application\YPLogger;
 use \Carbon\Carbon;
+use Yohpal\Application\YPException;
 
 /**
  * Mutates an array and transforms to an object. 
@@ -170,4 +171,29 @@ function getIdParams(array $path, bool $throwErr=false):?array {
     }
 
     return count($path_slugs) >= 1 ? $path_slugs : null;
+}
+
+/**
+ * Gets a number and formats it in respect to stardard reads on the frontend.
+ * By default, the function applies a 2 decimal place to a number.
+ * 
+ * @return mixed - a single string or array of strings, containing formatted number(s)
+ */
+function num_formatter(mixed $num, $decimals=2, $apply_dc=false): mixed {
+    if (!is_array($num)) {
+        if (!is_numeric($num)) {
+            throw new YPException('Invalid number to string conversion');
+        }
+
+        return number_format($num, $apply_dc ?? $decimals);
+    }
+
+    if (is_array($num)) {
+        $formatted = [];
+        foreach ($num as $value) {
+            $formatted[] = number_format($value, $apply_dc ?? $decimals);
+        }
+
+        return $formatted;
+    }
 }
