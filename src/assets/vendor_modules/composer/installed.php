@@ -3,7 +3,7 @@
         'name' => 'yohpal/hustler',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'da6a5c1b663d0d4577e7ee5fa26a8f7eb4ac3d73',
+        'reference' => '1f28899f0f5f57dde3e160be58a2ef70e8a8662f',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../../',
         'aliases' => array(),
@@ -274,7 +274,7 @@
         'yohpal/hustler' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'da6a5c1b663d0d4577e7ee5fa26a8f7eb4ac3d73',
+            'reference' => '1f28899f0f5f57dde3e160be58a2ef70e8a8662f',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../../',
             'aliases' => array(),
