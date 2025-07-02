@@ -15,11 +15,11 @@
                 <h2 class="title">Sign in</h2>
                 <div class="input-field">
                     <i class="fas fa-user mt-3"></i>
-                    <input value="gicehajunior76@gmail.com" type="text" placeholder="Email" name="email" style="font-size: 12px;" />
+                    <input value="<?= env('APP_ENV') == 'development' ? env('TEST_USERNAME') : null; ?>" type="text" placeholder="Email" name="email" style="font-size: 12px;" />
                 </div>
                 <div class="input-field">
                     <i class="fas fa-lock mt-3"></i>
-                    <input value="iE6M&bHMm&u9D,]" type="password" name="password" placeholder="Password" style="font-size: 12px;" />
+                    <input value="<?= env('APP_ENV') == 'development' ? env('TEST_PASSWORD') : null; ?>" type="password" name="password" placeholder="Password" style="font-size: 12px;" />
                 </div>
                 <div class="form-group">
                     <button type="button" class="btn btn-danger btn solid login-submit-btn">Login</button>
