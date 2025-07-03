@@ -9,7 +9,7 @@
                 <?php
                 $index = 0;
                 foreach ($viewableSubCategories as $category): ?>
-                    <li class="nav-item tab <?= $index++ === 0 ? 'active' : '' ?> text-dark text-nowrap sub-category-tab">
+                    <li class="nav-item tab <?= $index++ === 0 ? 'active' : '' ?> text-dark text-nowrap sub-category-tab nav-tab-<?= htmlspecialchars(str_replace(' ', '-', $category['id'])) ?>">
                         <?= htmlspecialchars($category['name']) ?>
                     </li>
                 <?php endforeach; ?>
@@ -24,7 +24,7 @@
                 <li class="list-group-item p-0 border-0 mb-3">
                     <!-- Subcategory header with collapse toggle -->
                     <button class="btn btn-link text-decoration-none w-100 text-start d-flex justify-content-between align-items-center p-3" data-bs-toggle="collapse"
-                        data-bs-target="#subcat-<?= htmlspecialchars(str_replace(' ', '-', $category['name'])) ?>">
+                        data-bs-target="#subcat-<?= htmlspecialchars(str_replace(' ', '-', $category['id'])) ?>">
                         <div class="d-flex align-items-center justify-content-center">
                             <span class="subcat-symbol d-flex align-items-center justify-content-center me-2">
                                 <i class="<?= htmlspecialchars($category['icon']) ?> actual-icon m-0"></i>
@@ -39,7 +39,7 @@
                     </button>
 
                     <!-- Jobs list (collapsible) -->
-                    <div class="collapse dropdown-content" id="subcat-<?= htmlspecialchars(str_replace(' ', '-', $category['name'])) ?>">
+                    <div class="collapse dropdown-content" id="subcat-<?= htmlspecialchars(str_replace(' ', '-', $category['id'])) ?>">
                         <ul class="list-group list-group-flush">
                             <?php foreach ($category['jobs'] as $job): ?>
                                 <li data-id="<?= htmlspecialchars(isset($job['id']) ? $job['id'] : strtolower($job['name'])) ?>" class="list-group-item job-list-group bg-transparent d-flex align-items-center ps-5 py-2">

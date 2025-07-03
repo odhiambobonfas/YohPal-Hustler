@@ -7,7 +7,8 @@ use Yohpal\Application\Auth;
 use Yohpal\Application\YPLogger;
 use Yohpal\Application\YPException;
 use Yohpal\Models\Model;
-use Yohpal\Models\Authentication; 
+use Yohpal\Models\Authentication;
+use Yohpal\Models\Category;
 use Yohpal\Utils\Util;
 
 class DashboardController
@@ -27,8 +28,8 @@ class DashboardController
     {
         try {
             if (!isAjaxRequest()) {
-                $hustleCategories = Model::hustleCategories();
-                $hustleCategoriesDropdown = Model::hustleCategoriesDropdownOptions();
+                $hustleCategories = Category::hustleCategories();
+                $hustleCategoriesDropdown = Category::hustleCategoriesDropdownOptions();
 
                 $stats = [
                     ['label' => 'Pending Users', 'slug' => 'pending_users', 'value' => '18,316', 'class' => 'pending', 'dash' => '80'],

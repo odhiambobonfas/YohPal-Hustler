@@ -7,7 +7,8 @@ use Yohpal\Application\Auth;
 use Yohpal\Application\YPLogger;
 use Yohpal\Application\YPException;
 use Yohpal\Models\Model;
-use Yohpal\Models\Authentication; 
+use Yohpal\Models\Authentication;
+use Yohpal\Models\Category;
 use Yohpal\Utils\Util;
 
 use function Symfony\Component\Translation\t;
@@ -29,8 +30,8 @@ class JobsController
     {
         try {
             if (!isAjaxRequest()) { 
-                $hustleSuperCategories = Model::hustleCategories();
-                $hustleMixedCategories = Model::hustleMixedCategories(); 
+                $hustleSuperCategories = Category::hustleCategories();
+                $hustleMixedCategories = Category::hustleMixedCategories(); 
                 return view('crm/job-portal/index', compact('hustleSuperCategories', 'hustleMixedCategories'));
             }
         }
@@ -44,8 +45,8 @@ class JobsController
     {
         try {
             $category['id'] = getIdParam($path); 
-            $hustleSuperCategories = Model::hustleCategories();
-            $viewableSubCategories = Model::hustleSubCategoriesBySuperCategoryId($category['id']); 
+            $hustleSuperCategories = Category::hustleCategories();
+            $viewableSubCategories = Category::hustleSubCategoriesBySuperCategoryId($category['id']); 
             return $request->res(['status' => 'success', 'htmlContent' => view('job-portal/jobs-listing', compact('category', 'hustleSuperCategories', 'viewableSubCategories'), true)]);
         }
         catch(\Throwable $th) {
