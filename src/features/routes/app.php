@@ -2,6 +2,7 @@
 
 use App\Controllers\Web\DashboardController;
 use App\Controllers\Web\JobsController;
+use App\Controllers\Web\OnboardingController;
 use App\Controllers\Web\PaymentController;
 use App\Controllers\Web\ProfileController;
 use App\Controllers\Web\SettingsController;
@@ -32,3 +33,7 @@ $router->req('GET', '/portal/jobs/view/[**:path]', [JobsController::class, 'jobs
 
 // Onboarding routes
 $router->req('POST', '/job/create/[**:path]', [JobsController::class, 'createJobDraft']); 
+$router->req('GET', '/onboarding', [OnboardingController::class, 'index']); 
+$router->req('POST', '/profile/update', [OnboardingController::class, 'updateProfileDetails']); 
+$router->req('POST', '/profile/verify', [OnboardingController::class, 'verifyProfileDetails']); 
+$router->req('POST', '/profile/confirm', [OnboardingController::class, 'verifyContact']);  

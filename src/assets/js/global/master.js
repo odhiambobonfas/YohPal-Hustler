@@ -12,7 +12,25 @@ class Master {
         // Any constructor logic applicable
         this.debounceTimer;
         this.overlay = null;
-    } 
+        this.proceedNextBtn = document.querySelector('.proceed-next');
+        this.stepperSections = Array.from(document.querySelectorAll('.stepper-section'));
+        this.currentStepIndex = this.stepperSections.findIndex(section => !section.classList.contains('d-none'));
+    }
+
+    navigateStepper(direction = 'next') { 
+        this.stepperSections.forEach(section => section.classList.add('d-none'));
+        
+        if (direction === 'next' && this.currentStepIndex < this.stepperSections.length - 1) {
+            this.currentStepIndex++;
+        } else if (direction === 'back' && this.currentStepIndex > 0) {
+            this.currentStepIndex--;
+        }
+
+        // Show the new section
+        this.stepperSections[this.currentStepIndex].classList.remove('d-none'); 
+        toggleButtonContent(this.proceedNextBtn, '', true);
+        enableElement(this.proceedNextBtn);
+    }
 
     /**
      * Creates and appends a reusable overlay element to the given container.

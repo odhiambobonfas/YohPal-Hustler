@@ -83,6 +83,21 @@ return [
     ],
 
     // ==============================
+    // COMMUNICATION
+    // ==============================
+    'send_sms' => [
+        'method' => 'POST',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/send_otp',
+        'action' => 'Send OTP requests',
+    ],
+
+    'send_email' => [
+        'method' => 'POST',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/send_email',
+        'action' => 'Send Email requests',
+    ],
+
+    // ==============================
     // ROLES
     // ==============================
     'get_all_roles' => [

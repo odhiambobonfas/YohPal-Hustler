@@ -27,6 +27,10 @@ class DashboardController
     public function index(YPRequest $request): mixed
     {
         try {
+            $profile = auth()->user();  
+
+            $clientHustleStatus = isset($profile->clientHustleStatus) ? $profile->clientHustleStatus : null;
+
             if (!isAjaxRequest()) {
                 $hustleCategories = Category::hustleCategories();
                 $hustleCategoriesDropdown = Category::hustleCategoriesDropdownOptions();
@@ -38,8 +42,10 @@ class DashboardController
                     ['label' => 'Deleted Users', 'slug' => 'deleted_users', 'value' => '50', 'class' => 'deleted', 'dash' => '60'],
                 ];
 
-                return view('crm/dashboard/index', compact('stats', 'hustleCategories', 'hustleCategoriesDropdown'));
+                return view('crm/dashboard/index', compact('profile', 'clientHustleStatus', 'stats', 'hustleCategories', 'hustleCategoriesDropdown'));
             }
+
+            return view('crm/dashboard/index', compact('profile', 'clientHustleStatus'));
         }
         catch(\Throwable $th) {
             YPLogger::error($th);

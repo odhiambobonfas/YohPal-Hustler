@@ -11,6 +11,11 @@ class Dashboard extends Master {
         this.active_listing_stat = document.querySelector('.active-listings-count');
     }
 
+    initOnboardingProcess() { 
+        const onboardingInstance = new Onboarding();
+        onboardingInstance.init();
+    } 
+
     getUsersCountStats() {
         const usersCountSection = document.querySelector('.users-count-stats');
         if (!documentContains(usersCountSection)) return;
@@ -100,6 +105,7 @@ class Dashboard extends Master {
 
 document.addEventListener('DOMContentLoaded', () => {
     const dashboardInstance = new Dashboard();
+    dashboardInstance.initOnboardingProcess();
     dashboardInstance.getUsersCountStats();
     dashboardInstance.getGraphicStatsData();
     dashboardInstance.getActiveJobsAssigned();
