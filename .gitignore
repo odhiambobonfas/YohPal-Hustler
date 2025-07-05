@@ -10,6 +10,7 @@ src/assets/css/app/crm/main-orig.css
 src/assets/store/images/bg/WhatsApp Image 2025-07-05 at 12.26.54.jpeg
 src/assets/store/images/bg/WhatsApp Image 2025-07-05 at 12.26.54(1).jpeg
 src/assets/store/images/bg/WhatsApp Image 2025-07-05 at 12.26.54(2).jpeg
+src/features/routes/auth.php
 
 /api_integrations
 /assets
