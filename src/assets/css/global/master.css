@@ -3,8 +3,22 @@
     text-decoration-line: none !important;
 }
 
+body {
+    background-color: var(--bs-white);
+}
+
 input, button, textarea, .form-control {
     border-radius: 0px;
+}
+
+.form-check-input { 
+    background-color: var(--bs-light) !important;
+    border-color: initial !important;
+}
+
+.form-check-input:checked {
+    box-shadow: none !important;
+    background-color: var(--bs-dark) !important; 
 }
 
 label {

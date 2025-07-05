@@ -29,18 +29,18 @@ class AuthController
     }
 
     /**
-     * Authenticates a user and returns a success response.
+     * Authenticates a user by signing in and returns a success response OR renders a sign in html view.
      *
      * If an error occurs during the process, it logs the error and returns a YPException instance error message.
      *
      * @param YPRequest $request The request instance containing the custom response method.
-     * @return mixed A JSON-formatted response instigating whether it is a success or failure.
+     * @return mixed A JSON-formatted response instigating whether it is a success or failure OR a html view render.
      */
-    public function index(YPRequest $request): mixed
+    public function login(YPRequest $request): mixed
     {
         try {
             if (!isAjaxRequest()) {
-                return view('auth/auth');
+                return view('auth/login');
             }
 
             $output = null;
@@ -98,49 +98,17 @@ class AuthController
     }
 
     /**
-     * Initializes a reset password request, & returns a success response.
+     * Authenticates a user by signing up and returns a success response OR renders a signup html view.
      *
-     * If an error occurs during request, it logs the error and returns a generic error message.
-     *
-     * @param YPRequest $request The request instance containing the custom response method.
-     * @return mixed A JSON-formatted response instigating whether it is a success or failure.
-     */
-    public function initResetPassord(YPRequest $request) {
-        try { 
-            if (!isAjaxRequest()) {
-                return view('auth/forgot-pass');
-            }
-
-            $input = ['email' => $request->req('email')]; 
-            $fp_endpoint = $this->util->getEndpoint('auth_forgot_password');
-            $req = $this->model->sendResetEmail($fp_endpoint, $input);
-
-            $req =  is_string($req) ? json_decode(trim($req), true) : $req; 
-
-            if (!$req) {
-                throw new YPException('An error occurred while trying initiate your password reset request, please try again!!');
-            }
-
-            return $request->res(["status" => 'success', "message" => "Succesfully sent password reset link to the provided email address!", 'req' => $req]);
-
-        } catch (\Throwable $th) {
-            YPLogger::error($th);
-            return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
-        }
-    }
-    
-    /**
-     * This function handles auth registration, & returns a success response.
-     *
-     * If an error occurs during request, it logs the error and returns a generic error message.
+     * If an error occurs during the process, it logs the error and returns a YPException instance error message.
      *
      * @param YPRequest $request The request instance containing the custom response method.
-     * @return mixed A JSON-formatted response instigating whether it is a success or failure.
+     * @return mixed A JSON-formatted response instigating whether it is a success or failure OR a html view render.
      */
-    public function registerUser(YPRequest $request):mixed {
+    public function signup(YPRequest $request):mixed {
         try { 
             if (!isAjaxRequest()) {
-                return view('auth/forgot-pass');
+                return view('auth/register');
             }
 
             $password = $request->req('password1');
@@ -172,6 +140,38 @@ class AuthController
     }
 
     /**
+     * Initializes a reset password request, & returns a success response.
+     *
+     * If an error occurs during request, it logs the error and returns a generic error message.
+     *
+     * @param YPRequest $request The request instance containing the custom response method.
+     * @return mixed A JSON-formatted response instigating whether it is a success or failure.
+     */
+    public function initResetPassord(YPRequest $request) {
+        try { 
+            if (!isAjaxRequest()) {
+                return view('auth/forgot-pass');
+            }
+
+            $input = ['email' => $request->req('email')]; 
+            $fp_endpoint = $this->util->getEndpoint('auth_forgot_password');
+            $req = $this->model->sendResetEmail($fp_endpoint, $input);
+
+            $req =  is_string($req) ? json_decode(trim($req), true) : $req; 
+
+            if (!$req) {
+                throw new YPException('An error occurred while trying initiate your password reset request, please try again!!');
+            }
+
+            return $request->res(["status" => 'success', "message" => "Succesfully sent password reset link to the provided email address!", 'req' => $req]);
+
+        } catch (\Throwable $th) {
+            YPLogger::error($th);
+            return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
+        }
+    } 
+
+    /**
      * Logs out the currently authenticated user and returns a success response.
      *
      * If an error occurs during logout, it logs the error and returns a generic error message.
@@ -183,7 +183,7 @@ class AuthController
     {
         try {
             Auth::logout();
-            return $request->res(["status" => 'success', "message" => "Succesfully logged out!"]);
+            return $request->res(["status" => 'success', "message" => "Succesfully logged out!", "route" => "login"]);
         } catch (\Throwable $th) {
             YPLogger::error($th->getMessage());
             return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);

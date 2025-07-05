@@ -12,7 +12,7 @@
             <i class="fas fa-th-large"></i> Profile
         </a>
     </div>
-
+    
     <!-- Career Management -->
     <div class="sidebar-section career-management">
         <h3>Career</h3>

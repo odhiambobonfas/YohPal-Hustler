@@ -21,7 +21,7 @@
     <div class="nav-links nav-right me-3">
         <a href="#" class="btn btn-outline-danger text-dark btn-sm">Apply for work</a>
         <a href="#" class="btn btn-outline-danger text-dark btn-sm">Hire Top Talent</a>
-        <a href="/auth" class="btn btn-outline-danger text-dark btn-sm">Login</a>
+        <a href="/login" class="btn btn-outline-danger text-dark btn-sm">Login</a>
     </div>
     <div class="nav-container me-3">
         <ul class="nav-links">

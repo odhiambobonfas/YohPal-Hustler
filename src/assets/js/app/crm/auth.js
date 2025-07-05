@@ -34,7 +34,7 @@ class AuthCRM extends Master {
                         enableElement(btn);
 
                         if (response && response.status && response.status == 'success') {
-                            route('/auth');
+                            route(response.route);
                             return;
                         }
 
