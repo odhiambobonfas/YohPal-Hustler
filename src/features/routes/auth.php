@@ -4,7 +4,7 @@ use App\Controllers\Web\AuthController;
 
 // AUTH Routes
 $router->req('GET', '/login', [AuthController::class, 'login']);
-$router->req('GET', '/signup', [AuthController::class, 'signup']); 
+$router->req('GET', '/register', [AuthController::class, 'signup']); 
 $router->req('POST', '/auth/login', [AuthController::class, 'login']);
 $router->req('POST', '/auth/signup', [AuthController::class, 'signup']);
 $router->req('POST', '/auth/logout', [AuthController::class, 'logout']);
