@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="col-md-6 d-none d-md-block">
-            <div style="background-image: url('<?= asset_url("/store/images/bg/login.jpg") ?>')" class="card border-transparent border-0 bg-image rounded-0 h-100 p-5"></div>
+            <div style="background-image: url('<?= asset_url("/store/images/bg/generic-bg.jpg") ?>')" class="card border-transparent border-0 bg-image rounded-0 h-100 p-5"></div>
         </div>
     </div>
 </div>
