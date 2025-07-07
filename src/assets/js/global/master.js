@@ -11,25 +11,70 @@ class Master {
     constructor() {
         // Any constructor logic applicable
         this.debounceTimer;
-        this.overlay = null;
-        this.proceedNextBtn = document.querySelector('.proceed-next');
-        this.stepperSections = Array.from(document.querySelectorAll('.stepper-section'));
-        this.currentStepIndex = this.stepperSections.findIndex(section => !section.classList.contains('d-none'));
-    }
-
-    navigateStepper(direction = 'next') { 
-        this.stepperSections.forEach(section => section.classList.add('d-none'));
+        this.overlay = null; 
         
+        this.proceedNextBtn = document.querySelector('.proceed-next');
+        this.goBackwardBtn = document.querySelector('.go-backward');
+    
+        this.stepperSections = Array.from(document.querySelectorAll('.stepper-section'));
+        this.stepDots = Array.from(document.querySelectorAll('.dot'));
+        
+        this.currentStepIndex = this.stepperSections.findIndex(section => !section.classList.contains('d-none'));
+    
+        this.proceedNextBtn?.addEventListener('click', () => this.navigateStepper('next'));
+        this.goBackwardBtn?.addEventListener('click', () => this.navigateStepper('back'));
+        
+        this.updateStepperUI();
+    }
+    
+    navigateStepper(direction = 'next') {
+        this.stepperSections.forEach(section => section.classList.add('d-none'));
+    
         if (direction === 'next' && this.currentStepIndex < this.stepperSections.length - 1) {
             this.currentStepIndex++;
         } else if (direction === 'back' && this.currentStepIndex > 0) {
             this.currentStepIndex--;
         }
-
-        // Show the new section
+        
         this.stepperSections[this.currentStepIndex].classList.remove('d-none'); 
-        toggleButtonContent(this.proceedNextBtn, '', true);
+        this.updateStepperUI();
+        this.updateStepperSectionBg();
         enableElement(this.proceedNextBtn);
+    }
+    
+    updateStepperUI() { 
+        this.stepDots.forEach((dot, index) => {
+            dot.classList.toggle('active-dot', index === this.currentStepIndex);
+        });
+        
+        if (this.goBackwardBtn) {
+            this.goBackwardBtn.classList.toggle('d-none', this.currentStepIndex === 0);
+        }
+        
+        if (this.proceedNextBtn) {
+            this.proceedNextBtn.classList.toggle('d-none', this.currentStepIndex === this.stepperSections.length - 1);
+        }
+    }
+
+    updateStepperSectionBg() {
+        const bgObject = {
+            "two-fa-section": "two-fa-section.jpeg",
+            "ratings-section": "ratings.jpg",
+            "uploads-section": "uploads-section.jpeg",
+            "success-section": "onboarding-success.jpeg",
+        };
+        
+        const currentStep = this.stepperSections.find(section => !section.classList.contains('d-none'));
+        if (!currentStep) return;
+        
+        const matchingKey = Object.keys(bgObject).find(key => currentStep.classList.contains(key));
+        if (!matchingKey) return;
+        
+        const stepperBgCard = document.querySelector('.stepper-section-bg');
+        if (!documentContains(stepperBgCard)) return;
+    
+        const imageUrl = `assets/store/images/bg/${bgObject[matchingKey]}`;
+        stepperBgCard.style.backgroundImage = `url('${imageUrl}')`; 
     }
 
     /**

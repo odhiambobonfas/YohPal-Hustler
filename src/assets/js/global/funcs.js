@@ -689,4 +689,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     const masterClassInstance = new Master(); 
     stickNavbarOnScroll();
     mapCollapseToggles();
+    searchSelectInitializer();
 });
