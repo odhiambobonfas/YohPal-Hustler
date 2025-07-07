@@ -9,6 +9,7 @@ use Yohpal\Application\YPException;
 use Yohpal\Models\Model;
 use Yohpal\Models\Authentication;
 use Yohpal\Models\Category;
+use Yohpal\Models\Payment;
 use Yohpal\Utils\Util;
 
 class DashboardController
@@ -31,6 +32,8 @@ class DashboardController
 
             $clientHustleStatus = isset($profile->clientHustleStatus) ? $profile->clientHustleStatus : null;
 
+            $pricingUnitsDropdownOptions = Payment::pricingUnitsDropdownOptions();
+
             if (!isAjaxRequest()) {
                 $hustleCategories = Category::hustleCategories();
                 $hustleCategoriesDropdown = Category::hustleCategoriesDropdownOptions();
@@ -42,10 +45,10 @@ class DashboardController
                     ['label' => 'Deleted Users', 'slug' => 'deleted_users', 'value' => '50', 'class' => 'deleted', 'dash' => '60'],
                 ];
 
-                return view('crm/dashboard/index', compact('profile', 'clientHustleStatus', 'stats', 'hustleCategories', 'hustleCategoriesDropdown'));
+                return view('crm/dashboard/index', compact('profile', 'clientHustleStatus', 'stats', 'hustleCategories', 'hustleCategoriesDropdown', 'pricingUnitsDropdownOptions'));
             }
 
-            return view('crm/dashboard/index', compact('profile', 'clientHustleStatus'));
+            return view('crm/dashboard/index', compact('profile', 'clientHustleStatus', 'pricingUnitsDropdownOptions'));
         }
         catch(\Throwable $th) {
             YPLogger::error($th);
