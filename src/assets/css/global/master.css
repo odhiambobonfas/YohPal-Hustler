@@ -7,18 +7,21 @@ body {
     background-color: var(--bs-white);
 }
 
-input, button, textarea, .form-control {
+input,
+button,
+textarea,
+.form-control {
     border-radius: 0px;
 }
 
-.form-check-input { 
+.form-check-input {
     background-color: var(--bs-light) !important;
     border-color: initial !important;
 }
 
 .form-check-input:checked {
     box-shadow: none !important;
-    background-color: var(--bs-dark) !important; 
+    background-color: var(--bs-dark) !important;
 }
 
 label {
@@ -91,8 +94,8 @@ textarea:focus {
 .subcategory-scroll {
     overflow-x: auto !important;
     white-space: nowrap !important;
-    -ms-overflow-style: none !important; 
-    scrollbar-width: none !important; 
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
 }
 
 .subcategory-scroll::-webkit-scrollbar {
@@ -181,3 +184,35 @@ body>.global-overlay {
 }
 
 /* /global overlay */
+
+/* auth */
+.bg-image { 
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 0 0.375rem 0.375rem 0; 
+}
+/* /auth */
+
+/* Star Rating UI */
+.star-rating {
+    direction: rtl;
+    display: inline-flex;
+    font-size: 1.5rem;
+    user-select: none;
+}
+.star-rating input[type="checkbox"] {
+    display: none;
+}
+.star-rating label {
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.star-rating input[type="checkbox"]:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #ffc107;
+} 
+/* /Star Rating UI */

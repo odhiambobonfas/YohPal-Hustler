@@ -13,7 +13,7 @@
 html,
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: #f3f7fb;
+    /* background: #f3f7fb; */
     color: var(--text-color);
     overflow-y: auto;
     /* Enable vertical scrolling */
@@ -277,9 +277,9 @@ body {
     display: block;
 }
 
-.crm-section {
+/* .crm-section {
     padding-bottom: 100vh !important;
-}
+} */
 
 .btn-rounded {
     border-radius: 50px !important;
@@ -1754,3 +1754,40 @@ body {
 }
 
 /* /Graphical stats section */
+
+/* Unlocked shimmerring css feature */ 
+.sidebar.locked .sidebar-item {
+    position: relative;
+    overflow: hidden;
+    background: #e0e0e0;
+    color: transparent !important;  /* Hide actual text */
+    pointer-events: none;
+    border-radius: 0px;
+    height: 40px;
+    margin: 10px 10px;
+}
+
+.sidebar.locked .sidebar-item i {
+    display: none;
+}
+
+.sidebar.locked .sidebar-item::before { 
+    content: '';
+    position: absolute; 
+    left: -150px;
+    height: 100%;
+    width: 150px;
+    background: linear-gradient(90deg, transparent, var(--bs-light-gray), transparent);
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-150px);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* /Unlocked shimmerring css feature */
