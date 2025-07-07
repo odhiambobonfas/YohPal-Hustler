@@ -1,7 +1,7 @@
 <!-- Sidebar sits in here -->
 
 <!-- Sidebar -->
-<div class="sidebar" role="tablist">
+<div class="sidebar locked" role="tablist">
     <!-- Core Navigation -->
     <div class="sidebar-section core-navigation">
         <h1>Core</h1>

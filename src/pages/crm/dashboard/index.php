@@ -23,7 +23,7 @@
 
         <!-- CRM Content -->
         <main class="col-md-9 flex-grow-1">
-            <div class="card bg-transparent border-0 m-3">
+            <div  class="card vh-100 bg-transparent border-0 m-3 p-0">
                 <div class="onboarding-stepper <?= $clientHustleStatus == 'active' ? 'd-none' : null ?>">
                     <?php include "partials/dashboard/onboarding.php"; ?>
                 </div>
