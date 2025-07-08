@@ -7,6 +7,10 @@ body {
     background-color: var(--bs-white);
 }
 
+#sidebarToggleBtn {
+    cursor: pointer !important;
+}
+
 input,
 button,
 textarea,

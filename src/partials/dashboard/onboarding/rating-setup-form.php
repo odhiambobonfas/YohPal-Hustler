@@ -4,8 +4,7 @@
 </div>
 <div class="mb-3">
     <label for="priceUnit" class="form-label fw-bold">Price Unit:</label>
-    <select class="form-control searchSelect price-unit" name="priceUnit" id="priceUnit">
-        <option>Select Unit</option>
+    <select class="form-control searchSelect price-unit" name="priceUnit" id="priceUnit"> 
         <?= isset($pricingUnitsDropdownOptions) ? $pricingUnitsDropdownOptions : null ?>
     </select>
 </div>
