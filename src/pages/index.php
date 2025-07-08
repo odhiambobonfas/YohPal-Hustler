@@ -34,16 +34,22 @@
             <div class="profile-image"><img src="<?= asset_url('/store/images/banners/banner2.png') ?>" alt=""></div>
             <div class="profile-cad"></div>
             <div class="job-posting developer">
-                <i class="fas fa-code icon"></i>
-                <span class="profile-name">Hiring Developer</span><br>
-                <span class="profile-title">5 Days ago</span>
+                <i class="fas fa-code icon" class="icon"></i>
+                <div class="span">
+                    <span class="profile-name">Hiring Developer</span><br>
+                    <span class="profile-title">5 Days ago</span>
+                </div>
+
             </div>
             <div class="job-posting england">
-                <i class="fas fa-map-marker-alt icon"></i>
-                <span class="text">England</span><br>
-                <span class="details">Visual Design</span><br>
-                <span class="time">2 Days Ago</span>
-                <span class="duration">Fulltime</span>
+                <i class="fas fa-map-marker-alt icon" class="icon"></i>
+                <div class="span">
+                    <span class="text">England</span><br>
+                    <span class="details">Visual Design</span><br>
+                    <span class="time">2 Days Ago</span>
+                    <span class="duration">Fulltime</span>
+                </div>
+
             </div>
             <!-- Decorative Elements -->
             <div class="decoration-line top-right"></div>
@@ -160,7 +166,7 @@
                 <p>They are providing a great service for job seeker</p>
                 <p>Trent Bout</p>
                 <p>Web Designer</p>
-                <div class="decoration-circle" style="top: -10px; left: 50px;"></div>
+                <div class="decoration-circle" style=" top: -60px ;left: -50px;"></div>
                 <div class="decoration-circle" style="bottom: -10px; right: 50px;"></div>
                 <div class="decoration-line feedback-top-left"></div>
                 <div class="decoration-line feedback-bottom-right"></div>
@@ -179,9 +185,9 @@
                 <h4>Employ</h4>
                 <p>We are helping people to find their suitable jobs by using our platform</p>
                 <div class="social-media">
-                    <i class="fab fa-facebook-f"></i>
-                    <i class="fab fa-twitter"></i>
-                    <i class="fab fa-linkedin-in"></i>
+                    <i class="fab fa-facebook-f" class="icon" style="background-color:rgb(54, 94, 180); width: 25px; height: 25px; border-radius: 4px; font-size: 4px;padding: 2px"></i>
+                    <i class="fab fa-twitter" class="icon" style="background-color:rgb(54, 94, 180); width: 25px; height: 25px; border-radius: 4px; font-size: 4px;padding: 2px"></i>
+                    <i class="fab fa-linkedin-in" class="icon" style="background-color:rgb(54, 94, 180); width: 25px; height: 25px; border-radius: 4px; font-size: 4px;padding: 2px"></i>
                 </div>
             </div>
             <div class="footer-block">
@@ -199,7 +205,7 @@
                 <h4>Stay up to date</h4>
                 <div class="deff">
                     <input type="email" placeholder="Make a difference" />
-                    <i class="fas fa-paper-plane"></i>
+                    <i class="fas fa-angle-right" style="background-color: #f00000; border-radius: 50px; width: 30px; height: 30px; color: #fff; font-size: 12px;"></i>
                 </div>
             </div>
         </div>
