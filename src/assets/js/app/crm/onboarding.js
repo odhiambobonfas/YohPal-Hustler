@@ -7,7 +7,7 @@ class Onboarding extends Master {
         this.stepperThree = document.querySelector('.stepper-three');
         this.updateDetailBtn = document.querySelector('.update-details-btn');
         this.verifyBtn = document.querySelector('.verify-contact-btn');
-        this.confirmDetails = document.querySelectorAll('.confirm-detail-btn');
+        this.verifyOtpBtn = document.querySelectorAll('.verify-otp-submit-btn');
         this.dropZones = document.querySelectorAll('.drop-zone');
     }
 
@@ -24,7 +24,6 @@ class Onboarding extends Master {
             disableElement(this.proceedNextBtn);
             this.navigateStepper('next');
             this.hideOverlay();
-            this.updateDetails();
         });
     }
 
@@ -81,12 +80,12 @@ class Onboarding extends Master {
     }
 
     /**
-     * Verify the profile details for authenticity
+     * Verify the profile's contacts for authenticity
      * 
      * @returns {void} No response
      */
-    verifyProfileDetails() {
-        let btn = this.verifyBtn;
+    verifyProfileContacts() {
+        let btn = this.verifyBtn; 
         if (!documentContains(btn)) return;
         btn = cloneNodeElement(btn); // hey young man, prevent race condition
         btn.addEventListener('click', event => {
@@ -95,7 +94,7 @@ class Onboarding extends Master {
             disableElement(btn);
 
             let form = btn.closest('form');
-            let data = serializeFormToArray(form);
+            let data = serializeFormToArray(form); 
             this.showOverlay();
 
             $.ajax({
@@ -113,7 +112,8 @@ class Onboarding extends Master {
                             const modalSelector = document.querySelector('.verify-profile-details-modal');
                             __append_html(response.modal_body, modalSelector);
                             __show_modal('.verify-profile-details-modal');
-                            (new Onboarding()).verifyProfileInfo();
+                            setup2FAInterface();
+                            (new Onboarding()).verifyOtp();
                             (new Onboarding()).hideOverlay();
                         }, 1000);
                         return;
@@ -140,11 +140,17 @@ class Onboarding extends Master {
         });
     }
 
-    verifyProfileInfo() {
-        let btns = this.confirmDetails;
+    /**
+     * Verify OTP received to the given contact: email or phone
+     * 
+     * @returns {void} void
+     */
+    verifyOtp() {
+        let btns = this.verifyOtpBtn;
 
         btns.forEach(btn => {
             if (!documentContains(btn)) return;
+            btn = cloneNodeElement(btn); // counter race conditions
             btn.addEventListener('click', event => {
                 event.preventDefault();
                 toggleButtonContent(btn);
@@ -160,7 +166,8 @@ class Onboarding extends Master {
                     dataType: "json",
                     success: function (response) {
                         toggleButtonContent(btn, '', true);
-                        (new Onboarding()).verifyProfileInfo();
+                        (new Onboarding()).verifyOtp();
+                        enableElement(btn);
 
                         if (response && response.status && response.status == 'success') {
                             disableElement(btn);
@@ -176,7 +183,6 @@ class Onboarding extends Master {
                             return;
                         }
 
-                        enableElement(btn);
                         toast('error', 5000, lang.undefined_error);
                     },
                     error: error => {
@@ -237,4 +243,5 @@ document.addEventListener('DOMContentLoaded', () => {
     const onboardingInstance = new Onboarding();
     onboardingInstance.initOverlay();
     onboardingInstance.setupUploadSection();
+    onboardingInstance.verifyProfileContacts();
 });

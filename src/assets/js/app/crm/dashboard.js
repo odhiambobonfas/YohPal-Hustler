@@ -72,6 +72,8 @@ class Dashboard extends Master {
             if (!documentContains(ctx)) return;
             ctx = cloneNodeElement(ctx);
             ctx = ctx?.getContext('2d');
+            if (typeof Chart === 'undefined') return;
+            
             new Chart(ctx, {
                 type: 'bar',
                 data: {

@@ -684,10 +684,60 @@ function enableToggleHighlight(selector, callbackFuncs=[], activeClass = 'active
     });
 }
 
+/**
+ * Set 2FA UI interface interactivity 
+ * 
+ * @param {String} selector 
+ * @returns {void} void
+ */
+function setup2FAInterface(selector='.otp-input-box') {
+    const inputs = document.querySelectorAll(`${selector}`);
+
+    inputs.forEach((input, index) => {
+        if (!documentContains(input)) return;
+        input.setAttribute("inputmode", "numeric");
+
+        input.addEventListener("input", function (e) {
+            const value = e.target.value;
+            // Allow only numbers
+            if (!/^[0-9]$/.test(value)) {
+                e.target.value = '';
+                return;
+            }
+
+            // Move to next input if available
+            if (value && index < inputs.length - 1) {
+                inputs[index + 1].focus();
+            }
+        });
+
+        input.addEventListener("keydown", function (e) {
+            if (e.key === "Backspace" && !e.target.value && index > 0) {
+                inputs[index - 1].focus();
+            }
+        });
+
+        input.addEventListener("paste", function (e) {
+            e.preventDefault();
+            const paste = e.clipboardData.getData("text").trim();
+            if (/^\d+$/.test(paste)) {
+                paste.split('').forEach((char, i) => {
+                    if (i < inputs.length) {
+                        inputs[i].value = char;
+                    }
+                });
+                const next = paste.length < inputs.length ? paste.length : inputs.length - 1;
+                inputs[next].focus();
+            }
+        });
+    });
+}
+
 // Call functions Below.
 document.addEventListener('DOMContentLoaded', async () => {
     const masterClassInstance = new Master(); 
     stickNavbarOnScroll();
     mapCollapseToggles();
     searchSelectInitializer();
+    setup2FAInterface();
 });

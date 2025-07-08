@@ -36,4 +36,4 @@ $router->req('POST', '/job/create/[**:path]', [JobsController::class, 'createJob
 $router->req('GET', '/onboarding', [OnboardingController::class, 'index']); 
 $router->req('POST', '/profile/update', [OnboardingController::class, 'updateProfileDetails']); 
 $router->req('POST', '/profile/contact/verify', [OnboardingController::class, 'verifyProfileDetails']); 
-$router->req('POST', '/profile/contact/confirm', [OnboardingController::class, 'verifyContact']);  
+$router->req('POST', '/profile/contact/confirm', [OnboardingController::class, 'verifyOtp']);  

@@ -67,6 +67,10 @@ class OnboardingController
             $profile = auth()->user(); 
             $contactInput = $request->req('contact');
 
+            if (empty($contactInput)) {
+                throw new YPException("Contact not found. Please fill in correct email or phone number!"); 
+            }
+
             if (filter_var($contactInput, FILTER_VALIDATE_EMAIL)) {
                 $res = $this->commUtil->sendOtp(['email' => $contactInput]);
 
@@ -95,17 +99,27 @@ class OnboardingController
     }
 
     /**
-     * Verify contact phone/email in respect to user fill.
+     * Verify contact phone/email in respect to user fill OTP.
      * 
      * @param YPRequest $request The request instance containing the custom response method.
      * @return mixed A JSON-formatted response instigating whether it is a success or failure.
      */
-    public function verifyContact(YPRequest $request): mixed
+    public function verifyOTP(YPRequest $request): mixed
     {
         try {
             $profile = auth()->user();
 
-            $otp_input = $request->req('verificationCode');
+            $otp_array = $request->req('verificationCode');
+
+            if (empty($otp_array)) {
+                throw new YPException('OTP appears empty. Please try again!');
+            }
+
+            $otp_input = is_array($otp_array) ? implode('', $otp_array) : null;
+            
+            if (!preg_match('/^\d{6}$/', $otp_input)) {
+                throw new YPException('OTP appears invalid. Please try again!');
+            }
 
             $otpObj = Auth::get('otp'); 
  
