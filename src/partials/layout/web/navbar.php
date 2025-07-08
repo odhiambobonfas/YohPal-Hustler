@@ -1,5 +1,5 @@
 <nav class="navbar">
-    <div class="logo"><img src="https://yohpals.com/img/favicon.png" alt="YohPal Logo"> YohPal Hustle</div>
+    <div class="logo"><img src="https://yohpals.com/img/favicon.png" alt="YohPal Logo"> <?= env('APP_NAME') ?></div>
     <div class="hamburger">
         <span></span>
         <span></span>
