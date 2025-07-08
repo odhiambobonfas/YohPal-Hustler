@@ -92,14 +92,14 @@ function app_url(): string
  */
 function asset_url($filepath): string
 {
-    $domain = rtrim(app_url(), DIRECTORY_SEPARATOR);
+    $domain = rtrim(app_url(), '\/');
     $defined_public_path = preg_replace('/[\/\\\\]/', '', config('PUBLIC_PATH'));
 
     if (!str_starts_with($filepath, '/') && !str_starts_with($filepath, DIRECTORY_SEPARATOR)) {
         $filepath = DIRECTORY_SEPARATOR . $filepath;
     }
 
-    return $domain . DIRECTORY_SEPARATOR . $defined_public_path . $filepath;
+    return $domain . '\/' . $defined_public_path . $filepath;
 }
 
 /**
