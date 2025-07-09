@@ -8,6 +8,7 @@
                     <small>Drop Image</small>
                     <input type="file" accept="image/*" class="d-none" name="portfolio[<?= $i ?>]">
                 </div>
+                <small class="text-muted file-name"></small>
             </div>
         <?php endfor; ?>
     </div>

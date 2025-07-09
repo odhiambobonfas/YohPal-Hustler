@@ -733,6 +733,64 @@ function setup2FAInterface(selector='.otp-input-box') {
     });
 }
 
+/**
+ * Take care of drop zones uploading functionality...
+ */
+function setupUploadSection() {
+    const dropZones = document.querySelectorAll('.drop-zone'); 
+    dropZones.forEach(zone => {  
+        const input = zone.querySelector('input'); 
+
+        zone.addEventListener('click', () => input.click());
+
+        zone.addEventListener('dragover', e => {
+            e.preventDefault();
+            zone.classList.add('dragover');
+        });
+
+        zone.addEventListener('dragleave', () => {
+            zone.classList.remove('dragover');
+        });
+
+        zone.addEventListener('drop', e => {
+            e.preventDefault();
+            zone.classList.remove('dragover');
+
+            const file = e.dataTransfer.files[0]; 
+            if (file && (file.type.startsWith('image/') || file.type === 'application/pdf')) {
+                input.files = e.dataTransfer.files;
+                previewImage(zone, file);
+            } 
+        });
+
+        // File preview
+        input.addEventListener('change', () => {
+            const file = input.files[0];
+            if (file && (file.type.startsWith('image/') || file.type === 'application/pdf')) {
+                previewImage(zone, file);
+            }
+        });
+
+        function previewImage(zone, file) {
+            const reader = new FileReader();
+            reader.onload = function (e) { 
+                zone.querySelectorAll('img, embed').forEach(el => el.remove());
+                const accept = input.getAttribute('accept') || ''; 
+                if (accept.includes('image') && file.type.startsWith('image/')) {
+                    __append_html(`<img src="${e.target.result}" alt="Preview">`, zone);
+                } else if (accept.includes('pdf') && file.type === 'application/pdf') {
+                    __append_html(`<embed src="${e.target.result}" type="application/pdf" width="100%" height="200px" />`, zone);
+                }
+
+                const fileName = zone.parentNode.querySelector('.file-name'); 
+                if (documentContains(fileName)) __append_html(file.name, fileName);
+            };
+            
+            reader.readAsDataURL(file);
+        }
+    });
+}
+
 // Call functions Below.
 document.addEventListener('DOMContentLoaded', async () => {
     const masterClassInstance = new Master(); 

@@ -22,13 +22,24 @@
                     <div class="stepper-section two-fa-section py-4">
                         <?php include "onboarding/two-fa-form.php" ?>
                     </div>
-                    <div class="stepper-section ratings-section d-none">
-                        <?php include "onboarding/rating-setup-form.php" ?>
-                    </div>
-                    <div class="stepper-section uploads-section d-none">
-                        <?php include "onboarding/uploads-form.php" ?>
-                    </div>
-                    <div class="stepper-section success-section d-none">
+                    <form action="/account/activate-account" method="post" enctype="multipart/form-data">
+                        <div class="stepper-section ratings-section d-none">
+                            <?php include "onboarding/rating-setup-form.php" ?>
+                        </div>
+                        <div class="stepper-section uploads-section d-none">
+                            <?php include "onboarding/portfolio-upload.php" ?>
+                        </div>
+                        <div class="stepper-section uploads-section d-none">
+                            <?php include "onboarding/cv-upload.php" ?>
+                        </div>
+                        <div class="stepper-section uploads-section d-none">
+                            <?php include "onboarding/certifications-uploads.php" ?>
+                        </div>
+                        <div class="stepper-section uploads-section d-none">
+                            <?php include "onboarding/nid-upload.php" ?>
+                        </div>
+                    </form>
+                    <!-- <div class="stepper-section success-section d-none">
                         <div class="success-alert-image text-center mb-4 my-4">
                             <img class="onboarding-success-img-alert img-fluid" src="<?= asset_url("/store/images/bg/onboarding-success-alert.png") ?>" alt="Success Image">
                         </div>
@@ -40,7 +51,7 @@
                             </p>
                             <button type="button" class="btn btn-danger px-4">Get Started</button>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <?php include "onboarding/progress-action-btns.php" ?>
             </div>

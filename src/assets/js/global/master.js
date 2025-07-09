@@ -24,7 +24,7 @@ class Master {
         this.proceedNextBtn?.addEventListener('click', () => this.navigateStepper('next'));
         this.goBackwardBtn?.addEventListener('click', () => this.navigateStepper('back'));
         
-        this.updateStepperUI();
+        this.updateStepperUI(); 
     }
     
     navigateStepper(direction = 'next') {
@@ -239,5 +239,34 @@ class Master {
                 
             });
         }); 
+    }
+
+    /**
+     * Accepts selector element to clone and duplicate...
+     * 
+     * @param {HTMLElement} selector 
+     */
+    addNewUploadSection(selector) {
+        const btn = document.querySelector(selector);
+
+        if (!documentContains(btn)) {
+            console.warn('Invalid selector element passed to addNewUploadSection');
+            return;
+        }
+
+        btn.addEventListener('click', event => {
+            event.preventDefault();
+
+            const dropZoneWrapper = btn.closest('.mb-3')?.querySelector('.drop-zone-wrapper'); 
+            if (!documentContains(dropZoneWrapper)) return;
+            
+            const lastContainer = dropZoneWrapper.querySelectorAll('.drop-zone-container');
+            if (!lastContainer.length) return;
+
+            const elementClone = lastContainer[lastContainer.length - 1].cloneNode(true);
+
+            dropZoneWrapper.appendChild(elementClone); 
+            setupUploadSection();
+        });
     }
 }

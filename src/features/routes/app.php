@@ -38,3 +38,6 @@ $router->req('GET', '/onboarding', [OnboardingController::class, 'index']);
 $router->req('POST', '/profile/update', [OnboardingController::class, 'updateProfileDetails']); 
 $router->req('POST', '/profile/contact/verify', [OnboardingController::class, 'verifyProfileDetails']); 
 $router->req('POST', '/profile/contact/confirm', [OnboardingController::class, 'verifyOtp']);  
+
+// Account routes
+$router->req('POST', '/account/activate-account', [OnboardingController::class, 'activateAccount']);  

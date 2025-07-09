@@ -8,7 +8,7 @@ class Onboarding extends Master {
         this.updateDetailBtn = document.querySelector('.update-details-btn');
         this.verifyBtn = document.querySelector('.verify-contact-btn');
         this.verifyOtpBtn = document.querySelectorAll('.verify-otp-submit-btn');
-        this.dropZones = document.querySelectorAll('.drop-zone');
+        this.activateAccountBtn = document.querySelector('.activate-account');
     }
 
     /**
@@ -179,6 +179,7 @@ class Onboarding extends Master {
                             
                             if (!response.client) {
                                 (new Onboarding()).navigateStepper('next');
+                                (new Onboarding()).activateAccount();
                             } 
 
                             toast(response.status, 5000, response.message || lang.undefined_error);
@@ -203,53 +204,68 @@ class Onboarding extends Master {
             });
         });
     }
+    
+    /**
+     * Activate account and unlock it for portal access
+     * 
+     * @returns {void} void
+     */
+    activateAccount() {
+        let btn = this.activateAccountBtn;
+        
+        if (documentContains(btn)) return;  
+        btn.addEventListener('click', event => {
+            event.preventDefault();
+            toggleButtonContent(btn);
+            disableElement(btn);
 
-    setupUploadSection() {
-        this.dropZones.forEach(zone => {
-            const input = zone.querySelector('input'); 
+            let form = btn.closest('form');
+            let data = new FormData(form);
+            console.log(data);
 
-            zone.addEventListener('click', () => input.click());
+            $.ajax({
+                type: form.getAttribute('method'),
+                url: form.action,
+                data: data,
+                dataType: "json", 
+                contentType: false,
+                processData: false,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                success: function (response) { 
+                    toggleButtonContent(btn, '', true);
+                    enableElement(btn);
 
-            zone.addEventListener('dragover', e => {
-                e.preventDefault();
-                zone.classList.add('dragover');
-            });
+                    if (response && response.status && response.status == 'success') { 
+                        resetFormAndCloseModal(form); 
+                        toast(response.status, 5000, response.message || lang.undefined_error);
+                        return;
+                    }
 
-            zone.addEventListener('dragleave', () => {
-                zone.classList.remove('dragover');
-            });
+                    if (response && response.status && response.status == 'error') { 
+                        toast(response.status, 5000, response.message || lang.undefined_error);
+                        return;
+                    }
 
-            zone.addEventListener('drop', e => {
-                e.preventDefault();
-                zone.classList.remove('dragover');
-
-                const file = e.dataTransfer.files[0];
-                if (file && file.type.startsWith('image/')) {
-                    input.files = e.dataTransfer.files;
-                    previewImage(zone, file);
+                    toast('error', 5000, lang.undefined_error);
+                },
+                error: error => {
+                    console.log(error.message || error);
+                    toggleButtonContent(btn, '', true);
+                    enableElement(btn);
+                    toast('error', 5000, lang.undefined_error);
                 }
             });
-
-            // File preview
-            input.addEventListener('change', () => {
-                const file = input.files[0];
-                if (file) previewImage(zone, file);
-            });
-
-            function previewImage(zone, file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    zone.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
+        }); 
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     const onboardingInstance = new Onboarding();
-    onboardingInstance.initOverlay();
-    onboardingInstance.setupUploadSection();
+    onboardingInstance.initOverlay(); 
     onboardingInstance.verifyProfileContacts();
+    onboardingInstance.addNewUploadSection('.add-certificate-btn');
+    onboardingInstance.activateAccount();
+    setupUploadSection(); 
 });
