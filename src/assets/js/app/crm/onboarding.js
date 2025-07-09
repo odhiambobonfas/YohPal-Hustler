@@ -172,7 +172,15 @@ class Onboarding extends Master {
                         if (response && response.status && response.status == 'success') {
                             disableElement(btn);
                             resetFormAndCloseModal(form);
-                            (new Onboarding()).navigateStepper('next');
+
+                            if (response.client) {
+                                window.location.reload();
+                            }
+                            
+                            if (!response.client) {
+                                (new Onboarding()).navigateStepper('next');
+                            } 
+
                             toast(response.status, 5000, response.message || lang.undefined_error);
                             return;
                         }

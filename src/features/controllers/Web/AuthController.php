@@ -83,6 +83,9 @@ class AuthController
 
             $user['user'] = array_merge($user['user'] ?? [], $userProfile['user']);
 
+            $user['user']['clientHustleStatus'] = false;
+            $user['user']['role'] = 'client';
+
             $route = '/dashboard'; 
 
             $user['user']['loginTime'] = date("Y-m-d H:i:s");

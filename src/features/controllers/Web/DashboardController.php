@@ -9,6 +9,7 @@ use Yohpal\Application\YPException;
 use Yohpal\Models\Model;
 use Yohpal\Models\Authentication;
 use Yohpal\Models\Category;
+use Yohpal\Models\Job;
 use Yohpal\Models\Payment;
 use Yohpal\Utils\Util;
 
@@ -31,8 +32,11 @@ class DashboardController
             $profile = auth()->user();  
 
             $clientHustleStatus = isset($profile->clientHustleStatus) ? $profile->clientHustleStatus : null;
+            $client = isset($profile->role) && $profile->role == 'client' ? true : false;
 
             $pricingUnitsDropdownOptions = Payment::pricingUnitsDropdownOptions();
+
+            $skillsetDropdownOptions = Job::skillsetDropdownOptions();
 
             if (!isAjaxRequest()) {
                 $hustleCategories = Category::hustleCategories();
@@ -45,10 +49,10 @@ class DashboardController
                     ['label' => 'Deleted Users', 'slug' => 'deleted_users', 'value' => '50', 'class' => 'deleted', 'dash' => '60'],
                 ];
 
-                return view('crm/dashboard/index', compact('profile', 'clientHustleStatus', 'stats', 'hustleCategories', 'hustleCategoriesDropdown', 'pricingUnitsDropdownOptions'));
+                return view('crm/dashboard/index', compact('client', 'profile', 'clientHustleStatus', 'stats', 'hustleCategories', 'hustleCategoriesDropdown', 'skillsetDropdownOptions', 'pricingUnitsDropdownOptions'));
             }
 
-            return view('crm/dashboard/index', compact('profile', 'clientHustleStatus', 'pricingUnitsDropdownOptions'));
+            return view('crm/dashboard/index', compact('client', 'profile', 'clientHustleStatus', 'skillsetDropdownOptions', 'pricingUnitsDropdownOptions'));
         }
         catch(\Throwable $th) {
             YPLogger::error($th);
