@@ -21,6 +21,7 @@ $router->req('GET', '/index', [YohPalController::class, 'index']);
 
 // Dashboard Routes
 $router->req('GET', '/dashboard', [DashboardController::class, 'index']); 
+$router->req('GET', '/dashboard-ui', [DashboardController::class, 'ui']); 
 $router->req('GET', '/users/count/stats', [UsersController::class, 'usersCount']); 
 $router->req('GET', '/dashboard/graphical/stats', [PaymentController::class, 'dashboardEarningsData']); 
 
