@@ -81,7 +81,9 @@ class AuthController
                 throw new YPException('An error occurred while trying to log you in, please try again!!!!');
             }
 
-            $user['user'] = array_merge($user['user'] ?? [], $userProfile['user']);
+            $user['user'] = array_merge($user['user'] ?? [], $userProfile['user']); 
+            
+            $user['user']['role'] = 'client';
 
             $route = '/dashboard'; 
 

@@ -187,6 +187,26 @@ body>.global-overlay {
     font-weight: 500;
 }
 
+.modal-header-img {
+    width: 80%;
+    height: 40%;
+}
+
+.otp-input-box {
+    width: 40px; 
+    height: 40px;
+    font-size: 18px;
+    text-align: center; 
+}
+
+.border-radius-50 {
+    border-radius: 50px !important;
+}
+
+.verify-otp-submit-btn {
+    max-width: 220px;
+}
+
 /* /global overlay */
 
 /* auth */

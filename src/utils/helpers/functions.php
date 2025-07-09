@@ -197,3 +197,14 @@ function num_formatter(mixed $num, $decimals=2, $apply_dc=false): mixed {
         return $formatted;
     }
 }
+
+/**
+ * Takes care of account locking against authentication & onboarding
+ */
+function authLocked(): bool {
+    if (!empty(auth()->user()) && auth()->user()->clientHustleStatus != 'active') {
+        return true;
+    }
+
+    return false;
+}

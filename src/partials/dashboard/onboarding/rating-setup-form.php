@@ -1,6 +1,8 @@
 <div class="mb-3">
-    <label for="skillset" class="form-label fw-bold">Skill Set:</label>
-    <input type="text" class="form-control" id="skillset" placeholder="Enter your skill set, eg. Plumber">
+    <label for="skillset" class="form-label fw-bold">Skill Set:</label> 
+    <select class="form-control searchSelect skill-set" name="skillset" id="skillset"> 
+        <?= isset($skillsetDropdownOptions) ? $skillsetDropdownOptions : null ?>
+    </select>
 </div>
 <div class="mb-3">
     <label for="priceUnit" class="form-label fw-bold">Price Unit:</label>

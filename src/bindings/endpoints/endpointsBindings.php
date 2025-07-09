@@ -83,6 +83,15 @@ return [
     ],
 
     // ==============================
+    // General Client
+    // ==============================
+    'activate_client' => [
+        'method' => 'POST',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/client/activate',
+        'action' => 'Send OTP requests',
+    ],
+
+    // ==============================
     // COMMUNICATION
     // ==============================
     'send_sms' => [
