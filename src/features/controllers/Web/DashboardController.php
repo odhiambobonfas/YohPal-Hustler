@@ -26,6 +26,10 @@ class DashboardController
         $this->model = new Authentication();
     }
 
+    public function ui(YPRequest $request): mixed {
+        return view('crm/dashboard/index-ui');
+    }
+
     public function index(YPRequest $request): mixed
     {
         try {
