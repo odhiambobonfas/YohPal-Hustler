@@ -1,0 +1,337 @@
+/* Main CRM Section */
+.main {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding-bottom: 40px;
+    overflow: hidden;
+    position: fixed;
+    top: 70px; /* Adjust based on navbar height */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding-top: 20px;
+}
+
+/* Left side */
+.left {
+    width: 25%;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 20px;
+    border: 2px;
+    background-color: var(--bs-white) !important;
+    position: fixed;
+    top: 70px;
+    bottom: 20px;
+    overflow-y: auto;
+    height: calc(100vh - 380px);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.left::-webkit-scrollbar {
+    display: none;
+}
+
+.left-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    padding: 6px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.text-left {
+    display: flex;
+    font-size: 20px;
+    color: var(--bs-dark);
+    gap: 4px;
+    align-items: center;
+    text-align: center;
+}
+
+.text-right {
+    display: flex;
+    color: var(--bs-super-red);
+    gap: 4px;
+    align-items: center;
+    text-align: center;
+}
+
+.profile {
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    padding: 4px;
+    gap: 4px;
+    width: 94%;
+    height: 54px;
+    margin-left: 10px;
+    border-bottom: 1px solid var(--bs-gray-200);
+}
+
+.profile h3 {
+    font-size: 23px;
+}
+
+.profile p {
+    font-size: 12px;
+    margin-top: -10px;
+}
+
+.profile img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50px;
+}
+
+.content-texts {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    text-align: left;
+    gap: 2px !important;
+}
+
+.wallet {
+    background-color: var(--bs-super-red);
+    color: var(--bs-white);
+    padding: 4px;
+    width: 86%;
+    margin-left: 20px;
+    margin-top: 10px;
+    border-radius: 4px;
+    align-items: center;
+    text-align: center;
+}
+
+.view {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.wallet-actions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    margin-top: 4px;
+    width: 94%;
+    height: 48px;
+    margin-left: 10px;
+    border-bottom: 1px solid var(--bs-gray-200);
+}
+
+.wallet-actions button {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    border: none;
+    align-items: center;
+    text-align: center;
+    border-radius: 6px;
+    background: none;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.transaction-section {
+    background: var(--bs-white);
+    width: 90%;
+    height: 48px !important;
+    margin-left: 16px;
+}
+
+.transaction-header {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-top: -10px;
+    justify-content: space-between;
+}
+
+.transaction-header h4 {
+    font-size: 20px;
+    color: var(--bs-dark);
+}
+
+.transaction-header a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    font-size: 12px;
+    gap: 4px;
+    color: var(--bs-super-red);
+}
+
+.transactions {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.transactions th, .transactions td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+.transactions th {
+    font-weight: bold;
+    color: var(--bs-dark);
+}
+
+.transactions td small {
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+.success {
+    background-color: var(--primary-shadow);
+    border-radius: 2px;
+    padding: 4px;
+    color: var(--bs-green);
+}
+
+.fail {
+    background-color: var(--shadow-danger);
+    border-radius: 2px;
+    padding: 4px;
+    color: var(--bs-super-red);
+}
+
+/* Right side */
+.right {
+    flex: 1;
+    padding: 30px;
+    position: fixed;
+    top: 90px; /* Adjust based on navbar height */
+    bottom: 20px;
+    left: 27%; /* Adjust based on left panel width */
+    right: 20px;
+    overflow-y: auto; /* Enable vertical scrolling */
+    height: calc(100vh - 110px); /* Adjust height to fit viewport */
+}
+
+.right h2 {
+    font-size: 24px;
+    margin-top: -20px;
+    margin-bottom: 5px;
+}
+
+.right .greeting {
+    font-size: 14px;
+    color: var(--bs-dark);
+}
+
+.right p {
+    font-size: 14px;
+    color: var(--bs-dark);
+}
+
+.head {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: var(--bs-gray);
+}
+
+.setup {
+    font-weight: bold;
+}
+
+.paragraph {
+    display: flex;
+    flex-direction: column;
+}
+
+.clarity {
+    margin-top: -20px;
+}
+
+.head a {
+    color: var(--bs-super-red);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.profile-actions {
+    display: flex;
+    gap: 15px;
+    height: 90px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.profile-actions button {
+    background: #fff;
+    border: 1px solid #ccc;
+    padding-top: 30px;
+    margin-top: -20px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 110px;
+    height: 90px;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.metrics {
+    display: grid;
+    margin-top: -40px;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+}
+
+.metric {
+    background: var(--bs-white);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.metric .title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.metric p {
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+.metric h3 {
+    margin-top: -14px;
+}
+
+.up {
+    background-color: var(--bs-gray-200);
+    color: var(--bs-dark);
+    font-size: 12px;
+}
+
+.down {
+    background-color: var(--bs-gray-200);
+    color: var(--bs-super-red);
+    font-size: 12px;
+}
+
+.down .arrow {
+    color: var(--bs-dark) !important;
+}
