@@ -34,7 +34,7 @@
             <div class="profile-image"><img src="<?= asset_url('/store/images/banners/banner2.png') ?>" alt=""></div>
             <div class="profile-cad"></div>
             <div class="job-posting developer">
-                <i class="fas fa-code icon" class="icon"></i>
+                <i class="fas fa-code icon"></i>
                 <div class="span">
                     <span class="profile-name">Hiring Developer</span><br>
                     <span class="profile-title">5 Days ago</span>
@@ -42,7 +42,7 @@
 
             </div>
             <div class="job-posting england">
-                <i class="fas fa-map-marker-alt icon" class="icon"></i>
+                <i class="fas fa-map-marker-alt icon"></i>
                 <div class="span">
                     <span class="text">England</span><br>
                     <span class="details">Visual Design</span><br>
@@ -93,7 +93,7 @@
             <div class="profile-container">
                 <div class="main-profile-circle"></div>
                 <div class="floating-box visitors-box">
-                    <i class="fas fa-user"></i>
+                    <i class="fas fa-user icon"></i>
                     <div class="visitor">
                         <div class="visitors-number">26.8K</div>
                         <div class="visitors-label">Visitors</div>
@@ -113,7 +113,7 @@
                     <button>Upgrade</button>
                 </div>
                 <div class="floating-box upgrade-box">
-                    <i class="fas fa-chart-pie"></i>
+                    <i class="fas fa-chart-pie icon"></i>
                 </div>
             </div>
             <div class="user-info-text">
@@ -185,9 +185,9 @@
                 <h4>Employ</h4>
                 <p>We are helping people to find their suitable jobs by using our platform</p>
                 <div class="social-media">
-                    <i class="fab fa-facebook-f" class="icon" style="background-color:rgb(54, 94, 180); width: 25px; height: 25px; border-radius: 4px; font-size: 4px;padding: 2px"></i>
-                    <i class="fab fa-twitter" class="icon" style="background-color:rgb(54, 94, 180); width: 25px; height: 25px; border-radius: 4px; font-size: 4px;padding: 2px"></i>
-                    <i class="fab fa-linkedin-in" class="icon" style="background-color:rgb(54, 94, 180); width: 25px; height: 25px; border-radius: 4px; font-size: 4px;padding: 2px"></i>
+                    <i class="fab fa-facebook-f icon"></i>
+                    <i class="fab fa-x-twitter icon"></i>
+                    <i class="fab fa-linkedin-in icon"></i>
                 </div>
             </div>
             <div class="footer-block">
@@ -205,7 +205,7 @@
                 <h4>Stay up to date</h4>
                 <div class="deff">
                     <input type="email" placeholder="Make a difference" />
-                    <i class="fas fa-angle-right" style="background-color: #f00000; border-radius: 50px; width: 30px; height: 30px; color: #fff; font-size: 12px;"></i>
+                    <i class="fas fa-angle-right icon"></i>
                 </div>
             </div>
         </div>

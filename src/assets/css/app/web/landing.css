@@ -632,11 +632,14 @@ body {
     height: 210px;
 }
 
-.visitors-box i {
-    width: 50px;
-    height: 50px;
+.visitors-box .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px;
+    width: 40px;
+    height: 40px;
     font-size: 28px;
-    padding-top: 10px;
     color: white;
     background-color: #feba02;
     border-radius: 6px;
@@ -678,10 +681,10 @@ body {
     justify-content: center;
     text-align: center;
     top: 56px;
-    gap: 10px;
+    gap: 2px;
     left: 160px;
     width: 270px;
-    height: 80px;
+    height: 110px;
 }
 
 .profile-info-box img {
@@ -694,7 +697,6 @@ body {
 .profile-info-box button {
     width: 76px;
     height: 30px;
-    text-align: center !important;
     align-items: center !important;
     justify-content: center !important;
     margin-top: -14px;
@@ -760,13 +762,13 @@ body {
 }
 
 .upgrade-box {
-    top: 160px;
+    top: 170px;
     right: 20px;
     width: 60px;
     height: 60px;
 }
 
-.upgrade-box i {
+.upgrade-box .icon {
     color: #e8745b;
     font-size: 28px;
 }
@@ -777,8 +779,9 @@ body {
 }
 
 .quote-text {
-    font-size: 10px;
+    font-size: 8px;
     color: #6b7280;
+    gap: -2px;
     font-style: italic;
 }
 
@@ -786,6 +789,9 @@ body {
     font-size: 10px;
     color: black;
     font-style: italic;
+}
+.quote-text p {
+ margin-top: -4px;
 }
 
 .user-info-text {
@@ -1273,13 +1279,13 @@ body {
     padding-bottom: 4px;
     justify-content: center;
 }
-.deff i {
+.deff .icon {
     background-color: #f00000!important;
-    color: #f00000;
-    padding: 10px;
+    color: white;
+    padding: 4px;
     border-radius: 50px;
-    height: 36px;
-    width: 36px;
+    height: 20px;
+    width: 20px;
 }
 
 .deff i :hover {
@@ -1332,16 +1338,29 @@ button:hover {
 
 .social-media .icon {
     font-size: 14px;
-    background-color: #f00000;
+    background-color: #0068f0;
     color: white;
     text-align: center !important;
     justify-content: center;
     align-items: center;
-    padding-top: 6px;
-    border-radius: 50px;
-    height: 26px;
-    width: 26px;
+    padding: 6px;
+    border-radius: 4px;
+    height: 16px;
+    width: 16px;
 }
+.social-media .icon:nth-child(2) {
+    font-size: 14px;
+    background-color: #0d0d0e;
+    color: white;
+    text-align: center !important;
+    justify-content: center;
+    align-items: center;
+    padding: 6px;
+    border-radius: 4px;
+    height: 16px;
+    width: 16px;
+}
+
 
 /* Decorative Elements */
 .decoration-line {
