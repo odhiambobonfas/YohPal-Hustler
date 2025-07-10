@@ -1,6 +1,6 @@
 <!-- Map Placeholder -->
 <div class="position-relative rounded overflow-hidden border" style="height: 100vh; background-color: #f2f2f2;">
-    <div id="services-map" class="d-flex align-items-center justify-content-center h-100 text-muted">
+    <div id="services-map geomap" class="d-flex align-items-center justify-content-center h-100 text-muted">
         Map Placeholder (Google Maps API not included)
     </div>
 

@@ -24,7 +24,7 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Use this in realtime!  -->
 
         <!-- geo map lib -->    
-        <script src="https://maps.googleapis.com/maps/api/js?key=<?= env('google_map_api_key') ?>&libraries=geometry" defer="defer"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=<?= env('GOOGLE_MAP_API_KEY') ?>&libraries=geometry" defer="defer"></script>
         
         <!-- flatpicker -->
         <script src="<?= asset_url('/build/flatpickr/js/flatpickr.min.js') ?>"></script>

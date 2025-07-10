@@ -340,6 +340,74 @@ class Master {
                 });
             });
         });
-    }
+    } 
+
+    /**
+     * Gets the current location positions to use on the further end of laying the map
+     * and the realtime parsing of clients & hustlers accordingly...
+     * The function accepts - Geolocation navigator API possible params
+     * 
+     * @param {params} params 
+     * @returns 
+     */
+    getGeolocationPositions(params=undefined) {
+        return new Promise((resolve) => {
+            if (!navigator.geolocation) {
+                resolve(null);
+                return;
+            }
+        
+            navigator.geolocation.getCurrentPosition((position) => {
+                let pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                
+                resolve(pos);
+            },
+            (error) => {
+                console.warn("Geolocation error:", error.message);
+                resolve(null);
+            });
+        });
+    } 
     
+    /**
+     * Initializes the map on the profile page where applicable
+     * 
+     * @param {HTMLSelectElement} domSection HTML DOM element where the map should get appended
+     * @param {GeolocationCoordinates} location positions of the user
+     * @returns {void} void
+     */
+    async setMapOnPage(domSection=".geomap", locations=undefined) { 
+        try {
+            await this.getGeolocationPositions({
+                enableHighAccuracy: true, // use GPS if available
+                timeout: 10000, // wait max 10 seconds
+                maximumAge: 0  // no cached position
+            }).then(pos => { 
+                pos = locations || pos; 
+                let {clientStartLocation, clientDestinationLocation} = pos;
+                let mapHtmlSelectors = document.querySelectorAll(domSection);
+        
+                mapHtmlSelectors.forEach(selector => {
+                    if (!documentContains(selector)) return;
+    
+                    let map = new google.maps.Map(selector, {
+                        zoom: 14,
+                        center: new google.maps.LatLng(clientDestinationLocation.latitude, clientDestinationLocation.longitude)
+                    });
+            
+                    let geoMap = new HustleMap(map, 'driving');    
+                    geoMap.layOutMap({
+                        clientStartLocation: clientStartLocation,
+                        clientDestinationLocation: clientDestinationLocation
+                    });
+                }); 
+            }); 
+        } catch (error) {
+            console.error("Geolocation JS API error: ", error.message);
+        } 
+    }
+
 }

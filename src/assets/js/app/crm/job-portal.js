@@ -119,6 +119,7 @@ class JobPortal extends Master {
                             (new JobPortal()).mapSection.classList.remove('d-none');
                             (new JobPortal()).hideOverlay();
                             (new JobPortal()).bindBackBtnClick();
+                            (new JobPortal()).setMapOnPage();
                         }, 1000); // Avoid race condition...
                         return;
                     }
