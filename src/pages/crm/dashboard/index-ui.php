@@ -23,13 +23,13 @@
         </aside>
 
         <!-- CRM Content -->
-        <main class="col-md-9 flex-grow-1 main">
+        <main class="col-md-5 flex-grow-1 main">
             <div class="left vh-100 bg-transparent border-0 m-3 p-0">
-                <div class="left-header">
+                <div class="left-header d-flex flex-row justify-content-between">
                     <h2 class="text-left">About me</h2>
                     <p class="text-right"><i class="fas fa-arrow-right"></i>edit profile</p>
                 </div>
-                <div class="profile">
+                <div class="profile d-flex flex-row justify-content-space-between justify-content-md-start align-items-start text-center align-content-start">
                     <img src="<?= asset_url('/store/images/avatars/default-avatar.jpg') ?>" alt="">
                     <div class="content-texts">
                         <h3>David Kamau</h3>
@@ -39,89 +39,23 @@
                 <div class="wallet">
                     <p>Total Wallet Balance</p>
                     <div class="view">
-                        <h2>$ 30,000.00</h2>
+                        <h2>$30,000.00</h2>
                         <i class="fas fa-eye"></i>
                     </div>
                 </div>
                 <div class="wallet-actions">
                     <button><i class="fas fa-upload"></i> Send</button>
                     <button><i class="fas fa-download"></i> Withdraw</button>
-                    <button><i class="fas fa-plus"></i> Top Up</button>
+                    <button><i class="fas fa-plus"></i> TopUp</button>
                     <button><i class="fas fa-arrow-down"></i> Deposit</button>
                 </div>
-                <div class="transaction-section">
-                    <div class="transaction-header">
-                        <h4>Transaction history</h4>
-                        <a href="#"><i class="fas fa-arrow-right"></i>View All</a>
-                    </div>
-                    <table class="transactions">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><i class="fas fa-shopping-cart"></i></td>
-                                <td>To: Alisa Salsa</td>
-                                <td>+$120.00</td>
-                                <td><small class="success">Success</small></td>
-                            </tr>
-                            <tr>
-                                <td><i class="fas fa-shopping-cart"></i></td>
-                                <td>To: Alisa Salsa</td>
-                                <td>+$120.00</td>
-                                <td><small class="success">Success</small></td>
-                            </tr>
-                            <tr>
-                                <td><i class="fas fa-shopping-cart"></i></td>
-                                <td>To: Alisa Salsa</td>
-                                <td>+$120.00</td>
-                                <td><small class="fail">Failed</small></td>
-                            </tr>
-                            <tr>
-                                <td><i class="fas fa-shopping-cart"></i></td>
-                                <td>To: Alisa Salsa</td>
-                                <td>+$120.00</td>
-                                <td><small class="success">Success</small></td>
-                            </tr>
-                            <tr>
-                                <td><i class="fas fa-shopping-cart"></i></td>
-                                <td>To: Alisa Salsa</td>
-                                <td>+$120.00</td>
-                                <td><small class="fail">Failed</small></td>
-                            </tr>
-                            <tr>
-                                <td><i class="fas fa-shopping-cart"></i></td>
-                                <td>To: Alisa Salsa</td>
-                                <td>+$120.00</td>
-                                <td><small class="success">Success</small></td>
-                            </tr>
-                            <tr>
-                                <td><i class="fas fa-shopping-cart"></i></td>
-                                <td>To: Alisa Salsa</td>
-                                <td>+$120.00</td>
-                                <td><small class="success">Success</small></td>
-                            </tr>
-                            <tr>
-                                <td><i class="fas fa-shopping-cart"></i></td>
-                                <td>To: Alisa Salsa</td>
-                                <td>+$120.00</td>
-                                <td><small class="success">Success</small></td>
-                            </tr>
-                            <tr>
-                                <td><i class="fas fa-shopping-cart"></i></td>
-                                <td>To: Alisa Salsa</td>
-                                <td>+$120.00</td>
-                                <td><small class="success">Success</small></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <!-- Transaction section for desktop view -->
+                <?php include_once 'partials/dashboard/transaction-section-md.php'; ?>
+
             </div>
+            <!-- Transaction section for mobile and tablet views -->
+            <?php include_once 'partials/dashboard/transaction-section-sm.php'; ?>
+
             <div class="right vh-100 bg-transparent border-0 m-3 p-0">
                 <p1 class="greeting">We wish you a great day</p>
                     <h2>Welcome back, David Kamau</h2>
@@ -144,21 +78,21 @@
                         <div class="metric">
                             <div class="title">
                                 <p>Profile views</p>
-                                <i class="fas fa-eye"></i>
+                                <i class="fas fa-eye d-none d-md-block"></i>
                             </div>
                             <h3>21,523 <span class="down"><i class="fas fa-arrow-up arrow"></i> 60%</span></h3>
                         </div>
                         <div class="metric">
                             <div class="title">
                                 <p>Project Invitations</p>
-                                <i class="fas fa-folder"></i>
+                                <i class="fas fa-folder d-none d-md-block"></i>
                             </div>
                             <h3>10 <span class="up"><i class="fas fa-arrow-down arrow"></i> 5%</span></h3>
                         </div>
                         <div class="metric">
                             <div class="title">
                                 <p>Applications</p>
-                                <i class="fas fa-user-check"></i>
+                                <i class="fas fa-user-check d-none d-md-block"></i>
                             </div>
                             <h3>25</h3>
                         </div>

@@ -6,7 +6,8 @@
     padding-bottom: 40px;
     overflow: hidden;
     position: fixed;
-    top: 70px; /* Adjust based on navbar height */
+    top: 70px;
+    /* Adjust based on navbar height */
     left: 0;
     right: 0;
     bottom: 0;
@@ -22,13 +23,14 @@
     border: 2px;
     background-color: var(--bs-white) !important;
     position: fixed;
-    top: 70px;
+    top: 74px;
     bottom: 20px;
-    overflow-y: auto;
-    height: calc(100vh - 380px);
+    overflow-y: hidden; /* Changed to hidden to prevent overall left panel scrolling */
+    height: calc(100vh - 96px)!important;
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
+
 .left::-webkit-scrollbar {
     display: none;
 }
@@ -83,9 +85,10 @@
 }
 
 .profile img {
-    width: 45px;
-    height: 45px;
+    width: 60px;
+    height: 60px;
     border-radius: 50px;
+    margin-top: -14px;
 }
 
 .content-texts {
@@ -146,20 +149,55 @@
 .transaction-section {
     background: var(--bs-white);
     width: 90%;
-    height: 48px !important;
     margin-left: 16px;
+    overflow-y: auto;
+    max-height: calc(100vh - 300px);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.transaction-section::-webkit-scrollbar {
+   display: none;
+}
+
+.transaction-section::-webkit-scrollbar-thumb {
+    background-color: var(--bs-gray-400); /* Scrollbar thumb color */
+    border-radius: 10px;
+}
+
+.transaction-section::-webkit-scrollbar-track {
+    background: var(--bs-gray-200); /* Scrollbar track color */
 }
 
 .transaction-header {
     display: flex;
     align-items: center;
     text-align: center;
-    margin-top: -10px;
+    margin-top: 0;
+    background-color: var(--bs-white);
+    gap: 60px;
+    position: fixed!important;
     justify-content: space-between;
+    z-index: 1000;
+}
+.transaction-header-sm {
+    display: flex;
+    width: 100%!important;
+    align-items: center;
+    text-align: center;
+    margin-top: -10px!important;
+    background-color: var(--bs-white);
+    gap: 60px;
+    justify-content: space-between;
+    z-index: 1000;
 }
 
 .transaction-header h4 {
     font-size: 20px;
+    color: var(--bs-dark);
+}
+.transaction-header-sm h4 {
+    font-size: 16px;
     color: var(--bs-dark);
 }
 
@@ -172,13 +210,22 @@
     gap: 4px;
     color: var(--bs-super-red);
 }
-
+.transaction-header-sm a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    font-size: 12px;
+    gap: 4px;
+    color: var(--bs-super-red);
+}
 .transactions {
     width: 100%;
     border-collapse: collapse;
 }
 
-.transactions th, .transactions td {
+.transactions th,
+.transactions td {
     padding: 10px;
     text-align: left;
     border-bottom: 1px solid #eee;
@@ -214,12 +261,15 @@
     flex: 1;
     padding: 30px;
     position: fixed;
-    top: 90px; /* Adjust based on navbar height */
+    top: 90px;
     bottom: 20px;
-    left: 27%; /* Adjust based on left panel width */
+    left: 27%;
+    /* Adjust based on left panel width */
     right: 20px;
-    overflow-y: auto; /* Enable vertical scrolling */
-    height: calc(100vh - 110px); /* Adjust height to fit viewport */
+    overflow-y: auto;
+    /* Enable vertical scrolling */
+    height: calc(100vh - 110px);
+    /* Adjust height to fit viewport */
 }
 
 .right h2 {
@@ -334,4 +384,355 @@
 
 .down .arrow {
     color: var(--bs-dark) !important;
+}
+
+/* Tablet view */
+@media (max-width: 768px) {
+    .main {
+        flex-direction: column;
+        position: static;
+        top: 0;
+        padding: 10px;
+    }
+
+    .left {
+        width: 100%;
+        position: static;
+        padding: 2px !important;
+        height: 50% !important;
+        margin-bottom: 20px;
+        margin-top: 10px !important;
+        overflow-y: hidden !important;
+        margin-left: -1px !important;
+    }
+
+    .left-header {
+        display: flex;
+        width: 100%;
+        height: 10px !important;
+        justify-content: space-between !important;
+        flex-direction: row;
+        padding: 6px;
+    }
+
+    .profile {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        justify-content: flex-start;
+        height: auto;
+        margin-left: 10px;
+        padding: 4px;
+    }
+
+    .profile img {
+        width: 45px;
+        height: 45px;
+        margin-top: -10px;
+        border-radius: 50px;
+    }
+
+    .profile h3 {
+        font-size: 14px;
+        /* As in original tablet view */
+    }
+
+    .content-texts p {
+        font-size: 12px;
+        /* As in original tablet view */
+        margin-top: 0;
+        /* Remove negative margin for better alignment */
+    }
+
+    .content-texts {
+        display: flex;
+        flex-direction: column;
+        /* Keep text in a column within the row */
+        align-items: flex-start;
+        /* Align text to the left */
+        gap: 2px;
+        /* Maintain gap as in original */
+    }
+
+    .transaction-section {
+        width: 100%;
+        margin-left: 0;
+        margin-bottom: 20px;
+        height: auto !important;
+        padding: 10px;
+        overflow-y: auto;
+        max-height: 200px;
+        scrollbar-width: thin;
+        -ms-overflow-style: auto;
+    }
+
+    .transaction-section::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .transaction-section::-webkit-scrollbar-thumb {
+        background-color: var(--bs-gray-400);
+        border-radius: 10px;
+    }
+
+    .transaction-section::-webkit-scrollbar-track {
+        background: var(--bs-gray-200);
+    }
+
+    .right {
+        position: static;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: auto;
+        padding: 20px;
+    }
+
+    .right h2 {
+        font-size: 12px !important;
+    }
+
+    .greeting {
+        font-size: 10px !important;
+    }
+
+    .head {
+        flex-direction: row !important;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .setup {
+        font-size: 10px !important;
+    }
+
+    .clarity {
+        font-size: 10px !important;
+    }
+
+    .right h2 {
+        font-size: 12px;
+    }
+
+    .wallet-actions {
+        display: flex;
+        flex-direction: row;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px !important;
+        height: auto;
+    }
+
+    .wallet-actions button {
+        font-size: 12px;
+        width: 40% !important;
+        padding: 10px;
+    }
+
+    .profile-actions {
+        display: flex;
+        flex-direction: row !important;
+        height: auto;
+    }
+
+    .profile-actions button {
+        width: 17%;
+        height: auto;
+        padding: 15px;
+        margin-top: 0;
+    }
+
+
+    .metrics {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr) !important;
+        margin-top: 0;
+        gap: 4px !important;
+    }
+
+    .metric {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .metric h3 {
+        font-size: 10px !important;
+    }
+
+    .left-header h2,
+    .transaction-header h4 {
+        font-size: 8px !important;
+    }
+
+    .metrics .up,
+    .metrics .down {
+        display: none !important;
+    }
+
+    .metric p {
+        margin-top: 12px !important;
+        font-size: 10px !important;
+    }
+
+    .right h2 {
+        font-size: 8px !important;
+    }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    .main {
+        padding: 10px;
+    }
+
+    .left {
+        padding: 15px;
+        border-radius: 8px;
+        height: 20% !important;
+    }
+
+    .right {
+        padding: 15px;
+    }
+
+    .left-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .left-header h2 {
+        font-size: 16px;
+    }
+
+    .text-right {
+        font-size: 12px;
+    }
+
+    .profile {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        height: auto;
+        margin-left: 0;
+    }
+
+    .profile img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .profile h3 {
+        font-size: 18px;
+    }
+
+    .profile p {
+        font-size: 11px;
+        margin-top: 0;
+    }
+
+    .wallet {
+        width: 100%;
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    .wallet h2 {
+        font-size: 18px;
+    }
+
+    .wallet-actions {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        height: auto;
+    }
+
+    .wallet-actions button {
+        font-size: 11px;
+        padding: 12px;
+    }
+
+    .transaction-section {
+        width: 100%;
+        margin-left: 0;
+        margin-bottom: 20px;
+        height: auto !important;
+        padding: 10px;
+        overflow-y: auto;
+        max-height: 150px;
+        scrollbar-width: thin;
+        -ms-overflow-style: auto;
+    }
+
+    .transaction-section::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .transaction-section::-webkit-scrollbar-thumb {
+        background-color: var(--bs-gray-400);
+        border-radius: 10px;
+    }
+
+    .transaction-section::-webkit-scrollbar-track {
+        background: var(--bs-gray-200);
+    }
+
+    .transaction-header h4 {
+        font-size: 16px;
+    }
+
+    .transaction-header a {
+        font-size: 11px;
+    }
+
+    .transactions th,
+    .transactions td {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .transactions td small {
+        font-size: 10px;
+    }
+
+    .right h2 {
+        font-size: 18px;
+    }
+
+    .right .greeting {
+        font-size: 12px;
+    }
+
+    .head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .profile-actions {
+        gap: 10px;
+    }
+
+    .profile-actions button {
+        font-size: 12px;
+        padding: 12px;
+    }
+
+    .metrics {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .metric {
+        padding: 12px;
+    }
+
+    .metric h3 {
+        font-size: 16px;
+    }
+
+    .metric p {
+        font-size: 12px;
+    }
 }
