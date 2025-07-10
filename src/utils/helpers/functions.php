@@ -208,3 +208,25 @@ function authLocked(): bool {
 
     return false;
 }
+
+/**
+ * Checks whether the authenticated user is a client?
+ */
+function client(): bool {
+    if (!empty(auth()->user()) && auth()->user()->role == 'client') {
+        return true;
+    }
+
+    return false;
+}
+
+/**
+ * Checks whether the authenticated user is a hustler?
+ */
+function hustler(): bool {
+    if (!empty(auth()->user()) && auth()->user()->role != 'client') {
+        return true;
+    }
+
+    return false;
+}
