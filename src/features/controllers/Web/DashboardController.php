@@ -30,6 +30,10 @@ class DashboardController
         return view('crm/dashboard/index-ui');
     }
 
+    public function hustlers_ui(YPRequest $request): mixed {
+        return view('crm/dashboard/hustlers-ui');
+    }
+
     public function index(YPRequest $request): mixed
     {
         try {

@@ -27,6 +27,7 @@ $router->req('POST', '/contact/verify', [ContactsController::class, 'verifyConta
 // Dashboard Routes
 $router->req('GET', '/dashboard', [DashboardController::class, 'index']); 
 $router->req('GET', '/dashboard-ui', [DashboardController::class, 'ui']); 
+$router->req('GET', '/hustlers-ui', [DashboardController::class, 'hustlers_ui']); 
 $router->req('GET', '/users/count/stats', [UsersController::class, 'usersCount']); 
 $router->req('GET', '/dashboard/graphical/stats', [PaymentController::class, 'dashboardEarningsData']); 
 
