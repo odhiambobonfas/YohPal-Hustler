@@ -21,8 +21,4 @@
             <small class="text-muted file-name"></small>
         </div> 
     </div>
-
-    <div class="mb-3 w-100">
-        <button type="button" name="activateAccount" id="activateAccount" class="btn btn-danger btn-md btn-block activate-account float-end">Activate Your Account</button>
-    </div>
 </div>

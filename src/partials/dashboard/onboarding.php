@@ -37,6 +37,10 @@
                         </div>
                         <div class="stepper-section uploads-section d-none">
                             <?php include "onboarding/nid-upload.php" ?>
+
+                            <div class="mb-3 d-flex justify-content-center align-items-center py-3">
+                                <button type="button" name="activateAccount" id="activateAccount" class="btn btn-danger btn-md btn-block mx-auto activate-account">Activate Your Account</button>
+                            </div>
                         </div>
                     </form>
                     <!-- <div class="stepper-section success-section d-none">

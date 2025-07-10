@@ -12,6 +12,8 @@ class Master {
         // Any constructor logic applicable
         this.debounceTimer;
         this.overlay = null; 
+
+        this.authRole = document.querySelector("meta[name='role']")?.content || 'client';
         
         this.proceedNextBtn = document.querySelector('.proceed-next');
         this.goBackwardBtn = document.querySelector('.go-backward');
@@ -28,6 +30,7 @@ class Master {
     }
     
     navigateStepper(direction = 'next') {
+        if (this.authRole === 'client') return;
         this.stepperSections.forEach(section => section.classList.add('d-none'));
     
         if (direction === 'next' && this.currentStepIndex < this.stepperSections.length - 1) {
@@ -43,6 +46,7 @@ class Master {
     }
     
     updateStepperUI() { 
+        if (this.authRole === 'client') return;
         this.stepDots.forEach((dot, index) => {
             dot.classList.toggle('active-dot', index === this.currentStepIndex);
         });
