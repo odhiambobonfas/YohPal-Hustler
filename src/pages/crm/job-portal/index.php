@@ -25,26 +25,12 @@
         <main class="col-md-9 flex-grow-1 bg-transparent">
             <div class="card bg-transparent border-0 m-1">
 
-                <!-- Header -->
-                <div class="d-flex justify-content-between align-items-center rounded p-2 mb-3 m-2">
-                    <h4 class="m-0">
-                        <span id="sidebarToggleBtn" class="me-2"><i class="fas fa-bars fw-bold"></i></span>
-                        Job Portal
-                    </h4>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <a href="/dashboard" class="text-dark me-2">
-                            Home
-                        </a>
-                        <span><i class="bi bi-arrow-right me-2"></i></span>
-                        <span class="text-dark">Job Portal</span>
-                    </div>
-                </div>
-
                 <!-- Portal start -->
                 <div class="card bg-transparent border-0 rounded mb-3">
                     <div class="container-sm py-3">
                         <div class="content-section">
                             <div class="job-portal-step-section category-listing">
+                                <?php include "partials/job-portal/generic-topbar.php" ?>
                                 <div style="background-image: url('<?= asset_url('store/images/banners/banner.png') ?>')" class="top-banner mb-3 text-dark" id="top-banner">
                                     <h1>7,000+ Browse Jobs</h1>
                                 </div>
@@ -72,6 +58,20 @@
                             </div>
 
                             <div class="job-portal-step-section mapping-section d-none">
+                                <!-- Header -->
+                                <div class="d-flex justify-content-between align-items-center rounded p-2 mb-1 m-2">
+                                    <div class="aside-content">
+                                        <button class="btn btn-md btn-link me-2 text-nowrap backBtn float-start text-start" id="backBtn">
+                                            <i class="bi bi-arrow-left"></i>
+                                        </button>
+                                    </div>
+                                    <div class="input-group me-3">
+                                        <input type="text" class="form-control border-gray input-search-bar p-2 rounded-0" name="inputSearch" id="inputSearch" aria-describedby="helpId" placeholder="Enter address here...">
+                                    </div>
+                                    <div class="job-filters">
+                                        <button type="button" name="filtersValue" id="filtersValue" class="btn btn-link p-1 border-gray rounded-0"><i class="fas fa-filter fa-3x text-dark"></i></button>
+                                    </div>
+                                </div>
                                 <?php include "partials/job-portal/mapping-map.php"; ?>
                             </div>
                         </div>

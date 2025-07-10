@@ -57,10 +57,19 @@ class JobsController
 
     public function createJobDraft(YPRequest $request, $path) {
         try {
-            $params = getIdParams($path); 
-            $superCategoryId = $params[0];
-            $subCategoryId = $params[1];
-            return $request->res(['status' => 'success', 'message' => "Job created successfully!", 'categoryObj' => ['superCategory' => $superCategoryId, 'subCategory' => $subCategoryId]]);
+            $input = $request->req();
+            $params = getIdParams($path);  
+
+            if (!isset($params[0]) || !isset($params[1])) {
+                throw new YPRequest('An error occurred when trying to draft your job request. Please try again!');
+            }
+
+            $input['superCategoryId'] = $params[0];
+            $input['subCategoryId'] = $params[1];
+
+            Auth::create('newJob', $input);
+
+            return $request->res(['status' => 'success', 'message' => "Job drafted successfully!", 'categoryObj' => ['superCategory' => $input['superCategoryId'], 'subCategory' => $input['subCategoryId']]]);
         } 
         catch(\Throwable $th) {
             YPLogger::error($th);
