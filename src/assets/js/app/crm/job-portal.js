@@ -81,7 +81,11 @@ class JobPortal extends Master {
     }
 
     createJobDraft(subCategoryId) { 
-        __show_modal('.create-job-modal');
+        __show_modal('.create-job-modal'); 
+        const createJobForm = document.querySelector('.create-job-modal-form');
+        if(!documentContains(createJobForm)) return;
+        createJobForm.setAttribute('action', `/job/create/${subCategoryId}`);
+        flatpickrUtil();
 
         let btn = document.querySelector('.create-job-submit-btn');
         if (!documentContains(btn)) return;
