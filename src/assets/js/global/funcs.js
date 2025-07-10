@@ -794,6 +794,23 @@ function setupUploadSection() {
     });
 }
 
+/**
+ * Apply falt pickr date range UI on the inputs with .fpRangeDate class
+ * 
+ * @returns {void} void
+ */
+function flatpickrUtil() {
+    if (typeof flatpickr === 'undefined') return;
+    const rangeDateInputs = document.querySelectorAll('.fpRangeDate');
+    rangeDateInputs.forEach(dateInput => {
+        if (!documentContains(dateInput)) return;
+        flatpickr(dateInput, {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+        });
+    }); 
+}
+
 // Call functions Below.
 document.addEventListener('DOMContentLoaded', async () => {
     const masterClassInstance = new Master(); 
@@ -801,4 +818,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     mapCollapseToggles();
     searchSelectInitializer();
     setup2FAInterface();
+    flatpickrUtil()
 });
