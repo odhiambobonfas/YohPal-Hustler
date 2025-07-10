@@ -18,11 +18,11 @@
                 <div class="row g-3 mb-3">
                     <div class="col-md-6">
                         <label for="startDateTime" class="form-label">Start</label>
-                        <input type="text" id="startDateTime" class="form-control fpRangeDate datetime-range" placeholder="Select start datetime">
+                        <input type="text" id="startDateTime" name="startDateTime" class="form-control fpRangeDate datetime-range" placeholder="Select start datetime">
                     </div>
                     <div class="col-md-6">
                         <label for="endDateTime" class="form-label">End</label>
-                        <input type="text" id="endDateTime" class="form-control fpRangeDate datetime-range" placeholder="Select end datetime">
+                        <input type="text" id="endDateTime" name="endDateTime" class="form-control fpRangeDate datetime-range" placeholder="Select end datetime">
                     </div>
                 </div>
                 <div class="mb-3">
