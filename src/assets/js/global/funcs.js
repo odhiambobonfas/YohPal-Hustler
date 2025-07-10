@@ -740,6 +740,8 @@ function setupUploadSection() {
     const dropZones = document.querySelectorAll('.drop-zone'); 
     dropZones.forEach(zone => {  
         const input = zone.querySelector('input'); 
+        const zoneSubText = zone.querySelector('.zone-text');
+        const zonePreviewer = zone.querySelector('.preview-img');
 
         zone.addEventListener('click', () => input.click());
 
@@ -759,7 +761,7 @@ function setupUploadSection() {
             const file = e.dataTransfer.files[0]; 
             if (file && (file.type.startsWith('image/') || file.type === 'application/pdf')) {
                 input.files = e.dataTransfer.files;
-                previewImage(zone, file);
+                previewImage(zonePreviewer, file);
             } 
         });
 
@@ -767,23 +769,24 @@ function setupUploadSection() {
         input.addEventListener('change', () => {
             const file = input.files[0];
             if (file && (file.type.startsWith('image/') || file.type === 'application/pdf')) {
-                previewImage(zone, file);
+                previewImage(zonePreviewer, file);
             }
         });
 
-        function previewImage(zone, file) {
+        function previewImage(zonePreviewer, file) {
             const reader = new FileReader();
             reader.onload = function (e) { 
-                zone.querySelectorAll('img, embed').forEach(el => el.remove());
+                zoneSubText.classList.add('d-none');
+                zonePreviewer.querySelectorAll('img, embed').forEach(el => el.remove());
                 const accept = input.getAttribute('accept') || ''; 
                 if (accept.includes('image') && file.type.startsWith('image/')) {
-                    __append_html(`<img src="${e.target.result}" alt="Preview">`, zone);
+                    __append_html(`<img src="${e.target.result}" alt="Preview">`, zonePreviewer);
                 } else if (accept.includes('pdf') && file.type === 'application/pdf') {
-                    __append_html(`<embed src="${e.target.result}" type="application/pdf" width="100%" height="200px" />`, zone);
+                    __append_html(`<embed src="${e.target.result}" type="application/pdf" width="100%" height="200px" />`, zonePreviewer);
                 }
 
-                const fileName = zone.parentNode.querySelector('.file-name'); 
-                if (documentContains(fileName)) __append_html(file.name, fileName);
+                const fileName = zonePreviewer.parentNode.querySelector('.file-name'); 
+                if (documentContains(fileName)) __append_html(file.name, fileName); 
             };
             
             reader.readAsDataURL(file);

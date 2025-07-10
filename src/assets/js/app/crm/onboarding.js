@@ -213,15 +213,14 @@ class Onboarding extends Master {
     activateAccount() {
         let btn = this.activateAccountBtn;
         
-        if (documentContains(btn)) return;  
+        if (!documentContains(btn)) return;  
         btn.addEventListener('click', event => {
             event.preventDefault();
             toggleButtonContent(btn);
             disableElement(btn);
 
             let form = btn.closest('form');
-            let data = new FormData(form);
-            console.log(data);
+            let data = new FormData(form); 
 
             $.ajax({
                 type: form.getAttribute('method'),

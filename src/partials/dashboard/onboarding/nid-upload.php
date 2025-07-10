@@ -5,22 +5,24 @@
         <div class="col-6 col-md-6">
             <h6>Front Face</h6>
             <div class="drop-zone border rounded shadow-sm d-flex align-items-center justify-content-center text-muted text-center">
-                <small>Drop Image</small>
+                <small class="zone-text">Drop Image</small>
                 <input type="file" accept="image/*" class="d-none" name="nid_front">
+                <div class="preview-img"></div>
             </div>
             <small class="text-muted file-name"></small>
         </div> 
         <div class="col-6 col-md-6">
             <h6>Back Face</h6>
             <div class="drop-zone border rounded shadow-sm d-flex align-items-center justify-content-center text-muted text-center">
-                <small>Drop Image</small>
+                <small class="zone-text">Drop Image</small>
                 <input type="file" accept="image/*" class="d-none" name="nid_back">
+                <div class="preview-img"></div>
             </div>
             <small class="text-muted file-name"></small>
         </div> 
     </div>
 
     <div class="mb-3 w-100">
-        <button type="submit" name="activateAccount" id="activateAccount" class="btn btn-danger btn-md btn-block activate-account float-end">Activate Your Account</button>
+        <button type="button" name="activateAccount" id="activateAccount" class="btn btn-danger btn-md btn-block activate-account float-end">Activate Your Account</button>
     </div>
 </div>

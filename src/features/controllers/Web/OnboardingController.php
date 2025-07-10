@@ -192,15 +192,13 @@ class OnboardingController
             
             $skills = [];
             
-            $input['cv'] = $_FILES['cv'];
+            $input['cv'] = $request->req('cv');
 
-            $input['portfolio'] = $_FILES['portfolio'];
-
-            $nid = array_merge($_FILES['nid_front'], $_FILES['nid_back']);
+            $input['portfolio'] = $request->req('portfolio');
             
-            $input['nationalId'] = $nid;
+            $input['nationalId'] = array_merge($request->req('nid_front'), $request->req('nid_back'));
 
-            $input['certifications'] = $_FILES['certificates'];
+            $input['certifications'] = $request->req('certificates');
 
             $req = $this->hustleUtil->createHustlerRequest($input);
 
