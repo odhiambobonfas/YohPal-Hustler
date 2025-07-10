@@ -240,3 +240,7 @@ body>.global-overlay {
     color: #ffc107;
 } 
 /* /Star Rating UI */
+
+.btn-outline-gray {
+    border: 1px solid var(--bs-light-gray) !important;
+}

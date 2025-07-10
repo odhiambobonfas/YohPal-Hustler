@@ -733,6 +733,84 @@ function setup2FAInterface(selector='.otp-input-box') {
     });
 }
 
+/**
+ * Take care of drop zones uploading functionality...
+ */
+function setupUploadSection() {
+    const dropZones = document.querySelectorAll('.drop-zone'); 
+    dropZones.forEach(zone => {  
+        const input = zone.querySelector('input'); 
+        const zoneSubText = zone.querySelector('.zone-text');
+        const zonePreviewer = zone.querySelector('.preview-img');
+
+        zone.addEventListener('click', () => input.click());
+
+        zone.addEventListener('dragover', e => {
+            e.preventDefault();
+            zone.classList.add('dragover');
+        });
+
+        zone.addEventListener('dragleave', () => {
+            zone.classList.remove('dragover');
+        });
+
+        zone.addEventListener('drop', e => {
+            e.preventDefault();
+            zone.classList.remove('dragover');
+
+            const file = e.dataTransfer.files[0]; 
+            if (file && (file.type.startsWith('image/') || file.type === 'application/pdf')) {
+                input.files = e.dataTransfer.files;
+                previewImage(zonePreviewer, file);
+            } 
+        });
+
+        // File preview
+        input.addEventListener('change', () => {
+            const file = input.files[0];
+            if (file && (file.type.startsWith('image/') || file.type === 'application/pdf')) {
+                previewImage(zonePreviewer, file);
+            }
+        });
+
+        function previewImage(zonePreviewer, file) {
+            const reader = new FileReader();
+            reader.onload = function (e) { 
+                zoneSubText.classList.add('d-none');
+                zonePreviewer.querySelectorAll('img, embed').forEach(el => el.remove());
+                const accept = input.getAttribute('accept') || ''; 
+                if (accept.includes('image') && file.type.startsWith('image/')) {
+                    __append_html(`<img src="${e.target.result}" alt="Preview">`, zonePreviewer);
+                } else if (accept.includes('pdf') && file.type === 'application/pdf') {
+                    __append_html(`<embed src="${e.target.result}" type="application/pdf" width="100%" height="200px" />`, zonePreviewer);
+                }
+
+                const fileName = zonePreviewer.parentNode.querySelector('.file-name'); 
+                if (documentContains(fileName)) __append_html(file.name, fileName); 
+            };
+            
+            reader.readAsDataURL(file);
+        }
+    });
+}
+
+/**
+ * Apply falt pickr date range UI on the inputs with .fpRangeDate class
+ * 
+ * @returns {void} void
+ */
+function flatpickrUtil() {
+    if (typeof flatpickr === 'undefined') return;
+    const rangeDateInputs = document.querySelectorAll('.fpRangeDate');
+    rangeDateInputs.forEach(dateInput => {
+        if (!documentContains(dateInput)) return;
+        flatpickr(dateInput, {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+        });
+    }); 
+}
+
 // Call functions Below.
 document.addEventListener('DOMContentLoaded', async () => {
     const masterClassInstance = new Master(); 
@@ -740,4 +818,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     mapCollapseToggles();
     searchSelectInitializer();
     setup2FAInterface();
+    flatpickrUtil()
 });

@@ -12,6 +12,7 @@ class Dashboard extends Master {
     }
 
     initOnboardingProcess() { 
+        if (typeof Onboarding === 'undefined') return;
         const onboardingInstance = new Onboarding();
         onboardingInstance.init();
     } 

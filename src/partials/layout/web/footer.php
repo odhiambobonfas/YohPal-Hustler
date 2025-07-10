@@ -18,6 +18,9 @@
 
         <!-- no-ui-slider lib -->
         <script type="text/javascript" src="<?= asset_url('build/nouislider/js/nouislider.min.js') ?>"></script>
+        
+        <!-- flatpicker -->
+        <script src="<?= asset_url('/build/flatpickr/js/flatpickr.min.js') ?>"></script>
 
         <!-- Custom scripts for all pages -->
         <script type="text/javascript" src="<?= asset_url('js/lang/en.js') ?>"></script>

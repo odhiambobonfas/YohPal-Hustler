@@ -1,3 +1,5 @@
+<?php include "partials/job-portal/generic-topbar.php" ?>
+
 <div class="card bg-transparent border-0 mb-4">
     <!-- Card Header -->
     <div class="card-header bg-white d-flex align-items-center justify-content-between border-0">

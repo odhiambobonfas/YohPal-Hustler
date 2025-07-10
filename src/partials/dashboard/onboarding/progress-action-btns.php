@@ -10,7 +10,7 @@
             <span class="dot"></span>
         </div>
 
-        <button type="button" class="caret btn btn-light text-danger rounded-circle p-2 d-flex align-items-center justify-content-center proceed-next">
+        <button type="button" class="caret btn btn-light text-danger rounded-circle p-2 d-flex align-items-center justify-content-center proceed-next <?= client() ? 'd-none' : '' ?>">
             <i class="fa fa-caret-right" aria-hidden="true"></i>
         </button>
     </div>

@@ -33,6 +33,8 @@ module.exports = (env, argv) => {
                     { from: './node_modules/bootstrap-icons/font/bootstrap-icons.min.css', to: 'bootstrap/icons/css/[name][ext]' },
                     { from: './node_modules/bootstrap-icons/font/fonts/*', to: 'bootstrap/icons/css/fonts/[name][ext]' },
                     { from: './node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.css', to: 'bootstrap/css/[name][ext]' },
+                    { from: './node_modules/flatpickr/dist/flatpickr.min.css', to: 'build/flatpickr/css/[name][ext]' },
+                    { from: './node_modules/flatpickr/dist/flatpickr.min.js', to: 'build/flatpickr/js/[name][ext]' },
                     // { from: './node_modules/bootstrap-datepicker/dist/js/*.js', to: 'bootstrap/js/[name][ext]' },
                     { from: './node_modules/@fortawesome/fontawesome-free/css/all.min.css', to: 'build/fontawesome/css/[name][ext]' },
                     { from: './node_modules/@fortawesome/fontawesome-free/js/all.min.js', to: 'build/fontawesome/js/[name][ext]' }, 

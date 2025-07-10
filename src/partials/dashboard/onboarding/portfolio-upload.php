@@ -5,9 +5,11 @@
         <?php for ($i = 0; $i < 6; $i++): ?>
             <div class="col-6 col-md-4">
                 <div class="drop-zone border rounded shadow-sm d-flex align-items-center justify-content-center text-muted text-center" data-index="<?= $i ?>">
-                    <small>Drop Image</small>
+                    <small class="zone-text">Drop Image</small>
                     <input type="file" accept="image/*" class="d-none" name="portfolio[<?= $i ?>]">
+                    <div class="preview-img"></div>
                 </div>
+                <small class="text-muted file-name"></small>
             </div>
         <?php endfor; ?>
     </div>

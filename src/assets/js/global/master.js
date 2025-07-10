@@ -12,6 +12,8 @@ class Master {
         // Any constructor logic applicable
         this.debounceTimer;
         this.overlay = null; 
+
+        this.authRole = document.querySelector("meta[name='role']")?.content || 'client';
         
         this.proceedNextBtn = document.querySelector('.proceed-next');
         this.goBackwardBtn = document.querySelector('.go-backward');
@@ -24,10 +26,13 @@ class Master {
         this.proceedNextBtn?.addEventListener('click', () => this.navigateStepper('next'));
         this.goBackwardBtn?.addEventListener('click', () => this.navigateStepper('back'));
         
-        this.updateStepperUI();
+        this.updateStepperUI(); 
+
+        this.verifyOtpBtn = document.querySelectorAll('.verify-otp-submit-btn');
     }
     
     navigateStepper(direction = 'next') {
+        if (this.authRole === 'client') return;
         this.stepperSections.forEach(section => section.classList.add('d-none'));
     
         if (direction === 'next' && this.currentStepIndex < this.stepperSections.length - 1) {
@@ -43,6 +48,7 @@ class Master {
     }
     
     updateStepperUI() { 
+        if (this.authRole === 'client') return;
         this.stepDots.forEach((dot, index) => {
             dot.classList.toggle('active-dot', index === this.currentStepIndex);
         });
@@ -240,4 +246,100 @@ class Master {
             });
         }); 
     }
+
+    /**
+     * Accepts selector element to clone and duplicate...
+     * 
+     * @param {HTMLElement} selector 
+     */
+    addNewUploadSection(selector) {
+        const btn = document.querySelector(selector);
+
+        if (!documentContains(btn)) {
+            console.warn('Invalid selector element passed to addNewUploadSection');
+            return;
+        }
+
+        btn.addEventListener('click', event => {
+            event.preventDefault();
+
+            const dropZoneWrapper = btn.closest('.mb-3')?.querySelector('.drop-zone-wrapper'); 
+            if (!documentContains(dropZoneWrapper)) return;
+            
+            const lastContainer = dropZoneWrapper.querySelectorAll('.drop-zone-container');
+            if (!lastContainer.length) return;
+
+            const elementClone = lastContainer[lastContainer.length - 1].cloneNode(true);
+
+            dropZoneWrapper.appendChild(elementClone); 
+            setupUploadSection();
+        });
+    }
+
+
+    /**
+     * Verify OTP received to the given contact: email or phone
+     * 
+     * @returns {void} void
+     */
+    verifyOtp() {
+        let btns = this.verifyOtpBtn;
+
+        btns.forEach(btn => {
+            if (!documentContains(btn)) return;
+            btn = cloneNodeElement(btn); // counter race conditions
+            btn.addEventListener('click', event => {
+                event.preventDefault();
+                toggleButtonContent(btn);
+                disableElement(btn);
+
+                let form = btn.closest('form');
+                let data = serializeFormToArray(form);
+
+                $.ajax({
+                    type: form.getAttribute('method'),
+                    url: form.action,
+                    data: data,
+                    dataType: "json",
+                    success: function (response) {
+                        toggleButtonContent(btn, '', true);
+                        (new Master()).verifyOtp();
+                        enableElement(btn);
+
+                        if (response && response.status && response.status == 'success') {
+                            disableElement(btn);
+                            resetFormAndCloseModal(form);
+
+                            if (response.client) {
+                                if (response.route) route(response.route);
+                            }
+                            
+                            if (!response.client) {
+                                (new Master()).navigateStepper('next');
+                                (new Master()).activateAccount();
+                            } 
+
+                            toast(response.status, 5000, response.message || lang.undefined_error);
+                            return;
+                        }
+
+                        if (response && response.status && response.status == 'error') {
+                            enableElement(btn);
+                            toast(response.status, 5000, response.message || lang.undefined_error);
+                            return;
+                        }
+
+                        toast('error', 5000, lang.undefined_error);
+                    },
+                    error: error => {
+                        console.log(error.message || error);
+                        toggleButtonContent(btn, '', true);
+                        enableElement(btn);
+                        toast('error', 5000, lang.undefined_error);
+                    }
+                });
+            });
+        });
+    }
+    
 }

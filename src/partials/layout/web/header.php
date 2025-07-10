@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="role" content="<?= !empty(auth()->user()) ? auth()->user()->role : null ?>">
     <title>YohPal Hustle</title>
 
     <!-- Favicon Icon -->
@@ -36,6 +37,9 @@
     <!-- Local custom css -->
     <link href="<?= asset_url('/css/global/props.css') ?>" rel="stylesheet" type="text/css" />
     <link href="<?= asset_url('/css/global/master.css') ?>" rel="stylesheet" type="text/css" />
+
+    <!-- flatpicker css -->
+    <link rel="stylesheet" href="<?= asset_url('/build/flatpickr/css/flatpickr.min.css') ?>"> 
 </head>
 
 <body>
@@ -59,6 +63,6 @@
     <!-- /statuses - audio alerts -->
 
     <!-- resource canvases -->
-    <!-- modals --> 
+    <!-- modals -->
     <!-- /modals -->
-    <!-- resource canvases --> 
+    <!-- resource canvases -->

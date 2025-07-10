@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\Web\ContactsController;
 use App\Controllers\Web\DashboardController;
 use App\Controllers\Web\JobsController;
 use App\Controllers\Web\OnboardingController;
@@ -19,9 +20,14 @@ $router = new YPRouter();
 $router->req('GET', '/', [YohPalController::class, 'index']);
 $router->req('GET', '/index', [YohPalController::class, 'index']); 
 
+// OTP verification Routes
+$router->req('GET', '/contact/verify', [ContactsController::class, 'verifyContact']); 
+$router->req('POST', '/contact/verify', [ContactsController::class, 'verifyContact']); 
+
 // Dashboard Routes
 $router->req('GET', '/dashboard', [DashboardController::class, 'index']); 
 $router->req('GET', '/dashboard-ui', [DashboardController::class, 'ui']); 
+$router->req('GET', '/hustlers-ui', [DashboardController::class, 'hustlers_ui']); 
 $router->req('GET', '/users/count/stats', [UsersController::class, 'usersCount']); 
 $router->req('GET', '/dashboard/graphical/stats', [PaymentController::class, 'dashboardEarningsData']); 
 
@@ -35,6 +41,7 @@ $router->req('GET', '/portal/jobs/view/[**:path]', [JobsController::class, 'jobs
 // Onboarding routes
 $router->req('POST', '/job/create/[**:path]', [JobsController::class, 'createJobDraft']); 
 $router->req('GET', '/onboarding', [OnboardingController::class, 'index']); 
-$router->req('POST', '/profile/update', [OnboardingController::class, 'updateProfileDetails']); 
-$router->req('POST', '/profile/contact/verify', [OnboardingController::class, 'verifyProfileDetails']); 
-$router->req('POST', '/profile/contact/confirm', [OnboardingController::class, 'verifyOtp']);  
+$router->req('POST', '/profile/update', [OnboardingController::class, 'updateProfileDetails']);  
+
+// Account routes
+$router->req('POST', '/account/activate-account', [OnboardingController::class, 'activateAccount']);  

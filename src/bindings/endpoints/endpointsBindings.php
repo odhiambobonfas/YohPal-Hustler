@@ -90,6 +90,12 @@ return [
         'route'  => 'https://yohpal-hustler-apis-test.onrender.com/client/activate',
         'action' => 'Send OTP requests',
     ],
+    
+    'create_hustler_request' => [
+        'method' => 'POST',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/client/hustler/request',
+        'action' => 'Send OTP requests',
+    ],
 
     // ==============================
     // COMMUNICATION

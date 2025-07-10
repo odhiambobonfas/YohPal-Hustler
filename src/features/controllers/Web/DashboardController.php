@@ -30,6 +30,10 @@ class DashboardController
         return view('crm/dashboard/index-ui');
     }
 
+    public function hustlers_ui(YPRequest $request): mixed {
+        return view('crm/dashboard/hustlers-ui');
+    }
+
     public function index(YPRequest $request): mixed
     {
         try {
@@ -42,6 +46,8 @@ class DashboardController
 
             $skillsetDropdownOptions = Job::skillsetDropdownOptions();
 
+            $default_currency = "Ksh. ";
+
             if (!isAjaxRequest()) {
                 $hustleCategories = Category::hustleCategories();
                 $hustleCategoriesDropdown = Category::hustleCategoriesDropdownOptions();
@@ -53,10 +59,10 @@ class DashboardController
                     ['label' => 'Deleted Users', 'slug' => 'deleted_users', 'value' => '50', 'class' => 'deleted', 'dash' => '60'],
                 ];
 
-                return view('crm/dashboard/index', compact('client', 'profile', 'clientHustleStatus', 'stats', 'hustleCategories', 'hustleCategoriesDropdown', 'skillsetDropdownOptions', 'pricingUnitsDropdownOptions'));
+                return view('crm/dashboard/index', compact('client', 'profile', 'default_currency', 'clientHustleStatus', 'stats', 'hustleCategories', 'hustleCategoriesDropdown', 'skillsetDropdownOptions', 'pricingUnitsDropdownOptions'));
             }
 
-            return view('crm/dashboard/index', compact('client', 'profile', 'clientHustleStatus', 'skillsetDropdownOptions', 'pricingUnitsDropdownOptions'));
+            return view('crm/dashboard/index', compact('client', 'profile', 'default_currency', 'clientHustleStatus', 'skillsetDropdownOptions', 'pricingUnitsDropdownOptions'));
         }
         catch(\Throwable $th) {
             YPLogger::error($th);

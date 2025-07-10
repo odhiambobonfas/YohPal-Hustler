@@ -25,6 +25,9 @@
 
         <!-- geo map lib -->    
         <script src="https://maps.googleapis.com/maps/api/js?key=<?= env('google_map_api_key') ?>&libraries=geometry" defer="defer"></script>
+        
+        <!-- flatpicker -->
+        <script src="<?= asset_url('/build/flatpickr/js/flatpickr.min.js') ?>"></script>
 
         <!-- Custom scripts for all pages -->
         <script type="text/javascript" src="<?= asset_url('js/lang/en.js') ?>"></script>

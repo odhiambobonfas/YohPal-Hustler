@@ -63,80 +63,37 @@ class OnboardingController
     }
 
     /**
-     * Verify the profile details in respect to user in session/onboarding.
+     * This function takes care of account activation and unlocking the portal for access.
      * 
      * @param YPRequest $request The request instance containing the custom response method.
      * @return mixed A JSON-formatted response instigating whether it is a success or failure.
      */
-    public function verifyProfileDetails(YPRequest $request): mixed
-    {
+    public function activateAccount(YPRequest $request): mixed {
         try {
-            $profile = auth()->user(); 
-            $contactInput = $request->req('contact');
+            $input = $request->req();  
+            
+            $chargeAmount = $request->req('chargeAmount');
 
-            if (empty($contactInput)) {
-                throw new YPException("Contact not found. Please fill in correct email or phone number!"); 
+            $primaryLocation = null;
+            
+            $skills = [];
+            
+            $input['cv'] = $request->req('cv');
+
+            $input['portfolio'] = $request->req('portfolio');
+            
+            $input['nationalId'] = array_merge($request->req('nid_front'), $request->req('nid_back'));
+
+            $input['certifications'] = $request->req('certificates');
+
+            $req = $this->hustleUtil->createHustlerRequest($input);
+
+            if (!$req) {
+                throw new YPRequest("An error occurred while trying to activate your account!");
             }
 
-            if (filter_var($contactInput, FILTER_VALIDATE_EMAIL)) {
-                $res = $this->commUtil->sendOtp(['email' => $contactInput]);
-
-                if (!$res) {
-                    throw new YPException('An OTP dissemination error occurred. Please try again!');
-                }
-
-                return $request->res(['status' => 'success', 'modal_body' => view('dashboard/onboarding/verify-email', compact('profile'), true)]);
-            }
-
-            if (preg_match('/^\+?[0-9]{7,15}$/', $contactInput)) {
-                $res = $this->commUtil->sendOtp(['phone' => $contactInput]);
-
-                if (!$res) {
-                    throw new YPException('An OTP dissemination error occurred. Please try again!');
-                }
-
-                return $request->res(['status' => 'success', 'modal_body' => view('dashboard/onboarding/verify-phone', compact('profile'), true)]);
-            }
-
-            throw new YPException("OTP dissemination error. Please try again!");
-        } catch (\Throwable $th) {
-            YPLogger::error($th);
-            return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
-        }
-    }
-
-    /**
-     * Verify contact phone/email in respect to user fill OTP.
-     * 
-     * @param YPRequest $request The request instance containing the custom response method.
-     * @return mixed A JSON-formatted response instigating whether it is a success or failure.
-     */
-    public function verifyOTP(YPRequest $request): mixed
-    {
-        try {
             $profile = auth()->user();
 
-            $otp_array = $request->req('verificationCode');
-
-            if (empty($otp_array)) {
-                throw new YPException('OTP appears empty. Please try again!');
-            }
-
-            $otp_input = is_array($otp_array) ? implode('', $otp_array) : null;
-            
-            if (!preg_match('/^\d{6}$/', $otp_input)) {
-                throw new YPException('OTP appears invalid. Please try again!');
-            }
-
-            $otpObj = Auth::get('otp'); 
- 
-            if ($otpObj->otp != $otp_input) {
-                throw new YPException('OTP mismatch error!'); 
-            }
-
-            $client = isset($profile->role) && $profile->role == 'client' ? true : false;
-
-            // if the user is a client, proceed to updating client's account hustle status
             $statusUpdate = $this->hustleUtil->activateHustleClient([
                 'userId' => $profile->uid
             ]);
@@ -167,12 +124,10 @@ class OnboardingController
                 // GET USER PROFILE
             }
 
-            return $request->res(['status' => 'success', 'message' => 'Confirmed contact successfully!', 'client' => $client]);
-
-            throw new YPException("OTP dissemination error. Please try again!");
+            return $request->res(['status' => 'success', 'input' => $chargeAmount]);
         } catch (\Throwable $th) {
             YPLogger::error($th); 
             return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
         }
-    } 
+    }
 }
