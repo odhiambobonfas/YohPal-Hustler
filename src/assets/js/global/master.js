@@ -27,6 +27,8 @@ class Master {
         this.goBackwardBtn?.addEventListener('click', () => this.navigateStepper('back'));
         
         this.updateStepperUI(); 
+
+        this.verifyOtpBtn = document.querySelectorAll('.verify-otp-submit-btn');
     }
     
     navigateStepper(direction = 'next') {
@@ -273,4 +275,71 @@ class Master {
             setupUploadSection();
         });
     }
+
+
+    /**
+     * Verify OTP received to the given contact: email or phone
+     * 
+     * @returns {void} void
+     */
+    verifyOtp() {
+        let btns = this.verifyOtpBtn;
+
+        btns.forEach(btn => {
+            if (!documentContains(btn)) return;
+            btn = cloneNodeElement(btn); // counter race conditions
+            btn.addEventListener('click', event => {
+                event.preventDefault();
+                toggleButtonContent(btn);
+                disableElement(btn);
+
+                let form = btn.closest('form');
+                let data = serializeFormToArray(form);
+
+                $.ajax({
+                    type: form.getAttribute('method'),
+                    url: form.action,
+                    data: data,
+                    dataType: "json",
+                    success: function (response) {
+                        toggleButtonContent(btn, '', true);
+                        (new Master()).verifyOtp();
+                        enableElement(btn);
+
+                        if (response && response.status && response.status == 'success') {
+                            disableElement(btn);
+                            resetFormAndCloseModal(form);
+
+                            if (response.client) {
+                                if (response.route) route(response.route);
+                            }
+                            
+                            if (!response.client) {
+                                (new Master()).navigateStepper('next');
+                                (new Master()).activateAccount();
+                            } 
+
+                            toast(response.status, 5000, response.message || lang.undefined_error);
+                            return;
+                        }
+
+                        if (response && response.status && response.status == 'error') {
+                            enableElement(btn);
+                            toast(response.status, 5000, response.message || lang.undefined_error);
+                            return;
+                        }
+
+                        toast('error', 5000, lang.undefined_error);
+                    },
+                    error: error => {
+                        console.log(error.message || error);
+                        toggleButtonContent(btn, '', true);
+                        enableElement(btn);
+                        toast('error', 5000, lang.undefined_error);
+                    }
+                });
+            });
+        });
+    }
+    
 }

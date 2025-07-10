@@ -23,22 +23,14 @@
 
         <!-- CRM Content -->
         <main class="col-md-9 flex-grow-1">
-            <div  class="card vh-100 bg-transparent border-0 m-3 p-0">
-                <div class="onboarding-stepper <?= $clientHustleStatus == 'active' ? 'd-none' : null ?>">
-                    <?php include "partials/dashboard/onboarding.php"; ?>
-                </div>
-                <div class="dashboard <?= $clientHustleStatus != 'active' ? 'd-none' : null  ?>">
-                    <?php include "partials/dashboard/dashboard.php"; ?>
-                </div>
+            <div class="card vh-100 bg-transparent border-0 m-3 p-0">
+                <?php include "partials/dashboard/dashboard.php"; ?>
             </div>
         </main>
     </div>
 </div>
 
-<!-- modals --> 
-<!-- verify profile details modal -->
-<div class="modal fade verify-profile-details-modal pt-5" id="verifyProfileModalId" data-bs-keyboard="false" data-bs-backdrop="false" tabindex="-1" aria-labelledby="verifyProfileModalIdLabel" aria-hidden="true"></div>
-<!-- /verify profile details modal -->
+<!-- modals -->
 <!-- /modals -->
 
 <!-- footer -->

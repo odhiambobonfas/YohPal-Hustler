@@ -18,10 +18,7 @@
         <div class="col-12 col-md-6 d-flex flex-column justify-content-center">
             <div class="card bg-transparent border-0 rounded-0 p-4">
                 <div class="card-body my-1">
-                    <h3 class="fw-bold text-dark mb-3">YOHPAL</h3>
-                    <div class="stepper-section two-fa-section py-4">
-                        <?php include "onboarding/two-fa-form.php" ?>
-                    </div>
+                    <h3 class="fw-bold text-dark mb-3">YOHPAL</h3> 
                     <form action="/account/activate-account" method="post" enctype="multipart/form-data">
                         <div class="stepper-section ratings-section d-none">
                             <?php include "onboarding/rating-setup-form.php" ?>
@@ -61,7 +58,7 @@
             </div>
         </div>
         <div class="col-md-6 p-0 d-none d-md-block">
-            <div style="background-image: url('<?= asset_url("/store/images/bg/two-fa-section.jpeg") ?>');" class="card bg-transparent border-0 stepper-section-bg bg-image rounded-0 h-100 p-5"></div>
+            <div style="background-image: url('<?= asset_url("/store/images/bg/ratings.jpeg") ?>');" class="card bg-transparent border-0 stepper-section-bg bg-image rounded-0 h-100 p-5"></div>
         </div>
     </div>
 </div>
