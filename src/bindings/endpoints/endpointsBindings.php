@@ -83,7 +83,7 @@ return [
     ],
 
     // ==============================
-    // General Client
+    // Job Service Categories
     // ==============================
     'activate_client' => [
         'method' => 'POST',
@@ -94,6 +94,15 @@ return [
     'create_hustler_request' => [
         'method' => 'POST',
         'route'  => 'https://yohpal-hustler-apis-test.onrender.com/client/hustler/request',
+        'action' => 'Send OTP requests',
+    ],
+
+    // ==============================
+    // Job Service Categories
+    // ==============================
+    'get_service_categories' => [
+        'method' => 'POST',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/services',
         'action' => 'Send OTP requests',
     ],
 
