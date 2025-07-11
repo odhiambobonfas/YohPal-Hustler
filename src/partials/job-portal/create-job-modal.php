@@ -1,5 +1,5 @@
 <!-- create job modal -->
-<form class="create-job-modal-form" action="/job/create/<?= htmlspecialchars($category['id']) ?>" method="post">
+<form class="create-job-modal-form" action="/job/create/<?= htmlspecialchars($category['slug']) ?>" method="post">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
