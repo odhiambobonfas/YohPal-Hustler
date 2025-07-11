@@ -49,7 +49,7 @@ class DashboardController
             $default_currency = "Ksh. ";
 
             if (!isAjaxRequest()) {
-                $hustleCategories = Category::hustleCategories();
+                $hustleCategories = Category::hustleCategories(); 
                 $hustleCategoriesDropdown = Category::hustleCategoriesDropdownOptions();
 
                 $stats = [

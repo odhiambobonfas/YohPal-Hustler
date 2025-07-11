@@ -88,8 +88,8 @@ class AuthController
             $user['user'] = array_merge($user['user'] ?? [], $userProfile['user']); 
             
             $user['user']['role'] = 'client';
-
-            $route = '/contact/verify'; 
+            
+            $route = !empty(auth()->user()) && auth()->user()->clientHustleStatus == 'active' ? '/dashboard' : '/contact/verify';
 
             $user['user']['loginTime'] = date("Y-m-d H:i:s");
 
