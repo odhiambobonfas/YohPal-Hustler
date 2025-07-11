@@ -30,6 +30,8 @@ class HustleUtil extends Util
 
         $this->input = $input;
 
+        $this->input['html'] = true;
+
         $this->user_token = !empty(Auth::get('auth_token')) ? Auth::get('auth_token')->token : null;
 
         $this->endpoint = $this->getEndpoint('activate_client'); 
