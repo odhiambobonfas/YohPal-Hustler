@@ -25,7 +25,12 @@ textarea,
 
 .form-check-input:checked {
     box-shadow: none !important;
-    background-color: var(--bs-dark) !important;
+    background-color: var(--bs-danger) !important;
+}
+
+.form-check-input:focus {
+    box-shadow: none !important;
+    background-color: var(--bs-danger) !important;
 }
 
 label {
