@@ -1,0 +1,15 @@
+.main {
+    height: 100vh; 
+    display: flex;
+    align-items: center;
+}
+
+.get-started-icon-x1 {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+}
+
+.get-started-card {
+    cursor: pointer;
+}
