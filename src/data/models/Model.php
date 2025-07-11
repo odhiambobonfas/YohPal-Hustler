@@ -3,6 +3,7 @@
 namespace Yohpal\Models;
 
 use GuzzleHttp\Client;
+use Yohpal\Utils\Util;
 
 /**
  * Model class acts as the Base class model. A bridge to other models if need be. 
@@ -13,6 +14,8 @@ use GuzzleHttp\Client;
 class Model
 {
 
+    protected $util;
+    
     protected $client;
 
     protected $endpoint;
@@ -24,5 +27,7 @@ class Model
         $this->client = new Client([
             'debug' => env('API_DEBUG', false)
         ]);
+
+        $this->util = new Util();
     }
 }
