@@ -183,4 +183,5 @@ class HustleMap extends Master {
 document.addEventListener('DOMContentLoaded', () => {
     let hustleMapInstance = new HustleMap();
     hustleMapInstance.setMapOnPage();
+    hustleMapInstance.getActiveHustlers();
 });

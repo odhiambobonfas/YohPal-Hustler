@@ -455,6 +455,16 @@ function getDataTableLanguage(overrides = {}) {
 }
 
 /**
+ * Parses and returns an action route from a specifified form
+ * 
+ * @param {HTMLSelectElement} form 
+ * @returns {string|null} Form Route URL
+ */
+function formRouteParser(form) {
+    return form.action || form.getAttribute('route');
+}
+
+/**
  * Accepts a route string and navigates 
  * the browser to the given route.
  * 
@@ -814,9 +824,10 @@ function flatpickrUtil() {
 // Call functions Below.
 document.addEventListener('DOMContentLoaded', async () => {
     const masterClassInstance = new Master(); 
+    masterClassInstance.initOverlay();
     stickNavbarOnScroll();
     mapCollapseToggles();
     searchSelectInitializer();
     setup2FAInterface();
-    flatpickrUtil()
+    flatpickrUtil();
 });

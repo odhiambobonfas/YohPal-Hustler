@@ -203,16 +203,6 @@ class Master {
         })
     }
 
-    /**
-     * Parses and returns an action route from a specifified form
-     * 
-     * @param {HTMLSelectElement} form 
-     * @returns {string|null} Form Route URL
-     */
-    formRouteParser(form) {
-        return form.action || form.getAttribute('route')
-    }
-
     getActiveJobsAssigned() {
         $('.table-active-jobs-assigned').DataTable({
             destroy: true,
@@ -310,11 +300,11 @@ class Master {
                             disableElement(btn);
                             resetFormAndCloseModal(form);
 
-                            if (response.client) {
+                            if (response.route) {
                                 if (response.route) route(response.route);
                             }
                             
-                            if (!response.client) {
+                            if (!response.route) {
                                 (new Master()).navigateStepper('next');
                                 (new Master()).activateAccount();
                             } 
@@ -341,6 +331,46 @@ class Master {
             });
         });
     } 
+
+    /**
+     * Get all active hustlers for map layout.
+     * Map each hustler and create markers accordingly using the mapAndCreateHustlerMarkers() function.
+     */
+    getActiveHustlers() {
+        setTimeout(() => {
+            $.ajax({
+                type: "GET",
+                url: '/users/hustlers', 
+                dataType: "json",
+                contentType: false,
+                processData: false,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                success: function (response) { 
+                    if (response && response.hustlers) {
+                        (new Master()).mapAndCreateHustlerMarkers(response.hustlers);
+                    }
+                },
+                error: (jqXHR, textStatus, errorThrown) => { 
+                    console.error("AJAX Error:", {
+                        status: jqXHR.status,
+                        statusText: jqXHR.statusText,
+                        responseText: jqXHR.responseText,
+                        errorThrown: errorThrown,
+                        textStatus: textStatus
+                    }); 
+                }
+            });
+        }, 3000);
+    }
+
+    /**
+     * Add markers on the map...
+     */
+    mapAndCreateHustlerMarkers(hustlerData) {
+        console.log(hustlerData);
+    }
 
     /**
      * Gets the current location positions to use on the further end of laying the map
