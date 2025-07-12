@@ -29,7 +29,7 @@
                 </a>
             </div>
         </div>
-        <div class="hero-visual">
+        <div class="hero-visual d-none d-md-flex">
             <div class="profile-card"></div>
             <div class="profile-image"><img src="<?= asset_url('/store/images/banners/banner2.png') ?>" alt=""></div>
             <div class="profile-cad"></div>
@@ -90,7 +90,7 @@
             </div>
         </div>
         <div class="user-info-area">
-            <div class="profile-container">
+            <div class="profile-container d-none d-md-flex">
                 <div class="main-profile-circle"></div>
                 <div class="floating-box visitors-box">
                     <i class="fas fa-user icon"></i>
@@ -128,7 +128,7 @@
                 <p>We are providing easy way to find your dream job. It's easy, flexible and faster. Find your dream and suitable job with us and build your career</p>
                 <button>Learn More</button>
             </div>
-            <div class="job-profile-container">
+            <div class="job-profile-container d-none d-md-flex">
                 <div class="job-main-profile-circle">
                     <div class="job-floating-box job-profile-info-box">
                         <div class="content-box">
