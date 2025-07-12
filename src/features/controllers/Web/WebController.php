@@ -48,7 +48,7 @@ class WebController
             }
 
             return view('web/get-started');
-        } catch (\Throwable $th) {
+        } catch (YPException $th) {
             YPLogger::error($th);
             return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
         }
@@ -65,7 +65,7 @@ class WebController
         try { 
             $authRole = !empty(Auth::get('role')) && isset(Auth::get('role')->role) ? strtolower(Auth::get('role')->role) : null;
             return view('web/search-engine', compact('authRole'));
-        } catch (\Throwable $th) {
+        } catch (YPException $th) {
             YPLogger::error($th);
             return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
         }

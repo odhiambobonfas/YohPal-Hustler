@@ -40,7 +40,8 @@ class ContactsController
     {
         try {
             if (!isAjaxRequest()) {
-                $authRole = !empty(auth()->user()) ? auth()->user()->role : null;
+                $user = auth()->user();
+                $authRole = isset($user->role) ? $user->role : null;
                 return view('crm/contacts/confirm', compact('authRole'));
             }
 

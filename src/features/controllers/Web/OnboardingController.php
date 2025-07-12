@@ -40,7 +40,7 @@ class OnboardingController
         try {
             $profile = auth()->user();
             return $request->res(['status' => 'success', 'modal_body' => view('onboarding/index', compact('profile'), true)]);
-        } catch (\Throwable $th) {
+        } catch (YPException $th) {
             YPLogger::error($th);
             return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
         }
@@ -56,7 +56,7 @@ class OnboardingController
     {
         try {
             return $request->res(['status' => 'success', 'message' => 'Profile Updated Successfully']);
-        } catch (\Throwable $th) {
+        } catch (YPException $th) {
             YPLogger::error($th);
             return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
         }
@@ -125,7 +125,7 @@ class OnboardingController
             }
 
             return $request->res(['status' => 'success', 'input' => $chargeAmount]);
-        } catch (\Throwable $th) {
+        } catch (YPException $th) {
             YPLogger::error($th); 
             return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
         }

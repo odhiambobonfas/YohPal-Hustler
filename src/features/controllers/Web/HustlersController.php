@@ -34,7 +34,7 @@ class HustlersController
         try {
             $hustlers = [];
             return $request->res(['status' => 'success', 'hustlers' => $hustlers]);
-        } catch (\Throwable $th) {
+        } catch (YPException $th) {
             YPLogger::error($th);
             return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
         }
