@@ -688,7 +688,8 @@ function enableToggleHighlight(selector, callbackFuncs=[], activeClass = 'active
             item.classList.add(activeClass);
 
             callbackFuncs.forEach(func => { 
-                func(item.getAttribute('data-id')); // call the callback functions if supplied.
+                let extra_params = { 'job_name': item.querySelector('.job-title-inner-html')?.innerHTML };
+                func(item.getAttribute('data-id'), extra_params); // call the callback functions if supplied.
             });
         });
     });

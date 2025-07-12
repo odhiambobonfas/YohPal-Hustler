@@ -336,33 +336,31 @@ class Master {
      * Get all active hustlers for map layout.
      * Map each hustler and create markers accordingly using the mapAndCreateHustlerMarkers() function.
      */
-    getActiveHustlers() {
-        setTimeout(() => {
-            $.ajax({
-                type: "GET",
-                url: '/users/hustlers', 
-                dataType: "json",
-                contentType: false,
-                processData: false,
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest'
-                },
-                success: function (response) { 
-                    if (response && response.hustlers) {
-                        (new Master()).mapAndCreateHustlerMarkers(response.hustlers);
-                    }
-                },
-                error: (jqXHR, textStatus, errorThrown) => { 
-                    console.error("AJAX Error:", {
-                        status: jqXHR.status,
-                        statusText: jqXHR.statusText,
-                        responseText: jqXHR.responseText,
-                        errorThrown: errorThrown,
-                        textStatus: textStatus
-                    }); 
+    getActiveHustlers() { 
+        $.ajax({
+            type: "GET",
+            url: '/users/hustlers',  
+            dataType: "json",
+            contentType: false,
+            processData: false,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            success: function (response) { 
+                if (response && response.hustlers) {
+                    (new Master()).mapAndCreateHustlerMarkers(response.hustlers);
                 }
-            });
-        }, 3000);
+            },
+            error: (jqXHR, textStatus, errorThrown) => { 
+                console.error("AJAX Error:", {
+                    status: jqXHR.status,
+                    statusText: jqXHR.statusText,
+                    responseText: jqXHR.responseText,
+                    errorThrown: errorThrown,
+                    textStatus: textStatus
+                }); 
+            }
+        });
     }
 
     /**
@@ -370,6 +368,12 @@ class Master {
      */
     mapAndCreateHustlerMarkers(hustlerData) {
         console.log(hustlerData);
+        hustlerData.forEach(hustler => {  
+            const locations = hustler.liveLocation;
+            console.log(locations);
+            const _locations = {latitude: locations._latitude, longitude: locations._longitude}
+            this.setMapOnPage(_locations);
+        });
     }
 
     /**
@@ -409,31 +413,27 @@ class Master {
      * @param {GeolocationCoordinates} location positions of the user
      * @returns {void} void
      */
-    async setMapOnPage(domSection=".geomap", locations=undefined) { 
-        try {
-            await this.getGeolocationPositions({
-                enableHighAccuracy: true, // use GPS if available
-                timeout: 10000, // wait max 10 seconds
-                maximumAge: 0  // no cached position
-            }).then(pos => { 
-                pos = locations || pos; 
-                let {clientStartLocation, clientDestinationLocation} = pos;
-                let mapHtmlSelectors = document.querySelectorAll(domSection);
-        
-                mapHtmlSelectors.forEach(selector => {
-                    if (!documentContains(selector)) return;
+    async setMapOnPage(locations=undefined, domSection=".geomap", additionalParams=undefined) { 
+        try {  
+            if (!locations) return;
+            let {latitude, longitude} = locations;
+            console.log(latitude);
+            let mapHtmlSelectors = document.querySelectorAll(domSection);
     
-                    let map = new google.maps.Map(selector, {
-                        zoom: 14,
-                        center: new google.maps.LatLng(clientDestinationLocation.latitude, clientDestinationLocation.longitude)
-                    });
-            
-                    let geoMap = new HustleMap(map, 'driving');    
-                    geoMap.layOutMap({
-                        clientStartLocation: clientStartLocation,
-                        clientDestinationLocation: clientDestinationLocation
-                    });
+            mapHtmlSelectors.forEach(selector => {
+                if (!documentContains(selector)) return;
+                console.log(selector);
+
+                let map = new google.maps.Map(selector, {
+                    zoom: 14,
+                    center: new google.maps.LatLng(latitude, longitude)
                 }); 
+
+                const mapInstance = new Map(
+                    map, 
+                    'Walking',
+                    additionalParams.displayName || 'Hustler'
+                )
             }); 
         } catch (error) {
             console.error("Geolocation JS API error: ", error.message);
