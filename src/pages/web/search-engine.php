@@ -18,7 +18,7 @@
                         <div class="card-body py-5">
                             <div class="position-relative py-5">
                                 <div class="input-group position-relative">
-                                    <input type="search" class="form-control searchInput" name="searchInput" id="searchInput" aria-describedby="helpId" placeholder="Search <?= client() ? 'skills' : 'jobs' ?> here...">
+                                    <input type="search" class="form-control searchInput" name="searchInput" id="searchInput" aria-describedby="helpId" placeholder="Search <?= $authRole == 'client' ? 'skills' : 'jobs' ?> here...">
                                     <button type="button" class="btn btn-outline-danger p-3"><i class="fas fa-search fa-2x"></i></button>
                                 </div>
                                 <div class="search-dropdown-container position-absolute"></div>

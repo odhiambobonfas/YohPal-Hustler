@@ -33,10 +33,8 @@ class Web extends Master {
                 $.ajax({
                     type: "POST",
                     url: form.action,
-                    data: JSON.stringify(data),
-                    dataType: "json",
-                    contentType: false,
-                    processData: false,
+                    data: data,
+                    dataType: "json", 
                     headers: {
                         'X-Requested-With': 'XMLHttpRequest'
                     },

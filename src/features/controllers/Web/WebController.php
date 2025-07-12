@@ -39,8 +39,10 @@ class WebController
      */
     public function getStarted(YPRequest $request): mixed {
         try {
-            if (isAjaxRequest()) {
-                Auth::create('role', ['role' => $request->req('role')]);
+            if (isAjaxRequest()) { 
+                $clientRole = $request->req('clientRole');
+                $hustlerRole = $request->req('hustlerRole'); 
+                Auth::create('role', ['role' => $clientRole ?? $hustlerRole]); 
                 $route = '/search-engine';
                 return $request->res(['status' => 'success', 'route' => $route]);
             }
@@ -60,8 +62,9 @@ class WebController
      * @return mixed A JSON-formatted response instigating whether it is a success or failure OR a html view render.
      */
     public function searchEngine(YPRequest $request): mixed {
-        try {
-            return view('web/search-engine');
+        try { 
+            $authRole = !empty(Auth::get('role')) && isset(Auth::get('role')->role) ? strtolower(Auth::get('role')->role) : null;
+            return view('web/search-engine', compact('authRole'));
         } catch (\Throwable $th) {
             YPLogger::error($th);
             return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
