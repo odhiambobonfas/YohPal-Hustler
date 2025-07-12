@@ -3,6 +3,7 @@
 use Yohpal\Application\YPLogger;
 use \Carbon\Carbon;
 use Yohpal\Application\YPException;
+use Yohpal\Application\YPRequest;
 
 /**
  * Mutates an array and transforms to an object. 
@@ -64,7 +65,7 @@ function isAjaxRequest(): bool {
  */
 function ypLog(\Throwable $exception, string $customLog = null): string
 {
-    return $exception instanceof YPLogger
+    return $exception instanceof YPException
         ? $exception->getMessage()
         : ($customLog ?: 'An error occurred!');
 }
