@@ -28,9 +28,7 @@ class HustleUtil extends Util
     { 
         $this->user = new User();
 
-        $this->input = $input;
-
-        $this->input['html'] = true;
+        $this->input = $input; 
 
         $this->user_token = !empty(Auth::get('auth_token')) ? Auth::get('auth_token')->token : null;
 

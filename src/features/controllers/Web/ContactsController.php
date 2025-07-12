@@ -52,13 +52,17 @@ class ContactsController
             }
 
             if (filter_var($contactInput, FILTER_VALIDATE_EMAIL)) {
+                if ($contactInput != $profile->email) {
+                    throw new YPException('Oops, email address mismatch!');
+                }
+
                 $res = $this->commUtil->sendOtp(['email' => $contactInput]);
 
                 if (!$res) {
                     throw new YPException('An OTP dissemination error occurred. Please try again!');
                 }
 
-                return $request->res(['status' => 'success', 'modal_body' => view('auth/verify-email', compact('profile'), true)]);
+                return $request->res(['status' => 'success', 'message' => 'OTP sent successfully to your email address', 'modal_body' => view('auth/verify-email', compact('profile'), true)]);
             }
 
             if (preg_match('/^\+?[0-9]{7,15}$/', $contactInput)) {
@@ -68,11 +72,11 @@ class ContactsController
                     throw new YPException('An OTP dissemination error occurred. Please try again!');
                 }
 
-                return $request->res(['status' => 'success', 'modal_body' => view('auth/verify-phone', compact('profile'), true)]);
+                return $request->res(['status' => 'success', 'message' => 'OTP sent successfully to your phone number', 'modal_body' => view('auth/verify-phone', compact('profile'), true)]);
             }
 
             throw new YPException("OTP dissemination error. Please try again!");
-        } catch (\Throwable $th) {
+        } catch (YPException $th) {
             YPLogger::error($th);
             return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
         }

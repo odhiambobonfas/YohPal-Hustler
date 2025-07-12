@@ -54,6 +54,7 @@ class AuthController
                 'email' => $request->req('email'),
                 'password' => $request->req('password')
             ]; 
+
             // AUTHENTICATE USER
             $userData = $this->model->authUser($auth_user_endpoint, $input);
 
@@ -89,7 +90,7 @@ class AuthController
             
             $user['user']['role'] = 'client';
             
-            $route = !empty(auth()->user()) && auth()->user()->clientHustleStatus == 'active' ? '/dashboard' : '/contact/verify';
+            $route = !empty(auth()->user()) && isset(auth()->user()->clientHustleStatus) && auth()->user()->clientHustleStatus == 'active' ? '/dashboard' : '/contact/verify';
 
             $user['user']['loginTime'] = date("Y-m-d H:i:s");
 
