@@ -52,4 +52,4 @@ $router->req('POST', '/account/activate-account', [OnboardingController::class, 
 $router->req('GET', '/get-started', [WebController::class, 'getStarted']);  
 $router->req('POST', '/get-started/onboarding', [WebController::class, 'getStarted']);  
 $router->req('GET', '/search-engine', [WebController::class, 'searchEngine']);  
-$router->req('GET', '/users/hustlers', [HustlersController::class, 'getHustlersData']);  
+$router->req('GET', '/users/hustlers', [HustlersController::class, 'getActiveHustlersByPrimarySkill']);  
