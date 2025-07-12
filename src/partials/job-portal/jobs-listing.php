@@ -48,7 +48,7 @@
                                     <span class="subcat-symbol d-flex align-items-center justify-content-center me-2 <?= !isset($category['icon']) ? 'd-none' : null ?>">
                                         <i class="<?= isset($job['icon']) ?? htmlspecialchars($job['icon']) ?> actual-icon m-0"></i>
                                     </span>
-                                    <span class="text-dark"><?= htmlspecialchars($job) ?></span>
+                                    <span class="text-dark job-title-inner-html"><?= htmlspecialchars($job) ?></span>
                                 </li>
                             <?php endforeach; ?>
                         </ul>
