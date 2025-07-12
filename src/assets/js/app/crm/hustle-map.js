@@ -2,8 +2,8 @@ class HustleMap extends Master {
     constructor(
         mapInstance, 
         travelMode = 'Walking', 
-        targetLabel='Target', 
         clientLabel="Client", 
+        targetLabel='Hustler', 
         icons={
             targetDestinationIcon: "http://maps.google.com/mapfiles/ms/icons/green-dot.png",
             startLocationIcon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
@@ -44,20 +44,8 @@ class HustleMap extends Master {
         this.targetMarker = new google.maps.Marker({
             position: this.clientDestinationLocation,
             map: this.mapInstance,
-            label: this.targetLabel,
-            icon: this.targetDestinationIcon 
-        });
-
-        this.clientMarker = new google.maps.Marker({
-            position: this.clientStartLocation,
-            map: this.mapInstance,
-            label: this.clientLabel,
-            icon: this.startLocationIcon 
-        });
-
-        this.getRoadRoute();
-        this.path = this.calculateIntermediatePoints(this.clientStartLocation, this.clientDestinationLocation, this.stepsCount);
-        this.animateMovement();
+            label: this.targetLabel, 
+        }); 
     }
 
     /**
@@ -182,6 +170,5 @@ class HustleMap extends Master {
 
 document.addEventListener('DOMContentLoaded', () => {
     let hustleMapInstance = new HustleMap();
-    hustleMapInstance.setMapOnPage();
-    hustleMapInstance.getActiveHustlers();
+    hustleMapInstance.setMapOnPage(); 
 });
