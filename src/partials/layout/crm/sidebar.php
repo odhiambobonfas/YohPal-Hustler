@@ -1,7 +1,7 @@
 <!-- Sidebar sits in here -->
 
 <!-- Sidebar -->
-<div class="sidebar <?= authLocked() ? 'locked' : null ?>" role="tablist">
+<div class="sidebar" role="tablist">
     <!-- Core Navigation -->
     <div class="sidebar-section core-navigation">
         <h1>Core</h1>

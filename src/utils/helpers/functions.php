@@ -200,10 +200,11 @@ function num_formatter(mixed $num, $decimals=2, $apply_dc=false): mixed {
 }
 
 /**
- * Takes care of account locking against authentication & onboarding
+ * Takes care of checking for onboarding hustle status and such...
  */
-function authLocked(): bool {
-    if (!empty(auth()->user()) && auth()->user()->clientHustleStatus != 'active') {
+function onboarded(): bool {
+    $user = auth()->user();
+    if (!empty($user) && isset($user->clientHustleStatus) && $user->clientHustleStatus == 'active') {
         return true;
     }
 
@@ -214,7 +215,8 @@ function authLocked(): bool {
  * Checks whether the authenticated user is a client?
  */
 function client(): bool {
-    if (!empty(auth()->user()) && auth()->user()->role == 'client') {
+    $user = auth()->user();
+    if (!empty($user) && $user->role == 'client') {
         return true;
     }
 
@@ -225,7 +227,8 @@ function client(): bool {
  * Checks whether the authenticated user is a hustler?
  */
 function hustler(): bool {
-    if (!empty(auth()->user()) && auth()->user()->role != 'client') {
+    $user = auth()->user();
+    if (!empty($user) && $user->role != 'client') {
         return true;
     }
 
