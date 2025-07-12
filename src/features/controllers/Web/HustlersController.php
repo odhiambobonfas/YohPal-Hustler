@@ -7,6 +7,7 @@ use Yohpal\Application\Auth;
 use Yohpal\Application\YPLogger;
 use Yohpal\Application\YPException;
 use Yohpal\Models\Model;
+use Yohpal\Models\Hustler;
 use Yohpal\Models\Authentication;
 use Yohpal\Utils\Util;
 use Yohpal\Utils\CommUtil;
@@ -22,6 +23,8 @@ class HustlersController
 
     public $hustleUtil;
 
+    public $hustlerModel;
+
     public function __construct(Util $util, CommUtil $commUtil, HustleUtil $hustleUtil)
     {
         // ANY APPLICABLE LOGIC
@@ -30,9 +33,11 @@ class HustlersController
         $this->hustleUtil = $hustleUtil;
     }
 
-    public function getHustlersData(YPRequest $request): mixed {
+    public function getActiveHustlersByPrimarySkill(YPRequest $request): mixed {
         try {
-            $hustlers = [];
+            $this->hustlerModel = new Hustler();
+            $jobDraft = Auth::get('newJob'); 
+            $hustlers = $this->hustlerModel->getActiveHustlersByPrimarySkill(['primarySkill' => $jobDraft->name]);
             return $request->res(['status' => 'success', 'hustlers' => $hustlers]);
         } catch (YPException $th) {
             YPLogger::error($th);
