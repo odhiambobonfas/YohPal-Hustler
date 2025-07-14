@@ -20,6 +20,7 @@ class HustleMap extends Master {
         this.stepsCount = stepsCount;
         this.totalDistance = 0;
         this.totalMinutes = 0; 
+        this.marker = null;
         this.targetMarker = null;
         this.clientMarker = null; 
         this.clientPointOfWorkLocation = {}; 
@@ -35,8 +36,10 @@ class HustleMap extends Master {
      * Directions and Mark and map the routes to be taken.
      * 
      * @param {Object} locales 
+     * @param {String} targetMarker 
      */
-    layOutMap(locales = undefined) {
+    layOutMapMarker(locales = undefined, targetMarker='You') {
+        this.targetMarker = targetMarker == undefined ? this.targetMarker : targetMarker;
         let clientPointOfWorkLocation = locales || {}; 
 
         if(!clientPointOfWorkLocation) return;
@@ -47,7 +50,7 @@ class HustleMap extends Master {
         this.targetMarker = new google.maps.Marker({
             position: this.clientPointOfWorkLocation,
             map: this.mapInstance,
-            label: this.clientLabel, 
+            label: this.targetMarker, 
         }); 
     }
 

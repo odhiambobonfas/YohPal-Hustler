@@ -30,8 +30,7 @@ class Master {
 
         this.verifyOtpBtn = document.querySelectorAll('.verify-otp-submit-btn');
 
-        // Map & Mappings
-        this.mapInstance = undefined;
+        // Map & Mappings 
         this.refreshMapBtn = document.querySelectorAll('.refresh-map-btn');
     }
     
@@ -383,13 +382,8 @@ class Master {
      * Add markers on the map...
      */
     mapAndCreateHustlerMarkers(hustlerData) {
-        console.log(hustlerData);
-        hustlerData.forEach(hustler => {  
-            const locations = hustler.liveLocation;
-            console.log(locations);
-            const _locations = {latitude: locations._latitude, longitude: locations._longitude}
-            this.setMapOnPage(_locations, hustler);
-        });
+        console.log(hustlerData); 
+        this.setMapOnPage(hustlerData);
     }
 
     /**
@@ -426,36 +420,42 @@ class Master {
      * Initializes the map on the profile page where applicable
      * 
      * @param {HTMLSelectElement} domSection HTML DOM element where the map should get appended
-     * @param {GeolocationCoordinates} location positions of the user
+     * @param {Object} hustlerData Hustler/User data inclusive of Locations
      * @returns {void} void
      */
-    async setMapOnPage(locations=undefined, additionalParams={}, domSection=".geomap") { 
-        try {  
-            if (locations == undefined) return;
+    async setMapOnPage(hustlerData=[], domSection=".geomap") { 
+        try {   
+            let locations = undefined;
             let mapHtmlSelectors = document.querySelectorAll(domSection);
     
             mapHtmlSelectors.forEach(selector => {
                 if (!documentContains(selector)) return; 
+                
+                this.getGeolocationPositions().then(positions => { 
+                    console.log(positions);
+                    // console.log(locations.latitude);
+                    let map = new google.maps.Map(selector, {
+                        zoom: 14, 
+                        center: {
+                            lat: positions.lat,
+                            lng: positions.lng,
+                        },
+                    });  
 
-                console.log(locations.latitude);
-                let map = new google.maps.Map(selector, {
-                    zoom: 14, 
-                    center: {
-                        lat: locations.latitude,
-                        lng: locations.longitude,
-                    },
-                }); 
+                    let mapInstance = new HustleMap(
+                        map, 
+                        'Walking',
+                        'You'
+                    );
 
-                const targetMarker = additionalParams.displayName || 'Hustler'; 
-
-                this.mapInstance = new HustleMap(
-                    map, 
-                    'Walking',
-                    targetMarker
-                );
-
-                this.mapInstance.layOutMap((locations || undefined));
-                this.refreshMap();
+                    hustlerData.forEach(hustler => {  
+                        locations = hustler.liveLocation;
+                        let marker = hustler.displayName || 'You';
+                        console.log(locations);
+                        const _locations = {latitude: locations._latitude, longitude: locations._longitude}
+                        mapInstance.layOutMapMarker((_locations || undefined), marker);
+                    }); 
+                });
             }); 
         } catch (error) {
             console.error("Geolocation JS API error: ", error.message);
