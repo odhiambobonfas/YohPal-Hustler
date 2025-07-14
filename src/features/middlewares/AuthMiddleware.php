@@ -35,7 +35,7 @@ class AuthMiddleware extends Middleware {
             }
     
             return true;
-        } catch (\Throwable $th) {
+        } catch (YPException $th) {
             Auth::logout();
             header('Location: /login');
             return view('auth/login', ['message' => ypLog($th, 'You have been booted out. Please login again!')]);

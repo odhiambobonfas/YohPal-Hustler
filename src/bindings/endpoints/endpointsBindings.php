@@ -83,18 +83,36 @@ return [
     ],
 
     // ==============================
-    // General Client
+    // Job Service Categories
     // ==============================
     'activate_client' => [
         'method' => 'POST',
         'route'  => 'https://yohpal-hustler-apis-test.onrender.com/client/activate',
-        'action' => 'Send OTP requests',
+        'action' => 'Activate clients',
     ],
     
     'create_hustler_request' => [
         'method' => 'POST',
         'route'  => 'https://yohpal-hustler-apis-test.onrender.com/client/hustler/request',
-        'action' => 'Send OTP requests',
+        'action' => 'create hustler requests',
+    ],
+
+    // ==============================
+    // Job Service Categories
+    // ==============================
+    'get_service_categories' => [
+        'method' => 'POST',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/services',
+        'action' => 'Get service categories',
+    ],
+
+    // ==============================
+    // Job Booking
+    // ==============================
+    'get_active_hustlers' => [
+        'method' => 'POST',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/jobs/get_active_hustlers/{primarySkill}',
+        'action' => 'Get active hustlers',
     ],
 
     // ==============================

@@ -2,12 +2,14 @@
 
 use App\Controllers\Web\ContactsController;
 use App\Controllers\Web\DashboardController;
+use App\Controllers\Web\HustlersController;
 use App\Controllers\Web\JobsController;
 use App\Controllers\Web\OnboardingController;
 use App\Controllers\Web\PaymentController;
 use App\Controllers\Web\ProfileController;
 use App\Controllers\Web\SettingsController;
 use App\Controllers\Web\UsersController;
+use App\Controllers\Web\WebController;
 use App\Controllers\Web\YohPalController;   
 use App\Middlewares\AuthMiddleware;
 use Yohpal\Application\YPRouter;
@@ -45,3 +47,9 @@ $router->req('POST', '/profile/update', [OnboardingController::class, 'updatePro
 
 // Account routes
 $router->req('POST', '/account/activate-account', [OnboardingController::class, 'activateAccount']);  
+
+// Get started web routes
+$router->req('GET', '/get-started', [WebController::class, 'getStarted']);  
+$router->req('POST', '/get-started/onboarding', [WebController::class, 'getStarted']);  
+$router->req('GET', '/search-engine', [WebController::class, 'searchEngine']);  
+$router->req('GET', '/users/hustlers', [HustlersController::class, 'getActiveHustlersByPrimarySkill']);  

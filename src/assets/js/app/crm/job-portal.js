@@ -9,6 +9,7 @@ class JobPortal extends Master {
         this.jobsListing = document.querySelector('.jobs-listing');
         this.mapSection = document.querySelector('.mapping-section');
         this.backBtns = undefined;
+        this.selected_job = undefined;
     }
 
     setupPage() {
@@ -80,11 +81,12 @@ class JobPortal extends Master {
         // Filter out jobs based on the sub category tab clicked.
     }
 
-    createJobDraft(subCategoryId) { 
+    createJobDraft(subCategoryId, extra_params=[]) { 
         __show_modal('.create-job-modal'); 
         const createJobForm = document.querySelector('.create-job-modal-form');
         if(!documentContains(createJobForm)) return;
         createJobForm.setAttribute('action', `/job/create/${subCategoryId}`);
+        createJobForm.querySelector('.job-title').value = extra_params['job_name'] || '';
         flatpickrUtil();
 
         let btn = document.querySelector('.create-job-submit-btn');
@@ -119,6 +121,7 @@ class JobPortal extends Master {
                             (new JobPortal()).mapSection.classList.remove('d-none');
                             (new JobPortal()).hideOverlay();
                             (new JobPortal()).bindBackBtnClick();
+                            (new JobPortal()).getActiveHustlers();
                         }, 1000); // Avoid race condition...
                         return;
                     }

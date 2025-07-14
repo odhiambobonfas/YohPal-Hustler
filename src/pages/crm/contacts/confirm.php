@@ -16,7 +16,7 @@
 
 <!-- modals -->
 <!-- verify profile details modal -->
-<div class="modal fade verify-profile-details-modal" id="verifyProfileModalId" data-bs-keyboard="false" data-bs-backdrop="false" tabindex="-1" aria-labelledby="verifyProfileModalIdLabel" aria-hidden="true"></div>
+<div class="modal fade verify-contact-verify-modal" id="verifyContactsModalId" data-bs-keyboard="false" data-bs-backdrop="false" tabindex="-1" aria-labelledby="verifyContactsModalIdLabel" aria-hidden="true"></div>
 <!-- /verify profile details modal -->
 <!-- /modals -->
 

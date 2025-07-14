@@ -21,7 +21,7 @@
                 YohPal Hustle is a job search for people with passionate. Easily and quickly search thousands of jobs from worldwide side scene.
             </p>
             <div class="cont">
-                <a href="#" class="btn btn-primary">Get Started</a>
+                <a href="/get-started" class="btn btn-primary">Get Started</a>
                 <a href="#" class="scroll-down">
                     <span class="arrow-circle">
                         <span class="arrow"></span>

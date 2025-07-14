@@ -69,7 +69,7 @@
     <div class="email-container">
         <h2>Your Yohpal OTP Code</h2>
 
-        <p>Hi <?= isset($profile->firstName) ? $profile->firstName : 'User' ?>,</p>
+        <p>Hi <?= isset($profile->firstName) && !empty($profile->firstName) ? $profile->firstName : 'User' ?>,</p>
 
         <p>Thank you for using <span class="brand">Yohpal Hustler App</span>. To complete your verification, use the OTP code below:</p>
 

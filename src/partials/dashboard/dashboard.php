@@ -283,7 +283,7 @@
             <button class="btn btn-outline-primary btn-sm me-2">All</button>
             <div class="subcategory-scroll d-flex overflow-auto flex-nowrap">
                 <?php foreach ($hustleCategories as $category): ?>
-                    <button class="btn btn-outline-danger btn-sm text-dark me-2 text-nowrap" data-id="<?= $category['id'] ?>"><?= $category['name'] ?></button>
+                    <button class="btn btn-outline-danger btn-sm text-dark me-2 text-nowrap" data-id="<?= $category['slug'] ?>"><?= $category['name'] ?></button>
                 <?php endforeach; ?>
             </div>
         </div>

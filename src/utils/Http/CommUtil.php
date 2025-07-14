@@ -53,7 +53,8 @@ class CommUtil extends Util
             $this->input = [
                 'to' => $email,
                 'subject' => 'One-Time Code from Yohpal Hustler App',
-                'text' => $this->input
+                'text' => $this->input,
+                'html' => true
             ];
         }
 

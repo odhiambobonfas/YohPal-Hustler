@@ -34,9 +34,9 @@ class Contacts extends Master {
                         toast(response.status, 5000, response.message || lang.undefined_error);
                         disableElement(btn);
                         setTimeout(() => {
-                            const modalSelector = document.querySelector('.verify-profile-details-modal');
+                            const modalSelector = document.querySelector('.verify-contact-verify-modal');
                             __append_html(response.modal_body, modalSelector);
-                            __show_modal('.verify-profile-details-modal');
+                            __show_modal('.verify-contact-verify-modal');
                             setup2FAInterface();
                             (new Contacts()).verifyOtp();
                             (new Contacts()).hideOverlay();

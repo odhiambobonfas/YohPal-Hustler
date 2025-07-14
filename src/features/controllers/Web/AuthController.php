@@ -7,7 +7,7 @@ use Yohpal\Application\Auth;
 use Yohpal\Application\YPLogger;
 use Yohpal\Application\YPException;
 use Yohpal\Models\Model;
-use Yohpal\Models\Authentication; 
+use Yohpal\Models\Authentication;
 use Yohpal\Utils\Util;
 use Yohpal\Utils\AuthUtil;
 use Yohpal\Utils\HustleUtil;
@@ -43,7 +43,7 @@ class AuthController
     public function login(YPRequest $request): mixed
     {
         try {
-            if (!isAjaxRequest()) {
+            if (!isAjaxRequest()) { 
                 return view('auth/login');
             }
 
@@ -53,11 +53,12 @@ class AuthController
             $input = [
                 'email' => $request->req('email'),
                 'password' => $request->req('password')
-            ]; 
+            ];
+
             // AUTHENTICATE USER
             $userData = $this->model->authUser($auth_user_endpoint, $input);
 
-            $user =  is_string($userData) ? json_decode(trim($userData), true) : $userData;  
+            $user =  is_string($userData) ? json_decode(trim($userData), true) : $userData;
 
             if (!isset($user['user'])) {
                 throw new YPException('An error occurred while trying to log you in, please try again!!');
@@ -74,8 +75,8 @@ class AuthController
                 "user_token" => $user['token']
             ]);
 
-            $userProfile = is_string($profileData) ? json_decode(trim($profileData), true) : $profileData; 
-            
+            $userProfile = is_string($profileData) ? json_decode(trim($profileData), true) : $profileData;
+
             if (!isset($userProfile['user'])) {
                 throw new YPException('An error occurred while trying to log you in, please try again!!!');
             }
@@ -85,19 +86,20 @@ class AuthController
                 throw new YPException('An error occurred while trying to log you in, please try again!!!!');
             }
 
-            $user['user'] = array_merge($user['user'] ?? [], $userProfile['user']); 
-            
-            $user['user']['role'] = 'client';
+            $user['user'] = array_merge($user['user'] ?? [], $userProfile['user']);
 
-            $route = '/contact/verify'; 
+            $role = Auth::get('role');
+            $user['user']['role'] = empty($role) ? 'client' : (!empty($role->role) ? strtolower($role->role) : null);
+
+            $route = onboarded() ? '/dashboard' : '/contact/verify'; 
 
             $user['user']['loginTime'] = date("Y-m-d H:i:s");
 
             // initialize/set session
             Auth::create('auth', $user['user']);
-            
-            return $request->res(["status" => 'success', "message" => "Succesfully logged in!", 'route' => $route, 'user' => $user, 'profileData' => $profileData]);
-        } catch (\Throwable $th) {
+
+            return $request->res(["status" => 'success', "message" => "Succesfully logged in!", 'route' => $route, 'user' => $user, 'profileData' => $user['user']]);
+        } catch (YPException $th) {
             YPLogger::error($th);
             return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
         }
@@ -111,8 +113,9 @@ class AuthController
      * @param YPRequest $request The request instance containing the custom response method.
      * @return mixed A JSON-formatted response instigating whether it is a success or failure OR a html view render.
      */
-    public function signup(YPRequest $request):mixed {
-        try { 
+    public function signup(YPRequest $request): mixed
+    {
+        try {
             if (!isAjaxRequest()) {
                 return view('auth/register');
             }
@@ -121,25 +124,24 @@ class AuthController
             $confirmPassword = $request->req('password2');
 
             if ($password !== $confirmPassword) {
-                throw new Exception('Password mismatch error occurred. Please confirm password to continue!'); 
+                throw new Exception('Password mismatch error occurred. Please confirm password to continue!');
             }
 
             $input = [
                 'email' => $request->req('email'),
                 'password' => $request->req('password1')
-            ]; 
+            ];
 
             $req = $this->authUtil->registerUser($input);
 
-            $req =  is_string($req) ? json_decode(trim($req), true) : $req; 
+            $req =  is_string($req) ? json_decode(trim($req), true) : $req;
 
             if (!$req) {
                 throw new YPException('An error occurred while trying to finalize registration, please try again!!');
             }
 
             return $request->res(["status" => 'success', "message" => "Registered successfully. Please go to login page to proceed with logging in!", 'req' => $req]);
-
-        } catch (\Throwable $th) {
+        } catch (YPException $th) {
             YPLogger::error($th);
             return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
         }
@@ -153,29 +155,29 @@ class AuthController
      * @param YPRequest $request The request instance containing the custom response method.
      * @return mixed A JSON-formatted response instigating whether it is a success or failure.
      */
-    public function initResetPassord(YPRequest $request) {
-        try { 
+    public function initResetPassord(YPRequest $request)
+    {
+        try {
             if (!isAjaxRequest()) {
                 return view('auth/forgot-pass');
             }
 
-            $input = ['email' => $request->req('email')]; 
+            $input = ['email' => $request->req('email')];
             $fp_endpoint = $this->util->getEndpoint('auth_forgot_password');
             $req = $this->model->sendResetEmail($fp_endpoint, $input);
 
-            $req =  is_string($req) ? json_decode(trim($req), true) : $req; 
+            $req =  is_string($req) ? json_decode(trim($req), true) : $req;
 
             if (!$req) {
                 throw new YPException('An error occurred while trying initiate your password reset request, please try again!!');
             }
 
             return $request->res(["status" => 'success', "message" => "Succesfully sent password reset link to the provided email address!", 'req' => $req]);
-
-        } catch (\Throwable $th) {
+        } catch (YPException $th) {
             YPLogger::error($th);
             return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
         }
-    } 
+    }
 
     /**
      * Logs out the currently authenticated user and returns a success response.
@@ -190,7 +192,7 @@ class AuthController
         try {
             Auth::logout();
             return $request->res(["status" => 'success', "message" => "Succesfully logged out!", "route" => "login"]);
-        } catch (\Throwable $th) {
+        } catch (YPException $th) {
             YPLogger::error($th->getMessage());
             return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
         }
@@ -215,15 +217,15 @@ class AuthController
             }
 
             $otp_input = is_array($otp_array) ? implode('', $otp_array) : null;
-            
+
             if (!preg_match('/^\d{6}$/', $otp_input)) {
                 throw new YPException('OTP appears invalid. Please try again!');
             }
 
-            $otpObj = Auth::get('otp'); 
- 
+            $otpObj = Auth::get('otp');
+
             if ($otpObj->otp != $otp_input) {
-                throw new YPException('OTP mismatch error!'); 
+                throw new YPException('OTP mismatch error!');
             }
 
             $client = isset($profile->role) && $profile->role == 'client' ? true : false;
@@ -237,7 +239,7 @@ class AuthController
                 throw new YPException('Oops, an error occurred while trying to unlock your hustle account!');
             }
 
-            if(isset($statusUpdate['code'])) {
+            if (isset($statusUpdate['code'])) {
                 // GET USER PROFILE
                 $this->model = new Authentication();
                 $auth_profile_endpoint = $this->util->getEndpoint('get_user_profile');
@@ -247,12 +249,12 @@ class AuthController
                     "user_token" => !empty(Auth::get('auth_token')) ? Auth::get('auth_token')->token : null
                 ]);
 
-                $userProfile = is_string($profileData) ? json_decode(trim($profileData), true) : $profileData; 
-                
+                $userProfile = is_string($profileData) ? json_decode(trim($profileData), true) : $profileData;
+
                 if (!isset($userProfile['user'])) {
                     throw new YPException('An error occurred while trying to log you in, please try again!!!');
-                }  
-                
+                }
+
                 $user['user'] = array_merge((array)$profile ?? [], $userProfile['user']);
 
                 Auth::create('auth', $user['user']);
@@ -264,9 +266,9 @@ class AuthController
             return $request->res(['status' => 'success', 'message' => 'Confirmed contact successfully!', 'client' => $client, 'route' => $route]);
 
             throw new YPException("OTP dissemination error. Please try again!");
-        } catch (\Throwable $th) {
-            YPLogger::error($th); 
+        } catch (YPException $th) {
+            YPLogger::error($th);
             return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
         }
-    } 
+    }
 }

@@ -31,7 +31,7 @@ class JobsController
         try {
             if (!isAjaxRequest()) { 
                 $hustleSuperCategories = Category::hustleCategories();
-                $hustleMixedCategories = Category::hustleMixedCategories(); 
+                $hustleMixedCategories = Category::hustleCategories(); 
                 return view('crm/job-portal/index', compact('hustleSuperCategories', 'hustleMixedCategories'));
             }
         }
@@ -44,9 +44,9 @@ class JobsController
     public function jobsListing(YPRequest $request, $path): mixed
     {
         try {
-            $category['id'] = getIdParam($path); 
+            $category['slug'] = getIdParam($path);  
             $hustleSuperCategories = Category::hustleCategories();
-            $viewableSubCategories = Category::hustleSubCategoriesBySuperCategoryId($category['id']); 
+            $viewableSubCategories = Category::hustleSubCategoriesBySlug($category['slug']); 
             return $request->res(['status' => 'success', 'htmlContent' => view('job-portal/jobs-listing', compact('category', 'hustleSuperCategories', 'viewableSubCategories'), true)]);
         }
         catch(\Throwable $th) {

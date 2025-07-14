@@ -203,16 +203,6 @@ class Master {
         })
     }
 
-    /**
-     * Parses and returns an action route from a specifified form
-     * 
-     * @param {HTMLSelectElement} form 
-     * @returns {string|null} Form Route URL
-     */
-    formRouteParser(form) {
-        return form.action || form.getAttribute('route')
-    }
-
     getActiveJobsAssigned() {
         $('.table-active-jobs-assigned').DataTable({
             destroy: true,
@@ -310,11 +300,11 @@ class Master {
                             disableElement(btn);
                             resetFormAndCloseModal(form);
 
-                            if (response.client) {
+                            if (response.route) {
                                 if (response.route) route(response.route);
                             }
                             
-                            if (!response.client) {
+                            if (!response.route) {
                                 (new Master()).navigateStepper('next');
                                 (new Master()).activateAccount();
                             } 
@@ -340,6 +330,114 @@ class Master {
                 });
             });
         });
+    } 
+
+    /**
+     * Get all active hustlers for map layout.
+     * Map each hustler and create markers accordingly using the mapAndCreateHustlerMarkers() function.
+     */
+    getActiveHustlers() { 
+        $.ajax({
+            type: "GET",
+            url: '/users/hustlers',  
+            dataType: "json",
+            contentType: false,
+            processData: false,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            success: function (response) { 
+                if (response && response.hustlers) {
+                    (new Master()).mapAndCreateHustlerMarkers(response.hustlers);
+                }
+            },
+            error: (jqXHR, textStatus, errorThrown) => { 
+                console.error("AJAX Error:", {
+                    status: jqXHR.status,
+                    statusText: jqXHR.statusText,
+                    responseText: jqXHR.responseText,
+                    errorThrown: errorThrown,
+                    textStatus: textStatus
+                }); 
+            }
+        });
     }
+
+    /**
+     * Add markers on the map...
+     */
+    mapAndCreateHustlerMarkers(hustlerData) {
+        console.log(hustlerData);
+        hustlerData.forEach(hustler => {  
+            const locations = hustler.liveLocation;
+            console.log(locations);
+            const _locations = {latitude: locations._latitude, longitude: locations._longitude}
+            this.setMapOnPage(_locations);
+        });
+    }
+
+    /**
+     * Gets the current location positions to use on the further end of laying the map
+     * and the realtime parsing of clients & hustlers accordingly...
+     * The function accepts - Geolocation navigator API possible params
+     * 
+     * @param {params} params 
+     * @returns 
+     */
+    getGeolocationPositions(params=undefined) {
+        return new Promise((resolve) => {
+            if (!navigator.geolocation) {
+                resolve(null);
+                return;
+            }
+        
+            navigator.geolocation.getCurrentPosition((position) => {
+                let pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                
+                resolve(pos);
+            },
+            (error) => {
+                console.warn("Geolocation error:", error.message);
+                resolve(null);
+            });
+        });
+    } 
     
+    /**
+     * Initializes the map on the profile page where applicable
+     * 
+     * @param {HTMLSelectElement} domSection HTML DOM element where the map should get appended
+     * @param {GeolocationCoordinates} location positions of the user
+     * @returns {void} void
+     */
+    async setMapOnPage(locations=undefined, domSection=".geomap", additionalParams=undefined) { 
+        try {  
+            if (!locations) return;
+            let {latitude, longitude} = locations;
+            console.log(latitude);
+            let mapHtmlSelectors = document.querySelectorAll(domSection);
+    
+            mapHtmlSelectors.forEach(selector => {
+                if (!documentContains(selector)) return;
+                console.log(selector);
+
+                let map = new google.maps.Map(selector, {
+                    zoom: 14,
+                    center: new google.maps.LatLng(latitude, longitude)
+                }); 
+
+                const mapInstance = new Map(
+                    map, 
+                    'Walking',
+                    additionalParams.displayName || 'Hustler'
+                )
+            }); 
+        } catch (error) {
+            console.error("Geolocation JS API error: ", error.message);
+        } 
+    }
+
 }

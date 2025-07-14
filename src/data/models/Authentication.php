@@ -40,6 +40,10 @@ class Authentication extends Model
 
             $data = $response->getBody()->getContents();
 
+            $data = is_string($data) ? json_decode(trim($data), true) : $data;
+
+            $data['code'] = $response->getStatusCode();
+
             return $data;
         } catch (RequestException $error) {
             YPLogger::error($error->getMessage());
@@ -68,6 +72,10 @@ class Authentication extends Model
 
             $data = $response->getBody()->getContents();
 
+            $data = is_string($data) ? json_decode(trim($data), true) : $data;
+
+            $data['code'] = $response->getStatusCode();
+
             return $data;
         } catch (RequestException $error) {
             YPLogger::error($error->getMessage());
@@ -85,7 +93,7 @@ class Authentication extends Model
     public function authUserProfile(object $endpoint, array $input): mixed
     {
         try {
-            $this->endpoint = $endpoint; 
+            $this->endpoint = $endpoint;
             $this->auth_token = $input['user_token'];
             $response = $this->client->get(api_url_parser($this->endpoint->route, $input), [
                 'headers' => [
@@ -93,8 +101,12 @@ class Authentication extends Model
                     "Authorization" => "Bearer $this->auth_token"
                 ]
             ]);
-
+ 
             $data = $response->getBody()->getContents();
+            
+            $data = is_string($data) ? json_decode(trim($data), true) : $data;
+
+            $data['code'] = $response->getStatusCode();
 
             return $data;
         } catch (RequestException $error) {

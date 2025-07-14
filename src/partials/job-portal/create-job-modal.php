@@ -1,5 +1,5 @@
 <!-- create job modal -->
-<form class="create-job-modal-form" action="/job/create/<?= htmlspecialchars($category['id']) ?>" method="post">
+<form class="create-job-modal-form" action="/job/create/<?= htmlspecialchars($category['slug']) ?>" method="post">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -9,7 +9,7 @@
             <div class="modal-body">
                 <div class="mb-3">
                     <label for="name">Job Title:</label>
-                    <input type="text" class="form-control" name="name" id="name" aria-describedby="helpId" placeholder="Enter job name" required>
+                    <input readonly type="text" class="form-control job-title" name="name" id="name" aria-describedby="helpId" placeholder="Enter job name" required>
                 </div>
                 <div class="mb-3">
                     <label for="hustlersCount">Number of Hustler:</label>
@@ -37,3 +37,8 @@
         </div>
     </div>
 </form>
+
+<!-- 
+    400200
+    4003236 
+ -->
