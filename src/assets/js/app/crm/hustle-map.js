@@ -22,6 +22,7 @@ class HustleMap extends Master {
         this.totalMinutes = 0; 
         this.targetMarker = null;
         this.clientMarker = null; 
+        this.clientPointOfWorkLocation = {}; 
         this.path = [];
         this.currentIndex = 0; 
         this.directionsService = undefined;
@@ -35,16 +36,18 @@ class HustleMap extends Master {
      * 
      * @param {Object} locales 
      */
-    layOutMap(locales) {
-        let {clientStartLocation, clientDestinationLocation} = locales; 
+    layOutMap(locales = undefined) {
+        let clientPointOfWorkLocation = locales || {}; 
 
-        this.clientStartLocation = new google.maps.LatLng(clientStartLocation.latitude, clientStartLocation.longitude);
-        this.clientDestinationLocation = new google.maps.LatLng(clientDestinationLocation.latitude, clientDestinationLocation.longitude);
+        if(!clientPointOfWorkLocation) return;
+        console.log(clientPointOfWorkLocation.latitude);
+
+        this.clientPointOfWorkLocation = new google.maps.LatLng(clientPointOfWorkLocation.latitude, clientPointOfWorkLocation.longitude);
         
         this.targetMarker = new google.maps.Marker({
-            position: this.clientDestinationLocation,
+            position: this.clientPointOfWorkLocation,
             map: this.mapInstance,
-            label: this.targetLabel, 
+            label: this.clientLabel, 
         }); 
     }
 
@@ -166,9 +169,4 @@ class HustleMap extends Master {
         const totalDistance = response.routes[0].legs[0].distance;;
         this.totalDistance = parseFloat(totalDistance.text);  
     }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    let hustleMapInstance = new HustleMap();
-    hustleMapInstance.setMapOnPage(); 
-});
+} 

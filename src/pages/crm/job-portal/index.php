@@ -68,8 +68,45 @@
                                     <div class="input-group me-3">
                                         <input type="text" class="form-control border-gray input-search-bar p-2 rounded-0" name="inputSearch" id="inputSearch" aria-describedby="helpId" placeholder="Enter address here...">
                                     </div>
-                                    <div class="job-filters">
-                                        <button type="button" name="filtersValue" id="filtersValue" class="btn btn-link p-1 border-gray rounded-0"><i class="fas fa-filter fa-3x text-dark"></i></button>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="dropdown">
+                                            <button class="btn btn-link p-1 border-gray rounded-0 dropdown-toggle" type="button" id="filtersDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-filter fa-2x text-dark"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-end p-3" style="min-width: 250px;" aria-labelledby="filtersDropdown">
+                                                <form id="filterForm">
+                                                    <!-- Category select input -->
+                                                    <div class="mb-2">
+                                                        <label for="filterCategory" class="form-label mb-1">Category</label>
+                                                        <select multiple class="form-control form-control-sm searchSelect" name="category" id="category">
+                                                            <option>Select Category</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <!-- Sub category select input -->
+                                                    <div class="mb-2">
+                                                        <label for="filterSubCategory" class="form-label mb-1">Category</label>
+                                                        <select multiple class="form-control form-control-sm searchSelect" name="subCategory" id="subCategory">
+                                                            <option>Select Category</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <!-- Date filter -->
+                                                    <div class="mb-2">
+                                                        <label for="filterDate" class="form-label mb-1">Date</label>
+                                                        <input type="date" class="form-control form-control-sm" id="filterDate" name="date">
+                                                    </div>
+
+                                                    <!-- Filter Button -->
+                                                    <button type="submit" class="btn btn-sm btn-primary w-100 mt-2">Apply Filters</button>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                        <!-- Refresh Button -->
+                                        <button type="button" id="refreshMapBtn" class="btn btn-link p-1 border-gray rounded-0 refresh-map-btn">
+                                            <i class="bi bi-arrow-clockwise fa-2x text-success"></i>
+                                        </button>
                                     </div>
                                 </div>
                                 <?php include "partials/job-portal/mapping-map.php"; ?>

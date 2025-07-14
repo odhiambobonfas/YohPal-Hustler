@@ -29,6 +29,10 @@ class Master {
         this.updateStepperUI(); 
 
         this.verifyOtpBtn = document.querySelectorAll('.verify-otp-submit-btn');
+
+        // Map & Mappings
+        this.mapInstance = undefined;
+        this.refreshMapBtn = document.querySelectorAll('.refresh-map-btn');
     }
     
     navigateStepper(direction = 'next') {
@@ -332,6 +336,18 @@ class Master {
         });
     } 
 
+    refreshMap() {
+        const btns = this.refreshMapBtn;
+        btns.forEach(btn => {
+            if (!documentContains(btn)) return;
+            btn = cloneNodeElement(btn);
+            btn.addEventListener('click', (event) => {
+                event.preventDefault();
+                this.getActiveHustlers();
+            });
+        });
+    }
+
     /**
      * Get all active hustlers for map layout.
      * Map each hustler and create markers accordingly using the mapAndCreateHustlerMarkers() function.
@@ -372,7 +388,7 @@ class Master {
             const locations = hustler.liveLocation;
             console.log(locations);
             const _locations = {latitude: locations._latitude, longitude: locations._longitude}
-            this.setMapOnPage(_locations);
+            this.setMapOnPage(_locations, hustler);
         });
     }
 
@@ -413,27 +429,33 @@ class Master {
      * @param {GeolocationCoordinates} location positions of the user
      * @returns {void} void
      */
-    async setMapOnPage(locations=undefined, domSection=".geomap", additionalParams=undefined) { 
+    async setMapOnPage(locations=undefined, additionalParams={}, domSection=".geomap") { 
         try {  
-            if (!locations) return;
-            let {latitude, longitude} = locations;
-            console.log(latitude);
+            if (locations == undefined) return;
             let mapHtmlSelectors = document.querySelectorAll(domSection);
     
             mapHtmlSelectors.forEach(selector => {
-                if (!documentContains(selector)) return;
-                console.log(selector);
+                if (!documentContains(selector)) return; 
 
+                console.log(locations.latitude);
                 let map = new google.maps.Map(selector, {
-                    zoom: 14,
-                    center: new google.maps.LatLng(latitude, longitude)
+                    zoom: 14, 
+                    center: {
+                        lat: locations.latitude,
+                        lng: locations.longitude,
+                    },
                 }); 
 
-                const mapInstance = new Map(
+                const targetMarker = additionalParams.displayName || 'Hustler'; 
+
+                this.mapInstance = new HustleMap(
                     map, 
                     'Walking',
-                    additionalParams.displayName || 'Hustler'
-                )
+                    targetMarker
+                );
+
+                this.mapInstance.layOutMap((locations || undefined));
+                this.refreshMap();
             }); 
         } catch (error) {
             console.error("Geolocation JS API error: ", error.message);
