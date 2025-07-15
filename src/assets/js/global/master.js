@@ -457,6 +457,8 @@ class Master {
                     }); 
                 });
             }); 
+            
+            this.refreshMap();
         } catch (error) {
             console.error("Geolocation JS API error: ", error.message);
         } 
