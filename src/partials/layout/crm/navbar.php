@@ -1,5 +1,5 @@
 <!-- Header / Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light scrollStickyNav" style="z-index: 9999;">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="z-index: 9999;">
     <div class="d-flex align-items-center justify-content-between w-100 ms-3 me-3">
         <!-- Left Section: Brand and Search -->
         <div class="d-flex align-items-center w-100 gap-3">
@@ -7,18 +7,18 @@
             <div class="d-flex align-items-center gap-4">
                 <i class="fas fa-bars text-secondary d-lg-none"></i>
                 <a class="navbar-brand d-flex align-items-center gap-2 mb-0" href="/">
-                    <i class="bi bi-list fa-2x d-none d-md-block"></i>
-                    <img src="https://yohpals.com/img/favicon.png" alt="Logo" class="img-fluid logo-resize" style="height: 32px;">
-                    <span class="fw-bold mb-0"><?= env('APP_NAME') ?></span>
+                    <img src="./assets/store/logos/logo_circular.png" alt="Logo" class="img-fluid logo-resize" style="height: 32px;">
+                    <span class="fw-bold mb-0 brandname"><?= env('APP_NAME') ?></span>
+                    <i class="fas fa-screwdriver-wrench navicon"></i>
                 </a>
                 <i class="fas fa-screwdriver-wrench text-secondary d-none"></i>
             </div>
 
             <!-- Search Form (Desktop only) -->
             <form class="d-none d-md-flex align-items-center flex-grow-1 px-2">
-                <div class="input-group input-group-sm w-50">
-                    <button class="btn btn-outline-light border-dark text-dark p-2" type="submit"><i class="fas fa-search ms-2 me-2"></i></button>
-                    <input type="search" class="form-control border-dark p-2" placeholder="Search here..." aria-label="Search">
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-bar" placeholder="Search">
                 </div>
             </form>
         </div>
@@ -55,24 +55,15 @@
 
         <!-- Right Menu -->
         <div class="d-none d-md-inline justify-content-end">
-            <ul class="navbar-nav align-items-center mb-2 mb-lg-0 gap-2">
-                <li class="nav-item text-nowrap">
-                    <a class="nav-link active" href="#">
-                        <i class="fa fa-envelope fa-2x text-secondary"></i>
-                        <sup class="count-badge text-danger">0</sup>
-                    </a>
-                </li>
-                <li class="nav-item text-nowrap">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-bell fa-2x text-secondary"></i>
-                        <sup class="count-badge text-warning">0</sup>
-                    </a>
-                </li>
-                <li class="nav-item text-nowrap">
-                    <a class="nav-link" href="#">
-
-                    </a>
-                </li>
+            <ul class="navbar-nav align-items-center mb-2 mb-lg-0 gap-3">
+                <div style="position: relative; cursor: pointer;">
+                    <i class="fa fa-envelope"></i>
+                    <div class="notification-dot"></div>
+                </div>
+                <div style="position: relative; cursor: pointer;">
+                    <i class="fas fa-bell"></i>
+                    <div class="notification-dot"></div>
+                </div>
                 <li class="nav-item dropdown d-none d-md-flex align-items-center">
                     <a class="nav-link dropdown-toggle text-dark d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="<?= asset_url('store/images/avatars/default-avatar.jpg') ?>" alt="Profile" class="rounded-circle me-2" width="36" height="36">
@@ -80,7 +71,7 @@
                             <?= !empty(auth()->user()) ? (!empty(auth()->user()->firstName) ? auth()->user()->firstName : auth()->user()->email) : 'Account' ?>
                             <?= !empty(auth()->user()) ?  auth()->user()->lastName : null ?>
                         </span>
-
+                        <i class="fa fa-sort-down icon"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="/profile"><i class="bi bi-person-circle me-2"></i>Profile</a></li>

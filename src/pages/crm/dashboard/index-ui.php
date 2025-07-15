@@ -16,7 +16,7 @@
 <!-- Main CRM Section -->
 <div class="crm-section">
     <div class="d-flex gap-3">
-        <aside class="col-md-2 d-none" id="sidebar">
+        <aside class="col-md-2" id="sidebar">
             <div class="card bg-transparent border-0">
                 <?php include 'partials/layout/crm/sidebar.php'; ?>
             </div>
@@ -24,91 +24,302 @@
 
         <!-- CRM Content -->
         <main class="col-md-5 flex-grow-1 main">
-            <p class="greeting d-block d-md-none">We wish you a great day</p>
-            <h2 class="welcome d-block d-md-none">Welcome back, David Kamau</h2>
-            <div class="left vh-100 bg-transparent border-0 m-3 p-0">
-                <div class="left-header d-flex flex-row justify-content-between">
-                    <h2 class="text-left">About me</h2>
-                    <p class="text-right"><i class="fas fa-arrow-right"></i>edit profile</p>
-                </div>
-                <div class="profile d-flex flex-row justify-content-md-start align-items-start text-center align-content-start">
-                    <img src="<?= asset_url('/store/images/avatars/default-avatar.jpg') ?>" alt="">
-                    <div class="content-texts">
-                        <h3>David Kamau</h3>
-                        <p>Web Developer</p>
-                    </div>
-                </div>
-                <div class="wallet">
-                    <p>Total Wallet Balance</p>
-                    <div class="view">
-                        <h2>$30,000.00</h2>
-                        <i class="fas fa-eye icon"></i>
-                    </div>
-                </div>
-                <div class="wallet-actions">
-                    <button><i class="fas fa-upload"></i> Send</button>
-                    <button><i class="fas fa-download"></i> Withdraw</button>
-                    <button><i class="fas fa-plus"></i> TopUp</button>
-                    <button><i class="fas fa-arrow-down"></i> Deposit</button>
-                </div>
-                <!-- Transaction section for desktop view -->
-                <?php include_once 'partials/dashboard/transaction-section-md.php'; ?>
 
+            <div class="stats-grid">
+                <div class="stat-card pending">
+                    <svg class="progress-ring">
+                        <circle class="progress-ring-bg" cx="40" cy="40" r="36"></circle>
+                        <circle class="progress-ring-fill" cx="40" cy="40" r="36" stroke-dasharray="150 200"></circle>
+                    </svg>
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">Rating</div>
+                </div>
+                <div class="stat-card active">
+                    <svg class="progress-ring">
+                        <circle class="progress-ring-bg" cx="40" cy="40" r="36"></circle>
+                        <circle class="progress-ring-fill" cx="40" cy="40" r="36" stroke-dasharray="80 200"></circle>
+                    </svg>
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">Badge</div>
+                </div>
+                <div class="stat-card dormant">
+                    <svg class="progress-ring">
+                        <circle class="progress-ring-bg" cx="40" cy="40" r="36"></circle>
+                        <circle class="progress-ring-fill" cx="40" cy="40" r="36" stroke-dasharray="70 200"></circle>
+                    </svg>
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">Bio</div>
+                </div>
+                <div class="stat-card deleted">
+                    <svg class="progress-ring">
+                        <circle class="progress-ring-bg" cx="40" cy="40" r="36"></circle>
+                        <circle class="progress-ring-fill" cx="40" cy="40" r="36" stroke-dasharray="60 200"></circle>
+                    </svg>
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Completed</div>
+                </div>
             </div>
-            <!-- Transaction section for mobile and tablet views -->
-            <?php include_once 'partials/dashboard/transaction-section-sm.php'; ?>
 
-            <div class="right vh-100 bg-transparent border-0 m-3 p-0">
-                <p class="greeting d-none d-md-block">We wish you a great day</p>
-                <h2 class="welcome d-none d-md-block">Welcome back, David Kamau</h2>
-                <div class="head d-none d-md-block">
-                    <div class="paragraph">
-                        <p class="setup">Update your profile</p>
-                        <p class="clarity">Hustlers love complete profile</p>
+            <!-- Chart and Info Cards -->
+            <div class="content-grid">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Job status Details</h3>
                     </div>
-                    <a href="#">→ Setup Your Profile</a>
-                </div>
-                <div class="profile-actions d-none d-md-flex">
-                    <button><i class="fas fa-camera"></i> Upload Photos</button>
-                    <button><i class="fas fa-globe"></i> Add Location</button>
-                    <button><i class="fas fa-file"></i>Bio</button>
-                    <button><i class="fas fa-star"></i> Top Services</button>
-                    <button><i class="fas fa-users"></i> Past Clients</button>
-                </div>
-                <div class="video-card d-none d-md-block">
-                    <i class="fas fa-video-camera icon"></i>
-                    <h2>Add a profile video</h2>
-                    <p>Get more views,<br> project invites and <br>hires</p>
+                    <div class="chart-container">
+                        <div class="chart-axis-y">
+                            <span>100</span>
+                            <span>80</span>
+                            <span>60</span>
+                            <span>40</span>
+                            <span>20</span>
+                            <span>0</span>
+                        </div>
+                        <div class="chart-bars">
+                            <div class="chart-bar" style="height: 60%;"
+                                data-tooltip="Monday, 02.06.2025, Earnings: $12000"></div>
+                            <div class="chart-bar" style="height: 40%;"
+                                data-tooltip="Tuesday, 03.06.2025, Earnings: $8000"></div>
+                            <div class="chart-bar" style="height: 80%;"
+                                data-tooltip="Wednesday, 04.06.2025, Earnings: $16000"></div>
+                            <div class="chart-bar" style="height: 30%;"
+                                data-tooltip="Thursday, 05.06.2025, Earnings: $6000"></div>
+                            <div class="chart-bar" style="height: 70%;"
+                                data-tooltip="Friday, 06.06.2025, Earnings: $14000"></div>
+                            <div class="chart-bar" style="height: 50%;"
+                                data-tooltip="Saturday, 07.06.2025, Earnings: $10000"></div>
+                            <div class="chart-bar" style="height: 90%;"
+                                data-tooltip="Sunday, 08.06.2025, Earnings: $18000"></div>
+                            <div class="chart-bar" style="height: 35%;"
+                                data-tooltip="Monday, 09.06.2025, Earnings: $7000"></div>
+                            <div class="chart-bar" style="height: 65%;"
+                                data-tooltip="Tuesday, 10.06.2025, Earnings: $13000"></div>
+                            <div class="chart-bar" style="height: 45%;"
+                                data-tooltip="Wednesday, 11.06.2025, Earnings: $9000"></div>
+                            <div class="chart-bar" style="height: 75%;"
+                                data-tooltip="Thursday, 12.06.2025, Earnings: $15000"></div>
+                            <div class="chart-bar" style="height: 55%;"
+                                data-tooltip="Friday, 13.06.2025, Earnings: $11000"></div>
+                            <div class="chart-bar" style="height: 85%;"
+                                data-tooltip="Saturday, 14.06.2025, Earnings: $17000"></div>
+                            <div class="chart-bar" style="height: 42%;"
+                                data-tooltip="Sunday, 15.06.2025, Earnings: $8400"></div>
+                            <div class="chart-bar" style="height: 68%;"
+                                data-tooltip="Monday, 16.06.2025, Earnings: $13600"></div>
+                            <div class="chart-bar" style="height: 53%;"
+                                data-tooltip="Tuesday, 17.06.2025, Earnings: $10600"></div>
+                            <div class="chart-bar" style="height: 77%;"
+                                data-tooltip="Wednesday, 18.06.2025, Earnings: $15400"></div>
+                            <div class="chart-bar" style="height: 33%;"
+                                data-tooltip="Thursday, 19.06.2025, Earnings: $6600"></div>
+                            <div class="chart-bar" style="height: 88%;"
+                                data-tooltip="Friday, 20.06.2025, Earnings: $17600"></div>
+                            <div class="chart-bar" style="height: 47%;"
+                                data-tooltip="Saturday, 21.06.2025, Earnings: $9400"></div>
+                            <div class="chart-bar" style="height: 62%;"
+                                data-tooltip="Sunday, 22.06.2025, Earnings: $12400"></div>
+                            <div class="chart-bar" style="height: 71%;"
+                                data-tooltip="Monday, 23.06.2025, Earnings: $14200"></div>
+                            <div class="chart-bar" style="height: 39%;"
+                                data-tooltip="Tuesday, 24.06.2025, Earnings: $7800"></div>
+                            <div class="chart-bar" style="height: 84%;"
+                                data-tooltip="Wednesday, 25.06.2025, Earnings: $16800"></div>
+                            <div class="chart-bar" style="height: 56%;"
+                                data-tooltip="Thursday, 26.06.2025, Earnings: $11200"></div>
+                            <div class="chart-bar" style="height: 73%;"
+                                data-tooltip="Friday, 27.06.2025, Earnings: $14600"></div>
+                            <div class="chart-bar" style="height: 41%;"
+                                data-tooltip="Saturday, 28.06.2025, Earnings: $8200"></div>
+                            <div class="chart-bar" style="height: 69%;"
+                                data-tooltip="Sunday, 29.06.2025, Earnings: $13800"></div>
+                            <div class="chart-bar" style="height: 52%;"
+                                data-tooltip="Monday, 30.06.2025, Earnings: $10400"></div>
+                        </div>
+                        <div class="chart-axis-x">
+                            <span>M</span>
+                            <span>T</span>
+                            <span>W</span>
+                            <span>T</span>
+                            <span>F</span>
+                            <span>S</span>
+                            <span>S</span>
+                            <span>M</span>
+                            <span>T</span>
+                            <span>W</span>
+                            <span>T</span>
+                            <span>F</span>
+                            <span>S</span>
+                            <span>S</span>
+                            <span>M</span>
+                            <span>T</span>
+                            <span>W</span>
+                            <span>T</span>
+                            <span>F</span>
+                            <span>S</span>
+                            <span>S</span>
+                            <span>M</span>
+                            <span>T</span>
+                            <span>W</span>
+                            <span>T</span>
+                            <span>F</span>
+                            <span>S</span>
+                            <span>S</span>
+                            <span>M</span>
+                        </div>
+                        <div class="chart-labels">
+                            <span>Applications / Day</span>
+                            <span>Total - Out of 3,247 Views</span>
+                        </div>
+                        <div class="side-stats">
+                            <div class="side-stat">
+                                <i class="fas fa-clipboard-list" style="color: #fdcb6e;"></i>
+                                <div class="stats">
+                                    <div class="number" style="color: #fdcb6e;">3,845</div>
+                                    <div class="label">Total Posts</div>
+                                </div>
+                            </div>
+                            <div class="side-stat">
+                                <i class="fas fa-users" style="color: #00b894;"></i>
+                                <div class="stat">
+                                    <div class="number" style="color: #00b894;">1,520</div>
+                                    <div class="label">New Monthly</div>
+                                </div>
+                            </div>
+                            <div class="side-stat">
+                                <i class="fas fa-share" style="color: #0984e3;"></i>
+                                <div class="stat">
+                                    <div class="number" style="color: #0984e3;">915</div>
+                                    <div class="label">Profile Views</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="metrics">
-                    <div class="metric">
-                        <div class="title">
-                            <p>Profile views</p>
-                            <i class="fas fa-eye d-none d-md-block"></i>
+                <div class="info-cards">
+                    <div class="info-card job-seekers">
+                        <div class="val">69</div>
+                        <div class="cont">
+                            <h3>Total Job Seekers</h3>
+                            <p>A comprehensive view of all registered job seekers on the platform.</p>
                         </div>
-                        <h3>21,523 <span class="down"><i class="fas fa-arrow-up arrow"></i> 60%</span></h3>
                     </div>
-                    <div class="metric">
-                        <div class="title">
-                            <p>Project Invitations</p>
-                            <i class="fas fa-folder d-none d-md-block"></i>
+                    <div class="info-card job-providers">
+                        <div class="val">104</div>
+                        <div class="cont">
+                            <h3>Total Job Providers</h3>
+                            <p>A small river named Duden flows by their place and supplies necessary.</p>
                         </div>
-                        <h3>10 <span class="up"><i class="fas fa-arrow-down arrow"></i> 5%</span></h3>
                     </div>
-                    <div class="metric">
-                        <div class="title">
-                            <p>Applications</p>
-                            <i class="fas fa-user-check d-none d-md-block"></i>
+                    <div class="info-card active-listings">
+                        <div class="val">80</div>
+                        <div class="cont">
+                            <h3>Active Listings</h3>
+                            <p>Active and more recovery and editing.</p>
                         </div>
-                        <h3>25</h3>
                     </div>
-                    <div class="metric">
-                        <div class="title">
-                            <p>Hired Projects</p>
-                            <i class="fas fa-folder-plus"></i>
+                </div>
+            </div>
+
+            <!-- Job Table and Widgets Section -->
+            <div class="table-widget-container">
+                <div class="job-table-section">
+                    <div class="table-header">
+                        <h3 class="table-title">Recent activities</h3>
+                        <div class="action-buttons">
+                            <button class="view-more">View More</button>
                         </div>
-                        <h3>6</h3>
+                    </div>
+                    <table class="job-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Company</th>
+                                <th>Posted</th>
+                                <th>Expires</th>
+                                <th>Position</th>
+                                <th>Location</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Progress Indicator</td>
+                                <td>04.06.2025</td>
+                                <td>30.06.2025</td>
+                                <td>Art Designer</td>
+                                <td>New York</td>
+                                <td><span class="status-badge completed">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Tandem Time Inc</td>
+                                <td>05.06.2025</td>
+                                <td>24.07.2025</td>
+                                <td>iOS Developer</td>
+                                <td>Houston</td>
+                                <td><span class="status-badge ongoing">Ongoing</span></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>BlueChip Expenses</td>
+                                <td>02.06.2025</td>
+                                <td>15.07.2025</td>
+                                <td>Project Manager</td>
+                                <td>Jacksonville</td>
+                                <td><span class="status-badge pending">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Creative Agency</td>
+                                <td>01.06.2025</td>
+                                <td>20.06.2025</td>
+                                <td>UI Designer</td>
+                                <td>San Antonio</td>
+                                <td><span class="status-badge completed">Completed</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="widget-section">
+                    <div class="widget-card">
+                        <div class="widget-header">
+                            <span class="widget-title">🔗 Link to this Job</span>
+                        </div>
+                        <div class="widget-content">
+                            Select and copy the link below (For this specific job posting page):<br><br>
+                            <div class="widget-value">
+                                <input type="text" class="widget-input" value="https://jobrick.do/job/post">
+                                <button class="copy-btn">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-card">
+                        <div class="widget-header">
+                            <span class="widget-title">📊 Use the Button Widget</span>
+                        </div>
+                        <div class="widget-content">
+                            Put the code below in your site where you want the buttons to appear. Just copy the codes
+                            and paste them.<br><br>
+                            <div class="widget-value">
+                                <textarea class="widget-input" style="height: 30px;"><script type="text/javascript">
+                       </script>
+                        </textarea>
+                                <button class="copy-btn">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-card">
+                        <div class="widget-header">
+                            <span class="widget-title">📧 Upload Resumes by Email</span>
+                        </div>
+                        <div class="widget-content">
+                            Set up an auto-forward rule from your email to collect incoming candidate resumes and
+                            applications:<br><br>
+                            resume@easyapply.co
+                        </div>
                     </div>
                 </div>
             </div>

@@ -4,6 +4,7 @@
 
 <!-- styles -->
 <link type="text/css" rel="stylesheet" href="<?= asset_url('/css/app/crm/main.css') ?>">
+<link type="text/css" rel="stylesheet" href="<?= asset_url('/css/app/crm/dashboard.css') ?>">
 <link type="text/css" rel="stylesheet" href="<?= asset_url('/css/app/crm/onboarding.css') ?>">
 <!-- /styles -->
 
