@@ -20,8 +20,10 @@ class HustleMap extends Master {
         this.stepsCount = stepsCount;
         this.totalDistance = 0;
         this.totalMinutes = 0; 
+        this.marker = null;
         this.targetMarker = null;
         this.clientMarker = null; 
+        this.clientPointOfWorkLocation = {}; 
         this.path = [];
         this.currentIndex = 0; 
         this.directionsService = undefined;
@@ -34,17 +36,21 @@ class HustleMap extends Master {
      * Directions and Mark and map the routes to be taken.
      * 
      * @param {Object} locales 
+     * @param {String} targetMarker 
      */
-    layOutMap(locales) {
-        let {clientStartLocation, clientDestinationLocation} = locales; 
+    layOutMapMarker(locales = undefined, targetMarker='You') {
+        this.targetMarker = targetMarker == undefined ? this.targetMarker : targetMarker;
+        let clientPointOfWorkLocation = locales || {}; 
 
-        this.clientStartLocation = new google.maps.LatLng(clientStartLocation.latitude, clientStartLocation.longitude);
-        this.clientDestinationLocation = new google.maps.LatLng(clientDestinationLocation.latitude, clientDestinationLocation.longitude);
+        if(!clientPointOfWorkLocation) return;
+        console.log(clientPointOfWorkLocation.latitude);
+
+        this.clientPointOfWorkLocation = new google.maps.LatLng(clientPointOfWorkLocation.latitude, clientPointOfWorkLocation.longitude);
         
         this.targetMarker = new google.maps.Marker({
-            position: this.clientDestinationLocation,
+            position: this.clientPointOfWorkLocation,
             map: this.mapInstance,
-            label: this.targetLabel, 
+            label: this.targetMarker, 
         }); 
     }
 
@@ -166,9 +172,4 @@ class HustleMap extends Master {
         const totalDistance = response.routes[0].legs[0].distance;;
         this.totalDistance = parseFloat(totalDistance.text);  
     }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    let hustleMapInstance = new HustleMap();
-    hustleMapInstance.setMapOnPage(); 
-});
+} 

@@ -12,4 +12,4 @@ $router->req('GET', '/forgot-password', [AuthController::class, 'initResetPassor
 $router->req('POST', '/auth/forgot-password', [AuthController::class, 'initResetPassord']);
 
 // OTP verification routes
-$router->req('POST', '/otp/verify', [AuthController::class, 'verifyOtp']);  
+$router->req('POST', '/otp/verify', [AuthController::class, 'verifyOtp'], [AuthMiddleware::class]);  

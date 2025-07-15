@@ -29,6 +29,9 @@ class Master {
         this.updateStepperUI(); 
 
         this.verifyOtpBtn = document.querySelectorAll('.verify-otp-submit-btn');
+
+        // Map & Mappings 
+        this.refreshMapBtn = document.querySelectorAll('.refresh-map-btn');
     }
     
     navigateStepper(direction = 'next') {
@@ -332,6 +335,18 @@ class Master {
         });
     } 
 
+    refreshMap() {
+        const btns = this.refreshMapBtn;
+        btns.forEach(btn => {
+            if (!documentContains(btn)) return;
+            btn = cloneNodeElement(btn);
+            btn.addEventListener('click', (event) => {
+                event.preventDefault();
+                this.getActiveHustlers();
+            });
+        });
+    }
+
     /**
      * Get all active hustlers for map layout.
      * Map each hustler and create markers accordingly using the mapAndCreateHustlerMarkers() function.
@@ -367,13 +382,8 @@ class Master {
      * Add markers on the map...
      */
     mapAndCreateHustlerMarkers(hustlerData) {
-        console.log(hustlerData);
-        hustlerData.forEach(hustler => {  
-            const locations = hustler.liveLocation;
-            console.log(locations);
-            const _locations = {latitude: locations._latitude, longitude: locations._longitude}
-            this.setMapOnPage(_locations);
-        });
+        console.log(hustlerData); 
+        this.setMapOnPage(hustlerData);
     }
 
     /**
@@ -410,31 +420,45 @@ class Master {
      * Initializes the map on the profile page where applicable
      * 
      * @param {HTMLSelectElement} domSection HTML DOM element where the map should get appended
-     * @param {GeolocationCoordinates} location positions of the user
+     * @param {Object} hustlerData Hustler/User data inclusive of Locations
      * @returns {void} void
      */
-    async setMapOnPage(locations=undefined, domSection=".geomap", additionalParams=undefined) { 
-        try {  
-            if (!locations) return;
-            let {latitude, longitude} = locations;
-            console.log(latitude);
+    async setMapOnPage(hustlerData=[], domSection=".geomap") { 
+        try {   
+            let locations = undefined;
             let mapHtmlSelectors = document.querySelectorAll(domSection);
     
             mapHtmlSelectors.forEach(selector => {
-                if (!documentContains(selector)) return;
-                console.log(selector);
+                if (!documentContains(selector)) return; 
+                
+                this.getGeolocationPositions().then(positions => { 
+                    console.log(positions);
+                    // console.log(locations.latitude);
+                    let map = new google.maps.Map(selector, {
+                        zoom: 14, 
+                        center: {
+                            lat: positions.lat,
+                            lng: positions.lng,
+                        },
+                    });  
 
-                let map = new google.maps.Map(selector, {
-                    zoom: 14,
-                    center: new google.maps.LatLng(latitude, longitude)
-                }); 
+                    let mapInstance = new HustleMap(
+                        map, 
+                        'Walking',
+                        'You'
+                    );
 
-                const mapInstance = new Map(
-                    map, 
-                    'Walking',
-                    additionalParams.displayName || 'Hustler'
-                )
+                    hustlerData.forEach(hustler => {  
+                        locations = hustler.liveLocation;
+                        let marker = hustler.displayName || 'You';
+                        console.log(locations);
+                        const _locations = {latitude: locations._latitude, longitude: locations._longitude}
+                        mapInstance.layOutMapMarker((_locations || undefined), marker);
+                    }); 
+                });
             }); 
+            
+            this.refreshMap();
         } catch (error) {
             console.error("Geolocation JS API error: ", error.message);
         } 
