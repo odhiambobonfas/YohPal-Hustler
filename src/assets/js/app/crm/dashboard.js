@@ -112,4 +112,5 @@ document.addEventListener('DOMContentLoaded', () => {
     dashboardInstance.getUsersCountStats();
     dashboardInstance.getGraphicStatsData();
     dashboardInstance.getActiveJobsAssigned();
+    dashboardInstance.setMapOnPage();
 });
