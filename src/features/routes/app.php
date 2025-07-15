@@ -23,33 +23,33 @@ $router->req('GET', '/', [YohPalController::class, 'index']);
 $router->req('GET', '/index', [YohPalController::class, 'index']); 
 
 // OTP verification Routes
-$router->req('GET', '/contact/verify', [ContactsController::class, 'verifyContact']); 
-$router->req('POST', '/contact/verify', [ContactsController::class, 'verifyContact']); 
+$router->req('GET', '/contact/verify', [ContactsController::class, 'verifyContact'], [AuthMiddleware::class]); 
+$router->req('POST', '/contact/verify', [ContactsController::class, 'verifyContact'], [AuthMiddleware::class]); 
 
 // Dashboard Routes
-$router->req('GET', '/dashboard', [DashboardController::class, 'index']); 
-$router->req('GET', '/dashboard-ui', [DashboardController::class, 'ui']); 
-$router->req('GET', '/hustlers-ui', [DashboardController::class, 'hustlers_ui']); 
-$router->req('GET', '/users/count/stats', [UsersController::class, 'usersCount']); 
-$router->req('GET', '/dashboard/graphical/stats', [PaymentController::class, 'dashboardEarningsData']); 
+$router->req('GET', '/dashboard', [DashboardController::class, 'index'], [AuthMiddleware::class]); 
+$router->req('GET', '/dashboard-ui', [DashboardController::class, 'ui'], [AuthMiddleware::class]); 
+$router->req('GET', '/hustlers-ui', [DashboardController::class, 'hustlers_ui'], [AuthMiddleware::class]); 
+$router->req('GET', '/users/count/stats', [UsersController::class, 'usersCount'], [AuthMiddleware::class]); 
+$router->req('GET', '/dashboard/graphical/stats', [PaymentController::class, 'dashboardEarningsData'], [AuthMiddleware::class]); 
 
 // Profile Routes
-$router->req('GET', '/profile', [ProfileController::class, 'index']); 
+$router->req('GET', '/profile', [ProfileController::class, 'index'], [AuthMiddleware::class]); 
 
 // Carreer section routes 
-$router->req('GET', '/job-portal', [JobsController::class, 'index']); 
-$router->req('GET', '/portal/jobs/view/[**:path]', [JobsController::class, 'jobsListing']); 
+$router->req('GET', '/job-portal', [JobsController::class, 'index'], [AuthMiddleware::class]); 
+$router->req('GET', '/portal/jobs/view/[**:path]', [JobsController::class, 'jobsListing'], [AuthMiddleware::class]); 
 
 // Onboarding routes
-$router->req('POST', '/job/create/[**:path]', [JobsController::class, 'createJobDraft']); 
-$router->req('GET', '/onboarding', [OnboardingController::class, 'index']); 
-$router->req('POST', '/profile/update', [OnboardingController::class, 'updateProfileDetails']);  
+$router->req('POST', '/job/create/[**:path]', [JobsController::class, 'createJobDraft'], [AuthMiddleware::class]); 
+$router->req('GET', '/onboarding', [OnboardingController::class, 'index'], [AuthMiddleware::class]); 
+$router->req('POST', '/profile/update', [OnboardingController::class, 'updateProfileDetails'], [AuthMiddleware::class]);  
 
 // Account routes
-$router->req('POST', '/account/activate-account', [OnboardingController::class, 'activateAccount']);  
+$router->req('POST', '/account/activate-account', [OnboardingController::class, 'activateAccount'], [AuthMiddleware::class]);  
 
 // Get started web routes
-$router->req('GET', '/get-started', [WebController::class, 'getStarted']);  
-$router->req('POST', '/get-started/onboarding', [WebController::class, 'getStarted']);  
-$router->req('GET', '/search-engine', [WebController::class, 'searchEngine']);  
-$router->req('GET', '/users/hustlers', [HustlersController::class, 'getActiveHustlersByPrimarySkill']);  
+$router->req('GET', '/get-started', [WebController::class, 'getStarted'], [AuthMiddleware::class]);  
+$router->req('POST', '/get-started/onboarding', [WebController::class, 'getStarted'], [AuthMiddleware::class]);  
+$router->req('GET', '/search-engine', [WebController::class, 'searchEngine'], [AuthMiddleware::class]);  
+$router->req('GET', '/users/hustlers', [HustlersController::class, 'getActiveHustlersByPrimarySkill'], [AuthMiddleware::class]);  
