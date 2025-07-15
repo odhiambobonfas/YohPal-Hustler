@@ -134,17 +134,13 @@ body {
 }
 
 .hero-section {
-  display: flex;
-  align-items: center;
   padding: 80px 50px;
   position: relative;
   background-color: #fff;
   z-index: 1;
-  justify-content: space-between;
 }
 
 .hero-content {
-  flex: 1;
   color: #1a202c;
   z-index: 2;
   max-width: 50%;
@@ -175,7 +171,6 @@ body {
 }
 
 .hero-visual {
-  flex: 1;
   position: relative;
   display: flex;
   justify-content: center;
@@ -193,7 +188,6 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
 }
 
 .profile-cad {
@@ -255,7 +249,6 @@ body {
   color: #feba02;
   background-color: #fff6db !important;
   border-radius: 50px;
-
   vertical-align: middle;
   margin-right: 5px;
 }
@@ -491,38 +484,43 @@ body {
   height: 60px;
 }
 
-.category-grid {
-  display: flex;
-  justify-content: space-around;
-  margin: 40px 0;
-  flex-wrap: wrap;
-  gap: 20px;
+.scroll-wrapper {
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    white-space: nowrap; /* Ensures job-type cards stay in a single row */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+.scroll-wrapper::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome/Safari */
+}
+
+.row.g-4 {
+    display: flex;
+    flex-wrap: nowrap; /* Prevent wrapping of job-type cards */
 }
 
 .job-type {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  border-left: none;
-  border-top: none;
-  border-bottom: 1px solid #ccc;
-  border-right: 1px solid #ccc;
-  width: 200px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+    display: inline-block; /* Ensure cards align horizontally */
+    width: 200px; /* Adjust based on your design */
+    margin-right: 16px; /* Matches Bootstrap's g-4 (gutter) */
 }
 
-.job-type::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3) !important;
-  pointer-events: none;
-  z-index: -1;
+.fa-angle-left,
+.fa-angle-right {
+    cursor: pointer;
+    font-size: 24px;
+    transition: opacity 0.3s;
+}
+
+.fa-angle-left:hover,
+.fa-angle-right:hover {
+    opacity: 0.7;
+}
+
+.decorative-elements {
+    margin: 0 10px;
 }
 
 .job-icon {
@@ -539,28 +537,24 @@ body {
 
 .job-icon.ui-ux::before {
   content: "\f5fc";
-  /* fa-object-group for UI/UX Design */
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
 }
 
 .job-icon.web-design::before {
   content: "\f1fc";
-  /* fa-paint-brush for Web Design */
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
 }
 
 .job-icon.web-dev::before {
   content: "\f121";
-  /* fa-code for Web Development */
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
 }
 
 .job-icon.digital-marketing::before {
   content: "\f0a1";
-  /* fa-bullhorn for Digital Marketing */
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
 }
@@ -576,9 +570,6 @@ body {
 }
 
 .user-info-area {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin: 80px 0;
   padding: 0 50px;
 }
@@ -786,6 +777,7 @@ body {
   color: black;
   font-style: italic;
 }
+
 .quote-text p {
   margin-top: -4px;
 }
@@ -808,14 +800,8 @@ body {
 }
 
 .job-path-area {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin: 40px 0;
-  background: none;
-  border-radius: 20px;
   padding: 40px;
-  text-align: left;
 }
 
 .user-card,
@@ -893,6 +879,7 @@ body {
   border: 1px solid #f00000;
   cursor: pointer;
   margin-top: 10px;
+  width: auto;
 }
 
 .path-info button:hover {
@@ -900,7 +887,6 @@ body {
   box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
 }
 
-/* New styles for the second profile container */
 .job-profile-container {
   position: relative;
   width: 350px;
@@ -1037,6 +1023,7 @@ body {
   stroke-linecap: round;
   transition: stroke-dasharray 0.3s;
 }
+
 .interractions {
   display: flex;
   flex-direction: row;
@@ -1085,6 +1072,7 @@ body {
   text-align: left;
   position: relative;
 }
+
 .review-card img {
   width: 70px;
   border-radius: 50px;
@@ -1255,8 +1243,6 @@ body {
 }
 
 .bottom-section {
-  display: flex;
-  justify-content: space-around;
   padding: 40px 0;
   background-color: #fff;
   border-top: 1px solid #e5e7eb;
@@ -1280,6 +1266,7 @@ body {
   padding-bottom: 4px;
   justify-content: center;
 }
+
 .deff .icon {
   background-color: #f00000 !important;
   color: white;
@@ -1289,7 +1276,7 @@ body {
   width: 20px;
 }
 
-.deff i :hover {
+.deff i:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
 }
@@ -1349,6 +1336,7 @@ button:hover {
   height: 16px;
   width: 16px;
 }
+
 .social-media .icon:nth-child(2) {
   font-size: 14px;
   background-color: #0d0d0e;
@@ -1362,7 +1350,6 @@ button:hover {
   width: 16px;
 }
 
-/* Decorative Elements */
 .decoration-line {
   position: absolute;
   z-index: 1;
@@ -1479,100 +1466,29 @@ button:hover {
   border-radius: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 @media (max-width: 1024px) {
-  .hero-section {
-    flex-direction: column;
-    padding: 60px 30px;
-    text-align: center;
-  }
-
-  .hero-content {
-    max-width: 100%;
-    margin-bottom: 40px;
-  }
-
-  .hero-title {
-    font-size: 2.5rem;
-  }
-
-  .category-grid {
-    justify-content: center;
-  }
-  .main-wrapper {
-    margin-top: 30px !important;
-    padding: 20px !important;
-  }
-  .decoration-line.feedback-top-left {
-    margin-left: 30px !important;
-    margin-top: -16px !important;
-  }
-  .decoration-circle {
-    margin-left: 36px !important;
-  }
-  .action-zone .input {
-    display: flex;
-    flex-direction: row;
-    padding-right: 4px !important;
-    align-items: center;
-    text-align: center;
-  }
-  .action-zone .input button {
-    height: 35px !important;
-    width: 30%;
-    font-size: 10px !important;
-    padding: 5px 10px;
-  }
-  .action-zone .input input {
-    margin-left: 10px !important;
-  }
-  .action-zone .input input::placeholder {
-    font-size: 10px;
-    justify-self: center !important;
-  }
-
-  .user-info-area,
-  .job-path-area {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .profile-container,
-  .job-profile-container,
-  .path-info {
-    margin-bottom: 40px;
-    width: 100%;
-  }
-
-  .path-info {
-    width: 100%;
-    text-align: center;
-  }
-
-  .action-zone {
-    width: 100%;
-    padding: 30px;
-  }
-
-  .input {
-    margin: 0 auto;
-  }
-}
-
-@media (max-width: 768px) {
   .navbar {
+    position: fixed;
     padding: 15px 20px;
     display: flex;
+    width: 100% !important;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
   }
+  .logo .name {
+    margin-left: -240px !important;
+    font-size: 30px !important;
+  }
+
   .logo img {
     justify-self: left !important;
     margin-right: 260px;
-    width: 20px !important;
-    height: 20px !important;
+    width: 70px !important;
+    height: 70px !important;
   }
+
   .interractions {
     display: flex;
     flex-direction: row;
@@ -1586,10 +1502,138 @@ button:hover {
   .nav-links {
     display: flex;
     flex-direction: row !important;
+    font-size: 20px !important;
+    margin-top: 14px !important;
+    margin-right: 120px !important;
+    gap: 20px !important;
+  }
+
+  .login {
+    font-size: 24px !important;
+    width: 90px !important;
+    text-align: center !important;
+    height: 44px !important;
+    margin-top: -6px !important;
+  }
+  .main{
+    width: 100% !important;
+  }
+  .hero-section {
+    flex-direction: column;
+    padding: 60px 30px;
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 100%;
+    margin-top: 100px;
+  }
+  .hero-visual{
+    margin-top: 80px !important;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .category-grid {
+    justify-content: center;
+  }
+
+  .main-wrapper {
+    margin-top: 30px !important;
+    padding: 20px !important;
+  }
+
+  .decoration-line.feedback-top-left {
+    margin-left: 30px !important;
+    margin-top: -16px !important;
+  }
+
+  .decoration-circle {
+    margin-left: 36px !important;
+  }
+
+  .action-zone .input {
+    display: flex;
+    flex-direction: row;
+    padding-right: 4px !important;
+    align-items: center;
+    text-align: center;
+  }
+
+  .action-zone .input button {
+    height: 35px !important;
+    width: 30%;
+    font-size: 10px !important;
+    padding: 5px 10px;
+  }
+
+  .action-zone .input input {
+    margin-left: 10px !important;
+  }
+
+  .action-zone .input input::placeholder {
+    font-size: 10px;
+    justify-self: center !important;
+  }
+
+  .action-zone {
+    width: 100%;
+    padding: 30px;
+  }
+
+  .input {
+    margin: 0 auto;
+  }
+  .row2{
+    width: 100% !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    position: fixed;
+    width: 100% !important;
+    padding: 15px 20px;
+    display: flex;
+    gap: 10px !important;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo img {
+    justify-self: left !important;
+    margin-right: 260px;
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .interractions {
+    display: flex;
+    flex-direction: row;
+    align-items: center!important;
+    justify-content: center!important;
+    text-align: center!important;
+    gap: 10px !important;
+    margin-top: -35px!important;
+    margin-left: 14px !important;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: row !important;
     font-size: 9px !important;
     margin-right: 60px !important;
     gap: 8px !important;
   }
+
   .login {
     font-size: 10px;
     width: 50px !important;
@@ -1597,27 +1641,32 @@ button:hover {
     height: 28px !important;
     margin-top: -15px;
   }
+
   .cont {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
   }
+
   .btn-primary {
     font-size: 10px !important;
     width: 110px !important;
     height: 35px;
   }
+
   .scroll-down {
     font-size: 15px;
     margin-top: -10px;
     align-items: center;
     justify-content: center;
   }
+
   .arrow-circle {
     width: 20px !important;
     height: 20px !important;
   }
+
   .arrow {
     width: 6px !important;
     height: 6px !important;
@@ -1629,75 +1678,94 @@ button:hover {
     padding: 40px 20px !important;
     height: 48vh !important;
   }
+
   .top-section {
     padding: 20px;
   }
+
   .top-section h1 {
     font-size: 1rem;
   }
+
   .decorative-elements {
     width: 50px !important;
     height: 50px !important;
     font-size: 14px !important;
   }
+
   .job-type {
     height: 130px !important;
   }
+
   .job-type h3 {
     font-size: 12px;
   }
+
   .job-type p {
     font-size: 10px;
   }
+
   .job-type .job-icon {
     font-size: 18px !important;
   }
+
   .user-info-text h3 {
     font-size: 24px !important;
     font-weight: bold;
   }
+
   .user-info-text p {
     font-size: 14px;
   }
+
   .path-info h3 {
     font-size: 24px !important;
     font-weight: bold;
   }
+
   .path-info p {
     font-size: 14px;
   }
+
   .path-info button {
     font-size: 10px !important;
     width: 110px !important;
     height: 35px;
   }
+
   .feedback-area {
     align-items: center;
     justify-content: center;
     text-align: center;
   }
+
   .feedback-area h2 {
     font-size: 20px;
     font-weight: bold;
   }
+
   .feedback-area .review-card p {
     font-size: 10px !important;
   }
+
   .feedback-area button {
     font-size: 10px;
     width: 110px;
     height: 35px;
   }
+
   .user-info-area,
   .job-path-area {
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
+
   .action-zone h3 {
     font-size: 20px !important;
     font-weight: bold;
   }
+
   .action-zone p {
     font-size: 14px;
   }
@@ -1721,6 +1789,7 @@ button:hover {
     position: relative;
     top: auto;
   }
+
   .user-info-area,
   .job-path-area {
     flex-direction: column;
@@ -1759,12 +1828,14 @@ button:hover {
   .job-type {
     width: 160px;
   }
+
   .action-zone .input {
     align-items: center !important;
     justify-content: center !important;
     text-align: center !important;
     height: 32px !important;
   }
+
   .action-zone .input button {
     height: 35px !important;
     width: 30%;
@@ -1772,19 +1843,24 @@ button:hover {
     font-size: 8px !important;
     padding: 5px 10px;
   }
-  .footer-block{
-    display:block;
+
+  .footer-block {
+    display: block;
     padding: 2px !important;
   }
+
   .footer-block h4 {
     font-size: 16px !important;
   }
+
   .footer-block p {
     font-size: 10px;
   }
+
   .footer-block .social-media i {
     font-size: 14px;
   }
+
   .footer-block .social-media a {
     width: 24px;
     height: 24px;
@@ -1817,6 +1893,48 @@ button:hover {
 }
 
 @media (max-width: 480px) {
+  .navbar {
+    position: fixed;
+    width: 100% !important;
+    display: flex;
+    flex-direction: row;
+    gap: 10px !important;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo img {
+    justify-self: left !important;
+    margin-right: 260px;
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .interractions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px !important;
+    margin-left: 10px !important;
+    margin-top: -15px;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: row !important;
+    font-size: 8px !important;
+    margin-right: 10px !important;
+    gap: 6px !important;
+  }
+
+  .login {
+    font-size: 10px !important;
+    width: 50px !important;
+    text-align: center !important;
+    height: 28px !important;
+    margin-top: -15px;
+  }
   .hero-title {
     font-size: 1.8rem;
   }

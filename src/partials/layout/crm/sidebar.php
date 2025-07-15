@@ -1,18 +1,17 @@
 <!-- Sidebar sits in here -->
-
 <!-- Sidebar -->
 <div class="sidebar" role="tablist">
     <!-- Core Navigation -->
     <div class="sidebar-section core-navigation">
         <h1>Core</h1>
-        <a href="/dashboard" class="sidebar-item d-flex align-items-center gap-2 text-decoration-none active">
+        <a href="/dashboard-ui" class="sidebar-item d-flex align-items-center gap-2 text-decoration-none active">
             <i class="fa-brands fa-windows"></i> Dashboard
         </a>
         <a href="/profile" class="sidebar-item d-flex align-items-center gap-2 text-decoration-none">
             <i class="fas fa-th-large icon"></i> Profile
         </a>
     </div>
-    
+
     <!-- Career Management -->
     <div class="sidebar-section career-management">
         <h3>Career</h3>
@@ -62,3 +61,5 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="<?= asset_url('js/app/crm/auth.js') ?>"></script>
+<script type="text/javascript" src="<?= asset_url('js/app/crm/dashboard.js') ?>"></script>

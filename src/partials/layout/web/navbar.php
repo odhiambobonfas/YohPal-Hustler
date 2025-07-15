@@ -1,7 +1,7 @@
 <nav class="navbar">
     <div class="logo">
         <img src="https://yohpals.com/img/favicon.png" alt="YohPal Logo">
-        <span class="d-none d-md-block"><?= env('APP_NAME') ?></span>
+        <span class=" name d-none d-md-block"><?= env('APP_NAME') ?></span>
     </div>
     <div class="hamburger">
         <span></span>
