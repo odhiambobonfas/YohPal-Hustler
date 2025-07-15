@@ -25,6 +25,8 @@ body {
 }
 
 .navbar {
+  position: fixed;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -33,7 +35,6 @@ body {
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-  position: relative;
   z-index: 1000;
 }
 
@@ -119,6 +120,7 @@ body {
 
 .btn-primary:hover {
   transform: translateY(-2px);
+  background: #555454;
   box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
 }
 
@@ -144,6 +146,7 @@ body {
   color: #1a202c;
   z-index: 2;
   max-width: 50%;
+  margin-top: 30px;
 }
 
 .hero-title {
@@ -174,6 +177,7 @@ body {
   position: relative;
   display: flex;
   justify-content: center;
+  margin-top: -50px;
   align-items: center;
 }
 
@@ -1466,6 +1470,14 @@ button:hover {
   border-radius: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+ .row2{
+    width: 100% !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px !important;
+  }
 
 @media (max-width: 1024px) {
   .navbar {
@@ -1597,16 +1609,15 @@ button:hover {
 }
 
 @media (max-width: 768px) {
-  .navbar {
+ .navbar {
     position: fixed;
     width: 100% !important;
-    padding: 15px 20px;
     display: flex;
-    gap: 10px !important;
     flex-direction: row;
-    justify-content: space-between;
+    gap: 10px !important;
     align-items: center;
   }
+
 
   .logo img {
     justify-self: left !important;
@@ -1622,7 +1633,7 @@ button:hover {
     justify-content: center!important;
     text-align: center!important;
     gap: 10px !important;
-    margin-top: -35px!important;
+    margin-top: -35px;
     margin-left: 14px !important;
   }
 
@@ -1679,18 +1690,23 @@ button:hover {
     height: 48vh !important;
   }
 
-  .top-section {
-    padding: 20px;
+  .top-section h1 {
+    font-size: 0.6rem;
   }
 
-  .top-section h1 {
-    font-size: 1rem;
+  .top-section .icon {
+    font-size: 0.5rem;
+  }
+
+  .top-section .decoration-elements {
+    margin-left: 90px !important;
+    margin-top: -40px !important;
   }
 
   .decorative-elements {
-    width: 50px !important;
-    height: 50px !important;
-    font-size: 14px !important;
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 10px !important;
   }
 
   .job-type {
@@ -1895,7 +1911,7 @@ button:hover {
 @media (max-width: 480px) {
   .navbar {
     position: fixed;
-    width: 100% !important;
+    width: 80% !important;
     display: flex;
     flex-direction: row;
     gap: 10px !important;
@@ -1906,8 +1922,8 @@ button:hover {
   .logo img {
     justify-self: left !important;
     margin-right: 260px;
-    width: 20px !important;
-    height: 20px !important;
+    width: 28px !important;
+    height: 28px !important;
   }
 
   .interractions {
@@ -1916,8 +1932,8 @@ button:hover {
     align-items: center;
     justify-content: center;
     gap: 8px !important;
-    margin-left: 10px !important;
-    margin-top: -15px;
+    margin-left: 80px !important;
+    margin-top: -40px;
   }
 
   .nav-links {
@@ -1933,8 +1949,10 @@ button:hover {
     width: 50px !important;
     text-align: center !important;
     height: 28px !important;
-    margin-top: -15px;
+    margin-left: 14px;
+    margin-top: -20px;
   }
+ 
   .hero-title {
     font-size: 1.8rem;
   }

@@ -73,10 +73,10 @@
                     <div class="col-md-6">
                         <h1>Explore <br>by category</h1>
                     </div>
-                    <div class="col-md-6 left justify-content-md-end">
-                        <i class="fas fa-angle-left"></i>
+                    <div class="decoration-elements col-md-6 left justify-content-md-end ms-6">
+                        <i class="fas fa-angle-left icon"></i>
                         <div class="decorative-elements">Drag</div>
-                        <i class="fas fa-angle-right"></i>
+                        <i class="fas fa-angle-right icon"></i>
                     </div>
                 </div>
             </div>
