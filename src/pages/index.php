@@ -70,10 +70,10 @@
         <section class="top-section">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-md-6">
+                    <div class="col-md-6 explore">
                         <h1>Explore <br>by category</h1>
                     </div>
-                    <div class="decoration-elements col-md-6 left justify-content-md-end ms-6">
+                    <div class="decoration-elements col-md-4 left justify-content-md-end ms-6">
                         <i class="fas fa-angle-left icon"></i>
                         <div class="decorative-elements">Drag</div>
                         <i class="fas fa-angle-right icon"></i>
@@ -85,49 +85,49 @@
             <div class="container">
                 <div class="scroll-wrapper">
                     <div class="row g-4">
-                        <div class="col-6 col-md-3">
+                        <div class="job col-6 col-md-3">
                             <div class="job-type">
                                 <span class="job-icon ui-ux"></span>
                                 <h3>UI/UX Design</h3>
                                 <p>215 Vacancy</p>
                             </div>
                         </div>
-                        <div class="col-6 col-md-3">
+                        <div class="job col-6 col-md-3">
                             <div class="job-type">
                                 <span class="job-icon web-design"></span>
                                 <h3>Web Design</h3>
                                 <p>220 Vacancy</p>
                             </div>
                         </div>
-                        <div class="col-6 col-md-3">
+                        <div class="job col-6 col-md-3">
                             <div class="job-type">
                                 <span class="job-icon web-dev"></span>
                                 <h3>Web Development</h3>
                                 <p>625 Vacancy</p>
                             </div>
                         </div>
-                        <div class="col-6 col-md-3">
+                        <div class="job col-6 col-md-3">
                             <div class="job-type">
                                 <span class="job-icon digital-marketing"></span>
                                 <h3>Digital Marketing</h3>
                                 <p>780 Vacancy</p>
                             </div>
                         </div>
-                        <div class="col-6 col-md-3">
+                        <div class="job col-6 col-md-3">
                             <div class="job-type">
                                 <span class="job-icon web-design"></span>
                                 <h3>Web Design</h3>
                                 <p>220 Vacancy</p>
                             </div>
                         </div>
-                        <div class="col-6 col-md-3">
+                        <div class="job col-6 col-md-3">
                             <div class="job-type">
                                 <span class="job-icon web-dev"></span>
                                 <h3>Web Development</h3>
                                 <p>625 Vacancy</p>
                             </div>
                         </div>
-                        <div class="col-6 col-md-3">
+                        <div class="job col-6 col-md-3">
                             <div class="job-type">
                                 <span class="job-icon digital-marketing"></span>
                                 <h3>Digital Marketing</h3>
@@ -236,8 +236,7 @@
         <section class="action-zone">
             <div class="container">
                 <h3>Job for me</h3>
-                <p>We are providing the easiest way to find your dream job. It's easy, flexible <br>and faster. Find your dream and suitable job with us and build your career</p>
-                <div class="input mx-auto">
+                <p>We are providing the easiest way to find your dream job.</p>
                     <input type="email" placeholder="Enter your email" />
                     <button>Send Link</button>
                 </div>

@@ -1,7 +1,5 @@
-// landing.js
-
-// Hamburger Menu Toggle
 document.addEventListener('DOMContentLoaded', () => {
+    // Hamburger Menu Toggle
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
 
@@ -11,50 +9,89 @@ document.addEventListener('DOMContentLoaded', () => {
             navLinks.classList.toggle('active');
         });
     }
-});
 
-// Smooth Scroll for Scroll Down Link
-document.querySelector('.scroll-down').addEventListener('click', (e) => {
-    e.preventDefault();
-    const targetSection = document.querySelector('.top-section');
-    if (targetSection) {
-        targetSection.scrollIntoView({ behavior: 'smooth' });
+    // Smooth Scroll and Active Class for Navbar Links
+    const navLinksItems = document.querySelectorAll('.nav-links a');
+    navLinksItems.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            // Remove active class from all links
+            navLinksItems.forEach(item => item.classList.remove('active'));
+            // Add active class to clicked link
+            link.classList.add('active');
+
+            const linkText = link.textContent.trim().toLowerCase();
+            let targetSection;
+
+            switch (linkText) {
+                case 'home':
+                    targetSection = document.querySelector('.hero-section');
+                    break;
+                case 'features':
+                    targetSection = document.querySelector('.top-section');
+                    break;
+                case 'post a job':
+                    targetSection = document.querySelector('.user-info-area');
+                    break;
+                case 'jobs':
+                    targetSection = document.querySelector('.feedback-area');
+                    break;
+                default:
+                    return;
+            }
+
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Smooth Scroll for Scroll Down Link
+    document.querySelector('.scroll-down').addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetSection = document.querySelector('.top-section');
+        if (targetSection) {
+            targetSection.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    });
+
+    // Progress Ring Animation (Dynamic Update Example)
+    function updateProgressRing(percentage) {
+        const circle = document.querySelector('.progress-ring__circle-fg');
+        const text = document.querySelector('.progress-ring__text');
+        if (circle && text) {
+            const radius = circle.r.baseVal.value;
+            const circumference = 2 * Math.PI * radius;
+            const offset = circumference - (percentage / 100) * circumference;
+            circle.style.strokeDasharray = `${circumference} ${circumference}`;
+            circle.style.strokeDashoffset = offset;
+            text.textContent = `${percentage}%`;
+        }
     }
-});
 
-// Progress Ring Animation (Dynamic Update Example)
-function updateProgressRing(percentage) {
-    const circle = document.querySelector('.progress-ring__circle-fg');
-    const text = document.querySelector('.progress-ring__text');
-    if (circle && text) {
-        const radius = circle.r.baseVal.value;
-        const circumference = 2 * Math.PI * radius;
-        const offset = circumference - (percentage / 100) * circumference;
-        circle.style.strokeDasharray = `${circumference} ${circumference}`;
-        circle.style.strokeDashoffset = offset;
-        text.textContent = `${percentage}%`;
-    }
-}
+    // Example: Update progress ring to 75% on load
+    document.addEventListener('DOMContentLoaded', () => {
+        updateProgressRing(75); // Matches the 75% in the HTML
+    });
 
-// Example: Update progress ring to 75% on load
-document.addEventListener('DOMContentLoaded', () => {
-    updateProgressRing(75); // Matches the 75% in the HTML
-});
+    // Optional: Form Submission Handling for Action Zone
+    document.querySelector('.action-zone button').addEventListener('click', (e) => {
+        e.preventDefault();
+        const emailInput = document.querySelector('.action-zone input');
+        if (emailInput && emailInput.value) {
+            alert(`Email submitted: ${emailInput.value}`);
+            emailInput.value = ''; // Clear input after submission
+        } else {
+            alert('Please enter a valid email address.');
+        }
+    });
 
-// Optional: Form Submission Handling for Action Zone
-document.querySelector('.action-zone button').addEventListener('click', (e) => {
-    e.preventDefault();
-    const emailInput = document.querySelector('.action-zone input');
-    if (emailInput && emailInput.value) {
-        alert(`Email submitted: ${emailInput.value}`);
-        emailInput.value = ''; // Clear input after submission
-    } else {
-        alert('Please enter a valid email address.');
-    }
-});
-
-// Category Grid Horizontal Scrolling with Drag
-document.addEventListener('DOMContentLoaded', () => {
+    // Category Grid Horizontal Scrolling with Drag
     const categoryGrid = document.querySelector('.scroll-wrapper');
     const leftArrow = document.querySelector('.fa-angle-left');
     const rightArrow = document.querySelector('.fa-angle-right');
@@ -63,12 +100,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (categoryGrid && leftArrow && rightArrow && dragIcon) {
         // Arrow click handlers
         leftArrow.addEventListener('click', () => {
-            categoryGrid.scrollBy({ left: -200, behavior: 'smooth' });
+            categoryGrid.scrollBy({
+                left: -200,
+                behavior: 'smooth'
+            });
             updateDragIconState();
         });
 
         rightArrow.addEventListener('click', () => {
-            categoryGrid.scrollBy({ left: 200, behavior: 'smooth' });
+            categoryGrid.scrollBy({
+                left: 200,
+                behavior: 'smooth'
+            });
             updateDragIconState();
         });
 
