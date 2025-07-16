@@ -37,17 +37,28 @@ class WebController
      * @param YPRequest $request The request instance containing the custom response method.
      * @return mixed A JSON-formatted response instigating whether it is a success or failure OR a html view render.
      */
-    public function getStarted(YPRequest $request): mixed {
+    public function getStarted(YPRequest $request): mixed
+    {
         try {
-            if (isAjaxRequest()) { 
+            if (isAjaxRequest()) {
                 $clientRole = $request->req('clientRole');
-                $hustlerRole = $request->req('hustlerRole'); 
-                Auth::create('role', ['role' => $clientRole ?? $hustlerRole]); 
+                $hustlerRole = $request->req('hustlerRole');
+                Auth::create('role', ['role' => $clientRole ?? $hustlerRole]);
                 $route = '/search-engine';
                 return $request->res(['status' => 'success', 'route' => $route]);
             }
 
-            return view('web/get-started');
+            return view('crm/dashboard/activities-ui');
+        } catch (YPException $th) {
+            YPLogger::error($th);
+            return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
+        }
+    }
+    public function clientActivities(YPRequest $request): mixed
+    {
+        try {
+            $authRole = !empty(Auth::get('role')) && isset(Auth::get('role')->role) ? strtolower(Auth::get('role')->role) : null;
+            return view('crm/dashboard/activities-ui', compact('authRole'));
         } catch (YPException $th) {
             YPLogger::error($th);
             return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
@@ -61,8 +72,9 @@ class WebController
      * @param YPRequest $request The request instance containing the custom response method.
      * @return mixed A JSON-formatted response instigating whether it is a success or failure OR a html view render.
      */
-    public function searchEngine(YPRequest $request): mixed {
-        try { 
+    public function searchEngine(YPRequest $request): mixed
+    {
+        try {
             $authRole = !empty(Auth::get('role')) && isset(Auth::get('role')->role) ? strtolower(Auth::get('role')->role) : null;
             return view('web/search-engine', compact('authRole'));
         } catch (YPException $th) {
@@ -70,5 +82,4 @@ class WebController
             return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
         }
     }
-    
 }

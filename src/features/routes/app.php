@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\Web\ClientController;
 use App\Controllers\Web\ContactsController;
 use App\Controllers\Web\DashboardController;
 use App\Controllers\Web\HustlersController;
@@ -52,4 +53,7 @@ $router->req('POST', '/account/activate-account', [OnboardingController::class, 
 $router->req('GET', '/get-started', [WebController::class, 'getStarted'], [AuthMiddleware::class]);  
 $router->req('POST', '/get-started/onboarding', [WebController::class, 'getStarted'], [AuthMiddleware::class]);  
 $router->req('GET', '/search-engine', [WebController::class, 'searchEngine'], [AuthMiddleware::class]);  
-$router->req('GET', '/users/hustlers', [HustlersController::class, 'getActiveHustlersByPrimarySkill'], [AuthMiddleware::class]);  
+$router->req('GET', '/users/hustlers', [HustlersController::class, 'getActiveHustlersByPrimarySkill'], [AuthMiddleware::class]);
+
+// Client related routes
+$router->req("GET", "/crm/client-activities", [ClientController::class, "clientActivities"], [AuthMiddleware::class]);

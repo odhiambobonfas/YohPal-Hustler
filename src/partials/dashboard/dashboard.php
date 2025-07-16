@@ -1,297 +1,297 @@
-<!-- Header -->
-<div class="d-flex justify-content-between align-items-center rounded p-2 mb-3 m-2">
-    <h4 class="m-0">
-        <span id="sidebarToggleBtn" class="me-2"><i class="fas fa-bars fw-bold"></i></span>
-        Dashboard
-    </h4>
-    <div class="d-flex justify-content-between align-items-center">
-        <a href="/dashboard" class="text-dark me-2">
-            Home
-        </a>
-        <span><i class="bi bi-arrow-right me-2"></i></span>
-        <span class="text-dark">Dashboard</span>
-    </div>
-</div>
+ <div class="stats-grid">
+     <div class="stat-card pending">
+         <svg class="progress-ring">
+             <circle class="progress-ring-bg" cx="40" cy="40" r="36"></circle>
+             <circle class="progress-ring-fill" cx="40" cy="40" r="36" stroke-dasharray="150 200"></circle>
+         </svg>
+         <div class="stat-number">10</div>
+         <div class="stat-label">Rating</div>
+     </div>
+     <div class="stat-card active">
+         <svg class="progress-ring">
+             <circle class="progress-ring-bg" cx="40" cy="40" r="36"></circle>
+             <circle class="progress-ring-fill" cx="40" cy="40" r="36" stroke-dasharray="80 200"></circle>
+         </svg>
+         <div class="stat-number">1</div>
+         <div class="stat-label">Badge</div>
+     </div>
+     <div class="stat-card dormant">
+         <svg class="progress-ring">
+             <circle class="progress-ring-bg" cx="40" cy="40" r="36"></circle>
+             <circle class="progress-ring-fill" cx="40" cy="40" r="36" stroke-dasharray="70 200"></circle>
+         </svg>
+         <div class="stat-number">2</div>
+         <div class="stat-label">Bio</div>
+     </div>
+     <div class="stat-card deleted">
+         <svg class="progress-ring">
+             <circle class="progress-ring-bg" cx="40" cy="40" r="36"></circle>
+             <circle class="progress-ring-fill" cx="40" cy="40" r="36" stroke-dasharray="60 200"></circle>
+         </svg>
+         <div class="stat-number">3</div>
+         <div class="stat-label">Completed</div>
+     </div>
+ </div>
 
-<!-- Stats Section -->
-<div class="card bg-white border-0 rounded mb-3">
-    <div class="d-flex justify-content-around p-5 gap-3 users-count-stats">
-        <?php
-        foreach ($stats as $stat): ?>
-            <div class="stat-card <?= $stat['class'] ?>">
-                <svg class="progress-ring">
-                    <circle class="progress-ring-bg" cx="40" cy="40" r="36"></circle>
-                    <circle class="progress-ring-fill" cx="40" cy="40" r="36" stroke-dasharray="<?= $stat['dash'] ?> 200"></circle>
-                </svg>
-                <div class="stat-number <?= $stat['slug'] ?>_count"><?= $stat['value'] ?></div>
-                <div class="stat-label"><?= $stat['label'] ?></div>
-            </div>
-        <?php endforeach; ?>
-    </div>
-</div>
-<!-- Stats Section -->
+ <!-- Chart and Info Cards -->
+ <div class="content-grid">
+     <div class="chart-card">
+         <div class="chart-header">
+             <h3 class="chart-title">Job status Details</h3>
+         </div>
+         <div class="chart-container">
+             <div class="chart-axis-y">
+                 <span>100</span>
+                 <span>80</span>
+                 <span>60</span>
+                 <span>40</span>
+                 <span>20</span>
+                 <span>0</span>
+             </div>
+             <div class="chart-bars">
+                 <div class="chart-bar" style="height: 60%;"
+                     data-tooltip="Monday, 02.06.2025, Earnings: $12000"></div>
+                 <div class="chart-bar" style="height: 40%;"
+                     data-tooltip="Tuesday, 03.06.2025, Earnings: $8000"></div>
+                 <div class="chart-bar" style="height: 80%;"
+                     data-tooltip="Wednesday, 04.06.2025, Earnings: $16000"></div>
+                 <div class="chart-bar" style="height: 30%;"
+                     data-tooltip="Thursday, 05.06.2025, Earnings: $6000"></div>
+                 <div class="chart-bar" style="height: 70%;"
+                     data-tooltip="Friday, 06.06.2025, Earnings: $14000"></div>
+                 <div class="chart-bar" style="height: 50%;"
+                     data-tooltip="Saturday, 07.06.2025, Earnings: $10000"></div>
+                 <div class="chart-bar" style="height: 90%;"
+                     data-tooltip="Sunday, 08.06.2025, Earnings: $18000"></div>
+                 <div class="chart-bar" style="height: 35%;"
+                     data-tooltip="Monday, 09.06.2025, Earnings: $7000"></div>
+                 <div class="chart-bar" style="height: 65%;"
+                     data-tooltip="Tuesday, 10.06.2025, Earnings: $13000"></div>
+                 <div class="chart-bar" style="height: 45%;"
+                     data-tooltip="Wednesday, 11.06.2025, Earnings: $9000"></div>
+                 <div class="chart-bar" style="height: 75%;"
+                     data-tooltip="Thursday, 12.06.2025, Earnings: $15000"></div>
+                 <div class="chart-bar" style="height: 55%;"
+                     data-tooltip="Friday, 13.06.2025, Earnings: $11000"></div>
+                 <div class="chart-bar" style="height: 85%;"
+                     data-tooltip="Saturday, 14.06.2025, Earnings: $17000"></div>
+                 <div class="chart-bar" style="height: 42%;"
+                     data-tooltip="Sunday, 15.06.2025, Earnings: $8400"></div>
+                 <div class="chart-bar" style="height: 68%;"
+                     data-tooltip="Monday, 16.06.2025, Earnings: $13600"></div>
+                 <div class="chart-bar" style="height: 53%;"
+                     data-tooltip="Tuesday, 17.06.2025, Earnings: $10600"></div>
+                 <div class="chart-bar" style="height: 77%;"
+                     data-tooltip="Wednesday, 18.06.2025, Earnings: $15400"></div>
+                 <div class="chart-bar" style="height: 33%;"
+                     data-tooltip="Thursday, 19.06.2025, Earnings: $6600"></div>
+                 <div class="chart-bar" style="height: 88%;"
+                     data-tooltip="Friday, 20.06.2025, Earnings: $17600"></div>
+                 <div class="chart-bar" style="height: 47%;"
+                     data-tooltip="Saturday, 21.06.2025, Earnings: $9400"></div>
+                 <div class="chart-bar" style="height: 62%;"
+                     data-tooltip="Sunday, 22.06.2025, Earnings: $12400"></div>
+                 <div class="chart-bar" style="height: 71%;"
+                     data-tooltip="Monday, 23.06.2025, Earnings: $14200"></div>
+                 <div class="chart-bar" style="height: 39%;"
+                     data-tooltip="Tuesday, 24.06.2025, Earnings: $7800"></div>
+                 <div class="chart-bar" style="height: 84%;"
+                     data-tooltip="Wednesday, 25.06.2025, Earnings: $16800"></div>
+                 <div class="chart-bar" style="height: 56%;"
+                     data-tooltip="Thursday, 26.06.2025, Earnings: $11200"></div>
+                 <div class="chart-bar" style="height: 73%;"
+                     data-tooltip="Friday, 27.06.2025, Earnings: $14600"></div>
+                 <div class="chart-bar" style="height: 41%;"
+                     data-tooltip="Saturday, 28.06.2025, Earnings: $8200"></div>
+                 <div class="chart-bar" style="height: 69%;"
+                     data-tooltip="Sunday, 29.06.2025, Earnings: $13800"></div>
+                 <div class="chart-bar" style="height: 52%;"
+                     data-tooltip="Monday, 30.06.2025, Earnings: $10400"></div>
+             </div>
+             <div class="chart-axis-x">
+                 <span>M</span>
+                 <span>T</span>
+                 <span>W</span>
+                 <span>T</span>
+                 <span>F</span>
+                 <span>S</span>
+                 <span>S</span>
+                 <span>M</span>
+                 <span>T</span>
+                 <span>W</span>
+                 <span>T</span>
+                 <span>F</span>
+                 <span>S</span>
+                 <span>S</span>
+                 <span>M</span>
+                 <span>T</span>
+                 <span>W</span>
+                 <span>T</span>
+                 <span>F</span>
+                 <span>S</span>
+                 <span>S</span>
+                 <span>M</span>
+                 <span>T</span>
+                 <span>W</span>
+                 <span>T</span>
+                 <span>F</span>
+                 <span>S</span>
+                 <span>S</span>
+                 <span>M</span>
+             </div>
+             <div class="chart-labels">
+                 <span>Applications / Day</span>
+                 <span>Total - Out of 3,247 Views</span>
+             </div>
+             <div class="side-stats">
+                 <div class="side-stat">
+                     <i class="fas fa-clipboard-list" style="color: #fdcb6e;"></i>
+                     <div class="stats">
+                         <div class="number" style="color: #fdcb6e;">3,845</div>
+                         <div class="label">Total Posts</div>
+                     </div>
+                 </div>
+                 <div class="side-stat">
+                     <i class="fas fa-users" style="color: #00b894;"></i>
+                     <div class="stat">
+                         <div class="number" style="color: #00b894;">1,520</div>
+                         <div class="label">New Monthly</div>
+                     </div>
+                 </div>
+                 <div class="side-stat">
+                     <i class="fas fa-share" style="color: #0984e3;"></i>
+                     <div class="stat">
+                         <div class="number" style="color: #0984e3;">915</div>
+                         <div class="label">Profile Views</div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+     <div class="info-cards">
+         <div class="info-card wallet">
+             <div class="cont">
+                 <h3>Wallet Balance</h3>
+             </div>
+             <div class="val">Ksh 69,000</div>
+         </div>
+         <div class="info-card job-seekers">
+             <div class="val">69</div>
+             <div class="cont">
+                 <h3>Total Job Seekers</h3>
+                 <p>A comprehensive view of all registered job seekers on the platform.</p>
+             </div>
+         </div>
+         <div class="info-card job-providers">
+             <div class="val">104</div>
+             <div class="cont">
+                 <h3>Total Job Providers</h3>
+                 <p>A small river named Duden flows by their place and supplies necessary.</p>
+             </div>
+         </div>
 
-<!-- Graphical stats -->
-<div class="card flex-wrap bg-white border-0 rounded mb-3">
-    <div class="chart-header m-3">
-        <h3 class="chart-title">Job status Details</h3>
-    </div>
-    <div class="d-flex flex-wrap justify-content-between p-5 gap-1">
-        <div class="col-8">
+     </div>
+ </div>
 
-            <canvas id="earningsChart" class="earningsChart"></canvas>
+ <!-- Job Table and Widgets Section -->
+ <div class="table-widget-container">
+     <div class="job-table-section">
+         <div class="table-header">
+             <h3 class="table-title">Recent activities</h3>
+             <div class="action-buttons">
+                 <a href="/crm/client-activities" class="view-more">View More</a>
+             </div>
+         </div>
+         <table class="job-table">
+             <thead>
+                 <tr>
+                     <th>ID</th>
+                     <th>Company</th>
+                     <th>Posted</th>
+                     <th>Expires</th>
+                     <th>Position</th>
+                     <th>Location</th>
+                     <th>Status</th>
+                 </tr>
+             </thead>
+             <tbody>
+                 <tr>
+                     <td>1</td>
+                     <td>Progress Indicator</td>
+                     <td>04.06.2025</td>
+                     <td>30.06.2025</td>
+                     <td>Art Designer</td>
+                     <td>New York</td>
+                     <td><span class="status-badge completed">Completed</span></td>
+                 </tr>
+                 <tr>
+                     <td>2</td>
+                     <td>Tandem Time Inc</td>
+                     <td>05.06.2025</td>
+                     <td>24.07.2025</td>
+                     <td>iOS Developer</td>
+                     <td>Houston</td>
+                     <td><span class="status-badge ongoing">Ongoing</span></td>
+                 </tr>
+                 <tr>
+                     <td>3</td>
+                     <td>BlueChip Expenses</td>
+                     <td>02.06.2025</td>
+                     <td>15.07.2025</td>
+                     <td>Project Manager</td>
+                     <td>Jacksonville</td>
+                     <td><span class="status-badge pending">Pending</span></td>
+                 </tr>
+                 <tr>
+                     <td>4</td>
+                     <td>Creative Agency</td>
+                     <td>01.06.2025</td>
+                     <td>20.06.2025</td>
+                     <td>UI Designer</td>
+                     <td>San Antonio</td>
+                     <td><span class="status-badge completed">Completed</span></td>
+                 </tr>
+             </tbody>
+         </table>
+     </div>
 
-            <div class="row mt-4 g-3">
-                <div class="col-md-4">
-                    <div class="side-stat">
-                        <i class="fas fa-clipboard-list fs-4" style="color: #fdcb6e;"></i>
-                        <div>
-                            <div class="number" style="color: #fdcb6e;">3,845</div>
-                            <div class="label">Total Posts</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="side-stat">
-                        <i class="fas fa-users fs-4" style="color: #00b894;"></i>
-                        <div>
-                            <div class="number" style="color: #00b894;">1,520</div>
-                            <div class="label">New Monthly</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="side-stat">
-                        <i class="fas fa-share fs-4" style="color: #0984e3;"></i>
-                        <div>
-                            <div class="number" style="color: #0984e3;">915</div>
-                            <div class="label">Profile Views</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="info-cards col-4">
-            <div class="info-card job-seekers w-100">
-                <div class="val total-job-seekers-count">69</div>
-                <div class="cont">
-                    <h3>Total Job Seekers</h3>
-                    <p>A comprehensive view of all registered job seekers on the platform.</p>
-                </div>
-            </div>
-            <div class="info-card job-providers w-100">
-                <div class="val total-job-providers-count">104</div>
-                <div class="cont">
-                    <h3>Total Job Providers</h3>
-                    <p>A small river named Duden flows by their place and supplies necessary.</p>
-                </div>
-            </div>
-            <div class="info-card active-listings w-100">
-                <div class="val active-listings-count">80</div>
-                <div class="cont">
-                    <h3>Active Listings</h3>
-                    <p>Active and more recovery and editing.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- /Graphical stats -->
-
-<!-- Recent Activities -->
-<div class="card bg-white border-0 rounded shadow-sm mb-4">
-    <div class="p-4">
-        <!-- Table Header -->
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h5 class="mb-0">Recent Activities</h5>
-            <div class="d-flex align-items-center gap-2">
-                <div class="form-check me-2">
-                    <input class="form-check-input" type="checkbox" id="select-all-checkbox">
-                    <label class="form-check-label" for="select-all-checkbox">Select All</label>
-                </div>
-                <button type="button" class="btn btn-sm btn-outline-danger">Bulk Delete</button>
-            </div>
-        </div>
-
-        <!-- Activities Table -->
-        <div class="table-responsive">
-            <table class="table table-hover align-middle text-nowrap table-active-jobs-assigned" id="table-active-jobs-assigned">
-                <thead class="table-light">
-                    <tr>
-                        <th><input type="checkbox" disabled style="visibility: hidden;"></th>
-                        <th>Actions</th>
-                        <th>ID</th>
-                        <th>Company</th>
-                        <th>Posted</th>
-                        <th>Expires</th>
-                        <th>Position</th>
-                        <th>Location</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Repeatable Row -->
-                    <tr>
-                        <td>
-                            <div class="dropdown open">
-                                <button class="btn btn-outline-danger dropdown-toggle btn-sm" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    Actions
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="triggerId">
-                                    <button class="dropdown-item" href="#">Edit</button>
-                                    <button class="dropdown-item" href="#">View</button>
-                                    <button class="dropdown-item" href="#">Delete</button>
-                                </div>
-                            </div>
-                        </td>
-                        <td><input type="checkbox" class="form-check-input row-checkbox"></td>
-                        <td>1</td>
-                        <td>Progress Indicator</td>
-                        <td>04.06.2025</td>
-                        <td>30.06.2025</td>
-                        <td>Art Designer</td>
-                        <td>New York</td>
-                        <td><span class="badge bg-success">Completed</span></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="dropdown open">
-                                <button class="btn btn-outline-danger dropdown-toggle btn-sm" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    Actions
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="triggerId">
-                                    <button class="dropdown-item" href="#">Edit</button>
-                                    <button class="dropdown-item" href="#">View</button>
-                                    <button class="dropdown-item" href="#">Delete</button>
-                                </div>
-                            </div>
-                        </td>
-                        <td><input type="checkbox" class="form-check-input row-checkbox"></td>
-                        <td>2</td>
-                        <td>Tandem Time Inc</td>
-                        <td>05.06.2025</td>
-                        <td>24.07.2025</td>
-                        <td>iOS Developer</td>
-                        <td>Houston</td>
-                        <td><span class="badge bg-warning text-dark">Ongoing</span></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="dropdown open">
-                                <button class="btn btn-outline-danger dropdown-toggle btn-sm" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    Actions
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="triggerId">
-                                    <button class="dropdown-item" href="#">Edit</button>
-                                    <button class="dropdown-item" href="#">View</button>
-                                    <button class="dropdown-item" href="#">Delete</button>
-                                </div>
-                            </div>
-                        </td>
-                        <td><input type="checkbox" class="form-check-input row-checkbox"></td>
-                        <td>3</td>
-                        <td>BlueChip Expenses</td>
-                        <td>02.06.2025</td>
-                        <td>15.07.2025</td>
-                        <td>Project Manager</td>
-                        <td>Jacksonville</td>
-                        <td><span class="badge bg-secondary">Pending</span></td>
-                    </tr>
-                    <!-- Hidden Rows -->
-                    <tr class="d-none">
-                        <td>
-                            <div class="dropdown open">
-                                <button class="btn btn-outline-danger dropdown-toggle btn-sm" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    Actions
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="triggerId">
-                                    <button class="dropdown-item" href="#">Edit</button>
-                                    <button class="dropdown-item" href="#">View</button>
-                                    <button class="dropdown-item" href="#">Delete</button>
-                                </div>
-                            </div>
-                        </td>
-                        <td><input type="checkbox" class="form-check-input row-checkbox"></td>
-                        <td>7</td>
-                        <td>NextGen Corp</td>
-                        <td>28.05.2025</td>
-                        <td>10.07.2025</td>
-                        <td>Data Analyst</td>
-                        <td>Chicago</td>
-                        <td><span class="badge bg-secondary">Pending</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- Widgets Section -->
-    <div class="border-top p-4 bg-light">
-        <div class="row g-4">
-            <!-- Widget Card -->
-            <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h6 class="card-title">🔗 Link to this Job</h6>
-                        <p class="small">Select and copy the link below (For this specific job posting page):</p>
-                        <div class="input-group">
-                            <input type="text" class="form-control" value="https://jobrick.do/job/post" id="jobLink" readonly>
-                            <button class="btn btn-outline-danger" type="button" onclick="navigator.clipboard.writeText(document.getElementById('jobLink').value)">Copy</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Widget Card -->
-            <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h6 class="card-title">📊 Use the Button Widget</h6>
-                        <p class="small">Put the code below in your site where you want the buttons to appear:</p>
-                        <div class="input-group">
-                            <textarea class="form-control" id="embedCode" rows="1" placeholder="<embed-code>" readonly>&lt;script src="widget.js"&gt;&lt;/script&gt;</textarea>
-                            <button class="btn btn-outline-danger" type="button" onclick="navigator.clipboard.writeText(document.getElementById('embedCode').value)">Copy</button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <!-- Widget Card -->
-            <div class="col-md-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h6 class="card-title">📧 Upload Resumes by Email</h6>
-                        <p class="small mb-0">Set up an auto-forward rule from your email to collect incoming resumes:</p>
-                        <strong class="text-primary">resume@easyapply.co</strong>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- /Recent Activities -->
-
-<!-- Map section -->
-<div class="card shadow-sm mb-4">
-    <!-- Card Header -->
-    <div class="card-header bg-light d-flex align-items-center justify-content-between">
-        <div class="d-flex bg-light d-flex align-items-center justify-content-between">
-            <button class="btn btn-outline-primary btn-sm me-2">All</button>
-            <div class="subcategory-scroll d-flex overflow-auto flex-nowrap">
-                <?php foreach ($hustleCategories as $category): ?>
-                    <button class="btn btn-outline-danger btn-sm text-dark me-2 text-nowrap" data-id="<?= $category['slug'] ?>"><?= $category['name'] ?></button>
-                <?php endforeach; ?>
-            </div>
-        </div>
-    </div>
-
-    <!-- Card Body -->
-    <div class="card-body">
-        <?php include "partials/job-portal/geomap.php" ?>
-    </div>
-    <!-- /Map section -->
-</div>
+     <div class="widget-section">
+         <div class="widget-card">
+             <div class="widget-header">
+                 <span class="widget-title">🔗 Link to this Job</span>
+             </div>
+             <div class="widget-content">
+                 Select and copy the link below (For this specific job posting page):<br><br>
+                 <div class="widget-value">
+                     <input type="text" class="widget-input" value="https://jobrick.do/job/post">
+                     <button class="copy-btn">Copy</button>
+                 </div>
+             </div>
+         </div>
+         <div class="widget-card">
+             <div class="widget-header">
+                 <span class="widget-title">📊 Use the Button Widget</span>
+             </div>
+             <div class="widget-content">
+                 Put the code below in your site where you want the buttons to appear. Just copy the codes
+                 and paste them.<br><br>
+                 <div class="widget-value">
+                     <textarea class="widget-input" style="height: 30px;"><script type="text/javascript">
+                       </script>
+                        </textarea>
+                     <button class="copy-btn">Copy</button>
+                 </div>
+             </div>
+         </div>
+         <div class="widget-card">
+             <div class="widget-header">
+                 <span class="widget-title">📧 Upload Resumes by Email</span>
+             </div>
+             <div class="widget-content">
+                 Set up an auto-forward rule from your email to collect incoming candidate resumes and
+                 applications:<br><br>
+                 resume@easyapply.co
+             </div>
+         </div>
+     </div>
+ </div>
