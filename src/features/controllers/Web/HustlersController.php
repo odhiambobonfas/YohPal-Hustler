@@ -33,12 +33,26 @@ class HustlersController
         $this->hustleUtil = $hustleUtil;
     }
 
-    public function getActiveHustlersByPrimarySkill(YPRequest $request): mixed {
+    public function getActiveHustlersByPrimarySkill(YPRequest $request): mixed
+    {
         try {
             $this->hustlerModel = new Hustler();
-            $jobDraft = Auth::get('newJob'); 
+            $jobDraft = Auth::get('newJob');
             $hustlers = $this->hustlerModel->getActiveHustlersByPrimarySkill(['primarySkill' => $jobDraft->name]);
             return $request->res(['status' => 'success', 'hustlers' => $hustlers]);
+        } catch (YPException $th) {
+            YPLogger::error($th);
+            return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
+        }
+    }
+
+    public function getHustlerJobRequests(YPRequest $request): mixed
+    {
+        try {
+            $this->hustlerModel = new Hustler();
+            $user = Auth()->user()->uid;
+            $jobRequests = $this->hustlerModel->getHustlerJobRequests(['hustlerId' => $user]);
+            return $request->res(['status' => 'success', 'jobRequests' => $jobRequests]);
         } catch (YPException $th) {
             YPLogger::error($th);
             return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);

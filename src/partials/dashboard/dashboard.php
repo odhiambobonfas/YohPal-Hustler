@@ -4,8 +4,8 @@
              <circle class="progress-ring-bg" cx="40" cy="40" r="36"></circle>
              <circle class="progress-ring-fill" cx="40" cy="40" r="36" stroke-dasharray="150 200"></circle>
          </svg>
-         <div class="stat-number">10</div>
-         <div class="stat-label">Rating</div>
+         <div class="stat-number">5</div>
+         <div class="stat-label">Rating<i class="fas fa-star icon"></i></div>
      </div>
      <div class="stat-card active">
          <svg class="progress-ring">
@@ -170,8 +170,9 @@
      </div>
      <div class="info-cards">
          <div class="info-card wallet">
-             <div class="cont">
-                 <h3>Wallet Balance</h3>
+             <div class="wallet-cont">
+                 <h3>Your Wallet Balance</h3>
+                 <i class="fas fa-wallet icon"></i>
              </div>
              <div class="val">Ksh 69,000</div>
          </div>
@@ -195,65 +196,28 @@
 
  <!-- Job Table and Widgets Section -->
  <div class="table-widget-container">
-     <div class="job-table-section">
-         <div class="table-header">
-             <h3 class="table-title">Recent activities</h3>
-             <div class="action-buttons">
-                 <a href="/crm/client-activities" class="view-more">View More</a>
+     <div class="job-tables">
+         <div class="job-table-section">
+             <div class="table-header">
+                 <h3 class="table-title">Recent activities</h3>
+                 <div class="action-buttons">
+                     <a href="/crm/client-activities" class="view-more">View More</a>
+                 </div>
              </div>
+             <table class="job-table">
+                 <thead>
+                     <tr>
+                         <th>Role</th>
+                         <th>Company</th>
+                         <th>Posted</th>
+                         <th>Status</th>
+                     </tr>
+                 </thead>
+                 <tbody id="job-requests-table-body"></tbody>
+             </table>
          </div>
-         <table class="job-table">
-             <thead>
-                 <tr>
-                     <th>ID</th>
-                     <th>Company</th>
-                     <th>Posted</th>
-                     <th>Expires</th>
-                     <th>Position</th>
-                     <th>Location</th>
-                     <th>Status</th>
-                 </tr>
-             </thead>
-             <tbody>
-                 <tr>
-                     <td>1</td>
-                     <td>Progress Indicator</td>
-                     <td>04.06.2025</td>
-                     <td>30.06.2025</td>
-                     <td>Art Designer</td>
-                     <td>New York</td>
-                     <td><span class="status-badge completed">Completed</span></td>
-                 </tr>
-                 <tr>
-                     <td>2</td>
-                     <td>Tandem Time Inc</td>
-                     <td>05.06.2025</td>
-                     <td>24.07.2025</td>
-                     <td>iOS Developer</td>
-                     <td>Houston</td>
-                     <td><span class="status-badge ongoing">Ongoing</span></td>
-                 </tr>
-                 <tr>
-                     <td>3</td>
-                     <td>BlueChip Expenses</td>
-                     <td>02.06.2025</td>
-                     <td>15.07.2025</td>
-                     <td>Project Manager</td>
-                     <td>Jacksonville</td>
-                     <td><span class="status-badge pending">Pending</span></td>
-                 </tr>
-                 <tr>
-                     <td>4</td>
-                     <td>Creative Agency</td>
-                     <td>01.06.2025</td>
-                     <td>20.06.2025</td>
-                     <td>UI Designer</td>
-                     <td>San Antonio</td>
-                     <td><span class="status-badge completed">Completed</span></td>
-                 </tr>
-             </tbody>
-         </table>
      </div>
+
 
      <div class="widget-section">
          <div class="widget-card">

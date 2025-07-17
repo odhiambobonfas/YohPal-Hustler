@@ -454,4 +454,34 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     updateButtonStates();
+    getHustlerJobRequests();
 });
+
+getHustlerJobRequests()
+
+function getHustlerJobRequests() {
+    fetch('/hustler/job-request')
+        .then((response) => response.json())
+        .then((data) => {
+            const tableBodies = document.querySelectorAll("#job-requests-table-body");
+            const jobRequests = data.jobRequests.slice(0, 3);
+
+            jobRequests.forEach(jobRequest => {
+                // Create the row only once
+                const rowHTML = `
+                    <tr>
+                        <td>${jobRequest.name}</td>
+                        <td>${jobRequest.description}</td>
+                        <td>${jobRequest.date}</td>
+                        <td style="color: rgba(224, 158, 14, 1);">${jobRequest.status}</td>
+                    </tr>
+                `;
+
+                // Append a clone of the row to each table body
+                tableBodies.forEach(tableBody => {
+                    tableBody.insertAdjacentHTML('beforeend', rowHTML);
+                });
+            });
+        })
+        .catch((e) => console.error(e));
+}

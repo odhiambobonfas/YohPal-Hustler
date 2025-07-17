@@ -45,13 +45,13 @@ return [
         'route'  => 'https://yohpal-hustler-apis-test.onrender.com/password_reset',
         'action' => 'Initiate forgot password request',
     ],
-    
+
     'get_user_profile' => [
         'method' => 'GET',
         'route'  => 'https://yohpal-hustler-apis-test.onrender.com/profile/{uid}',
         'action' => 'Gets Single User Profile',
     ],
-    
+
     'get_all_users' => [
         'method' => 'GET',
         'route'  => 'https://yohpal-hustler-apis-test.onrender.com/api/users',
@@ -90,7 +90,7 @@ return [
         'route'  => 'https://yohpal-hustler-apis-test.onrender.com/client/activate',
         'action' => 'Activate clients',
     ],
-    
+
     'create_hustler_request' => [
         'method' => 'POST',
         'route'  => 'https://yohpal-hustler-apis-test.onrender.com/client/hustler/request',
@@ -113,6 +113,15 @@ return [
         'method' => 'POST',
         'route'  => 'https://yohpal-hustler-apis-test.onrender.com/jobs/get_active_hustlers/{primarySkill}',
         'action' => 'Get active hustlers',
+    ],
+
+    //==============================
+    // Hustlers
+    //==============================
+    'get_hustler_job_request' => [
+        'method' => 'GET',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/hustler/job_requests/{hustlerId}',
+        'action' => 'Get a hustler"s job requests',
     ],
 
     // ==============================

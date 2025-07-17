@@ -14,6 +14,7 @@ use App\Controllers\Web\WebController;
 use App\Controllers\Web\YohPalController;   
 use App\Middlewares\AuthMiddleware;
 use Yohpal\Application\YPRouter;
+use Yohpal\Models\Hustler;
 
 $router = new YPRouter();  
 
@@ -54,6 +55,6 @@ $router->req('GET', '/get-started', [WebController::class, 'getStarted'], [AuthM
 $router->req('POST', '/get-started/onboarding', [WebController::class, 'getStarted'], [AuthMiddleware::class]);  
 $router->req('GET', '/search-engine', [WebController::class, 'searchEngine'], [AuthMiddleware::class]);  
 $router->req('GET', '/users/hustlers', [HustlersController::class, 'getActiveHustlersByPrimarySkill'], [AuthMiddleware::class]);
-
+$router->req("GET", "/hustler/job-request", [HustlersController::class, "getHustlerJobRequests"], [AuthMiddleware::class]);
 // Client related routes
 $router->req("GET", "/crm/client-activities", [ClientController::class, "clientActivities"], [AuthMiddleware::class]);

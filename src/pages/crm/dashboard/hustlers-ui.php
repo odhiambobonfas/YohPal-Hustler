@@ -15,6 +15,7 @@
 
 <!-- Main CRM Section -->
 <div class="crm-section">
+
     <div class="d-flex gap-3">
         <aside class="col-md-2" id="sidebar">
             <div class="card bg-transparent border-0">
@@ -23,7 +24,7 @@
         </aside>
 
         <!-- CRM Content -->
-        <main class="col-md-9 flex-grow-1">
+        <div class="card vh-100 bg-transparent border-0 m-3 p-0">
             <div class="stats-grid">
                 <div class="stat-card pending">
                     <svg class="progress-ring">
@@ -194,21 +195,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="info-cards ms-auto">
-                    <div class="info-card wallet ms-4">
-                        <div class="cont">
-                            <h3>Earnings Balance</h3>
+                <div class="info-cards">
+                    <div class="info-card wallet">
+                        <div class="wallet-cont">
+                            <h3>Your Earnings Balance</h3>
+                            <i class="fas fa-wallet icon"></i>
                         </div>
                         <div class="val">Ksh 6,000</div>
                     </div>
-                    <div class="info-card job-seekers ms-4">
+                    <div class="info-card job-seekers">
                         <div class="val">69</div>
                         <div class="cont">
                             <h3>Total Job Seekers</h3>
                             <p>A comprehensive view of all registered job seekers on the platform.</p>
                         </div>
                     </div>
-                    <div class="info-card job-providers ms-4">
+                    <div class="info-card job-providers">
                         <div class="val">104</div>
                         <div class="cont">
                             <h3>Total Job Providers</h3>
@@ -220,67 +222,48 @@
             </div>
 
             <!-- Job Table and Widgets Section -->
-            <div class="table-widget-container">
-                <div class="job-table-section">
-                    <div class="table-header">
-                        <h3 class="table-title">Recent Jobs</h3>
-                        <div class="action-buttons">
-                            <a href="/crm/client-activities" class="view-more">View More</a>
-                        </div>
-                    </div>
-                    <table class="job-table">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Company</th>
-                                <th>Posted</th>
-                                <th>Expires</th>
-                                <th>Position</th>
-                                <th>Location</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Progress Indicator</td>
-                                <td>04.06.2025</td>
-                                <td>30.06.2025</td>
-                                <td>Art Designer</td>
-                                <td>New York</td>
-                                <td><span class="status-badge completed">Completed</span></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Tandem Time Inc</td>
-                                <td>05.06.2025</td>
-                                <td>24.07.2025</td>
-                                <td>iOS Developer</td>
-                                <td>Houston</td>
-                                <td><span class="status-badge ongoing">Ongoing</span></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>BlueChip Expenses</td>
-                                <td>02.06.2025</td>
-                                <td>15.07.2025</td>
-                                <td>Project Manager</td>
-                                <td>Jacksonville</td>
-                                <td><span class="status-badge pending">Pending</span></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Creative Agency</td>
-                                <td>01.06.2025</td>
-                                <td>20.06.2025</td>
-                                <td>UI Designer</td>
-                                <td>San Antonio</td>
-                                <td><span class="status-badge completed">Completed</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
 
+            <div class="table-widget-container">
+                <div class="job-tables">
+                    <div class="job-table-section">
+                        <div class="table-header">
+                            <h3 class="table-title">Job Requests</h3>
+                            <div class="action-buttons">
+                                <a href="/crm/client-activities" class="view-more">View More</a>
+                            </div>
+                        </div>
+                        <table class="job-table">
+                            <thead>
+                                <tr>
+                                    <th>Role</th>
+                                    <th>Company</th>
+                                    <th>Posted</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="job-requests-table-body"></tbody>
+                        </table>
+                    </div>
+                    <div class="job-table-section">
+                        <div class="table-header">
+                            <h3 class="table-title">Recent Activities</h3>
+                            <div class="action-buttons">
+                                <a href="/crm/client-activities" class="view-more">View More</a>
+                            </div>
+                        </div>
+                        <table class="job-table">
+                            <thead>
+                                <tr>
+                                    <th>Role</th>
+                                    <th>Company</th>
+                                    <th>Posted</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="job-requests-table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
                 <div class="widget-section">
                     <div class="widget-card">
                         <div class="widget-header">
@@ -321,7 +304,7 @@
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
     </div>
 </div>
 
@@ -337,7 +320,6 @@
 
 <!-- xtra scripts -->
 <script type="text/javascript" src="<?= asset_url('js/app/crm/auth.js') ?>"></script>
-<script type="text/javascript" src="<?= asset_url('js/app/crm/dashboard.js') ?>"></script>
 <script type="text/javascript" src="<?= asset_url('js/app/crm/onboarding.js') ?>"></script>
 <script type="text/javascript" src="<?= asset_url('js/app/crm/hustle-map.js') ?>"></script>
 <!-- xtra scripts -->

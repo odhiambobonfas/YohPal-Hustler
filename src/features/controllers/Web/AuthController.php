@@ -91,7 +91,7 @@ class AuthController
             $role = Auth::get('role');
             $user['user']['role'] = empty($role) ? 'client' : (!empty($role->role) ? strtolower($role->role) : null);
 
-            $route = onboarded() ? '/dashboard' : '/contact/verify'; 
+            $route = onboarded() ? '/hustlers-ui' : '/contact/verify'; 
 
             $user['user']['loginTime'] = date("Y-m-d H:i:s");
 
