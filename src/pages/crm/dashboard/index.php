@@ -41,7 +41,7 @@
 
 <!-- xtra scripts -->
 <script type="text/javascript" src="<?= asset_url('js/app/crm/auth.js') ?>"></script>
-<script type="text/javascript" src="<?= asset_url('js/app/crm/dashboard.js') ?>"></script>
+<!-- <script type="text/javascript" src="<?= asset_url('js/app/crm/dashboard.js') ?>"></script> -->
 <script type="text/javascript" src="<?= asset_url('js/app/crm/onboarding.js') ?>"></script>
 <script type="text/javascript" src="<?= asset_url('js/app/crm/hustle-map.js') ?>"></script>
 <!-- xtra scripts -->

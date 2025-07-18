@@ -174,7 +174,7 @@
                  <h3>Your Wallet Balance</h3>
                  <i class="fas fa-wallet icon"></i>
              </div>
-             <div class="val">Ksh 69,000</div>
+             <div class="val">Ksh69,000</div>
          </div>
          <div class="info-card job-seekers">
              <div class="val">69</div>

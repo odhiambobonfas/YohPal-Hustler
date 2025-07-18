@@ -240,8 +240,8 @@
   flex-direction: column;
     background: #f00000;
     height: 118px;
-    align-items: start;
-    justify-content: left;
+    align-items: center;
+    justify-content: center;
     color: white;
 }
 .info-card.wallet .wallet-cont h3{
@@ -249,7 +249,7 @@
   
 }
 .info-card.wallet .val{
-  font-size: 22px;
+  font-size: 30px;
 }
 .job-tables{
   display: flex;

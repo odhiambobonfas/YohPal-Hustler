@@ -466,18 +466,30 @@ function getHustlerJobRequests() {
             const tableBodies = document.querySelectorAll("#job-requests-table-body");
             const jobRequests = data.jobRequests.slice(0, 3);
 
+            // Check if there are no job requests
+            if (jobRequests.length === 0) {
+                const noDataHTML = `
+                    <tr>
+                        <td colspan="4" style="text-align: center;">No job requests available</td>
+                    </tr>
+                `;
+                tableBodies.forEach(tableBody => {
+                    tableBody.insertAdjacentHTML('beforeend', noDataHTML);
+                });
+                return;
+            }
+
+            // Process job requests if they exist
             jobRequests.forEach(jobRequest => {
-                // Create the row only once
                 const rowHTML = `
                     <tr>
                         <td>${jobRequest.name}</td>
                         <td>${jobRequest.description}</td>
-                        <td>${jobRequest.date}</td>
+                        <td>${jobRequest.startTime}</td>
                         <td style="color: rgba(224, 158, 14, 1);">${jobRequest.status}</td>
                     </tr>
                 `;
 
-                // Append a clone of the row to each table body
                 tableBodies.forEach(tableBody => {
                     tableBody.insertAdjacentHTML('beforeend', rowHTML);
                 });

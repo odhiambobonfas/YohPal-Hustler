@@ -201,7 +201,7 @@
                             <h3>Your Earnings Balance</h3>
                             <i class="fas fa-wallet icon"></i>
                         </div>
-                        <div class="val">Ksh 6,000</div>
+                        <div class="val">Ksh6,000</div>
                     </div>
                     <div class="info-card job-seekers">
                         <div class="val">69</div>
