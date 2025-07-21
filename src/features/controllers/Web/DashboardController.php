@@ -34,6 +34,10 @@ class DashboardController
         return view('crm/dashboard/hustlers-ui');
     }
 
+    public function clients_ui(YPRequest $request): mixed {
+        return view('crm/dashboard/admin');
+    }
+
     public function index(YPRequest $request): mixed
     {
         try {

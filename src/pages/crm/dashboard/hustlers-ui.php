@@ -48,7 +48,7 @@
                         <circle class="progress-ring-fill" cx="40" cy="40" r="36" stroke-dasharray="70 200"></circle>
                     </svg>
                     <div class="stat-number">2</div>
-                    <div class="stat-label">Bio</div>
+                    <div class="stat-label">Accepted</div>
                 </div>
                 <div class="stat-card deleted">
                     <svg class="progress-ring">

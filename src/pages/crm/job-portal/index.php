@@ -28,10 +28,14 @@
                 <!-- Portal start -->
                 <div class="card bg-transparent border-0 rounded mb-3">
                     <div class="container-sm py-3">
+                        <div class="top-generic">
+                            <?php include "partials/job-portal/generic-topbar.php" ?>
+                    </div>
+
                         <div class="content-section">
+
                             <div class="job-portal-step-section category-listing">
-                                <?php include "partials/job-portal/generic-topbar.php" ?>
-                                <div style="background-image: url('<?= asset_url('store/images/banners/banner.png') ?>')" class="top-banner mb-3 text-dark" id="top-banner">
+                                <div style="background-image: url('<?= asset_url('../../../assets/store/images/banners/banner.png') ?>')" class="top-banner mb-3 text-dark" id="top-banner">
                                     <h1>7,000+ Browse Jobs</h1>
                                 </div>
                                 <div class="row row-cols-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">

@@ -9,3 +9,5 @@
 <?php include 'partials/dashboard/activities-ui.php'; ?>
 
 <script type="text/javascript" src="<?= asset_url('js/app/crm/activities.js') ?>"></script>
+<!-- Ensure Bootstrap JS is included -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

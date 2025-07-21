@@ -13,21 +13,21 @@
                 </div>
                 <div class="mb-3">
                     <label for="hustlersCount">Number of Hustler:</label>
-                    <input type="number" class="form-control" min="0" max="100" name="hustlersCount" id="hustlersCount" aria-describedby="helpId" placeholder="Enter number of hustlers, eg. 10" required value="0">
+                    <input type="number" required class="form-control" min="0" max="100" name="hustlersCount" id="hustlersCount" aria-describedby="helpId" placeholder="Enter number of hustlers, eg. 10" required value="0">
                 </div>
                 <div class="row g-3 mb-3">
                     <div class="col-md-6">
                         <label for="startDateTime" class="form-label">Start</label>
-                        <input type="text" id="startDateTime" name="startDateTime" class="form-control fpRangeDate datetime-range" placeholder="Select start datetime">
+                        <input type="text" required id="startDateTime" name="startDateTime" class="form-control fpRangeDate datetime-range" placeholder="Select start datetime">
                     </div>
                     <div class="col-md-6">
                         <label for="endDateTime" class="form-label">End</label>
-                        <input type="text" id="endDateTime" name="endDateTime" class="form-control fpRangeDate datetime-range" placeholder="Select end datetime">
+                        <input type="text" required id="endDateTime" name="endDateTime" class="form-control fpRangeDate datetime-range" placeholder="Select end datetime">
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="description">Job Description:</label>
-                    <textarea class="form-control" name="description" id="description" rows="3" placeholder="Enter job description"></textarea>
+                    <textarea class="form-control" required name="description" id="description" rows="3" placeholder="Enter job description"></textarea>
                 </div>
             </div>
             <div class="modal-footer">
@@ -38,7 +38,8 @@
     </div>
 </form>
 
-<!-- 
-    400200
-    4003236 
- -->
+<!-- Include required libraries -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+

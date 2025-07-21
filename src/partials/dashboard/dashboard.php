@@ -21,7 +21,7 @@
              <circle class="progress-ring-fill" cx="40" cy="40" r="36" stroke-dasharray="70 200"></circle>
          </svg>
          <div class="stat-number">2</div>
-         <div class="stat-label">Bio</div>
+         <div class="stat-label">Hired</div>
      </div>
      <div class="stat-card deleted">
          <svg class="progress-ring">
@@ -50,63 +50,63 @@
              </div>
              <div class="chart-bars">
                  <div class="chart-bar" style="height: 60%;"
-                     data-tooltip="Monday, 02.06.2025, Earnings: $12000"></div>
+                     data-tooltip="Monday, 02.06.2025, Paid: $12000"></div>
                  <div class="chart-bar" style="height: 40%;"
-                     data-tooltip="Tuesday, 03.06.2025, Earnings: $8000"></div>
+                     data-tooltip="Tuesday, 03.06.2025, Paid: $8000"></div>
                  <div class="chart-bar" style="height: 80%;"
-                     data-tooltip="Wednesday, 04.06.2025, Earnings: $16000"></div>
+                     data-tooltip="Wednesday, 04.06.2025, Paid: $16000"></div>
                  <div class="chart-bar" style="height: 30%;"
-                     data-tooltip="Thursday, 05.06.2025, Earnings: $6000"></div>
+                     data-tooltip="Thursday, 05.06.2025, Paid: $6000"></div>
                  <div class="chart-bar" style="height: 70%;"
-                     data-tooltip="Friday, 06.06.2025, Earnings: $14000"></div>
+                     data-tooltip="Friday, 06.06.2025, Paid: $14000"></div>
                  <div class="chart-bar" style="height: 50%;"
-                     data-tooltip="Saturday, 07.06.2025, Earnings: $10000"></div>
+                     data-tooltip="Saturday, 07.06.2025, Paid: $10000"></div>
                  <div class="chart-bar" style="height: 90%;"
-                     data-tooltip="Sunday, 08.06.2025, Earnings: $18000"></div>
+                     data-tooltip="Sunday, 08.06.2025, Paid: $18000"></div>
                  <div class="chart-bar" style="height: 35%;"
-                     data-tooltip="Monday, 09.06.2025, Earnings: $7000"></div>
+                     data-tooltip="Monday, 09.06.2025, Paid: $7000"></div>
                  <div class="chart-bar" style="height: 65%;"
-                     data-tooltip="Tuesday, 10.06.2025, Earnings: $13000"></div>
+                     data-tooltip="Tuesday, 10.06.2025, Paid: $13000"></div>
                  <div class="chart-bar" style="height: 45%;"
-                     data-tooltip="Wednesday, 11.06.2025, Earnings: $9000"></div>
+                     data-tooltip="Wednesday, 11.06.2025, Paid: $9000"></div>
                  <div class="chart-bar" style="height: 75%;"
-                     data-tooltip="Thursday, 12.06.2025, Earnings: $15000"></div>
+                     data-tooltip="Thursday, 12.06.2025, Paid: $15000"></div>
                  <div class="chart-bar" style="height: 55%;"
-                     data-tooltip="Friday, 13.06.2025, Earnings: $11000"></div>
+                     data-tooltip="Friday, 13.06.2025, Paid: $11000"></div>
                  <div class="chart-bar" style="height: 85%;"
-                     data-tooltip="Saturday, 14.06.2025, Earnings: $17000"></div>
+                     data-tooltip="Saturday, 14.06.2025, Paid: $17000"></div>
                  <div class="chart-bar" style="height: 42%;"
-                     data-tooltip="Sunday, 15.06.2025, Earnings: $8400"></div>
+                     data-tooltip="Sunday, 15.06.2025, Paid: $8400"></div>
                  <div class="chart-bar" style="height: 68%;"
-                     data-tooltip="Monday, 16.06.2025, Earnings: $13600"></div>
+                     data-tooltip="Monday, 16.06.2025, Paid: $13600"></div>
                  <div class="chart-bar" style="height: 53%;"
-                     data-tooltip="Tuesday, 17.06.2025, Earnings: $10600"></div>
+                     data-tooltip="Tuesday, 17.06.2025, Paid: $10600"></div>
                  <div class="chart-bar" style="height: 77%;"
-                     data-tooltip="Wednesday, 18.06.2025, Earnings: $15400"></div>
+                     data-tooltip="Wednesday, 18.06.2025, Paid: $15400"></div>
                  <div class="chart-bar" style="height: 33%;"
-                     data-tooltip="Thursday, 19.06.2025, Earnings: $6600"></div>
+                     data-tooltip="Thursday, 19.06.2025, Paid: $6600"></div>
                  <div class="chart-bar" style="height: 88%;"
-                     data-tooltip="Friday, 20.06.2025, Earnings: $17600"></div>
+                     data-tooltip="Friday, 20.06.2025, Paid: $17600"></div>
                  <div class="chart-bar" style="height: 47%;"
-                     data-tooltip="Saturday, 21.06.2025, Earnings: $9400"></div>
+                     data-tooltip="Saturday, 21.06.2025, Paid: $9400"></div>
                  <div class="chart-bar" style="height: 62%;"
-                     data-tooltip="Sunday, 22.06.2025, Earnings: $12400"></div>
+                     data-tooltip="Sunday, 22.06.2025, Paid: $12400"></div>
                  <div class="chart-bar" style="height: 71%;"
-                     data-tooltip="Monday, 23.06.2025, Earnings: $14200"></div>
+                     data-tooltip="Monday, 23.06.2025, Paid: $14200"></div>
                  <div class="chart-bar" style="height: 39%;"
-                     data-tooltip="Tuesday, 24.06.2025, Earnings: $7800"></div>
+                     data-tooltip="Tuesday, 24.06.2025, Paid: $7800"></div>
                  <div class="chart-bar" style="height: 84%;"
-                     data-tooltip="Wednesday, 25.06.2025, Earnings: $16800"></div>
+                     data-tooltip="Wednesday, 25.06.2025, Paid: $16800"></div>
                  <div class="chart-bar" style="height: 56%;"
-                     data-tooltip="Thursday, 26.06.2025, Earnings: $11200"></div>
+                     data-tooltip="Thursday, 26.06.2025, Paid: $11200"></div>
                  <div class="chart-bar" style="height: 73%;"
-                     data-tooltip="Friday, 27.06.2025, Earnings: $14600"></div>
+                     data-tooltip="Friday, 27.06.2025, Paid: $14600"></div>
                  <div class="chart-bar" style="height: 41%;"
-                     data-tooltip="Saturday, 28.06.2025, Earnings: $8200"></div>
+                     data-tooltip="Saturday, 28.06.2025, Paid: $8200"></div>
                  <div class="chart-bar" style="height: 69%;"
-                     data-tooltip="Sunday, 29.06.2025, Earnings: $13800"></div>
+                     data-tooltip="Sunday, 29.06.2025, Paid: $13800"></div>
                  <div class="chart-bar" style="height: 52%;"
-                     data-tooltip="Monday, 30.06.2025, Earnings: $10400"></div>
+                     data-tooltip="Monday, 30.06.2025, Paid: $10400"></div>
              </div>
              <div class="chart-axis-x">
                  <span>M</span>

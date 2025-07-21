@@ -1,126 +1,282 @@
-let jobs = {}; // Global variable to store fetched jobs data
+let activities = []; // Global variable to store fetched activities data
 const userRatings = {};
 
-// Fetch jobs data from external JSON file
-async function loadJobsData() {
+// Initialize the modal once
+const invoiceModalElement = document.getElementById('invoiceModal');
+const invoiceModal = new bootstrap.Modal(invoiceModalElement, {});
+
+// Clean up the modal when it is hidden
+invoiceModalElement.addEventListener('hidden.bs.modal', function () {
+    console.log('Modal hidden, cleaning up backdrop');
+    document.querySelectorAll('.modal-backdrop').forEach(backdrop => backdrop.remove());
+    document.body.classList.remove('modal-open');
+    invoiceModalElement.removeAttribute('aria-modal');
+    invoiceModalElement.style.display = 'none';
+});
+
+// Fetch activities data
+async function loadActivitiesData() {
     try {
-        const response = await fetch('../../assets/json/jobs.json');
+        const response = await fetch('/hustler/job-request');
         if (!response.ok) {
-            throw new Error(`Failed to fetch jobs data: ${response.status}`);
+            throw new Error(`Failed to fetch activities data: ${response.status}`);
         }
-        jobs = await response.json();
-        // Initialize with the first job after data is loaded
-        const firstItem = document.querySelector('#jobs-list li[data-id]');
-        if (firstItem) {
-            showDetails(parseInt(firstItem.getAttribute('data-id')));
+
+        const data = await response.json();
+        activities = data.jobRequests;
+        console.log(JSON.stringify(activities));
+
+        // Populate the sidebar list
+        populateActivitiesList();
+
+        // Initialize with the first activity if available and has an id
+        if (activities.length > 0 && activities[0].id != null) {
+            showDetails(activities[0].id);
         } else {
-            document.getElementById('jobs-details-content').innerHTML = '<p>No jobs available. Please add a new job.</p>';
+            document.getElementById('jobs-no-activities').style.display = 'block';
         }
     } catch (error) {
-        console.error('Error loading jobs data:', error);
-        document.getElementById('jobs-details-content').innerHTML = '<p>Error loading job data. Please try again later.</p>';
+        console.error('Error loading activities:', error);
+    }
+}
+
+function populateActivitiesList() {
+    const jobsList = document.getElementById('jobs-list');
+    const noActivitiesMessage = document.getElementById('jobs-no-activities');
+    jobsList.innerHTML = ''; // Clear existing items
+
+    if (activities.length === 0) {
+        noActivitiesMessage.style.display = 'block';
+        return;
+    }
+
+    noActivitiesMessage.style.display = 'none';
+
+    activities.forEach((activity, index) => {
+        const listItem = document.createElement('li');
+        listItem.setAttribute('data-id', activity.id);
+
+        if (index === 0) {
+            listItem.classList.add('active');
+        }
+
+        listItem.innerHTML = `
+                <span>${activity.name} - ${activity.description || 'No description available'}</span>
+                <span class="jobs-status ${getStatusClass(activity.status)}">${activity.status}</span>
+            `;
+
+        listItem.addEventListener('click', function () {
+            showDetails(activity.id);
+        });
+
+        jobsList.appendChild(listItem);
+    });
+}
+
+function getStatusClass(status) {
+    const statusMap = {
+        'Completed': 'completed',
+        'Ongoing': 'ongoing',
+        'Pending': 'pending',
+        'Cancelled': 'cancelled',
+        'Open': 'open'
+    };
+    return statusMap[status] || '';
+}
+
+async function loadInvoiceContent(jobId) {
+    const modalBody = document.getElementById('invoiceModalBody');
+    const activity = activities.find(a => String(a.id) === String(jobId));
+    try {
+        // Placeholder: Replace with actual API call
+        // const response = await fetch(`/hustler/invoice?jobId=${jobId}`);
+        modalBody.innerHTML = `
+               <div class="invoice-container">
+                    <h1>Job Summary</h1>
+
+                    <div class="job-header">
+                        <div class="job-info">
+                            <p><strong>Job Title:</strong> ${activity.name}</p>
+                            <p><strong>Freelancer Name:</strong> David</p>
+                            <p><strong>Email:</strong> kamaudavid60@gmail.com</p>
+                            <p><strong>Job ID:</strong> ${activity.id}</p>
+                        </div>
+                        <div>
+                            <p><strong>Job Status:</strong> <span class="job-status">${activity.status}</span></p>
+                        </div>
+                    </div>
+
+                    <h2>WORK TIMELINE</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <span class="timeline-label">Start</span>
+                            <span> ${new Date(activity.startTime._seconds * 1000).toLocaleString()}</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="timeline-label">End</span>
+                            <span>${new Date(activity.endTime._seconds * 1000).toLocaleString()}</span>
+                        </div>
+                        
+                    </div>
+
+                    <div class="payment-section">
+                        <h2>Payment Breakdown</h2>
+
+                        <div class="payment-item">
+                            <span><input type="checkbox" class="checkbox" disabled> Job Fee</span>
+                            <span>KES 2,250</span>
+                        </div>
+                        <div class="payment-item">
+                            <span><input type="checkbox" class="checkbox" checked disabled> Transport Fee</span>
+                            <span>KES 250</span>
+                        </div>
+                        <div class="payment-item">
+                            <span><input type="checkbox" class="checkbox" disabled> Tax Fee</span>
+                            <span>KES 250</span>
+                        </div>
+
+                        <div class="payment-item payment-total">
+                            <span><input type="checkbox" class="checkbox" disabled> Total Payment</span>
+                            <span>KES 2,750</span>
+                        </div>
+                    </div>
+
+                    <div class="job-description">
+                        <h3>JOB DESCRIPTION</h3>
+                        <p>${activity.description}</p>
+                    </div>
+                </div>
+            `;
+    } catch (error) {
+        console.error('Error loading invoice:', error);
+        modalBody.innerHTML = '<p>Error loading invoice details. Please try again.</p>';
     }
 }
 
 function showDetails(id) {
+    const activity = activities.find(a => String(a.id) === String(id));
     const details = document.getElementById('jobs-details-content');
 
-    // Check if job exists, otherwise show fallback message
-    if (!jobs[id]) {
-        details.innerHTML = '<p>No job details available. Please select a job.</p>';
-        document.querySelectorAll('#jobs-list li').forEach(item => {
-            item.classList.remove('active');
-        });
+    if (!activity) {
+        details.innerHTML = '<p>No details available for this activity.</p>';
         return;
     }
 
-    const job = jobs[id];
-    const userRating = userRatings[id] || null;
+    // Build hustler reviews content from the client's perspective
+    let hustlersReviewsContent = '';
+    if (activity.hustlers) {
+        hustlersReviewsContent = `
+            <div class="jobs-hustlers-reviews">
+                <h3>Hustler Reviews</h3>
+                <div class="reviews-section">
+                    <h4>Reviews You Gave to Hustlers</h4>
+                    ${Object.entries(activity.hustlers)
+                .filter(([_, hustler]) => hustler.reviews && hustler.reviews.received)
+                .map(([hustlerId, hustler]) => {
+                    const received = hustler.reviews.received;
+                    const starFields = Object.entries(received)
+                        .filter(([key, _]) => key !== 'comment' && received[key].type === 'star');
+                    const overallRating = starFields.length > 0
+                        ? Math.round(starFields.reduce((sum, [_, value]) => sum + value.value, 0) / starFields.length)
+                        : 0;
+                    return `
+                                <div class="hustler-review">
+                                    <div class="jobs-feedback">
+                                        <div class="feedback-grid">
+                                            ${starFields.map(([key, value]) => `
+                                                <div class="feedback-item">
+                                                    <span class="feedback-label">${key.charAt(0).toUpperCase() + key.slice(1)}</span>
+                                                    <span class="feedback-stars">
+                                                        ${Array(5).fill().map((_, i) => `
+                                                            <span class="${i < value.value ? 'star-active' : 'star-inactive'}">★</span>
+                                                        `).join('')}
+                                                    </span>
+                                                </div>
+                                            `).join('')}
+                                        </div>
+                                        <div class="feedback-total">Overall: <span class="stars">
+                                            ${Array(5).fill().map((_, i) => `
+                                                <span class="${i < overallRating ? 'star-active' : 'star-inactive'}">★</span>
+                                            `).join('')}
+                                        </span> (${overallRating}/5)</div>
+                                        ${received.comment ? `
+                                            <p>${received.comment.value || 'No comment provided.'}</p>
+                                        ` : ''}
+                                    </div>
+                                </div>
+                            `;
+                }).join('') || '<p>No reviews given to hustlers.</p>'}
+                </div>
+                <div class="reviews-section">
+                    <h4>Reviews You Received from Hustlers</h4>
+                    ${Object.entries(activity.hustlers)
+                .filter(([_, hustler]) => hustler.reviews && hustler.reviews.sent)
+                .map(([hustlerId, hustler]) => {
+                    const sent = hustler.reviews.sent;
+                    const starFields = Object.entries(sent)
+                        .filter(([key, _]) => key !== 'comment' && sent[key].type === 'star');
+                    const overallRating = starFields.length > 0
+                        ? Math.round(starFields.reduce((sum, [_, value]) => sum + value.value, 0) / starFields.length)
+                        : 0;
+                    return `
+                                <div class="hustler-review">
+                                    <div class="jobs-feedback">
+                                        <div class="feedback-grid">
+                                            ${starFields.map(([key, value]) => `
+                                                <div class="feedback-item">
+                                                    <span class="feedback-label">${key.charAt(0).toUpperCase() + key.slice(1)}</span>
+                                                    <span class="feedback-stars">
+                                                        ${Array(5).fill().map((_, i) => `
+                                                            <span class="${i < value.value ? 'star-active' : 'star-inactive'}">★</span>
+                                                        `).join('')}
+                                                    </span>
+                                                </div>
+                                            `).join('')}
+                                        </div>
+                                        <div class="feedback-total">Overall: <span class="stars">
+                                            ${Array(5).fill().map((_, i) => `
+                                                <span class="${i < overallRating ? 'star-active' : 'star-inactive'}">★</span>
+                                            `).join('')}
+                                        </span> (${overallRating}/5)</div>
+                                        ${sent.comment ? `
+                                            <p>${sent.comment.value || 'No comment provided.'}</p>
+                                        ` : ''}
+                                    </div>
+                                </div>
+                            `;
+                }).join('') || '<p>No reviews received from hustlers.</p>'}
+                </div>
+            </div>
+        `;
+    }
 
     let content = `
-                <div class="jobs-details-header">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <img src="../assets/store/images/app/company.png" alt="${job.company || 'Company'}">
-                        <div>
-                            <div class="jobs-details-title">${job.title || 'N/A'}</div>
-                            <div class="jobs-details-subtitle">${job.company || 'N/A'}</div>
-                        </div>
-                    </div>
-                    <a href="./index.php?url=rate&jobId=${id}" target="_self" class="rate-client">Rate Client</a>
+        <div class="jobs-details-header">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <img src="../assets/store/images/app/company.png" alt="${activity.company || 'Company'}">
+                <div>
+                    <div class="jobs-details-title">${activity.name}</div>
+                    <div class="jobs-details-subtitle">${activity.company || ''}</div>
                 </div>
-                <div class="jobs-details-info">
-                    <div><span class="label">Posted:</span> ${job.posted || 'N/A'}</div>
-                    <div><span class="label">Expires:</span> ${job.expires || 'N/A'}</div>
-                    <div><span class="label">Location:</span> ${job.location || 'N/A'}</div>
-                    <div><span class="label">Salary:</span> ${job.salary || 'N/A'}</div>
-                    <div><span class="label">Hours:</span> ${job.hours || 'N/A'}</div>
-                    <span class="jobs-details-status jobs-status ${job.status || ''}">${job.status ? job.status.charAt(0).toUpperCase() + job.status.slice(1) : 'N/A'}</span>
-                </div>
-                <div class="jobs-description">
-                    <h3>Description</h3>
-                    <p>${job.description || 'No description available.'}</p>
-                    <h3>Responsibilities</h3>
-                    <ul>
-                        ${(job.responsibilities || []).map(item => `<li>${item}</li>`).join('') || '<li>No responsibilities listed.</li>'}
-                    </ul>
-                    <h3>Requirements</h3>
-                    <ul>
-                        ${(job.requirements || []).map(item => `<li>${item}</li>`).join('') || '<li>No requirements listed.</li>'}
-                    </ul>
-                </div>
-                <div class="jobs-feedback">
-                    <h3>Client Review</h3>
-                    ${job.feedback ? `
-                        <div class="feedback-content">${job.feedback.text}</div>
-                        <div class="feedback-grid">
-                            ${job.feedback.categories.map(category => `
-                                <div class="feedback-item">
-                                    <span class="feedback-label">${category.label}</span>
-                                    <span class="feedback-stars">
-                                        ${Array(5).fill().map((_, i) => `
-                                            <span class="${i < category.stars ? 'star-active' : 'star-inactive'}">★</span>
-                                        `).join('')}
-                                    </span>
-                                </div>
-                            `).join('')}
-                        </div>
-                        <div class="feedback-total">Overall: <span class="stars">
-                            ${Array(5).fill().map((_, i) => `
-                                <span class="${i < job.feedback.total ? 'star-active' : 'star-inactive'}">★</span>
-                            `).join('')}
-                        </span> (${job.feedback.total}/5)</div>
-                    ` : '<p>No client review available yet.</p>'}
-                    ${userRating ? `
-                        <h3>Your Rating</h3>
-                        <div class="user-feedback">
-                            <div class="feedback-grid">
-                                ${userRating.categories.map(category => `
-                                    <div class="feedback-item">
-                                        <span class="feedback-label">${category.label}</span>
-                                        <span class="feedback-stars">
-                                            ${Array(5).fill().map((_, i) => `
-                                                <span class="${i < category.stars ? 'star-active' : 'star-inactive'}">★</span>
-                                            `).join('')}
-                                        </span>
-                                    </div>
-                                `).join('')}
-                            </div>
-                            <div class="feedback-overall-label">Overall: <span class="stars">
-                                ${Array(5).fill().map((_, i) => `
-                                    <span class="${i < userRating.total ? 'star-active' : 'star-inactive'}">★</span>
-                                `).join('')}
-                            </span> (${userRating.total}/5)</div>
-                            <p>Comment: ${userRating.comment || 'No comment provided.'}</p>
-                        </div>
-                    ` : ''}
-                </div>
-            `;
+            </div>
+            <button class="btn btn-primary rate-client" data-bs-toggle="modal" data-bs-target="#invoiceModal" data-job-id="${id}" style="background: #FF0000; color: white; font-weight: bold; border: none">Invoice</button>
+        </div>
+        <div class="jobs-details-info">
+            <div><span class="label">Posted:</span> ${new Date(activity.createdAt._seconds * 1000).toLocaleString()}</div>
+            <div><span class="label">Status:</span> <span class="jobs-status ${getStatusClass(activity.status)}">${activity.status}</span></div>
+            <div><span class="label">Location:</span> ${activity.location || ''}</div>
+            <div><span class="label">Salary:</span> ${activity.salary || ''}</div>
+        </div>
+        <div class="jobs-description">
+            <h3>Description</h3>
+            <p>${activity.description || 'No description available.'}</p>
+        </div>
+        ${hustlersReviewsContent}
+    `;
 
     details.innerHTML = content;
-    // Scroll to top of jobs-details-panel for better visibility
     details.scrollTop = 0;
 
-    // Update active job item
     document.querySelectorAll('#jobs-list li').forEach(item => {
         item.classList.remove('active');
     });
@@ -128,143 +284,72 @@ function showDetails(id) {
     if (activeItem) {
         activeItem.classList.add('active');
     }
+
+    // Use event delegation for .rate-client buttons
+    document.getElementById('jobs-details-content').addEventListener('click', function (event) {
+        if (event.target.classList.contains('rate-client')) {
+            const jobId = event.target.getAttribute('data-job-id');
+            console.log('Invoice button clicked for job ID:', jobId); // Debug log
+            loadInvoiceContent(jobId);
+            invoiceModal.show();
+        }
+    }, {
+        once: true
+    }); // Ensure the listener is added only once
 }
 
-const selectAllCheckbox = document.getElementById('jobs-select-all-checkbox');
-const jobListContainer = document.getElementById('jobs-list');
-const deleteButton = document.getElementById('jobs-delete-button');
-
-function updateDeleteButton() {
-    const checkboxes = jobListContainer.querySelectorAll('.jobs-checkbox');
-    deleteButton.disabled = !Array.from(checkboxes).some(cb => cb.checked);
-}
-
-function updateSelectAllState() {
-    const checkboxes = jobListContainer.querySelectorAll('.jobs-checkbox');
-    const allChecked = Array.from(checkboxes).every(cb => cb.checked);
-    const someChecked = Array.from(checkboxes).some(cb => cb.checked);
-
-    selectAllCheckbox.checked = allChecked;
-    selectAllCheckbox.indeterminate = someChecked && !allChecked;
-    updateDeleteButton();
-}
-
-function initializeCheckboxes() {
-    const checkboxes = jobListContainer.querySelectorAll('.jobs-checkbox');
-    checkboxes.forEach(checkbox => {
-        // Prevent checkbox click from triggering job selection
-        checkbox.removeEventListener('click', stopPropagation);
-        checkbox.addEventListener('click', stopPropagation);
-        checkbox.removeEventListener('change', updateSelectAllState);
-        checkbox.addEventListener('change', updateSelectAllState);
-    });
-}
-
-// Prevent checkbox click from triggering list item click
-function stopPropagation(e) {
-    e.stopPropagation();
-}
-
-initializeCheckboxes();
-
-selectAllCheckbox.addEventListener('change', function () {
-    const checkboxes = jobListContainer.querySelectorAll('.jobs-checkbox');
-    checkboxes.forEach(checkbox => {
-        checkbox.checked = selectAllCheckbox.checked;
-    });
-    updateDeleteButton();
+// Event listeners for modal buttons
+document.getElementById('reportIssueBtn').addEventListener('click', function () {
+    console.log('Report Issue button clicked');
+    // Add your logic for reporting an issue
+    bootstrap.Modal.getInstance(invoiceModalElement).hide();
 });
 
-deleteButton.addEventListener('click', function () {
-    if (confirm('Are you sure you want to delete the selected jobs?')) {
-        const checkboxes = jobListContainer.querySelectorAll('.jobs-checkbox:checked');
-        const selectedIds = Array.from(checkboxes).map(checkbox =>
-            checkbox.parentElement.getAttribute('data-id')
-        );
+document.getElementById('downloadReceiptBtn').addEventListener('click', function () {
+    console.log('Download Receipt button clicked');
+    // Add your logic for downloading the receipt
+    bootstrap.Modal.getInstance(invoiceModalElement).hide();
+});
 
-        selectedIds.forEach(id => {
-            const listItem = jobListContainer.querySelector(`li[data-id="${id}"]`);
-            if (listItem) {
-                listItem.remove();
-                delete userRatings[id];
-                delete jobs[id]; // Remove from jobs object
-            }
-        });
+document.addEventListener('DOMContentLoaded', function () {
+    loadActivitiesData();
 
-        selectAllCheckbox.checked = false;
-        selectAllCheckbox.indeterminate = false;
-        updateDeleteButton();
+    window.addEventListener('message', function (event) {
+        if (event.data.type === 'submitRating') {
+            const {
+                jobId,
+                ratings,
+                comment
+            } = event.data;
+            const total = Math.round(
+                (ratings.Competence + ratings.Quality + ratings.Timeliness + ratings.Reliability) / 4
+            );
+            userRatings[jobId] = {
+                categories: [{
+                    label: 'Competence',
+                    stars: ratings.Competence
+                },
+                {
+                    label: 'Quality',
+                    stars: ratings.Quality
+                },
+                {
+                    label: 'Timeliness',
+                    stars: ratings.Timeliness
+                },
+                {
+                    label: 'Reliability',
+                    stars: ratings.Reliability
+                }
+                ],
+                total,
+                comment
+            };
 
-        if (jobListContainer.children.length === 0) {
-            jobListContainer.innerHTML = '<li>No jobs available.</li>';
-            document.getElementById('jobs-details-content').innerHTML = '<p>No jobs available. Please add a new job.</p>';
-        } else {
-            const firstRemainingItem = jobListContainer.querySelector('li[data-id]');
-            if (firstRemainingItem) {
-                showDetails(parseInt(firstRemainingItem.getAttribute('data-id')));
-            } else {
-                document.getElementById('jobs-details-content').innerHTML = '<p>No jobs selected.</p>';
+            const activeItem = document.querySelector('li.active');
+            if (activeItem && String(activeItem.getAttribute('data-id')) === String(jobId)) {
+                showDetails(jobId);
             }
         }
-
-        initializeCheckboxes();
-    }
-});
-
-function initializeListItems() {
-    document.querySelectorAll('#jobs-list li').forEach(item => {
-        item.removeEventListener('click', handleListItemClick);
-        item.addEventListener('click', handleListItemClick);
     });
-}
-
-function handleListItemClick(e) {
-    // Only trigger if the click is not on the checkbox
-    if (e.target !== this.querySelector('input[type="checkbox"]')) {
-        const id = parseInt(this.getAttribute('data-id'));
-        showDetails(id);
-    }
-}
-
-initializeListItems();
-
-window.addEventListener('message', function (event) {
-    if (event.data.type === 'submitRating') {
-        const {
-            jobId,
-            ratings,
-            comment
-        } = event.data;
-        const total = Math.round(
-            (ratings.Competence + ratings.Quality + ratings.Timeliness + ratings.Reliability) / 4
-        );
-        userRatings[jobId] = {
-            categories: [{
-                label: 'Competence',
-                stars: ratings.Competence
-            },
-            {
-                label: 'Quality',
-                stars: ratings.Quality
-            },
-            {
-                label: 'Timeliness',
-                stars: ratings.Timeliness
-            },
-            {
-                label: 'Reliability',
-                stars: ratings.Reliability
-            }
-            ],
-            total,
-            comment
-        };
-        const activeItem = document.querySelector('li.active');
-        if (activeItem && parseInt(activeItem.getAttribute('data-id')) === jobId) {
-            showDetails(jobId);
-        }
-    }
 });
-
-// Load jobs data on page load
-loadJobsData();
