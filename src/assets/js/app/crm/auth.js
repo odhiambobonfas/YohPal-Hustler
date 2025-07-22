@@ -34,8 +34,10 @@ function logout(btn) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const logoutBtn = document.getElementById("logout-nav");
-  if (!logoutBtn) return;
-  logoutBtn.onclick = () => logout(logoutBtn);
+  const logoutBtns = document.querySelectorAll("#logout-nav");
+  console.log(logoutBtns);
+  if (!logoutBtns) return;
+  logoutBtns.forEach((logoutBtn) => {
+    logoutBtn.onclick = () => logout(logoutBtn);
+  });
 });
-

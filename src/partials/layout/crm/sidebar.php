@@ -55,9 +55,9 @@
     <!-- Session -->
     <div class="sidebar-section session">
         <div class="ms-3">
-            <div class="btn btn-link logout logout-btn" id="logout-btn">
+            <button class="btn btn-link logout logout-btn" id="logout-nav">
                 <i class="fas fa-sign-out-alt icon"></i> Logout
-            </div>
+            </button>
         </div>
     </div>
 </div>
