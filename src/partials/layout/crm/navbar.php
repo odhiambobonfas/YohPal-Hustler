@@ -66,7 +66,7 @@
                 </div>
                 <li class="nav-item dropdown d-none d-md-flex align-items-center">
                     <a class="nav-link dropdown-toggle text-dark d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="<?= asset_url('store/images/avatars/default-avatar.jpg') ?>" alt="Profile" class="rounded-circle me-2" width="36" height="36">
+                        <img src="<?= !empty(auth()->user()->profile_picture) ? auth()->user()->profile_picture :asset_url('store/images/avatars/default-avatar.jpg') ?>" alt="Profile" class="rounded-circle me-2" width="36" height="36">
                         <span class="fw-semibold">
                             <?= !empty(auth()->user()) ? (!empty(auth()->user()->firstName) ? auth()->user()->firstName : auth()->user()->email) : 'Account' ?>
                             <?= !empty(auth()->user()) ?  auth()->user()->lastName : null ?>
@@ -87,7 +87,7 @@
                             <li><a class="dropdown-item" href="/auth"><i class="bi bi-box-arrow-in-right me-2"></i>Login</a></li>
                         <?php } ?>
                         <?php if (!empty(auth()->user())) { ?>
-                            <li><a class="btn dropdown-item logout-btn" href="javascript:void(0)"><i class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
+                            <li><button class="btn dropdown-item" id="logout-nav"><i class="bi bi-box-arrow-right me-2"></i> Logout</button></li>
                         <?php } ?>
                     </ul>
                 </li>
