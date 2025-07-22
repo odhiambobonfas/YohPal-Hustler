@@ -48,7 +48,9 @@
                             <div class="profile-card">
                                 <div class="profile-header">
                                     <div class="profile-info">
-                                        <img src="<?= asset_url('store/images/avatars/default-avatar.jpg') ?>" alt="" class="profile-img">
+                                        <img src="<?= isset(auth()->user()->profile_picture)
+                                            ? auth()->user()->profile_picture
+                                            : asset_url('store/images/avatars/default-avatar.jpg') ?>" alt="" class="profile-img">
                                         <div class="profile-details">
                                             <h2>
                                                 <?= !empty(auth()->user()) ? auth()->user()->firstName : 'JANE DOE' ?>
@@ -64,7 +66,7 @@
                                     </div>
                                 </div>
                                 <div class="welcome-message">
-                                    Welcome back, 
+                                    Welcome back,
                                     <?= !empty(auth()->user()) ? auth()->user()->firstName : 'Jane Doe' ?>
                                     <?= !empty(auth()->user()) ?  auth()->user()->lastName : null ?>
                                 </div>
@@ -111,8 +113,7 @@
                                     <div class="overview-section">
                                         <div class="overview-item">
                                             <h4>BIO:</h4>
-                                            <p>My strongest skill as a front-end developer is my ability to work magic with responsive
-                                                design, making websites look great on any device.</p>
+                                            <p><?= !empty(auth()->user()->bio) ?  auth()->user()->bio : 'bio not set' ?></p>
                                         </div>
                                         <div class="overview-item">
                                             <h4>EXPERIENCE:</h4>
