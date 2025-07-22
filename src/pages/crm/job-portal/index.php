@@ -35,7 +35,7 @@
                         <div class="content-section">
 
                             <div class="job-portal-step-section category-listing">
-                                <div style="background-image: url('<?= asset_url('../../../assets/store/images/banners/banner.png') ?>')" class="top-banner mb-3 text-dark" id="top-banner">
+                                <div style="background-image: url('<?= asset_url('store/images/banners/banner.png') ?>')" class="top-banner mb-3 text-dark" id="top-banner">
                                     <h1>7,000+ Browse Jobs</h1>
                                 </div>
                                 <div class="row row-cols-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
@@ -157,38 +157,56 @@
             this.bindCategoryClicks();
         }
 
+        closeOverLay() {
+            this.hideOverlay();
+            this.bindBackBtnClick();
+            this.bindTabClicks('.sub-category-tab');
+        }
+
         bindCategoryClicks() {
+
             this.categoryCards.forEach(card => {
                 card.addEventListener('click', () => {
                     const categoryId = card.getAttribute('data-id');
-
                     this.showOverlay();
 
-                    setTimeout(() => {
-                        $.ajax({
-                            type: "GET",
-                            url: `/portal/jobs/view/${categoryId}`,
-                            dataType: "json",
-                            success: function(response) {
-                                (new JobPortal()).categoryListing.classList.add('d-none');
-                                let jobsListing = (new JobPortal()).jobsListing;
-                                if (!response.htmlContent) return;
-                                __append_html(
-                                    response.htmlContent,
-                                    jobsListing
-                                );
-                                (new JobPortal()).jobsListing.classList.remove('d-none');
-                                (new JobPortal()).hideOverlay();
-                                (new JobPortal()).bindBackBtnClick();
-                                (new JobPortal()).bindTabClicks('.sub-category-tab');
-                                enableToggleHighlight('.job-list-group', [(new JobPortal()).createJobDraft]);
-                            },
-                            error: error => {
-                                console.log(error.message || error);
-                                toast('error', 5000, lang.undefined_error);
-                            }
-                        });
-                    }, 800);
+                    const categoriesData = JSON.parse(window.localStorage.getItem('categories') || '{}');
+                    const cachedData = categoriesData[categoryId];
+                    if (cachedData) {
+                        const htmlContent = cachedData;
+                        this.categoryListing.classList.add('d-none');
+                        let jobsListing = (new JobPortal()).jobsListing;
+                        if (!htmlContent) {
+                            this.closeOverLay();
+                            return;
+                        }
+                        __append_html(htmlContent, jobsListing);
+                        this.jobsListing.classList.remove('d-none');
+                        this.closeOverLay();
+                        enableToggleHighlight('.job-list-group', [(new JobPortal()).createJobDraft]);
+                    }
+                    fetch(`/portal/jobs/view/${categoryId}`)
+                        .then((res) => res.json())
+                        .then((data) => {
+                            const updatedCategories = JSON.parse(window.localStorage.getItem('categories') || '{}');
+                            updatedCategories[categoryId] = `${data.htmlContent}`;
+                            window.localStorage.setItem('categories', JSON.stringify(updatedCategories));
+
+                            this.categoryListing.classList.add('d-none');
+                            let jobsListing = (new JobPortal()).jobsListing;
+                            if (!data.htmlContent) return;
+                            __append_html(
+                                data.htmlContent,
+                                jobsListing
+                            );
+                            this.jobsListing.classList.remove('d-none');
+                            this.closeOverLay()
+                            enableToggleHighlight('.job-list-group', [(new JobPortal()).createJobDraft]);
+                        })
+                        .catch((e) => {
+                            console.error(e.message || e);
+                            toast('error', 5000, lang.undefined_error);
+                        })
                 });
             });
         }
@@ -197,7 +215,7 @@
          * Binds the click event to the back button.
          * When triggered, it hides the jobs listing section
          * and shows the category listing section.
-         * 
+         *
          * @return {void} void
          */
         bindBackBtnClick() {
@@ -208,11 +226,9 @@
 
                 backBtn.addEventListener('click', () => {
                     this.showOverlay();
-                    setTimeout(() => {
-                        this.stepperSections.forEach(section => section.classList.add('d-none'));
-                        this.categoryListing.classList.remove('d-none');
-                        this.hideOverlay();
-                    }, 2000);
+                    this.stepperSections.forEach(section => section.classList.add('d-none'));
+                    this.categoryListing.classList.remove('d-none');
+                    this.hideOverlay();
                 });
             });
         }
@@ -248,7 +264,6 @@
                         'X-Requested-With': 'XMLHttpRequest'
                     },
                     success: function(response) {
-                        console.log(response);
                         toggleButtonContent(btn, '', true);
                         enableElement(btn);
 
@@ -256,13 +271,11 @@
                             toast(response.status, 5000, response.message || lang.undefined_error);
                             resetFormAndCloseModal(form);
                             (new JobPortal()).showOverlay();
-                            setTimeout(() => {
-                                (new JobPortal()).stepperSections.forEach(section => section.classList.add('d-none'));
-                                (new JobPortal()).mapSection.classList.remove('d-none');
-                                (new JobPortal()).hideOverlay();
-                                (new JobPortal()).bindBackBtnClick();
-                                (new JobPortal()).getActiveHustlers();
-                            }, 1000); // Avoid race condition...
+                            (new JobPortal()).stepperSections.forEach(section => section.classList.add('d-none'));
+                            (new JobPortal()).mapSection.classList.remove('d-none');
+                            (new JobPortal()).hideOverlay();
+                            (new JobPortal()).bindBackBtnClick();
+                            (new JobPortal()).getActiveHustlers();
                             return;
                         }
 
