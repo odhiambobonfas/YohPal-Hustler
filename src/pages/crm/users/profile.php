@@ -135,7 +135,7 @@
                                         </div>
                                         <div class="overview-item">
                                             <h4>LOCATION:</h4>
-                                            <p>Nairobi, Kenya</p>
+                                        <p><?= !empty(auth()->user()->Country) ?  auth()->user()->Country : 'location not set' ?></p>
                                         </div>
                                         <div class="overview-item">
                                             <h4>EARNINGS:</h4>
