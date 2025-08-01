@@ -23,9 +23,9 @@
         <!-- <script type="text/javascript" src="<?= asset_url('build/charts/js/chart.js') ?>"></script> -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Use this in realtime!  -->
 
-        <!-- geo map lib -->    
-        <script src="https://maps.googleapis.com/maps/api/js?key=<?= env('GOOGLE_MAP_API_KEY') ?>&libraries=geometry" defer="defer"></script>
-        
+        <!-- geo map lib -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=<?= env('GOOGLE_MAP_API_KEY') ?>&libraries=geometry&libraries=marker" defer="defer"></script>
+
         <!-- flatpicker -->
         <script src="<?= asset_url('/build/flatpickr/js/flatpickr.min.js') ?>"></script>
 

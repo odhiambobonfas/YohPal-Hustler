@@ -25,12 +25,30 @@ class HustlersController
 
     public $hustlerModel;
 
+    public $hustler;
+
     public function __construct(Util $util, CommUtil $commUtil, HustleUtil $hustleUtil)
     {
         // ANY APPLICABLE LOGIC
         $this->util = $util;
         $this->commUtil = $commUtil;
         $this->hustleUtil = $hustleUtil;
+        $this->hustler = new Hustler();
+    }
+    public function index(YPRequest $request)
+    {
+        $hustlerStatus = Auth::get("hustlerStatus") ?? (object)["isHustler" => false];
+        if (!$hustlerStatus->isHustler) {
+            header("Location: /dashboard");
+            return;
+        }
+
+        return view("crm/hustlers/index");
+    }
+
+    public function profile(YPRequest $request): mixed {
+        $response = $this->hustler->getHustlerProfile();
+        return view("crm/hustlers/profile");
     }
 
     public function getActiveHustlersByPrimarySkill(YPRequest $request): mixed
@@ -38,7 +56,7 @@ class HustlersController
         try {
             $this->hustlerModel = new Hustler();
             $jobDraft = Auth::get('newJob');
-            $hustlers = $this->hustlerModel->getActiveHustlersByPrimarySkill(['primarySkill' => $jobDraft->name]);
+            $hustlers = $this->hustlerModel->getActiveHustlersByPrimarySkill(['primarySkill' => $jobDraft->name, "start" => $jobDraft->startDateTime]);
             return $request->res(['status' => 'success', 'hustlers' => $hustlers]);
         } catch (YPException $th) {
             YPLogger::error($th);
@@ -46,11 +64,16 @@ class HustlersController
         }
     }
 
+    public function jobRequests(YPRequest $request): mixed
+    {
+        return view("crm/hustlers/job-requests");
+    }
+
     public function getHustlerJobRequests(YPRequest $request): mixed
     {
         try {
             $this->hustlerModel = new Hustler();
-            $user = Auth()->user()->uid;
+            $user = auth()->user()->uid;
             $jobRequests = $this->hustlerModel->getHustlerJobRequests(['hustlerId' => $user]);
             return $request->res(['status' => 'success', 'jobRequests' => $jobRequests]);
         } catch (YPException $th) {

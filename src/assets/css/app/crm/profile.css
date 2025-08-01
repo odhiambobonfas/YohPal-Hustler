@@ -78,7 +78,8 @@
   border-radius: 10px;
 }
 
-.personal-info {
+.personal-info,
+.work-info {
   display: flex;
   flex-direction: column;
   border: 1px solid gray;
@@ -101,10 +102,57 @@
   gap: 0.5rem;
 }
 
+.info-images-c {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.info-imgs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
+}
+
+.info-img {
+  width: calc(33.333% - 0.67rem); /* 3 per row minus gap compensation */
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.info-textarea,
+.info-skills {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.info-skill {
+  background-color: gray;
+  border-radius: 25px;
+  padding: 0.25rem 0.75rem;
+  color: white;
+}
+
 .info-input label {
   margin-top: 0.5rem;
 }
-.info-input input {
+
+.info-textarea textarea {
+  border: none;
+  text-align: start;
+}
+
+.info-input input,
+.info-textarea textarea {
   background-color: #e5e5e5;
   border: none;
   width: 100%;
@@ -190,4 +238,3 @@ input:checked + .slider:before {
     width: 100%;
   }
 }
-

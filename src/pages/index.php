@@ -67,20 +67,20 @@
         </div>
     </section>
     <div class="main-wrapper">
-        <section class="top-section">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-6 explore">
-                        <h1>Explore <br>by category</h1>
-                    </div>
-                    <div class="decoration-elements col-md-4 left justify-content-md-end ms-6">
-                        <i class="fas fa-angle-left icon"></i>
-                        <div class="decorative-elements">Drag</div>
-                        <i class="fas fa-angle-right icon"></i>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- <section class="top-section"> -->
+        <!--     <div class="container"> -->
+        <!--         <div class="row align-items-center"> -->
+        <!--             <div class="col-md-6 explore"> -->
+        <!--                 <h1>Explore <br>by category</h1> -->
+        <!--             </div> -->
+        <!--             <div class="decoration-elements col-md-4 left justify-content-md-end ms-6"> -->
+        <!--                 <i class="fas fa-angle-left icon"></i> -->
+        <!--                 <div class="decorative-elements">Drag</div> -->
+        <!--                 <i class="fas fa-angle-right icon"></i> -->
+        <!--             </div> -->
+        <!--         </div> -->
+        <!--     </div> -->
+        <!-- </section> -->
         <section class="category-grid">
             <div class="container">
                 <div class="scroll-wrapper">
@@ -242,40 +242,40 @@
                 </div>
             </div>
         </section>
-        <section class="bottom-section">
-            <div class="container">
-                <div class="row2 g-4">
-                    <div class="col-6 col-md-3 footer-block">
-                        <h4>Employ</h4>
-                        <p>We are helping people to find their suitable jobs by using our platform</p>
-                        <div class="social-media">
-                            <a href="#" class="icon"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="icon"><i class="fab fa-x-twitter"></i></a>
-                            <a href="#" class="icon"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3 footer-block">
-                        <h4>About us</h4>
-                        <p>Teams</p>
-                        <p>Profile</p>
-                        <p>Career</p>
-                    </div>
-                    <div class="col-6 col-md-3 footer-block">
-                        <h4>Resources</h4>
-                        <p>Application</p>
-                        <p>Blog</p>
-                    </div>
-                    <div class="col-6 col-md-3 footer-block">
-                        <h4>Stay up to date</h4>
-                        <div class="deff d-flex gap-2">
-                            <input type="email" placeholder="Make a difference" />
-                            <i class="fas fa-angle-right icon"></i>
-                        </div>
-                    </div>
-                </div>
-                <p class="footer-copyright mt-4">© 2022 All Rights Reserved - <a href="#">website.com</a></p>
-            </div>
-        </section>
+        <!-- <section class="bottom-section"> -->
+        <!--     <div class="container"> -->
+        <!--         <div class="row2 g-4"> -->
+        <!--             <div class="col-6 col-md-3 footer-block"> -->
+        <!--                 <h4>Employ</h4> -->
+        <!--                 <p>We are helping people to find their suitable jobs by using our platform</p> -->
+        <!--                 <div class="social-media"> -->
+        <!--                     <a href="#" class="icon"><i class="fab fa-facebook-f"></i></a> -->
+        <!--                     <a href="#" class="icon"><i class="fab fa-x-twitter"></i></a> -->
+        <!--                     <a href="#" class="icon"><i class="fab fa-linkedin-in"></i></a> -->
+        <!--                 </div> -->
+        <!--             </div> -->
+        <!--             <div class="col-6 col-md-3 footer-block"> -->
+        <!--                 <h4>About us</h4> -->
+        <!--                 <p>Teams</p> -->
+        <!--                 <p>Profile</p> -->
+        <!--                 <p>Career</p> -->
+        <!--             </div> -->
+        <!--             <div class="col-6 col-md-3 footer-block"> -->
+        <!--                 <h4>Resources</h4> -->
+        <!--                 <p>Application</p> -->
+        <!--                 <p>Blog</p> -->
+        <!--             </div> -->
+        <!--             <div class="col-6 col-md-3 footer-block"> -->
+        <!--                 <h4>Stay up to date</h4> -->
+        <!--                 <div class="deff d-flex gap-2"> -->
+        <!--                     <input type="email" placeholder="Make a difference" /> -->
+        <!--                     <i class="fas fa-angle-right icon"></i> -->
+        <!--                 </div> -->
+        <!--             </div> -->
+        <!--         </div> -->
+        <!--         <p class="footer-copyright mt-4">© 2022 All Rights Reserved - <a href="#">website.com</a></p> -->
+        <!--     </div> -->
+        <!-- </section> -->
     </div>
 </main>
 <!-- /main -->

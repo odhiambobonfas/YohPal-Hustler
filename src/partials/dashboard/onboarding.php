@@ -18,7 +18,7 @@
         <div class="col-12 col-md-6 d-flex flex-column justify-content-center">
             <div class="card bg-transparent border-0 rounded-0 p-4">
                 <div class="card-body my-1">
-                    <h3 class="fw-bold text-dark mb-3">YOHPAL</h3> 
+                    <h3 class="fw-bold text-dark mb-3">YOHPAL</h3>
                     <form action="/account/activate-account" method="post" enctype="multipart/form-data">
                         <div class="stepper-section ratings-section d-none">
                             <?php include "onboarding/rating-setup-form.php" ?>

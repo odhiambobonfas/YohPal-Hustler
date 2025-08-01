@@ -27,12 +27,15 @@
                 <!-- Profile start -->
                 <div class="card bg-white border-0 rounded mb-3">
                     <div class="profile-container">
+                        <!-- TODO:: (604694a90d33) Use the updated `hustlerStatus` field -->
+                        <?php if (auth()->user()->clientHustleStatus): ?>
                         <div class="switch-c">
                             <label class="switch">
-                                <input type="checkbox">
+                                <input type="checkbox" <?= auth()->hustlerStatus()->isHustler ? 'checked' : '' ?> onchange="toggleAccount(this)">
                                 <span class="slider round"></span>
                             </label>
-                            </div>
+                        </div>
+                        <?php endif; ?>
                         <div class="profile-links">
                             <a href="#">Jobs</a>
                             <a href="#">Transactions</a>
@@ -55,12 +58,12 @@
                             <h4><b>Personal Information</b></h4>
                             <div class="info">
                                 <div class="info-input">
-                                    <label for="firstName">FirstName</label>
+                                    <label for="firstName">First Name</label>
                                     <input disabled  name="firstName" readonly value="<?=  isset(auth()->user()->firstName) ? auth()->user()->firstName : 'John' ?>"/>
                                 </div>
 
                                 <div class="info-input">
-                                    <label for="lastName">LastName</label>
+                                    <label for="lastName">Last Name</label>
                                     <input disabled name="lastName" readonly value="<?=  isset(auth()->user()->lastName) ? auth()->user()->lastName : 'Doe' ?>"/>
                                 </div>
 
@@ -90,6 +93,7 @@
 <!-- /footer -->
 
 <!-- xtra scripts -->
+<script type="text/javascript" src="<?= asset_url('js/app/crm/account.js') ?>"></script>
 <script type="text/javascript" src="<?= asset_url('js/app/crm/auth.js') ?>"></script>
 <script type="text/javascript" src="<?= asset_url('js/app/crm/dashboard.js') ?>"></script>
 <script type="text/javascript" src="<?= asset_url('js/app/crm/profile.js') ?>"></script>

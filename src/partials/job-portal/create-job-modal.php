@@ -1,5 +1,5 @@
 <!-- create job modal -->
-<form class="create-job-modal-form" action="/job/create/<?= htmlspecialchars($category['slug']) ?>" method="post">
+<form class="create-job-modal-form" action="/job/create/" method="post">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -12,8 +12,8 @@
                     <input readonly type="text" class="form-control job-title" name="name" id="name" aria-describedby="helpId" placeholder="Enter job name" required>
                 </div>
                 <div class="mb-3">
-                    <label for="hustlersCount">Number of Hustler:</label>
-                    <input type="number" required class="form-control" min="0" max="100" name="hustlersCount" id="hustlersCount" aria-describedby="helpId" placeholder="Enter number of hustlers, eg. 10" required value="0">
+                    <label for="hustlersCount">Number of Hustlers:</label>
+                    <input type="number" value=1 required class="form-control" min="0" max="100" name="hustlersCount" id="hustlersCount" aria-describedby="helpId" placeholder="Enter number of hustlers, eg. 10" required value="0">
                 </div>
                 <div class="row g-3 mb-3">
                     <div class="col-md-6">

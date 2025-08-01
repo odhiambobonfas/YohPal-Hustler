@@ -3,7 +3,6 @@ function logout(btn) {
   $.ajax({
     type: "POST",
     url: "/auth/logout",
-    dataType: "json",
     headers: {
       "X-Requested-With": "XMLHttpRequest",
     },
@@ -35,7 +34,6 @@ function logout(btn) {
 
 document.addEventListener("DOMContentLoaded", () => {
   const logoutBtns = document.querySelectorAll("#logout-nav");
-  console.log(logoutBtns);
   if (!logoutBtns) return;
   logoutBtns.forEach((logoutBtn) => {
     logoutBtn.onclick = () => logout(logoutBtn);

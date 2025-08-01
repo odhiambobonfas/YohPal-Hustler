@@ -19,7 +19,7 @@ use Yohpal\Models\Hustler;
 
 $router = new YPRouter();
 
-// Define routes 
+// Define routes
 // web routes
 // Landing page routes
 $router->req('GET', '/', [YohPalController::class, 'index']);
@@ -31,8 +31,6 @@ $router->req('POST', '/contact/verify', [ContactsController::class, 'verifyConta
 
 // Dashboard Routes
 $router->req('GET', '/dashboard', [DashboardController::class, 'index'], [AuthMiddleware::class]);
-$router->req('GET', '/dashboard-ui', [DashboardController::class, 'ui'], [AuthMiddleware::class]);
-$router->req('GET', '/hustlers-ui', [DashboardController::class, 'hustlers_ui'], [AuthMiddleware::class]);
 $router->req('GET', '/admin', [AdminController::class, 'index'], [AuthMiddleware::class]);
 $router->req('GET', '/users/count/stats', [UsersController::class, 'usersCount'], [AuthMiddleware::class]);
 $router->req('GET', '/dashboard/graphical/stats', [PaymentController::class, 'dashboardEarningsData'], [AuthMiddleware::class]);
@@ -40,14 +38,17 @@ $router->req('GET', '/dashboard/graphical/stats', [PaymentController::class, 'da
 // Profile Routes
 $router->req('GET', '/profile', [ProfileController::class, 'index'], [AuthMiddleware::class]);
 
-// Carreer section routes 
+// Carreer section routes
 $router->req('GET', '/job-portal', [JobsController::class, 'index'], [AuthMiddleware::class]);
-$router->req('GET', '/portal/jobs/view/[**:path]', [JobsController::class, 'jobsListing'], [AuthMiddleware::class]);
+$router->req('GET', '/services', [JobsController::class, 'getServices']);
 
 // Onboarding routes
-$router->req('POST', '/job/create/[**:path]', [JobsController::class, 'createJobDraft'], [AuthMiddleware::class]);
 $router->req('GET', '/onboarding', [OnboardingController::class, 'index'], [AuthMiddleware::class]);
 $router->req('POST', '/profile/update', [OnboardingController::class, 'updateProfileDetails'], [AuthMiddleware::class]);
+
+
+$router->req('POST', '/job/completeCreation', [JobsController::class, 'createJob'], [AuthMiddleware::class]);
+$router->req('POST', '/job/create/[**:path]', [JobsController::class, 'createJobDraft'], [AuthMiddleware::class]);
 
 // Account routes
 $router->req('POST', '/account/activate-account', [OnboardingController::class, 'activateAccount'], [AuthMiddleware::class]);
@@ -56,7 +57,21 @@ $router->req('POST', '/account/activate-account', [OnboardingController::class, 
 $router->req('GET', '/get-started', [WebController::class, 'getStarted'], [AuthMiddleware::class]);
 $router->req('POST', '/get-started/onboarding', [WebController::class, 'getStarted'], [AuthMiddleware::class]);
 $router->req('GET', '/search-engine', [WebController::class, 'searchEngine'], [AuthMiddleware::class]);
+
 $router->req('GET', '/users/hustlers', [HustlersController::class, 'getActiveHustlersByPrimarySkill'], [AuthMiddleware::class]);
-$router->req("GET", "/hustler/job-request", [HustlersController::class, "getHustlerJobRequests"], [AuthMiddleware::class]);
+
+$router->req("GET", "/crm/hustler/job-requests", [HustlersController::class, "getHustlerJobRequests"], [AuthMiddleware::class]);
+$router->req("POST", "/crm/switch-acct", [ClientController::class, "toggleAccount"], [AuthMiddleware::class]);
+$router->req("GET", "/crm/user-job-history", [UsersController::class, "jobHistory"], [AuthMiddleware::class]);
+$router->req("GET", "/crm/client-activities", [ClientController::class, "getClientsJobHistory"], [AuthMiddleware::class]);
+
+$router->req("POST", "/crm/job/accept-req", [JobsController::class, "acceptJob"], [AuthMiddleware::class]);
+$router->req("POST", "/crm/job/reject-req", [JobsController::class, "rejectJob"], [AuthMiddleware::class]);
+
 // Client related routes
-$router->req("GET", "/crm/client-activities", [ClientController::class, "clientActivities"], [AuthMiddleware::class]);
+$router->req("GET",  "/client/activities", [ClientController::class, "clientActivities"], [AuthMiddleware::class]);
+
+// Hustler related routes
+$router->req("GET", "/hustler/dashboard", [HustlersController::class, "index"], [AuthMiddleware::class]);
+$router->req("GET", "/hustler/profile", [HustlersController::class, "profile"], [AuthMiddleware::class]);
+$router->req("GET",  "/hustler/requests", [HustlersController::class, "jobRequests"], [AuthMiddleware::class]);

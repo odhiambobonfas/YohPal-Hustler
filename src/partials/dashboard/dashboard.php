@@ -194,68 +194,33 @@
      </div>
  </div>
 
- <!-- Job Table and Widgets Section -->
- <div class="table-widget-container">
-     <div class="job-tables">
-         <div class="job-table-section">
-             <div class="table-header">
-                 <h3 class="table-title">Recent activities</h3>
-                 <div class="action-buttons">
-                     <a href="/crm/client-activities" class="view-more">View More</a>
-                 </div>
-             </div>
-             <table class="job-table">
-                 <thead>
-                     <tr>
-                         <th>Role</th>
-                         <th>Company</th>
-                         <th>Posted</th>
-                         <th>Status</th>
-                     </tr>
-                 </thead>
-                 <tbody id="job-requests-table-body"></tbody>
-             </table>
-         </div>
+ <!-- Previous Jobs preview -->
+ <div class="container-fluid mt-5">
+     <div class="d-flex justify-content-between align-items-center my-2">
+         <h2>Recent Activities</h2>
+         <a class="btn btn-outline-danger btn-sm"
+             href="<?= auth()->hustlerStatus()->isHustler
+             ? '/hustler/requests'
+             : '/client/activities' ?>">
+             View More
+         </a>
      </div>
 
-
-     <div class="widget-section">
-         <div class="widget-card">
-             <div class="widget-header">
-                 <span class="widget-title">🔗 Link to this Job</span>
-             </div>
-             <div class="widget-content">
-                 Select and copy the link below (For this specific job posting page):<br><br>
-                 <div class="widget-value">
-                     <input type="text" class="widget-input" value="https://jobrick.do/job/post">
-                     <button class="copy-btn">Copy</button>
-                 </div>
-             </div>
-         </div>
-         <div class="widget-card">
-             <div class="widget-header">
-                 <span class="widget-title">📊 Use the Button Widget</span>
-             </div>
-             <div class="widget-content">
-                 Put the code below in your site where you want the buttons to appear. Just copy the codes
-                 and paste them.<br><br>
-                 <div class="widget-value">
-                     <textarea class="widget-input" style="height: 30px;"><script type="text/javascript">
-                       </script>
-                        </textarea>
-                     <button class="copy-btn">Copy</button>
-                 </div>
-             </div>
-         </div>
-         <div class="widget-card">
-             <div class="widget-header">
-                 <span class="widget-title">📧 Upload Resumes by Email</span>
-             </div>
-             <div class="widget-content">
-                 Set up an auto-forward rule from your email to collect incoming candidate resumes and
-                 applications:<br><br>
-                 resume@easyapply.co
-             </div>
-         </div>
+     <div class="card" id="client-activities-preview">
+         <table class="table table-striped table-hover">
+             <thead>
+                 <tr>
+                     <th>Title</th>
+                     <th>Description</th>
+                     <th>Created At</th>
+                     <th>Start Date</th>
+                     <th>Status</th>
+                 </tr>
+             </thead>
+             <tr>
+                 <td colspan="5" style="text-align: center;">Loading...</td>
+             </tr>
+             <tbody>
+         </table>
      </div>
  </div>
