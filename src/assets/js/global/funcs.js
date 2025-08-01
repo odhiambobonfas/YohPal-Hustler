@@ -455,6 +455,16 @@ function getDataTableLanguage(overrides = {}) {
 }
 
 /**
+ * Parses and returns an action route from a specifified form
+ * 
+ * @param {HTMLSelectElement} form 
+ * @returns {string|null} Form Route URL
+ */
+function formRouteParser(form) {
+    return form.action || form.getAttribute('route');
+}
+
+/**
  * Accepts a route string and navigates 
  * the browser to the given route.
  * 
@@ -678,15 +688,147 @@ function enableToggleHighlight(selector, callbackFuncs=[], activeClass = 'active
             item.classList.add(activeClass);
 
             callbackFuncs.forEach(func => { 
-                func(item.getAttribute('data-id')); // call the callback functions if supplied.
+                let extra_params = { 'job_name': item.querySelector('.job-title-inner-html')?.innerHTML };
+                func(item.getAttribute('data-id'), extra_params); // call the callback functions if supplied.
             });
         });
     });
 }
 
+/**
+ * Set 2FA UI interface interactivity 
+ * 
+ * @param {String} selector 
+ * @returns {void} void
+ */
+function setup2FAInterface(selector='.otp-input-box') {
+    const inputs = document.querySelectorAll(`${selector}`);
+
+    inputs.forEach((input, index) => {
+        if (!documentContains(input)) return;
+        input.setAttribute("inputmode", "numeric");
+
+        input.addEventListener("input", function (e) {
+            const value = e.target.value;
+            // Allow only numbers
+            if (!/^[0-9]$/.test(value)) {
+                e.target.value = '';
+                return;
+            }
+
+            // Move to next input if available
+            if (value && index < inputs.length - 1) {
+                inputs[index + 1].focus();
+            }
+        });
+
+        input.addEventListener("keydown", function (e) {
+            if (e.key === "Backspace" && !e.target.value && index > 0) {
+                inputs[index - 1].focus();
+            }
+        });
+
+        input.addEventListener("paste", function (e) {
+            e.preventDefault();
+            const paste = e.clipboardData.getData("text").trim();
+            if (/^\d+$/.test(paste)) {
+                paste.split('').forEach((char, i) => {
+                    if (i < inputs.length) {
+                        inputs[i].value = char;
+                    }
+                });
+                const next = paste.length < inputs.length ? paste.length : inputs.length - 1;
+                inputs[next].focus();
+            }
+        });
+    });
+}
+
+/**
+ * Take care of drop zones uploading functionality...
+ */
+function setupUploadSection() {
+    const dropZones = document.querySelectorAll('.drop-zone'); 
+    dropZones.forEach(zone => {  
+        const input = zone.querySelector('input'); 
+        const zoneSubText = zone.querySelector('.zone-text');
+        const zonePreviewer = zone.querySelector('.preview-img');
+
+        zone.addEventListener('click', () => input.click());
+
+        zone.addEventListener('dragover', e => {
+            e.preventDefault();
+            zone.classList.add('dragover');
+        });
+
+        zone.addEventListener('dragleave', () => {
+            zone.classList.remove('dragover');
+        });
+
+        zone.addEventListener('drop', e => {
+            e.preventDefault();
+            zone.classList.remove('dragover');
+
+            const file = e.dataTransfer.files[0]; 
+            if (file && (file.type.startsWith('image/') || file.type === 'application/pdf')) {
+                input.files = e.dataTransfer.files;
+                previewImage(zonePreviewer, file);
+            } 
+        });
+
+        // File preview
+        input.addEventListener('change', () => {
+            const file = input.files[0];
+            if (file && (file.type.startsWith('image/') || file.type === 'application/pdf')) {
+                previewImage(zonePreviewer, file);
+            }
+        });
+
+        function previewImage(zonePreviewer, file) {
+            const reader = new FileReader();
+            reader.onload = function (e) { 
+                zoneSubText.classList.add('d-none');
+                zonePreviewer.querySelectorAll('img, embed').forEach(el => el.remove());
+                const accept = input.getAttribute('accept') || ''; 
+                if (accept.includes('image') && file.type.startsWith('image/')) {
+                    __append_html(`<img src="${e.target.result}" alt="Preview">`, zonePreviewer);
+                } else if (accept.includes('pdf') && file.type === 'application/pdf') {
+                    __append_html(`<embed src="${e.target.result}" type="application/pdf" width="100%" height="200px" />`, zonePreviewer);
+                }
+
+                const fileName = zonePreviewer.parentNode.querySelector('.file-name'); 
+                if (documentContains(fileName)) __append_html(file.name, fileName); 
+            };
+            
+            reader.readAsDataURL(file);
+        }
+    });
+}
+
+/**
+ * Apply falt pickr date range UI on the inputs with .fpRangeDate class
+ * 
+ * @returns {void} void
+ */
+function flatpickrUtil() {
+    if (typeof flatpickr === 'undefined') return;
+    const rangeDateInputs = document.querySelectorAll('.fpRangeDate');
+    rangeDateInputs.forEach(dateInput => {
+        if (!documentContains(dateInput)) return;
+        flatpickr(dateInput, {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+        });
+    }); 
+}
+
 // Call functions Below.
 document.addEventListener('DOMContentLoaded', async () => {
     const masterClassInstance = new Master(); 
+    masterClassInstance.initOverlay();
     stickNavbarOnScroll();
     mapCollapseToggles();
+    searchSelectInitializer();
+    setup2FAInterface();
+    flatpickrUtil();
 });

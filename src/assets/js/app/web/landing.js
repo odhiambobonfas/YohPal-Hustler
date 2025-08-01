@@ -1,91 +1,200 @@
-class Landing extends Master {
-    constructor() {
-        super();
-        // ANY CONSTRUCTOR LOGIC AVAILABLE
-    }
+document.addEventListener('DOMContentLoaded', () => {
+    // Hamburger Menu Toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
 
-    setupPage() {
-        // Hamburger menu toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navContainer = document.querySelector('.nav-container');
-
+    if (hamburger && navLinks) {
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
-            navContainer.classList.toggle('active');
+            navLinks.classList.toggle('active');
         });
+    }
 
-        // Close menu when a link is clicked
-        navContainer.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navContainer.classList.remove('active');
-            });
-        });
+    // Smooth Scroll and Active Class for Navbar Links
+    const navLinksItems = document.querySelectorAll('.nav-links a');
+    navLinksItems.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
 
-        // Smooth hover effects for buttons
-        const buttons = document.querySelectorAll('.btn');
-        buttons.forEach(btn => {
-            btn.addEventListener('mouseenter', function () {
-                this.style.transform = 'translateY(-2px)';
-            });
-            btn.addEventListener('mouseleave', function () {
-                this.style.transform = 'translateY(0)';
-            });
-        });
+            // Remove active class from all links
+            navLinksItems.forEach(item => item.classList.remove('active'));
+            // Add active class to clicked link
+            link.classList.add('active');
 
-        // Profile card interaction
-        const profileCard = document.querySelector('.profile-card');
-        profileCard.addEventListener('mouseenter', function () {
-            this.style.transform = 'translateY(10px) scale(1.05)';
-            this.style.boxShadow = '0 30px 80px rgba(0, 0, 0, 0.15)';
-        });
-        profileCard.addEventListener('mouseleave', function () {
-            this.style.transform = 'translateY(20px) scale(1)';
-            this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.1)';
-        });
+            const linkText = link.textContent.trim().toLowerCase();
+            let targetSection;
 
-        // Add parallax effect to decorative elements
-        document.addEventListener('mousemove', function (e) {
-            const mouseX = e.clientX / window.innerWidth;
-            const mouseY = e.clientY / window.innerHeight;
-
-            const rocket = document.querySelector('.rocket');
-            const person = document.querySelector('.person-working');
-
-            if (rocket) {
-                rocket.style.transform = `translate(${mouseX * 20}px, ${mouseY * 20}px) rotate(-5deg)`;
+            switch (linkText) {
+                case 'home':
+                    targetSection = document.querySelector('.hero-section');
+                    break;
+                case 'features':
+                    targetSection = document.querySelector('.top-section');
+                    break;
+                case 'post a job':
+                    targetSection = document.querySelector('.user-info-area');
+                    break;
+                case 'jobs':
+                    targetSection = document.querySelector('.feedback-area');
+                    break;
+                default:
+                    return;
             }
-            if (person) {
-                person.style.transform = `translate(${mouseX * -15}px, ${mouseY * -15}px)`;
+
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth'
+                });
             }
         });
+    });
 
-        // Animate stats on scroll
-        const animateStats = () => {
-            const stats = document.querySelectorAll('.stat-number');
-            stats.forEach(stat => {
-                const finalValue = parseInt(stat.textContent);
-                const suffix = stat.textContent.replace(/[0-9]/g, '');
-                let currentValue = 0;
-                const increment = finalValue / 100;
-
-                const counter = setInterval(() => {
-                    currentValue += increment;
-                    if (currentValue >= finalValue) {
-                        currentValue = finalValue;
-                        clearInterval(counter);
-                    }
-                    stat.textContent = Math.floor(currentValue) + suffix;
-                }, 20);
+    // Smooth Scroll for Scroll Down Link
+    document.querySelector('.scroll-down').addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetSection = document.querySelector('.top-section');
+        if (targetSection) {
+            targetSection.scrollIntoView({
+                behavior: 'smooth'
             });
-        };
+        }
+    });
 
-        // Trigger stats animation after a delay
-        setTimeout(animateStats, 1000);
-    } 
-}
+    // Progress Ring Animation (Dynamic Update Example)
+    function updateProgressRing(percentage) {
+        const circle = document.querySelector('.progress-ring__circle-fg');
+        const text = document.querySelector('.progress-ring__text');
+        if (circle && text) {
+            const radius = circle.r.baseVal.value;
+            const circumference = 2 * Math.PI * radius;
+            const offset = circumference - (percentage / 100) * circumference;
+            circle.style.strokeDasharray = `${circumference} ${circumference}`;
+            circle.style.strokeDashoffset = offset;
+            text.textContent = `${percentage}%`;
+        }
+    }
 
-document.addEventListener('DOMContentLoaded', event => {
-    const landingInstance = new Landing();
-    landingInstance.setupPage();
+    // Example: Update progress ring to 75% on load
+    document.addEventListener('DOMContentLoaded', () => {
+        updateProgressRing(75); // Matches the 75% in the HTML
+    });
+
+    // Optional: Form Submission Handling for Action Zone
+    document.querySelector('.action-zone button').addEventListener('click', (e) => {
+        e.preventDefault();
+        const emailInput = document.querySelector('.action-zone input');
+        if (emailInput && emailInput.value) {
+            alert(`Email submitted: ${emailInput.value}`);
+            emailInput.value = ''; // Clear input after submission
+        } else {
+            alert('Please enter a valid email address.');
+        }
+    });
+
+    // Category Grid Horizontal Scrolling with Drag
+    const categoryGrid = document.querySelector('.scroll-wrapper');
+    const leftArrow = document.querySelector('.fa-angle-left');
+    const rightArrow = document.querySelector('.fa-angle-right');
+    const dragIcon = document.querySelector('.decorative-elements');
+
+    if (categoryGrid && leftArrow && rightArrow && dragIcon) {
+        // Arrow click handlers
+        leftArrow.addEventListener('click', () => {
+            categoryGrid.scrollBy({
+                left: -200,
+                behavior: 'smooth'
+            });
+            updateDragIconState();
+        });
+
+        rightArrow.addEventListener('click', () => {
+            categoryGrid.scrollBy({
+                left: 200,
+                behavior: 'smooth'
+            });
+            updateDragIconState();
+        });
+
+        // Drag functionality
+        let isDragging = false;
+        let startX;
+        let scrollLeft;
+
+        categoryGrid.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.pageX - categoryGrid.offsetLeft;
+            scrollLeft = categoryGrid.scrollLeft;
+            categoryGrid.style.cursor = 'grabbing';
+            dragIcon.classList.add('active'); // Highlight drag icon during drag
+        });
+
+        categoryGrid.addEventListener('mouseleave', () => {
+            isDragging = false;
+            categoryGrid.style.cursor = 'grab';
+            dragIcon.classList.remove('active');
+        });
+
+        categoryGrid.addEventListener('mouseup', () => {
+            isDragging = false;
+            categoryGrid.style.cursor = 'grab';
+            dragIcon.classList.remove('active');
+            updateDragIconState();
+        });
+
+        categoryGrid.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - categoryGrid.offsetLeft;
+            const walk = (x - startX) * 2; // Adjust drag speed
+            categoryGrid.scrollLeft = scrollLeft - walk;
+        });
+
+        // Touch support for mobile
+        categoryGrid.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            startX = e.touches[0].pageX - categoryGrid.offsetLeft;
+            scrollLeft = categoryGrid.scrollLeft;
+            dragIcon.classList.add('active');
+        });
+
+        categoryGrid.addEventListener('touchend', () => {
+            isDragging = false;
+            dragIcon.classList.remove('active');
+            updateDragIconState();
+        });
+
+        categoryGrid.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const x = e.touches[0].pageX - categoryGrid.offsetLeft;
+            const walk = (x - startX) * 2;
+            categoryGrid.scrollLeft = scrollLeft - walk;
+        });
+
+        // Update drag icon state based on scroll position
+        function updateDragIconState() {
+            const maxScroll = categoryGrid.scrollWidth - categoryGrid.clientWidth;
+            if (categoryGrid.scrollLeft <= 0) {
+                leftArrow.style.opacity = '0.5';
+                leftArrow.style.pointerEvents = 'none';
+            } else {
+                leftArrow.style.opacity = '1';
+                leftArrow.style.pointerEvents = 'auto';
+            }
+            if (categoryGrid.scrollLeft >= maxScroll) {
+                rightArrow.style.opacity = '0.5';
+                rightArrow.style.pointerEvents = 'none';
+            } else {
+                rightArrow.style.opacity = '1';
+                rightArrow.style.pointerEvents = 'auto';
+            }
+            dragIcon.classList.add('active'); // Keep drag icon active when arrows are used
+        }
+
+        // Initialize drag icon state
+        categoryGrid.style.cursor = 'grab';
+        updateDragIconState();
+
+        // Update state on scroll
+        categoryGrid.addEventListener('scroll', updateDragIconState);
+    }
 });

@@ -34,18 +34,24 @@ return [
         'action' => 'Sign In User',
     ],
 
+    'auth_register_endpoint' => [
+        'method' => 'POST',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/signup',
+        'action' => 'Perform user registration',
+    ],
+
     'auth_forgot_password' => [
         'method' => 'POST',
         'route'  => 'https://yohpal-hustler-apis-test.onrender.com/password_reset',
         'action' => 'Initiate forgot password request',
     ],
-    
+
     'get_user_profile' => [
         'method' => 'GET',
         'route'  => 'https://yohpal-hustler-apis-test.onrender.com/profile/{uid}',
         'action' => 'Gets Single User Profile',
     ],
-    
+
     'get_all_users' => [
         'method' => 'GET',
         'route'  => 'https://yohpal-hustler-apis-test.onrender.com/api/users',
@@ -74,6 +80,63 @@ return [
         'method' => 'DELETE',
         'route'  => 'https://yohpal-hustler-apis-test.onrender.com/api/users/{id}',
         'action' => 'Delete a user',
+    ],
+
+    // ==============================
+    // Job Service Categories
+    // ==============================
+    'activate_client' => [
+        'method' => 'POST',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/client/activate',
+        'action' => 'Activate clients',
+    ],
+
+    'create_hustler_request' => [
+        'method' => 'POST',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/client/hustler/request',
+        'action' => 'create hustler requests',
+    ],
+
+    // ==============================
+    // Job Service Categories
+    // ==============================
+    'get_service_categories' => [
+        'method' => 'POST',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/services',
+        'action' => 'Get service categories',
+    ],
+
+    // ==============================
+    // Job Booking
+    // ==============================
+    'get_active_hustlers' => [
+        'method' => 'POST',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/jobs/get_active_hustlers/{primarySkill}',
+        'action' => 'Get active hustlers',
+    ],
+
+    //==============================
+    // Hustlers
+    //==============================
+    'get_hustler_job_request' => [
+        'method' => 'GET',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/hustler/job_requests/{hustlerId}',
+        'action' => 'Get a hustler"s job requests',
+    ],
+
+    // ==============================
+    // COMMUNICATION
+    // ==============================
+    'send_sms' => [
+        'method' => 'POST',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/send_otp',
+        'action' => 'Send OTP requests',
+    ],
+
+    'send_email' => [
+        'method' => 'POST',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/send_email',
+        'action' => 'Send Email requests',
     ],
 
     // ==============================

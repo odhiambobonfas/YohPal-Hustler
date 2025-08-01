@@ -7,7 +7,10 @@ use Yohpal\Application\Auth;
 use Yohpal\Application\YPLogger;
 use Yohpal\Application\YPException;
 use Yohpal\Models\Model;
-use Yohpal\Models\Authentication; 
+use Yohpal\Models\Authentication;
+use Yohpal\Models\Category;
+use Yohpal\Models\Job;
+use Yohpal\Models\Payment;
 use Yohpal\Utils\Util;
 
 class DashboardController
@@ -23,22 +26,47 @@ class DashboardController
         $this->model = new Authentication();
     }
 
+    public function ui(YPRequest $request): mixed {
+        return view('crm/dashboard/index-ui');
+    }
+
+    public function hustlers_ui(YPRequest $request): mixed {
+        return view('crm/dashboard/hustlers-ui');
+    }
+
+    public function clients_ui(YPRequest $request): mixed {
+        return view('crm/dashboard/admin');
+    }
+
     public function index(YPRequest $request): mixed
     {
         try {
+            $profile = auth()->user();  
+
+            $clientHustleStatus = isset($profile->clientHustleStatus) ? $profile->clientHustleStatus : null;
+            $client = isset($profile->role) && $profile->role == 'client' ? true : false;
+
+            $pricingUnitsDropdownOptions = Payment::pricingUnitsDropdownOptions();
+
+            $skillsetDropdownOptions = Job::skillsetDropdownOptions();
+
+            $default_currency = "Ksh. ";
+
             if (!isAjaxRequest()) {
-                $hustleCategories = Model::hustleCategories();
-                $hustleCategoriesDropdown = Model::hustleCategoriesDropdownOptions();
+                $hustleCategories = Category::hustleCategories(); 
+                $hustleCategoriesDropdown = Category::hustleCategoriesDropdownOptions();
 
                 $stats = [
-                    ['label' => 'Pending Users', 'value' => '18,316', 'class' => 'pending', 'dash' => '80'],
-                    ['label' => 'Active Users', 'value' => '540', 'class' => 'active', 'dash' => '170'],
-                    ['label' => 'Dormant Users', 'value' => '156', 'class' => 'dormant', 'dash' => '70'],
-                    ['label' => 'Deleted Users', 'value' => '50', 'class' => 'deleted', 'dash' => '60'],
+                    ['label' => 'Pending Users', 'slug' => 'pending_users', 'value' => '18,316', 'class' => 'pending', 'dash' => '80'],
+                    ['label' => 'Active Users', 'slug' => 'active_users', 'value' => '540', 'class' => 'active', 'dash' => '170'],
+                    ['label' => 'Dormant Users', 'slug' => 'dormant_users', 'value' => '156', 'class' => 'dormant', 'dash' => '70'],
+                    ['label' => 'Deleted Users', 'slug' => 'deleted_users', 'value' => '50', 'class' => 'deleted', 'dash' => '60'],
                 ];
 
-                return view('crm/dashboard/index', compact('stats', 'hustleCategories', 'hustleCategoriesDropdown'));
+                return view('crm/dashboard/index', compact('client', 'profile', 'default_currency', 'clientHustleStatus', 'stats', 'hustleCategories', 'hustleCategoriesDropdown', 'skillsetDropdownOptions', 'pricingUnitsDropdownOptions'));
             }
+
+            return view('crm/dashboard/index', compact('client', 'profile', 'default_currency', 'clientHustleStatus', 'skillsetDropdownOptions', 'pricingUnitsDropdownOptions'));
         }
         catch(\Throwable $th) {
             YPLogger::error($th);

@@ -11,8 +11,80 @@ class Master {
     constructor() {
         // Any constructor logic applicable
         this.debounceTimer;
-        this.overlay = null;
-    } 
+        this.overlay = null; 
+
+        this.authRole = document.querySelector("meta[name='role']")?.content || 'client';
+        
+        this.proceedNextBtn = document.querySelector('.proceed-next');
+        this.goBackwardBtn = document.querySelector('.go-backward');
+    
+        this.stepperSections = Array.from(document.querySelectorAll('.stepper-section'));
+        this.stepDots = Array.from(document.querySelectorAll('.dot'));
+        
+        this.currentStepIndex = this.stepperSections.findIndex(section => !section.classList.contains('d-none'));
+    
+        this.proceedNextBtn?.addEventListener('click', () => this.navigateStepper('next'));
+        this.goBackwardBtn?.addEventListener('click', () => this.navigateStepper('back'));
+        
+        this.updateStepperUI(); 
+
+        this.verifyOtpBtn = document.querySelectorAll('.verify-otp-submit-btn');
+
+        // Map & Mappings 
+        this.refreshMapBtn = document.querySelectorAll('.refresh-map-btn');
+    }
+    
+    navigateStepper(direction = 'next') {
+        if (this.authRole === 'client') return;
+        this.stepperSections.forEach(section => section.classList.add('d-none'));
+    
+        if (direction === 'next' && this.currentStepIndex < this.stepperSections.length - 1) {
+            this.currentStepIndex++;
+        } else if (direction === 'back' && this.currentStepIndex > 0) {
+            this.currentStepIndex--;
+        }
+        
+        this.stepperSections[this.currentStepIndex].classList.remove('d-none'); 
+        this.updateStepperUI();
+        this.updateStepperSectionBg();
+        enableElement(this.proceedNextBtn);
+    }
+    
+    updateStepperUI() { 
+        if (this.authRole === 'client') return;
+        this.stepDots.forEach((dot, index) => {
+            dot.classList.toggle('active-dot', index === this.currentStepIndex);
+        });
+        
+        if (this.goBackwardBtn) {
+            this.goBackwardBtn.classList.toggle('d-none', this.currentStepIndex === 0);
+        }
+        
+        if (this.proceedNextBtn) {
+            this.proceedNextBtn.classList.toggle('d-none', this.currentStepIndex === this.stepperSections.length - 1);
+        }
+    }
+
+    updateStepperSectionBg() {
+        const bgObject = {
+            "two-fa-section": "two-fa-section.jpeg",
+            "ratings-section": "ratings.jpg",
+            "uploads-section": "uploads-section.jpeg",
+            "success-section": "onboarding-success.jpeg",
+        };
+        
+        const currentStep = this.stepperSections.find(section => !section.classList.contains('d-none'));
+        if (!currentStep) return;
+        
+        const matchingKey = Object.keys(bgObject).find(key => currentStep.classList.contains(key));
+        if (!matchingKey) return;
+        
+        const stepperBgCard = document.querySelector('.stepper-section-bg');
+        if (!documentContains(stepperBgCard)) return;
+    
+        const imageUrl = `assets/store/images/bg/${bgObject[matchingKey]}`;
+        stepperBgCard.style.backgroundImage = `url('${imageUrl}')`; 
+    }
 
     /**
      * Creates and appends a reusable overlay element to the given container.
@@ -134,16 +206,6 @@ class Master {
         })
     }
 
-    /**
-     * Parses and returns an action route from a specifified form
-     * 
-     * @param {HTMLSelectElement} form 
-     * @returns {string|null} Form Route URL
-     */
-    formRouteParser(form) {
-        return form.action || form.getAttribute('route')
-    }
-
     getActiveJobsAssigned() {
         $('.table-active-jobs-assigned').DataTable({
             destroy: true,
@@ -177,4 +239,229 @@ class Master {
             });
         }); 
     }
+
+    /**
+     * Accepts selector element to clone and duplicate...
+     * 
+     * @param {HTMLElement} selector 
+     */
+    addNewUploadSection(selector) {
+        const btn = document.querySelector(selector);
+
+        if (!documentContains(btn)) {
+            console.warn('Invalid selector element passed to addNewUploadSection');
+            return;
+        }
+
+        btn.addEventListener('click', event => {
+            event.preventDefault();
+
+            const dropZoneWrapper = btn.closest('.mb-3')?.querySelector('.drop-zone-wrapper'); 
+            if (!documentContains(dropZoneWrapper)) return;
+            
+            const lastContainer = dropZoneWrapper.querySelectorAll('.drop-zone-container');
+            if (!lastContainer.length) return;
+
+            const elementClone = lastContainer[lastContainer.length - 1].cloneNode(true);
+
+            dropZoneWrapper.appendChild(elementClone); 
+            setupUploadSection();
+        });
+    }
+
+
+    /**
+     * Verify OTP received to the given contact: email or phone
+     * 
+     * @returns {void} void
+     */
+    verifyOtp() {
+        let btns = this.verifyOtpBtn;
+
+        btns.forEach(btn => {
+            if (!documentContains(btn)) return;
+            btn = cloneNodeElement(btn); // counter race conditions
+            btn.addEventListener('click', event => {
+                event.preventDefault();
+                toggleButtonContent(btn);
+                disableElement(btn);
+
+                let form = btn.closest('form');
+                let data = serializeFormToArray(form);
+
+                $.ajax({
+                    type: form.getAttribute('method'),
+                    url: form.action,
+                    data: data,
+                    dataType: "json",
+                    success: function (response) {
+                        toggleButtonContent(btn, '', true);
+                        (new Master()).verifyOtp();
+                        enableElement(btn);
+
+                        if (response && response.status && response.status == 'success') {
+                            disableElement(btn);
+                            resetFormAndCloseModal(form);
+
+                            if (response.route) {
+                                if (response.route) route(response.route);
+                            }
+                            
+                            if (!response.route) {
+                                (new Master()).navigateStepper('next');
+                                (new Master()).activateAccount();
+                            } 
+
+                            toast(response.status, 5000, response.message || lang.undefined_error);
+                            return;
+                        }
+
+                        if (response && response.status && response.status == 'error') {
+                            enableElement(btn);
+                            toast(response.status, 5000, response.message || lang.undefined_error);
+                            return;
+                        }
+
+                        toast('error', 5000, lang.undefined_error);
+                    },
+                    error: error => {
+                        console.log(error.message || error);
+                        toggleButtonContent(btn, '', true);
+                        enableElement(btn);
+                        toast('error', 5000, lang.undefined_error);
+                    }
+                });
+            });
+        });
+    } 
+
+    refreshMap() {
+        const btns = this.refreshMapBtn;
+        btns.forEach(btn => {
+            if (!documentContains(btn)) return;
+            btn = cloneNodeElement(btn);
+            btn.addEventListener('click', (event) => {
+                event.preventDefault();
+                this.getActiveHustlers();
+            });
+        });
+    }
+
+    /**
+     * Get all active hustlers for map layout.
+     * Map each hustler and create markers accordingly using the mapAndCreateHustlerMarkers() function.
+     */
+    getActiveHustlers() { 
+        $.ajax({
+            type: "GET",
+            url: '/users/hustlers',  
+            dataType: "json",
+            contentType: false,
+            processData: false,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            success: function (response) { 
+                if (response && response.hustlers) {
+                    (new Master()).mapAndCreateHustlerMarkers(response.hustlers);
+                }
+            },
+            error: (jqXHR, textStatus, errorThrown) => { 
+                console.error("AJAX Error:", {
+                    status: jqXHR.status,
+                    statusText: jqXHR.statusText,
+                    responseText: jqXHR.responseText,
+                    errorThrown: errorThrown,
+                    textStatus: textStatus
+                }); 
+            }
+        });
+    }
+
+    /**
+     * Add markers on the map...
+     */
+    mapAndCreateHustlerMarkers(hustlerData) {
+        console.log(hustlerData); 
+        this.setMapOnPage(hustlerData);
+    }
+
+    /**
+     * Gets the current location positions to use on the further end of laying the map
+     * and the realtime parsing of clients & hustlers accordingly...
+     * The function accepts - Geolocation navigator API possible params
+     * 
+     * @param {params} params 
+     * @returns 
+     */
+    getGeolocationPositions(params=undefined) {
+        return new Promise((resolve) => {
+            if (!navigator.geolocation) {
+                resolve(null);
+                return;
+            }
+        
+            navigator.geolocation.getCurrentPosition((position) => {
+                let pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                
+                resolve(pos);
+            },
+            (error) => {
+                console.warn("Geolocation error:", error.message);
+                resolve(null);
+            });
+        });
+    } 
+    
+    /**
+     * Initializes the map on the profile page where applicable
+     * 
+     * @param {HTMLSelectElement} domSection HTML DOM element where the map should get appended
+     * @param {Object} hustlerData Hustler/User data inclusive of Locations
+     * @returns {void} void
+     */
+    async setMapOnPage(hustlerData=[], domSection=".geomap") { 
+        try {   
+            let locations = undefined;
+            let mapHtmlSelectors = document.querySelectorAll(domSection);
+    
+            mapHtmlSelectors.forEach(selector => {
+                if (!documentContains(selector)) return; 
+                
+                this.getGeolocationPositions().then(positions => { 
+                    console.log(positions);
+                    // console.log(locations.latitude);
+                    let map = new google.maps.Map(selector, {
+                        zoom: 14, 
+                        center: {
+                            lat: positions.lat,
+                            lng: positions.lng,
+                        },
+                    });  
+
+                    let mapInstance = new HustleMap(
+                        map, 
+                        'Walking',
+                        'You'
+                    );
+
+                    hustlerData.forEach(hustler => {  
+                        locations = hustler.liveLocation;
+                        let marker = hustler.displayName || 'You';
+                        console.log(locations);
+                        const _locations = {latitude: locations._latitude, longitude: locations._longitude}
+                        mapInstance.layOutMapMarker((_locations || undefined), marker);
+                    }); 
+                });
+            }); 
+            
+            this.refreshMap();
+        } catch (error) {
+            console.error("Geolocation JS API error: ", error.message);
+        } 
+    }
+
 }

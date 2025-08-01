@@ -9,6 +9,7 @@ class JobPortal extends Master {
         this.jobsListing = document.querySelector('.jobs-listing');
         this.mapSection = document.querySelector('.mapping-section');
         this.backBtns = undefined;
+        this.selected_job = undefined;
     }
 
     setupPage() {
@@ -28,7 +29,7 @@ class JobPortal extends Master {
                         type: "GET",
                         url: `/portal/jobs/view/${categoryId}`,
                         dataType: "json",
-                        success: function (response) { 
+                        success: function (response) {
                             (new JobPortal()).categoryListing.classList.add('d-none');
                             let jobsListing = (new JobPortal()).jobsListing;
                             if (!response.htmlContent) return;
@@ -40,7 +41,7 @@ class JobPortal extends Master {
                             (new JobPortal()).hideOverlay();
                             (new JobPortal()).bindBackBtnClick();
                             (new JobPortal()).bindTabClicks('.sub-category-tab');
-                            enableToggleHighlight('.job-list-group', [(new JobPortal()).createJobDraft]); 
+                            enableToggleHighlight('.job-list-group', [(new JobPortal()).createJobDraft]);
                         },
                         error: error => {
                             console.log(error.message || error);
@@ -72,7 +73,7 @@ class JobPortal extends Master {
                     this.categoryListing.classList.remove('d-none');
                     this.hideOverlay();
                 }, 2000);
-            });    
+            });
         });
     }
 
@@ -80,8 +81,13 @@ class JobPortal extends Master {
         // Filter out jobs based on the sub category tab clicked.
     }
 
-    createJobDraft(subCategoryId) { 
+    createJobDraft(subCategoryId, extra_params = []) {
         __show_modal('.create-job-modal');
+        const createJobForm = document.querySelector('.create-job-modal-form');
+        if (!documentContains(createJobForm)) return;
+        createJobForm.setAttribute('action', `/job/create/${subCategoryId}`);
+        createJobForm.querySelector('.job-title').value = extra_params['job_name'] || '';
+        flatpickrUtil();
 
         let btn = document.querySelector('.create-job-submit-btn');
         if (!documentContains(btn)) return;
@@ -89,15 +95,16 @@ class JobPortal extends Master {
         btn.addEventListener('click', event => {
             event.preventDefault();
             toggleButtonContent(btn);
-            disableElement(btn); 
-            let form = btn.closest('form'); 
+            disableElement(btn);
+            let form = btn.closest('form');
             let data = serializeFormToArray(form);
-            
+            console.log("data", data)
+
             $.ajax({
                 type: 'POST',
-                url: `${form.action}/${subCategoryId}`, 
+                url: `${form.action}/${subCategoryId}`,
                 data: data,
-                dataType: "json", 
+                dataType: "json",
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest'
                 },
@@ -108,13 +115,14 @@ class JobPortal extends Master {
 
                     if (response && response.status && response.status == 'success') {
                         toast(response.status, 5000, response.message || lang.undefined_error);
-                        resetFormAndCloseModal(form); 
+                        resetFormAndCloseModal(form);
                         (new JobPortal()).showOverlay();
                         setTimeout(() => {
                             (new JobPortal()).stepperSections.forEach(section => section.classList.add('d-none'));
                             (new JobPortal()).mapSection.classList.remove('d-none');
                             (new JobPortal()).hideOverlay();
                             (new JobPortal()).bindBackBtnClick();
+                            (new JobPortal()).getActiveHustlers();
                         }, 1000); // Avoid race condition...
                         return;
                     }
@@ -141,3 +149,4 @@ document.addEventListener('DOMContentLoaded', () => {
     const dashboardInstance = new JobPortal();
     dashboardInstance.setupPage();
 });
+

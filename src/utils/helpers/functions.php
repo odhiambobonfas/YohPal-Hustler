@@ -2,6 +2,8 @@
 
 use Yohpal\Application\YPLogger;
 use \Carbon\Carbon;
+use Yohpal\Application\YPException;
+use Yohpal\Application\YPRequest;
 
 /**
  * Mutates an array and transforms to an object. 
@@ -63,7 +65,7 @@ function isAjaxRequest(): bool {
  */
 function ypLog(\Throwable $exception, string $customLog = null): string
 {
-    return $exception instanceof YPLogger
+    return $exception instanceof YPException
         ? $exception->getMessage()
         : ($customLog ?: 'An error occurred!');
 }
@@ -170,4 +172,65 @@ function getIdParams(array $path, bool $throwErr=false):?array {
     }
 
     return count($path_slugs) >= 1 ? $path_slugs : null;
+}
+
+/**
+ * Gets a number and formats it in respect to stardard reads on the frontend.
+ * By default, the function applies a 2 decimal place to a number.
+ * 
+ * @return mixed - a single string or array of strings, containing formatted number(s)
+ */
+function num_formatter(mixed $num, $decimals=2, $apply_dc=false): mixed {
+    if (!is_array($num)) {
+        if (!is_numeric($num)) {
+            throw new YPException('Invalid number to string conversion');
+        }
+
+        return number_format($num, $apply_dc ?? $decimals);
+    }
+
+    if (is_array($num)) {
+        $formatted = [];
+        foreach ($num as $value) {
+            $formatted[] = number_format($value, $apply_dc ?? $decimals);
+        }
+
+        return $formatted;
+    }
+}
+
+/**
+ * Takes care of checking for onboarding hustle status and such...
+ */
+function onboarded(): bool {
+    $user = auth()->user();
+    if (!empty($user) && isset($user->clientHustleStatus) && $user->clientHustleStatus == 'active') {
+        return true;
+    }
+
+    return false;
+}
+
+/**
+ * Checks whether the authenticated user is a client?
+ */
+function client(): bool {
+    $user = auth()->user();
+    if (!empty($user) && $user->role == 'client') {
+        return true;
+    }
+
+    return false;
+}
+
+/**
+ * Checks whether the authenticated user is a hustler?
+ */
+function hustler(): bool {
+    $user = auth()->user();
+    if (!empty($user) && $user->role != 'client') {
+        return true;
+    }
+
+    return false;
 }

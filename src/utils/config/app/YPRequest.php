@@ -35,6 +35,28 @@ class YPRequest
                 $this->input = array_merge($this->input, $jsonData);
             }
         }
+
+        // Handle them gracefully like you need them!
+        foreach ($_FILES as $key => $value) {
+            if (is_array($value['name'])) { 
+                $files = [];
+                foreach ($value['name'] as $index => $name) {
+                    if ($value['error'][$index] === UPLOAD_ERR_NO_FILE) continue;
+                    $files[] = [
+                        'name'     => $name,
+                        'type'     => $value['type'][$index],
+                        'tmp_name' => $value['tmp_name'][$index],
+                        'error'    => $value['error'][$index],
+                        'size'     => $value['size'][$index],
+                    ];
+                }
+                // append multiple files accordingly
+                $this->input[$key] = $files;
+            } else {
+                // Single file
+                $this->input[$key] = $value;
+            }
+        }
     }
 
     /**
