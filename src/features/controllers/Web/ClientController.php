@@ -54,7 +54,7 @@ class ClientController
             $userId = Auth::user()->uid;
             $data = $clientModel->getJobHistory(['ownerId' => $userId]);
 
-            $jobHistory = $data["jobHistory"] ?? [];
+            $jobHistory = $data ?? [];
             $authRole = !empty(Auth::get('role')) && isset(Auth::get('role')->role) ? strtolower(Auth::get('role')->role) : null;
 
             return view('crm/dashboard/activities-ui', compact('authRole', "jobHistory"));
@@ -71,7 +71,7 @@ class ClientController
             $userId = Auth::user()->uid;
             $data = $clientModel->getJobHistory(['ownerId' => $userId]);
 
-            $jobHistory = $data["jobHistory"] ?? [];
+            $jobHistory = $data ?? [];
             return $request->res(['status' => 'success', 'jobHistory' => $jobHistory]);
 
         }catch (YPException $th) {
