@@ -1,4 +1,5 @@
 <?php
+print_r(env("APP_DOMAIN"));
 
 return [
     /**
@@ -26,7 +27,7 @@ return [
      *
      * Use http://127.0.0.1 or http://localhost
      */
-    'APP_DOMAIN' => env("APP_DOMAIN") ?? 'http://127.0.0.1:8000',
+    'APP_DOMAIN' => env("APP_DOMAIN") ?? "https://hustle.yohpal.com",
 
 
     /**
