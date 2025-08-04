@@ -28,9 +28,9 @@ class Master {
       (section) => !section.classList.contains("d-none"),
     );
 
-    this.proceedNextBtn?.addEventListener("click", () =>
-      this.navigateStepper("next"),
-    );
+    this.proceedNextBtn?.addEventListener("click", () => {
+      this.navigateStepper("next");
+    });
     this.goBackwardBtn?.addEventListener("click", () =>
       this.navigateStepper("back"),
     );
@@ -44,7 +44,7 @@ class Master {
   }
 
   navigateStepper(direction = "next") {
-    if (this.authRole === "client") return;
+    // if (this.authRole === "client") return;
     this.stepperSections.forEach((section) => section.classList.add("d-none"));
 
     if (
@@ -63,7 +63,7 @@ class Master {
   }
 
   updateStepperUI() {
-    if (this.authRole === "client") return;
+    // if (this.authRole === "client") return;
     this.stepDots.forEach((dot, index) => {
       dot.classList.toggle("active-dot", index === this.currentStepIndex);
     });
@@ -104,7 +104,7 @@ class Master {
     const stepperBgCard = document.querySelector(".stepper-section-bg");
     if (!documentContains(stepperBgCard)) return;
 
-    const imageUrl = `assets/store/images/bg/${bgObject[matchingKey]}`;
+    const imageUrl = `/assets/store/images/bg/${bgObject[matchingKey]}`;
     stepperBgCard.style.backgroundImage = `url('${imageUrl}')`;
   }
 
@@ -392,7 +392,7 @@ class Master {
   getActiveHustlers() {
     $.ajax({
       type: "GET",
-      url: "/users/hustlers",
+      url: "/crm/users/hustlers",
       dataType: "json",
       contentType: false,
       processData: false,

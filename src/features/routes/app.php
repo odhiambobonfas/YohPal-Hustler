@@ -40,7 +40,6 @@ $router->req('GET', '/profile', [ProfileController::class, 'index'], [AuthMiddle
 
 // Carreer section routes
 $router->req('GET', '/job-portal', [JobsController::class, 'index'], [AuthMiddleware::class]);
-$router->req('GET', '/services', [JobsController::class, 'getServices']);
 
 // Onboarding routes
 $router->req('GET', '/onboarding', [OnboardingController::class, 'index'], [AuthMiddleware::class]);
@@ -57,14 +56,15 @@ $router->req('POST', '/account/activate-account', [OnboardingController::class, 
 $router->req('GET', '/get-started', [WebController::class, 'getStarted'], [AuthMiddleware::class]);
 $router->req('POST', '/get-started/onboarding', [WebController::class, 'getStarted'], [AuthMiddleware::class]);
 $router->req('GET', '/search-engine', [WebController::class, 'searchEngine'], [AuthMiddleware::class]);
+$router->req("GET", "/onboarding/hustler", [WebController::class, 'onboardHustler'], [AuthMiddleware::class]);
 
-$router->req('GET', '/users/hustlers', [HustlersController::class, 'getActiveHustlersByPrimarySkill'], [AuthMiddleware::class]);
 
+$router->req('GET', '/crm/users/hustlers', [HustlersController::class, 'getActiveHustlersByPrimarySkill'], [AuthMiddleware::class]);
+$router->req('GET', '/crm/services', [JobsController::class, 'getServices']);
 $router->req("GET", "/crm/hustler/job-requests", [HustlersController::class, "getHustlerJobRequests"], [AuthMiddleware::class]);
 $router->req("POST", "/crm/switch-acct", [ClientController::class, "toggleAccount"], [AuthMiddleware::class]);
 $router->req("GET", "/crm/user-job-history", [UsersController::class, "jobHistory"], [AuthMiddleware::class]);
 $router->req("GET", "/crm/client-activities", [ClientController::class, "getClientsJobHistory"], [AuthMiddleware::class]);
-
 $router->req("POST", "/crm/job/accept-req", [JobsController::class, "acceptJob"], [AuthMiddleware::class]);
 $router->req("POST", "/crm/job/reject-req", [JobsController::class, "rejectJob"], [AuthMiddleware::class]);
 

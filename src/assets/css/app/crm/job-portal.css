@@ -455,6 +455,14 @@
   font-weight: 650;
 }
 
+.job-search button:hover {
+  background-color: #fd0000;
+}
+.content-section {
+  max-height: 75svh;
+  overflow-y: auto;
+}
+
 .jobs {
   width: 100%;
   gap: 0.8rem;

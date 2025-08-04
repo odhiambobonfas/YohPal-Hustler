@@ -13,6 +13,13 @@
         <a href="<?= auth()->hustlerStatus()->isHustler ? '/hustler/profile' : '/profile' ?>" class="sidebar-item d-flex align-items-center gap-2 text-decoration-none">
             <i class="fas fa-th-large icon"></i> Profile
         </a>
+        <?php if(!auth()->user()->hustlerStatus): ?>
+
+        <a href="/onboarding/hustler" class="sidebar-item d-flex text-danger align-items-center gap-2 text-decoration-none">
+            <i class="fa-solid fa-user-nurse"></i>
+            Become A Hustler
+        </a>
+        <?php endif ?>
     </div>
 
     <!-- Career Management -->

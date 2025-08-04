@@ -28,15 +28,6 @@ class AuthMiddleware extends Middleware {
         try {
             $isHustler = Auth::get("isHustler");
 
-            /* // route starts with `/hustler` shouldn't be seeing this */
-            /* if (!$isHustler) { */
-            /*     header('Location: /dashboard'); */
-            /* } */
-            /**/
-            /* if ($isHustler) { */
-            /*     header('Location: /hustler/dashboard'); */
-            /* } */
-
             if (!auth()->user()) {
                 throw new YPException('Unauthorized access. Login required.', 401);
             }

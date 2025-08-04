@@ -6,6 +6,7 @@ use Yohpal\Application\YPRequest;
 use Yohpal\Application\Auth;
 use Yohpal\Application\YPLogger;
 use Yohpal\Application\YPException;
+use Yohpal\Models\Category;
 use Yohpal\Models\Model;
 use Yohpal\Models\Authentication;
 use Yohpal\Utils\Util;
@@ -48,7 +49,7 @@ class WebController
                 return $request->res(['status' => 'success', 'route' => $route]);
             }
 
-            return view('crm/dashboard/activities-ui');
+            return view('web/get-started');
         } catch (YPException $th) {
             YPLogger::error($th);
             return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
@@ -81,5 +82,10 @@ class WebController
             YPLogger::error($th);
             return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
         }
+    }
+    public function onboardHustler(): mixed {
+        $skillsetDropdownOptions = Category::hustleCategoriesDropdownOptions();
+        $pricingUnitsDropdownOptions = Category::pricingUnits();
+        return view("web/onboard-hustler", compact("skillsetDropdownOptions", "pricingUnitsDropdownOptions"));
     }
 }

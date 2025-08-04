@@ -1,6 +1,6 @@
 <?php
 
-/* TODO(968651491c00): Forgot to move sorting to api this is covers for it*/
+/* TODO:: (968651491c00): Forgot to move sorting to api this is covers for it*/
 $sorted = $data;
 usort($sorted, function($a, $b) {
     $aTime = $a['createdAt']['_seconds'] ?? 0;
@@ -36,7 +36,13 @@ $maxDescLen = 25;
     <tbody>
         <?php if (empty($histories)): ?>
             <tr>
-                <td colspan="4" style="text-align: center;">No job requests available</td>
+            <td colspan="5" style="text-align: center;">
+                <?=
+                    auth()->hustlerStatus()->isHustler
+                    ? 'No job requests available'
+                    : 'No job History available'
+                ?>
+            </td>
             </tr>
         <?php else: ?>
             <?php foreach ($histories as $job): ?>

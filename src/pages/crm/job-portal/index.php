@@ -252,7 +252,7 @@ function getCategories() {
   const cached = localStorage.getItem("categories");
   if (cached) return JSON.parse(cached);
 
-  fetch("/services")
+  fetch("/crm/services")
     .then((r) => r.json())
     .then((d) => localStorage.setItem("categories", JSON.stringify(d.services)))
     .catch(console.error);
@@ -268,7 +268,6 @@ function loadJobCategories() {
   if (!allCategories.length) return;
 
   const render = (list) => {
-    console.log("job-portal?");
     jobsEl.innerHTML = list
       .map(
         (c) => `

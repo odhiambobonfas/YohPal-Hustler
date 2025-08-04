@@ -93,7 +93,7 @@ return [
 
     'create_hustler_request' => [
         'method' => 'POST',
-        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/client/hustler/request',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/hustler/request',
         'action' => 'create hustler requests',
     ],
 

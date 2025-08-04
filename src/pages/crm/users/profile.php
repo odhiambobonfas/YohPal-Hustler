@@ -27,8 +27,7 @@
                 <!-- Profile start -->
                 <div class="card bg-white border-0 rounded mb-3">
                     <div class="profile-container">
-                        <!-- TODO:: (604694a90d33) Use the updated `hustlerStatus` field -->
-                        <?php if (auth()->user()->clientHustleStatus): ?>
+                        <?php if (auth()->user()->hustlerStatus): ?>
                         <div class="switch-c">
                             <label class="switch">
                                 <input type="checkbox" <?= auth()->hustlerStatus()->isHustler ? 'checked' : '' ?> onchange="toggleAccount(this)">

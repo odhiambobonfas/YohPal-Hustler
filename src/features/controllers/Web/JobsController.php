@@ -28,9 +28,7 @@ class JobsController
     {
         try {
             if (!isAjaxRequest()) {
-                $hustleSuperCategories = Category::hustleCategories();
-                $hustleMixedCategories = Category::hustleCategories();
-                return view('crm/job-portal/index', compact('hustleSuperCategories', 'hustleMixedCategories'));
+                return view('crm/job-portal/index');
             }
         } catch (\Throwable $th) {
             YPLogger::error($th);
