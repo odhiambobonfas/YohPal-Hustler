@@ -7,18 +7,18 @@
  * This file maps API endpoints to their corresponding business functions.
  * It serves as a centralized registry of endpoint purposes for documentation, logging,
  * permissions, and development clarity.
- * 
+ *
  * STRUCTURE:
  * Each entry defines:
  *     - 'method'  => HTTP method (GET, POST, PUT, DELETE, PATCH)
  *     - 'route'   => API route path
  *     - 'action'  => Functional purpose or description
- * 
+ *
  * USE CASES:
  * - Can be used to generate API documentation dynamically.
  * - Helps link endpoint behavior with permission checks or logging.
  * - Assists frontend/backend developers in quickly identifying endpoint usage.
- * 
+ *
  * @author: Bernard Kung'u - YohPal Dev Team Member
  * LAST UPDATED: 26th May 2025
  * ==========================================================================================
@@ -93,8 +93,15 @@ return [
 
     'create_hustler_request' => [
         'method' => 'POST',
-        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/client/hustler/request',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/hustler/request',
         'action' => 'create hustler requests',
+    ],
+
+    "create_job" => [
+        "method" => "POST",
+        "route" => "https://yohpal-hustler-apis-test.onrender.com/jobs/create",
+        "action" => "Create a job",
+
     ],
 
     // ==============================
@@ -111,7 +118,7 @@ return [
     // ==============================
     'get_active_hustlers' => [
         'method' => 'POST',
-        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/jobs/get_active_hustlers/{primarySkill}',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/jobs/get_active_hustlers/{primarySkill}?start={startTime}',
         'action' => 'Get active hustlers',
     ],
 
@@ -137,6 +144,15 @@ return [
         'method' => 'POST',
         'route'  => 'https://yohpal-hustler-apis-test.onrender.com/send_email',
         'action' => 'Send Email requests',
+    ],
+
+    // ==============================
+    // CLIENTS
+    // ==============================
+    "get_client_job_history" => [
+        "method" => "GET",
+        "route" => "https://yohpal-hustler-apis-test.onrender.com/client/job_history/{ownerId}",
+        "action" => "Get a user's job history"
     ],
 
     // ==============================

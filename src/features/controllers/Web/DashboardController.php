@@ -6,6 +6,7 @@ use Yohpal\Application\YPRequest;
 use Yohpal\Application\Auth;
 use Yohpal\Application\YPLogger;
 use Yohpal\Application\YPException;
+use Yohpal\Models\Hustler;
 use Yohpal\Models\Model;
 use Yohpal\Models\Authentication;
 use Yohpal\Models\Category;
@@ -41,7 +42,7 @@ class DashboardController
     public function index(YPRequest $request): mixed
     {
         try {
-            $profile = auth()->user();  
+            $profile = auth()->user();
 
             $clientHustleStatus = isset($profile->clientHustleStatus) ? $profile->clientHustleStatus : null;
             $client = isset($profile->role) && $profile->role == 'client' ? true : false;
@@ -53,7 +54,7 @@ class DashboardController
             $default_currency = "Ksh. ";
 
             if (!isAjaxRequest()) {
-                $hustleCategories = Category::hustleCategories(); 
+                $hustleCategories = Category::hustleCategories();
                 $hustleCategoriesDropdown = Category::hustleCategoriesDropdownOptions();
 
                 $stats = [

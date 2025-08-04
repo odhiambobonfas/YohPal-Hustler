@@ -2,12 +2,14 @@
 
 namespace Yohpal\Models;
 
+use Yohpal\Application\YPLogger;
+use GuzzleHttp\Exception\RequestException;
 use Yohpal\Models\Model;
 use Yohpal\Application\Auth;
 
 /**
  * Category Model - Takes care of everything in regards to Category module.
- * 
+ *
  * Right here with YohPal forever!
  */
 class Category extends Model
@@ -50,7 +52,7 @@ class Category extends Model
 
     /**
      * Returns subcategories with their jobs for a given super category ID
-     * 
+     *
      * @param int $slug The ID of the super category
      * @return array<int, array<string, mixed>> List of subcategories with jobs
      */
@@ -59,9 +61,9 @@ class Category extends Model
         $subCategories = array();
         $superCategories = self::hustleCategories();
 
-        foreach ($superCategories as $category) { 
-            if ($category['slug'] == $slug) {  
-                $subCategories = $category['subcategory']; 
+        foreach ($superCategories as $category) {
+            if ($category['slug'] == $slug) {
+                $subCategories = $category['subcategory'];
             }
         }
 
@@ -77,9 +79,29 @@ class Category extends Model
     {
         $categories = self::hustleCategories();
 
-        $options = '<option value="">-- Select Category --</option>';
+        $options = '<option value="">-- Select Skill --</option>';
         foreach ($categories as $category) {
-            $options .= '<option value="' . $category['slug'] . '">' . htmlspecialchars($category['name']) . '</option>';
+            foreach ($category["subcategory"] as $c) {
+                foreach ($c["sampleFields"] as $field) {
+                    $options .= '<option value="' . htmlspecialchars($field) . '">' . htmlspecialchars($field) . '</option>';
+                }
+            }
+        }
+
+        return $options;
+    }
+
+    public static function pricingUnits(): string
+    {
+        $units = [
+            "Daily",
+            "Monthly",
+            "Per project" ,
+        ];
+
+        $options = '<option value="">-- Select Unit --</option>';
+        foreach ($units as $unit) {
+            $options .= '<option value="' . $unit . '">' . htmlspecialchars($unit) . '</option>';
         }
 
         return $options;

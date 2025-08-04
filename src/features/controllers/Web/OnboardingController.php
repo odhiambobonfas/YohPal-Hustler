@@ -32,7 +32,7 @@ class OnboardingController
 
     /**
      * Returns the onboarding page view to the user
-     * 
+     *
      * @return view The home page.
      */
     public function index(YPRequest $request): mixed
@@ -48,7 +48,7 @@ class OnboardingController
 
     /**
      * Updates the profile details in respect to user fills.
-     * 
+     *
      * @param YPRequest $request The request instance containing the custom response method.
      * @return mixed A JSON-formatted response instigating whether it is a success or failure.
      */
@@ -64,24 +64,24 @@ class OnboardingController
 
     /**
      * This function takes care of account activation and unlocking the portal for access.
-     * 
+     *
      * @param YPRequest $request The request instance containing the custom response method.
      * @return mixed A JSON-formatted response instigating whether it is a success or failure.
      */
     public function activateAccount(YPRequest $request): mixed {
         try {
-            $input = $request->req();  
-            
+            $input = $request->req();
+
             $chargeAmount = $request->req('chargeAmount');
 
             $primaryLocation = null;
-            
+
             $skills = [];
-            
+
             $input['cv'] = $request->req('cv');
 
-            $input['portfolio'] = $request->req('portfolio');
-            
+            $input['images'] = $request->req('portfolio');
+
             $input['nationalId'] = array_merge($request->req('nid_front'), $request->req('nid_back'));
 
             $input['certifications'] = $request->req('certificates');
@@ -112,12 +112,12 @@ class OnboardingController
                     "user_token" => !empty(Auth::get('auth_token')) ? Auth::get('auth_token')->token : null
                 ]);
 
-                $userProfile = is_string($profileData) ? json_decode(trim($profileData), true) : $profileData; 
-                
+                $userProfile = is_string($profileData) ? json_decode(trim($profileData), true) : $profileData;
+
                 if (!isset($userProfile['user'])) {
                     throw new YPException('An error occurred while trying to log you in, please try again!!!');
-                }  
-                
+                }
+
                 $user['user'] = array_merge((array)$profile ?? [], $userProfile['user']);
 
                 Auth::create('auth', $user['user']);
@@ -126,7 +126,7 @@ class OnboardingController
 
             return $request->res(['status' => 'success', 'input' => $chargeAmount]);
         } catch (YPException $th) {
-            YPLogger::error($th); 
+            YPLogger::error($th);
             return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
         }
     }

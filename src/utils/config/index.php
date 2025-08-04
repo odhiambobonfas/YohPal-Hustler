@@ -17,7 +17,7 @@ $GLOBALS['config'] = [
 
 /**
  * Configuration helper function
- * 
+ *
  * @param key|group
  * @return configuration
  */
@@ -28,7 +28,7 @@ function config_all($group = 'app')
 
 /**
  * Configuration helper function
- * 
+ *
  * @param key|group
  * @return configuration
  */
@@ -54,7 +54,7 @@ foreach ($iterator as $file) {
 }
 
 /**
- * The function acts as config reader for all bindings set 
+ * The function acts as config reader for all bindings set
  */
 function binding(string $key = null): mixed
 {
@@ -105,7 +105,7 @@ function asset_url($filepath): string
 /**
  * Set and require autoload to fire up parsing of classes in a more cleaner way.
  * The function sets the autoload in respect to configuration user sets.
- * 
+ *
  * @return void
  */
 function require_autoload()
@@ -133,9 +133,9 @@ function extract_route(): string
 {
     // Skip routing if it's a direct PHP file request
     $requestUri = $_SERVER['REQUEST_URI'];
-    $scriptName = $_SERVER['SCRIPT_NAME']; // Application Entry point: "index.php" 
+    $scriptName = $_SERVER['SCRIPT_NAME']; // Application Entry point: "index.php"
 
-    $basePath = rtrim(dirname($scriptName), '/'); // "/" 
+    $basePath = rtrim(dirname($scriptName), '/'); // "/"
     $cleanUri = parse_url($requestUri, PHP_URL_PATH);
 
     // Get the route path by trimming the base path from the URI
@@ -146,7 +146,7 @@ function extract_route(): string
 
 /**
  * Fires out the router.
- * 
+ *
  * @return Routes Includes the files as they are for route calls.
  */
 function setRouter()
@@ -162,22 +162,22 @@ function setRouter()
     $routePath = config('ROUTE_PATH');
 
     // if ($routePath && is_dir($routePath)) {
-    //     foreach (glob($routePath . '/*.php') as $routeFile) { 
+    //     foreach (glob($routePath . '/*.php') as $routeFile) {
     //         require_once $routeFile;
-    //     } 
+    //     }
     // } else {
     //     throw new Exception("ROUTE_PATH is not defined or not a valid directory: {$routePath}");
     // }
 
-    if (!empty($routePath) && is_dir($routePath)) { 
+    if (!empty($routePath) && is_dir($routePath)) {
         // Load routes in a stack order
-        $routeFiles = []; 
+        $routeFiles = [];
         $allFiles = glob($routePath . '/*.php');
 
         if ($allFiles === false) {
             throw new RuntimeException("Failed to scan route directory: {$routePath}");
         }
-        
+
         foreach ($allFiles as $file) {
             $filename = basename($file);
 
@@ -209,7 +209,7 @@ function setRouter()
 /**
  * Views the views passed. Accepts the file path of a view,
  * & Optional data array
- * 
+ *
  * @param string $viewName The name of the view file (without .php).
  * @param array $data The array to extract and pass to the view.
  * @param bool $raw Whether to return the rendered view content as raw string.
@@ -278,7 +278,7 @@ $dotenv = Dotenv::createImmutable('.');
 $dotenv->safeLoad();
 
 /**
- * Read environment configuration variable and return 
+ * Read environment configuration variable and return
  * the first non-empty value: .env, config(), or default
  */
 function env(string $key, $default = null): mixed
@@ -298,7 +298,7 @@ function env(string $key, $default = null): mixed
     };
 }
 
-// Fire up the Router when you access 
+// Fire up the Router when you access
 // inner system parsed routes.
 setRouter();
 
@@ -313,6 +313,15 @@ function auth()
         public function user()
         {
             return Auth::user();
+        }
+
+        public function hustlerStatus()
+        {
+            return Auth::hustlerStatus();
+        }
+
+        public function hustler() {
+            return Auth::hustler();
         }
 
         public function logout()

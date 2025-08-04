@@ -8,7 +8,7 @@
         <a href="/dashboard" class="text-dark me-2">
             Home
         </a>
-        <span><i class="bi bi-arrow-right me-2"></i></span>
+        <span><i class="fa fa-chevron-right me-2"></i></span>
         <span class="text-dark">Onboarding</span>
     </div>
 </div>
@@ -18,9 +18,9 @@
         <div class="col-12 col-md-6 d-flex flex-column justify-content-center">
             <div class="card bg-transparent border-0 rounded-0 p-4">
                 <div class="card-body my-1">
-                    <h3 class="fw-bold text-dark mb-3">YOHPAL</h3> 
+                    <h3 class="fw-bold text-dark mb-3">YOHPAL</h3>
                     <form action="/account/activate-account" method="post" enctype="multipart/form-data">
-                        <div class="stepper-section ratings-section d-none">
+                        <div class="stepper-section ratings-section">
                             <?php include "onboarding/rating-setup-form.php" ?>
                         </div>
                         <div class="stepper-section uploads-section d-none">
@@ -40,25 +40,25 @@
                             </div>
                         </div>
                     </form>
-                    <!-- <div class="stepper-section success-section d-none">
-                        <div class="success-alert-image text-center mb-4 my-4">
-                            <img class="onboarding-success-img-alert img-fluid" src="<?= asset_url("/store/images/bg/onboarding-success-alert.png") ?>" alt="Success Image">
-                        </div>
-
-                        <div class="text-center">
-                            <h2 class="mb-3 fw-bold">Onboarding Success</h2>
-                            <p class="text-muted mb-4">
-                                Your profile has been set up successfully...
-                            </p>
-                            <button type="button" class="btn btn-danger px-4">Get Started</button>
-                        </div>
-                    </div> -->
+                    <!-- <div class="stepper-section success-section d-none"> -->
+                    <!--     <div class="success-alert-image text-center mb-4 my-4"> -->
+                    <!--         <img class="onboarding-success-img-alert img-fluid" src="<?= asset_url("/store/images/bg/onboarding-success-alert.png") ?>" alt="Success Image"> -->
+                    <!--     </div> -->
+                    <!---->
+                    <!--     <div class="text-center"> -->
+                    <!--         <h2 class="mb-3 fw-bold">Onboarding Success</h2> -->
+                    <!--         <p class="text-muted mb-4"> -->
+                    <!--             Your profile has been set up successfully... -->
+                    <!--         </p> -->
+                    <!--         <button type="button" class="btn btn-danger px-4">Get Started</button> -->
+                    <!--     </div> -->
+                    <!-- </div> -->
                 </div>
                 <?php include "onboarding/progress-action-btns.php" ?>
             </div>
         </div>
         <div class="col-md-6 p-0 d-none d-md-block">
-            <div style="background-image: url('<?= asset_url("/store/images/bg/ratings.jpeg") ?>');" class="card bg-transparent border-0 stepper-section-bg bg-image rounded-0 h-100 p-5"></div>
+            <div style="background-image: url('<?= asset_url("/store/images/bg/ratings.jpg") ?>');" class="card bg-transparent border-0 stepper-section-bg bg-image rounded-0 h-100 p-5"></div>
         </div>
     </div>
 </div>

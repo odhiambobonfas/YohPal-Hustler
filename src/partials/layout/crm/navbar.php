@@ -9,9 +9,7 @@
                 <a class="navbar-brand d-flex align-items-center gap-2 mb-0" href="/">
                     <img src="./assets/store/logos/logo_circular.png" alt="Logo" class="img-fluid logo-resize" style="height: 32px;">
                     <span class="fw-bold mb-0 brandname"><?= env('APP_NAME') ?></span>
-                    <i class="fas fa-screwdriver-wrench navicon"></i>
                 </a>
-                <i class="fas fa-screwdriver-wrench text-secondary d-none"></i>
             </div>
 
             <!-- Search Form (Desktop only) -->
@@ -29,9 +27,10 @@
                 <i class="fas fa-user " style="font-size: 16px; color: gray; background-color: #fff; padding: 6px; border-radius: 50%; border: 1px solid gray"></i>
             </button>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownToggle">
-                <li><a class="dropdown-item" href="/profile"><i class="bi bi-person-circle me-2"></i>Profile</a></li>
-                <li><a class="dropdown-item" target="_blank" href="https://chat.yohpal.com"><i class="fas fa-inbox me-2"></i>Live Chat</a></li>
-                <li><a class="dropdown-item" target="_blank" href="https://wallet.yohpal.com"><i class="bi bi-wallet2 me-2"></i>Wallet</a></li>
+                <li>
+                    <a class="dropdown-item" href="<?= auth()->hustlerStatus()->isHustler ? '/hustler/profile': '/profile' ?>">
+                    <i class="fas fa-user me-2"></i>Profile</a>
+                </li>
                 <li><a class="dropdown-item" href="/settings"><i class="bi bi-gear me-2"></i>Settings</a></li>
                 <li><a class="dropdown-item" href="/privacy"><i class="bi bi-shield-lock me-2"></i>Privacy</a></li>
                 <li>
@@ -74,11 +73,11 @@
                         <i class="fa fa-sort-down icon"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="/profile"><i class="bi bi-person-circle me-2"></i>Profile</a></li>
-                        <li><a class="dropdown-item" target="_blank" href="https://chat.yohpal.com"><i class="fas fa-inbox me-2"></i>Live Chat</a></li>
-                        <li><a class="dropdown-item" target="_blank" href="https://wallet.yohpal.com"><i class="bi bi-wallet2 me-2"></i>Wallet</a></li>
-                        <li><a class="dropdown-item" href="/settings"><i class="bi bi-gear me-2"></i>Settings</a></li>
-                        <li><a class="dropdown-item" href="/privacy"><i class="bi bi-shield-lock me-2"></i>Privacy</a></li>
+                        <li>
+                            <a class="dropdown-item" href="<?= auth()->hustlerStatus()->isHustler ? '/hustler/profile': '/profile' ?>">
+                                <i class="fas fa-user me-2"></i>Profile</a>
+                        </li>
+                        <li><a class="dropdown-item" href="/settings"><i class="fa-solid fa-gear me-2"></i>Settings</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -87,7 +86,9 @@
                             <li><a class="dropdown-item" href="/auth"><i class="bi bi-box-arrow-in-right me-2"></i>Login</a></li>
                         <?php } ?>
                         <?php if (!empty(auth()->user())) { ?>
-                            <li><button class="btn dropdown-item" id="logout-nav"><i class="bi bi-box-arrow-right me-2"></i> Logout</button></li>
+                        <li><button class="btn dropdown-item" id="logout-nav">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            Logout</button></li>
                         <?php } ?>
                     </ul>
                 </li>

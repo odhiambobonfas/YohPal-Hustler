@@ -43,7 +43,7 @@ class AuthController
     public function login(YPRequest $request): mixed
     {
         try {
-            if (!isAjaxRequest()) { 
+            if (!isAjaxRequest()) {
                 return view('auth/login');
             }
 
@@ -65,6 +65,7 @@ class AuthController
             }
 
             Auth::create('auth_token', ['token' => $user['token']]);
+            Auth::create("uid", $user["uid"]);
             // /AUTHENTICATE USER
 
             // GET USER PROFILE
@@ -80,7 +81,7 @@ class AuthController
             if (!isset($userProfile['user'])) {
                 throw new YPException('An error occurred while trying to log you in, please try again!!!');
             }
-            // /GET USER PROFILE 
+            // /GET USER PROFILE
 
             if (!isset($user['user']) && !isset($userProfile['user'])) {
                 throw new YPException('An error occurred while trying to log you in, please try again!!!!');
@@ -91,7 +92,7 @@ class AuthController
             $role = Auth::get('role');
             $user['user']['role'] = empty($role) ? 'client' : (!empty($role->role) ? strtolower($role->role) : null);
 
-            $route = onboarded() ? '/hustlers-ui' : '/contact/verify'; 
+            $route = onboarded() ? '/dashboard' : '/contact/verify';
 
             $user['user']['loginTime'] = date("Y-m-d H:i:s");
 
@@ -201,7 +202,7 @@ class AuthController
 
     /**
      * Verify contact phone/email in respect to user fill OTP.
-     * 
+     *
      * @param YPRequest $request The request instance containing the custom response method.
      * @return mixed A JSON-formatted response instigating whether it is a success or failure.
      */
