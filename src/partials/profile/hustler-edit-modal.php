@@ -184,7 +184,6 @@ editProfileForm.addEventListener('submit', function(e) {
             return response.json();
         })
         .then(data => {
-            alert(JSON.stringify(data, null, 2));
             setTimeout(() => {
                 const modal = bootstrap.Modal.getInstance(document.getElementById('editHProfileModal'));
                 if (modal) {
