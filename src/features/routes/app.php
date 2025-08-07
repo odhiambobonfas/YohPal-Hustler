@@ -67,6 +67,8 @@ $router->req("GET", "/crm/user-job-history", [UsersController::class, "jobHistor
 $router->req("GET", "/crm/client-activities", [ClientController::class, "getClientsJobHistory"], [AuthMiddleware::class]);
 $router->req("POST", "/crm/job/accept-req", [JobsController::class, "acceptJob"], [AuthMiddleware::class]);
 $router->req("POST", "/crm/job/reject-req", [JobsController::class, "rejectJob"], [AuthMiddleware::class]);
+$router->req("POST", "/crm/hustler/edit-profile", [HustlersController::class, "updateProfile"], [AuthMiddleware::class]);
+
 
 // Client related routes
 $router->req("GET",  "/client/activities", [ClientController::class, "clientActivities"], [AuthMiddleware::class]);

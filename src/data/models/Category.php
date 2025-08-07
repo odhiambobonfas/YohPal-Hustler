@@ -79,7 +79,7 @@ class Category extends Model
     {
         $categories = self::hustleCategories();
 
-        $options = '<option value="">-- Select Skill --</option>';
+        $options = '<option value="" disabled>-- Select Skill --</option>';
         foreach ($categories as $category) {
             foreach ($category["subcategory"] as $c) {
                 foreach ($c["sampleFields"] as $field) {
@@ -99,7 +99,7 @@ class Category extends Model
             "Per project" ,
         ];
 
-        $options = '<option value="">-- Select Unit --</option>';
+        $options = '<option value="" disabled>--Units--</option>';
         foreach ($units as $unit) {
             $options .= '<option value="' . $unit . '">' . htmlspecialchars($unit) . '</option>';
         }
