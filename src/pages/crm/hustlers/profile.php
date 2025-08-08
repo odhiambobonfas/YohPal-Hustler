@@ -66,12 +66,12 @@
 
                                 <div class="info-input">
                                     <label for="email">Email</label>
-                                    <input disabled name="email" readonly value="<?=  isset(auth()->hustler()->email) ? auth()->hustler()->email : 'user@domain.com' ?>"/>
+                                    <input disabled name="email" readonly value="<?=  isset(auth()->user()->email) ? auth()->user()->email : 'user@domain.com' ?>"/>
                                 </div>
 
                                 <div class="info-input">
                                     <label for="phone">Phone No:</label>
-                                    <input disabled name="phone" readonly value="<?=  isset(auth()->hustler()->phoneNumber) ? auth()->hustler()->phoneNumber : '+254-70-000-000' ?>"/>
+                                    <input disabled name="phone" readonly value="<?=  isset(auth()->user()->phoneNumber) ? auth()->user()->phoneNumber : '+254-70-000-000' ?>"/>
                                 </div>
                                 <div class="info-textarea">
                                     <label for="work-bio">Work Bio:</label>
