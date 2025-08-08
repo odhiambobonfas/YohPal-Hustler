@@ -20,23 +20,14 @@
             Become A Hustler
         </a>
         <?php endif ?>
+
+        <?php if (!auth()->hustlerStatus()->isHustler): ?>
+        <a href="/job-portal" class="sidebar-item d-flex align-items-center gap-2 text-decoration-none">
+            <i class="fas fa-briefcase icon"></i> Job Portal
+        </a>
+        <?php endif; ?>
     </div>
 
-    <!-- Career Management -->
-    <?php if (!auth()->hustlerStatus()->isHustler): ?>
-        <div class="sidebar-section career-management">
-            <h3>Career</h3>
-            <a href="/job-portal" class="sidebar-item d-flex align-items-center gap-2 text-decoration-none">
-                <i class="fas fa-briefcase icon"></i> Job Portal
-            </a>
-            <a href="/applications" class="sidebar-item d-flex align-items-center gap-2 text-decoration-none">
-                <i class="fas fa-file-alt icon"></i> Applications
-            </a>
-            <a href="/analytics" class="sidebar-item d-flex align-items-center gap-2 text-decoration-none">
-                <i class="fas fa-chart-line icon"></i> Analytics
-            </a>
-        </div>
-    <?php endif; ?>
 
     <!-- Communication -->
     <div class="sidebar-section communication">

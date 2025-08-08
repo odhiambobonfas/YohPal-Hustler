@@ -75,9 +75,7 @@
                                 </div>
                                 <div class="info-textarea">
                                     <label for="work-bio">Work Bio:</label>
-                                    <textarea disabled name="work-bio" readonly>
-                                        <?=  isset(auth()->hustler()->workBio) ? auth()->hustler()->workBio : 'No work bio set' ?>
-                                    </textarea>
+                                    <textarea disabled name="work-bio" readonly><?=  isset(auth()->hustler()->workBio) ? auth()->hustler()->workBio : 'No work bio set' ?></textarea>
                                 </div>
                             </div>
                         </div>
@@ -86,7 +84,7 @@
                             <div class="info">
                                 <div class="info-input">
                                     <label for="primarySkill">Primary Skill</label>
-                                    <input disabled  name="primarySkill" readonly value="<?=  isset(auth()->hustler()->firstName) ? auth()->hustler()->primarySkill : 'Skill-1' ?>"/>
+                                    <input disabled  name="primarySkill" readonly value="<?=  isset(auth()->hustler()->firstName) ? auth()->hustler()->primarySkill : 'No skill set' ?>"/>
                                 </div>
 
                                 <div class="info-input">
@@ -96,13 +94,15 @@
                                     <input disabled type="number" name="pricing" readonly value="<?=  isset(auth()->hustler()->pricing) ? auth()->hustler()->pricing : '0' ?>"/>
                                 </div>
 
-                                <div class="info-skills">
+                                <div class="info-skills-c">
                                     <label for="email">Skills</label>
-                                    <?php if (!empty(auth()->hustler()->skills) && is_array(auth()->hustler()->skills)): ?>
-                                    <?php foreach (auth()->hustler()->skills as $skill): ?>
-                                    <span class="info-skill"><?= htmlspecialchars($skill) ?></span>
-                                    <?php endforeach; ?>
-                                    <?php endif; ?>
+                                    <div class="info-skills">
+                                        <?php if (!empty(auth()->hustler()->skills) && is_array(auth()->hustler()->skills)): ?>
+                                        <?php foreach (auth()->hustler()->skills as $skill): ?>
+                                        <span class="info-skill"><?= htmlspecialchars($skill) ?></span>
+                                        <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
 
                                 <div class="info-images-c">
@@ -161,6 +161,7 @@
 <script type="text/javascript" src="<?= asset_url('js/app/crm/account.js') ?>"></script>
 <script type="text/javascript" src="<?= asset_url('js/app/crm/dashboard.js') ?>"></script>
 <script type="text/javascript" src="<?= asset_url('js/app/crm/profile.js') ?>"></script>
+<script type="text/javascript" src="<?= asset_url('js/app/crm/update-hustler-modal.js') ?>"></script>
 <!-- xtra scripts -->
 
 <!-- closure -->

@@ -125,15 +125,21 @@
   border-radius: 15px;
 }
 
+.info-skills-c {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
 .info-textarea,
 .info-skills {
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: start;
-  align-items: start;
+  align-items: center;
   gap: 0.5rem;
-  margin-top: 1rem;
 }
 .info-skill {
   background-color: gray;
