@@ -62,7 +62,7 @@ function populateActivitiesList() {
     }
 
     listItem.innerHTML = `
-        <span>${activity.name} - ${activity.description || "No description available"}</span>
+        <span>${activity.name} - ${trim(activity.description) || "No description available"}</span>
         <span class="jobs-status ${getStatusClass(activity.status)}">${activity.status}</span>
     `;
 
@@ -439,3 +439,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+function trim(content) {
+  const maxLen = 6;
+  if (content.length < maxLen) return content;
+
+  return (
+    content
+      .split(" ")
+      .slice(0, maxLen + 1)
+      .join(" ") + "..."
+  );
+}
