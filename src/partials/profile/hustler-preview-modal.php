@@ -9,13 +9,13 @@
       </div>
 
       <div class="modal-body p-3">
-        <div class="card shadow-sm border-0 w-100">
+        <div class="card border-0 w-100">
           <!-- Header -->
           <div
-            class="card-header text-center border-bottom position-relative text-white p-0"
+            class="card-header text-center border-bottom position-relative text-white p-0 rounded-2 overflow-hidden"
             style="background-image: url('<?= $hustler->uploads['images'][1] ?? '' ?>');
                    background-size: cover; background-position: center;
-                   height: 120px;">
+                   height: 15vh;">
             <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
 
             <div class="position-relative py-3" style="z-index: 2;">
@@ -40,7 +40,7 @@
                 <div class="fw-semibold text-dark small mb-2">Ratings</div>
                 <div class="d-flex flex-wrap gap-2">
                   <?php foreach ($hustler->skillRatings as $skill => $rating): ?>
-                    <div class="border rounded px-2 py-1 text-center small text-muted" style="min-width: 80px;">
+                    <div class="px-2 py-1 text-center small text-muted" style="min-width: 80px;">
                       <div class="fw-semibold text-capitalize"><?= htmlspecialchars($skill) ?></div>
                       <div class="text-warning"><?= str_repeat('⭐', (int) $rating) ?></div>
                     </div>
