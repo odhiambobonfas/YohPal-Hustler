@@ -48,7 +48,24 @@ function isActive($href) {
         </div>
     </div>
 
-    <hr>
+<hr/>
+<div class="sidebar-section policies">
+    <h3>Policies</h3>
+    <div class="sidebar-item <?= isActive('/terms/client') ?>"
+         role="tab" tabindex="0" onclick="window.location.href='/terms/client'">
+        <i class="fas fa-file-contract icon"></i> Client Terms
+    </div>
+    <div class="sidebar-item <?= isActive('/terms/hustler') ?>"
+         role="tab" tabindex="0" onclick="window.location.href='/terms/hustler'">
+        <i class="fas fa-user-tie icon"></i> Hustler Terms
+    </div>
+    <div class="sidebar-item <?= isActive('/privacy-policy') ?>"
+         role="tab" tabindex="0" onclick="window.location.href='/privacy-policy'">
+        <i class="fas fa-shield-alt icon"></i> Privacy Policy
+    </div>
+</div>
+    <hr/>
+
     <!-- Session -->
     <div class="sidebar-section session">
         <div class="ms-3">
@@ -57,6 +74,7 @@ function isActive($href) {
             </button>
         </div>
     </div>
+
 </div>
 
 <script type="text/javascript" src="<?= asset_url('js/app/crm/auth.js') ?>"></script>

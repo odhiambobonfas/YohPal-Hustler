@@ -8,6 +8,7 @@ use App\Controllers\Web\HustlersController;
 use App\Controllers\Web\JobsController;
 use App\Controllers\Web\OnboardingController;
 use App\Controllers\Web\PaymentController;
+use App\Controllers\Web\PoliciesController;
 use App\Controllers\Web\ProfileController;
 use App\Controllers\Web\SettingsController;
 use App\Controllers\Web\UsersController;
@@ -57,6 +58,12 @@ $router->req('GET', '/get-started', [WebController::class, 'getStarted'], [AuthM
 $router->req('POST', '/get-started/onboarding', [WebController::class, 'getStarted'], [AuthMiddleware::class]);
 $router->req('GET', '/search-engine', [WebController::class, 'searchEngine'], [AuthMiddleware::class]);
 $router->req("GET", "/onboarding/hustler", [WebController::class, 'onboardHustler'], [AuthMiddleware::class]);
+
+$router->req("GET", "/terms/hustler", [PoliciesController::class, "hustlerTerms"]);
+$router->req("GET", "/terms/client", [PoliciesController::class, "clientTerms"]);
+$router->req("GET", "/privacy-policy", [PoliciesController::class, "privacyPolicy"]);
+
+
 
 
 $router->req('GET', '/crm/users/hustlers', [HustlersController::class, 'getActiveHustlersByPrimarySkill'], [AuthMiddleware::class]);
