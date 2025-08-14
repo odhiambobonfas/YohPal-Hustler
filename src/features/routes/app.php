@@ -47,6 +47,7 @@ $router->req('GET', '/onboarding', [OnboardingController::class, 'index'], [Auth
 $router->req('POST', '/profile/update', [OnboardingController::class, 'updateProfileDetails'], [AuthMiddleware::class]);
 
 
+$router->req('GET', '/job/location/[**:path]', [JobsController::class, 'showJobLocation'], [AuthMiddleware::class]);
 $router->req('POST', '/job/completeCreation', [JobsController::class, 'createJob'], [AuthMiddleware::class]);
 $router->req('POST', '/job/create/[**:path]', [JobsController::class, 'createJobDraft'], [AuthMiddleware::class]);
 
@@ -66,6 +67,7 @@ $router->req("GET", "/privacy-policy", [PoliciesController::class, "privacyPolic
 
 
 
+$router->req('GET', '/crm/job/details/[**:path]', [JobsController::class, 'getJobDetails'], [AuthMiddleware::class]);
 $router->req('GET', '/crm/users/hustlers', [HustlersController::class, 'getActiveHustlersByPrimarySkill'], [AuthMiddleware::class]);
 $router->req('GET', '/crm/services', [JobsController::class, 'getServices']);
 $router->req("GET", "/crm/hustler/job-requests", [HustlersController::class, "getHustlerJobRequests"], [AuthMiddleware::class]);

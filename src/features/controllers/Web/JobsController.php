@@ -153,4 +153,31 @@ class JobsController
             return $request->res(["status" => 'error', "rawMsg" => $th->getMessage(), "message" => ypLog($th, "An error occurred. Please try again!")]);
         }
     }
+    public function getJobDetails(YPRequest $request, $path): mixed
+    {
+        try{
+
+            $jobModel = new Job();
+            $jobId = $path[0];
+            $results = $jobModel->getJobDetails($jobId);
+
+            $data = $results["data"]["job"];
+
+            return $request->res(["status" => "success", "job" => $data]);
+
+        } catch(\Throwable $th) {
+
+            YPLogger::error($th);
+            return $request->res(["status" => 'error', "rawMsg" => $th->getMessage(), "message" => ypLog($th, "An error occurred. Please try again!")]);
+
+        }
+    }
+
+    /**
+     * @param mixed $path
+     */
+    public function showJobLocation(YPRequest $request, $path): string
+    {
+        return view('crm/hustlers/job-location');
+    }
 }
