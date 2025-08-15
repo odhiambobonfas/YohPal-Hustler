@@ -1,5 +1,5 @@
 <!-- header -->
-<?php include 'partials/layout/web/header.php'; ?>
+<?php include 'partials/layout/crm/header.php'; ?>
 <!-- /header -->
 
 <!-- styles -->
@@ -93,8 +93,8 @@
 <!-- xtra scripts -->
 <script type="text/javascript" src="<?= asset_url('js/app/crm/account.js') ?>"></script>
 <script type="text/javascript" src="<?= asset_url('js/app/crm/auth.js') ?>"></script>
-<script type="text/javascript" src="<?= asset_url('js/app/crm/dashboard.js') ?>"></script>
 <script type="text/javascript" src="<?= asset_url('js/app/crm/profile.js') ?>"></script>
+<script type="text/javascript" src="<?= asset_url('js/app/crm/dashboard.js') ?>"></script>
 <!-- xtra scripts -->
 
 <!-- closure -->
