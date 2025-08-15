@@ -36,7 +36,7 @@
                         </div>
                         <?php endif; ?>
                         <div class="profile-links">
-                            <a href="#">Jobs</a>
+                            <a href="/client/activities">Jobs</a>
                             <a href="#">Transactions</a>
                             <a href="#">Reviews</a>
                         </div>

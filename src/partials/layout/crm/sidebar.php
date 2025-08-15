@@ -48,22 +48,28 @@ function isActive($href) {
         </div>
     </div>
 
-<hr/>
-<div class="sidebar-section policies">
-    <h3>Policies</h3>
-    <div class="sidebar-item <?= isActive('/terms/client') ?>"
-         role="tab" tabindex="0" onclick="window.location.href='/terms/client'">
-        <i class="fas fa-file-contract icon"></i> Client Terms
+    <hr/>
+    <div class="sidebar-section policies">
+        <h3>Policies</h3>
+
+        <?php if (!auth()->hustlerStatus()->isHustler): ?>
+
+        <a href="/terms/client"
+            class="sidebar-item d-flex align-items-center gap-2 text-decoration-none <?= isActive('/terms/client') ?>">
+            <i class="fas fa-file-contract icon"></i> Client Terms
+        </a>
+        <?php else: ?>
+        <a href="/terms/hustler"
+            class="sidebar-item d-flex align-items-center gap-2 text-decoration-none <?= isActive('/terms/hustler') ?>">
+            <i class="fas fa-user-tie icon"></i> Hustler Terms
+        </a>
+        <?php endif; ?>
+
+        <a href="/privacy-policy"
+            class="sidebar-item d-flex align-items-center gap-2 text-decoration-none <?= isActive('/terms/hustler') ?>">
+            <i class="fas fa-shield-alt icon"></i> Privacy Policy
+        </a>
     </div>
-    <div class="sidebar-item <?= isActive('/terms/hustler') ?>"
-         role="tab" tabindex="0" onclick="window.location.href='/terms/hustler'">
-        <i class="fas fa-user-tie icon"></i> Hustler Terms
-    </div>
-    <div class="sidebar-item <?= isActive('/privacy-policy') ?>"
-         role="tab" tabindex="0" onclick="window.location.href='/privacy-policy'">
-        <i class="fas fa-shield-alt icon"></i> Privacy Policy
-    </div>
-</div>
     <hr/>
 
     <!-- Session -->
