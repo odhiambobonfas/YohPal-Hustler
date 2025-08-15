@@ -43,7 +43,7 @@ class ClientController
         Auth::create("hustlerStatus", $hustlerStatus);
 
 
-        return $request->res(["route"=> $hustlerStatus->isHustler ? "/hustler/dashboard" : "/dashboard"]);
+        return $request->res(["route"=> $hustlerStatus->isHustler ? "/hustler/profile" : "/profile"]);
     }
 
 

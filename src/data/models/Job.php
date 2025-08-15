@@ -132,4 +132,35 @@ class Job extends Model {
             "message" => $data->message,
         ];
     }
+
+    /**
+     * @param mixed $jobId
+     */
+    public function getJobDetails($jobId): array {
+
+        try{
+            $endpoint = "https://yohpal-hustler-apis-test.onrender.com/jobs/get_details/".$jobId;
+            $response = $this->client->get($endpoint, [
+                'headers' => [
+                    "Accept" => "application/json",
+                    "Authorization" => "Bearer $this->auth_token"
+                ]
+            ]);
+
+            $json = $response->getBody()->getContents();
+            $data = json_decode($json, true);
+
+            return [
+                "json"=> $json,
+                "message" => $data->message,
+                "data" => $data,
+            ];
+        } catch(RequestException $error) {
+            return [
+                "error" => true,
+                "message" => $error->getMessage(),
+                'response' => $error->hasResponse() ? $error->getResponse()->getBody()->getContents() : null,
+            ];
+        }
+    }
 }

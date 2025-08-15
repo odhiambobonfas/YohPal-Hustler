@@ -32,9 +32,9 @@
                                 <input type="checkbox" <?= auth()->hustlerStatus()->isHustler ? "checked" : "" ?> onchange="toggleAccount(this)" value="true">
                                 <span class="slider round"></span>
                             </label>
-                            </div>
+                        </div>
                         <div class="profile-links">
-                            <a href="#">Jobs</a>
+                            <a href="/hustler/requests">Jobs</a>
                             <a href="#">Transactions</a>
                             <a href="#">Reviews</a>
                         </div>
@@ -47,8 +47,8 @@
                                 <p> <i class="fas fa-street-view"></i> <?= isset(auth()->hustler()->primaryLocation) ? auth()->hustler()->primaryLocation : 'location not available' ?></p>
                             </div>
                             <div class="profile-btns">
-                                <button class="profile-public">See public view</button>
-                                <button class="profile-settings">Profile settings</button>
+                                <button class="profile-public" data-bs-toggle="modal" data-bs-target="#hustlerPreviewModal">See public view</button>
+                                <button class="profile-settings" data-bs-toggle="modal" data-bs-target="#editHProfileModal">Edit Profile</button>
                             </div>
                         </div>
                         <div class="personal-info">
@@ -66,18 +66,16 @@
 
                                 <div class="info-input">
                                     <label for="email">Email</label>
-                                    <input disabled name="email" readonly value="<?=  isset(auth()->hustler()->email) ? auth()->hustler()->email : 'user@domain.com' ?>"/>
+                                    <input disabled name="email" readonly value="<?=  isset(auth()->user()->email) ? auth()->user()->email : 'user@domain.com' ?>"/>
                                 </div>
 
                                 <div class="info-input">
                                     <label for="phone">Phone No:</label>
-                                    <input disabled name="phone" readonly value="<?=  isset(auth()->hustler()->phoneNumber) ? auth()->hustler()->phoneNumber : '+254-70-000-000' ?>"/>
+                                    <input disabled name="phone" readonly value="<?=  isset(auth()->user()->phoneNumber) ? auth()->user()->phoneNumber : '+254-70-000-000' ?>"/>
                                 </div>
                                 <div class="info-textarea">
                                     <label for="work-bio">Work Bio:</label>
-                                    <textarea disabled name="work-bio" readonly>
-                                        <?=  isset(auth()->hustler()->workBio) ? auth()->hustler()->workBio : 'No work bio set' ?>
-                                    </textarea>
+                                    <textarea disabled name="work-bio" readonly><?=  isset(auth()->hustler()->workBio) ? auth()->hustler()->workBio : 'No work bio set' ?></textarea>
                                 </div>
                             </div>
                         </div>
@@ -86,7 +84,7 @@
                             <div class="info">
                                 <div class="info-input">
                                     <label for="primarySkill">Primary Skill</label>
-                                    <input disabled  name="primarySkill" readonly value="<?=  isset(auth()->hustler()->firstName) ? auth()->hustler()->primarySkill : 'Skill-1' ?>"/>
+                                    <input disabled  name="primarySkill" readonly value="<?=  isset(auth()->hustler()->firstName) ? auth()->hustler()->primarySkill : 'No skill set' ?>"/>
                                 </div>
 
                                 <div class="info-input">
@@ -96,31 +94,58 @@
                                     <input disabled type="number" name="pricing" readonly value="<?=  isset(auth()->hustler()->pricing) ? auth()->hustler()->pricing : '0' ?>"/>
                                 </div>
 
-                                <div class="info-skills">
+                                <div class="info-skills-c">
                                     <label for="email">Skills</label>
-                                    <?php if (!empty(auth()->hustler()->skills) && is_array(auth()->hustler()->skills)): ?>
+                                    <div class="info-skills">
+                                        <?php if (!empty(auth()->hustler()->skills) && is_array(auth()->hustler()->skills)): ?>
                                         <?php foreach (auth()->hustler()->skills as $skill): ?>
-                                            <span class="info-skill"><?= htmlspecialchars($skill) ?></span>
+                                        <span class="info-skill"><?= htmlspecialchars($skill) ?></span>
                                         <?php endforeach; ?>
-                                    <?php endif; ?>
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
 
                                 <div class="info-images-c">
                                     <label>Portfolio Images</label>
                                     <div class="info-imgs">
                                         <?php if (!empty(auth()->hustler()->uploads["images"]) && is_array(auth()->hustler()->uploads["images"])): ?>
-                                            <?php foreach (auth()->hustler()->uploads["images"] as $image): ?>
-                                                <img src="<?= htmlspecialchars($image) ?>" class="info-img"/>
-                                            <?php endforeach; ?>
+                                        <?php foreach (auth()->hustler()->uploads["images"] as $image): ?>
+                                        <img src="<?= htmlspecialchars($image) ?>" class="info-img"/>
+                                        <?php endforeach; ?>
                                         <?php endif; ?>
                                     </div>
+                                </div>
+                            </div>
+                            <h5 class="mt-5 fs-5"><b>Availability</b></h5>
+                            <div class="container-fluid">
+                                <div class="row g-2">
+                                    <?php
+                                    $days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                                    $dayIndex = 0;
+                                    ?>
+                                    <?php foreach (auth()->hustler()->availability as $availability): ?>
+                                    <div class="col">
+                                        <div
+                                            class="d-flex align-items-center justify-content-center text-white fw-bold rounded p-4 opacity-75
+                                            <?= $availability["active"] ? 'bg-success' : 'bg-danger' ?>"
+                                            style="height: 60px; min-width: 50px;">
+
+                                            <div class="text-center">
+                                                <div><?= $days[$dayIndex] ?? 'Day' ?></div>
+                                                <small class="d-block opacity-75"><?= $availability["active"] ? '✓' : '✗' ?></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php $dayIndex++; ?>
+                                    <?php endforeach; ?>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </main>
+        <?php include 'partials/profile/hustler-preview-modal.php'; ?>
+        <?php include 'partials/profile/hustler-edit-modal.php'; ?>
     </div>
 </div>
 
@@ -136,6 +161,7 @@
 <script type="text/javascript" src="<?= asset_url('js/app/crm/account.js') ?>"></script>
 <script type="text/javascript" src="<?= asset_url('js/app/crm/dashboard.js') ?>"></script>
 <script type="text/javascript" src="<?= asset_url('js/app/crm/profile.js') ?>"></script>
+<script type="text/javascript" src="<?= asset_url('js/app/crm/update-hustler-modal.js') ?>"></script>
 <!-- xtra scripts -->
 
 <!-- closure -->

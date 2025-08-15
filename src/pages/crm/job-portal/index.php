@@ -77,10 +77,10 @@
 </div>
 <!-- /modals -->
 
+
 <!-- footer -->
 <?php include 'partials/layout/crm/footer.php'; ?>
 <!-- /footer -->
-
 <!-- xtra scripts -->
 <script type="text/javascript" src="<?= asset_url('js/app/crm/auth.js') ?>"></script>
 <script type="text/javascript" src="<?= asset_url('js/app/crm/dashboard.js') ?>"></script>
@@ -248,33 +248,47 @@ class JobPortal extends Master {
   }
 }
 
-function getCategories() {
+async function getCategories() {
   const cached = localStorage.getItem("categories");
   if (cached) return JSON.parse(cached);
 
-  fetch("/crm/services")
-    .then((r) => r.json())
-    .then((d) => localStorage.setItem("categories", JSON.stringify(d.services)))
-    .catch(console.error);
-
-  return [];
+  try {
+    const response = await fetch("/crm/services");
+    const d = await response.json();
+    localStorage.setItem("categories", JSON.stringify(d.services))
+    return d.services;
+  } catch (e) {
+    console.error(`Fetch Services Err: ${e}`)
+    return []
+  }
 }
 
-function loadJobCategories() {
+async function loadJobCategories() {
   const jobsEl = document.getElementById("jobs");
   const searchInput = document.getElementById("job-search-val");
-  const allCategories = getCategories();
+  const allCategories = await getCategories();
 
   if (!allCategories.length) return;
+
+  const pastelColors = [
+    "#FFD6D6", "#FFEBCC", "#D5E8D4",
+    "#CCE5FF", "#FFF2CC", "#FADBD8",
+    "#E8DAEF", "#D6F5D6", "#D6EAF8",
+    "#FDEBD0", "#D1F2EB", "#F5CBA7",
+    "#F6DDCC", "#E8F8F5"
+  ];
 
   const render = (list) => {
     jobsEl.innerHTML = list
       .map(
-        (c) => `
+        (c, i) => {
+          const color = pastelColors[Math.floor(Math.random() * pastelColors.length)];
+
+          return `
             <div class="job-category" data-id="${c.slug}">
-                <div class="job-bg"><p>${c.name}</p></div>
+                <div class="job-bg" style="background-color: ${color}"><p>${c.name}</p></div>
                 <p>${c.subcategory.length} job categories</p>
-            </div>`,
+            </div>`;},
       )
       .join("");
   };
@@ -304,8 +318,10 @@ function loadJobCategories() {
 }
 
 const dashboardInstance = new JobPortal();
-loadJobCategories();
-dashboardInstance.setupPage();
+(async() => {
+  await loadJobCategories();
+  dashboardInstance.setupPage();
+})()
 </script>
 <!-- xtra scripts -->
 

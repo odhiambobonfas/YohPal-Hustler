@@ -478,7 +478,6 @@ class Master {
         if (!documentContains(selector)) return;
 
         this.getGeolocationPositions().then((positions) => {
-          // console.log(locations.latitude);
           let map = new google.maps.Map(selector, {
             zoom: 12,
             center: {
@@ -487,27 +486,45 @@ class Master {
             },
             mapId: "hustle-map",
           });
+          let mapInstance = null;
 
-          let mapInstance = new HustleMap(map, "WALKING", "You");
+          if (!hustlerData[0]) return;
 
-          mapInstance.clientStartLocation = new google.maps.LatLng(
-            positions.lat,
-            positions.lng,
-          );
-
-          hustlerData.forEach((hustler) => {
-            locations = hustler.liveLocation;
-            let marker = hustler.displayName || "You";
-            const _locations = {
-              latitude: locations._latitude,
-              longitude: locations._longitude,
-            };
-            mapInstance.layOutMapMarker(
-              _locations || undefined,
-              marker,
-              hustler,
+          if (hustlerData.length === 1 && hustlerData[0]?.jobSite) {
+            const jobInfo = hustlerData[0];
+            let mapInstance = new ClientMap(map);
+            mapInstance.clientStartLocation = new google.maps.LatLng(
+              positions.lat,
+              positions.lng,
             );
-          });
+            let marker = "Client";
+            const _locations = {
+              latitude: jobInfo.jobSite._latitude,
+              longitude: jobInfo.jobSite._longitude,
+            };
+            mapInstance.layOutMapMarker(_locations, marker, jobInfo);
+          } else {
+            mapInstance = new HustleMap(map, "WALKING", "You");
+
+            mapInstance.clientStartLocation = new google.maps.LatLng(
+              positions.lat,
+              positions.lng,
+            );
+
+            hustlerData.forEach((hustler) => {
+              locations = hustler.liveLocation;
+              let marker = hustler.displayName || "You";
+              const _locations = {
+                latitude: locations._latitude,
+                longitude: locations._longitude,
+              };
+              mapInstance.layOutMapMarker(
+                _locations || undefined,
+                marker,
+                hustler,
+              );
+            });
+          }
         });
       });
 

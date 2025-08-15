@@ -36,7 +36,7 @@
                         </div>
                         <?php endif; ?>
                         <div class="profile-links">
-                            <a href="#">Jobs</a>
+                            <a href="/client/activities">Jobs</a>
                             <a href="#">Transactions</a>
                             <a href="#">Reviews</a>
                         </div>
@@ -49,8 +49,7 @@
                                 <p> <i class="fas fa-street-view"></i> <?= isset(auth()->user()->Country) ? auth()->user()->Country : 'location not available' ?></p>
                             </div>
                             <div class="profile-btns">
-                                <button class="profile-public">See public view</button>
-                                <button class="profile-settings">Profile settings</button>
+                                <button class="profile-settings">Edit profile</button>
                             </div>
                         </div>
                         <div class="personal-info">

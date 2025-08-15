@@ -5,7 +5,6 @@ namespace Yohpal\Models;
 use GuzzleHttp\Exception\RequestException;
 use Yohpal\Application\Auth;
 use Yohpal\Application\YPLogger;
-use Yohpal\Application\YPRequest;
 use Yohpal\Models\Model;
 
 /**
@@ -121,4 +120,122 @@ class Hustler extends Model
             ];
         }
     }
+    /**
+     * @param mixed $input
+     */
+    public function updateProfile($input): ?array
+    {
+        try {
+            $endpoint = "https://yohpal-hustler-apis-test.onrender.com/hustler/profile/edit";
+            $response = $this->client->put($endpoint, [
+                "json" => $input,
+                'headers' => [
+                    "Accept" => "application/json",
+                    "Authorization" => "Bearer $this->auth_token"
+                ]
+            ]);
+            return null;
+        } catch(RequestException $error) {
+            return [
+                'error' => true,
+                'message' => $error->getMessage(),
+                'response' => $error->hasResponse() ? $error->getResponse()->getBody()->getContents() : null,
+            ];
+        }
+    }
+
+    /**
+     * @param mixed $input
+     */
+    public function updatePrimaryLocation($input): ?array
+    {
+        try {
+            $endpoint = "https://yohpal-hustler-apis-test.onrender.com/location/update_primary";
+            $response = $this->client->post($endpoint, [
+                "json" => $input,
+                'headers' => [
+                    "Accept" => "application/json",
+                    "Authorization" => "Bearer $this->auth_token"
+                ]
+            ]);
+            return null;
+        } catch(RequestException $error) {
+            return [
+                'error' => true,
+                'message' => $error->getMessage(),
+                'response' => $error->hasResponse() ? $error->getResponse()->getBody()->getContents() : null,
+            ];
+        }
+    }
+
+    /**
+     * @param mixed $input
+     */
+    public function updateAvailability($input): ?array
+    {
+        try {
+            $endpoint = "https://yohpal-hustler-apis-test.onrender.com/hustler/availability/update";
+            $response = $this->client->post($endpoint, [
+                "json" => $input,
+                'headers' => [
+                    "Accept" => "application/json",
+                    "Authorization" => "Bearer $this->auth_token"
+                ]
+            ]);
+            return null;
+        } catch(RequestException $error) {
+            return [
+                'error' => true,
+                'message' => $error->getMessage(),
+                'response' => $error->hasResponse() ? $error->getResponse()->getBody()->getContents() : null,
+            ];
+        }
+    }
+    /**
+     * @param mixed $input
+     */
+    public function updatePrimarySkill($input): ?array
+    {
+        try {
+            $endpoint = "https://yohpal-hustler-apis-test.onrender.com/hustler/profile/edit/primary_skill";
+            $response = $this->client->put($endpoint, [
+                "json" => $input,
+                'headers' => [
+                    "Accept" => "application/json",
+                    "Authorization" => "Bearer $this->auth_token"
+                ]
+            ]);
+            return null;
+        } catch(RequestException $error) {
+            return [
+                'error' => true,
+                'message' => $error->getMessage(),
+                'response' => $error->hasResponse() ? $error->getResponse()->getBody()->getContents() : null,
+            ];
+        }
+    }
+    /**
+     * @param mixed $input
+     */
+    public function updateSkills($input): ?array
+    {
+        try {
+            $endpoint = "https://yohpal-hustler-apis-test.onrender.com/hustler/profile/edit/skills";
+            $response = $this->client->put($endpoint, [
+                "json" => $input,
+                'headers' => [
+                    "Accept" => "application/json",
+                    "Authorization" => "Bearer $this->auth_token"
+                ]
+            ]);
+            return null;
+        } catch(RequestException $error) {
+            return [
+                'error' => true,
+                'message' => $error->getMessage(),
+                'response' => $error->hasResponse() ? $error->getResponse()->getBody()->getContents() : null,
+            ];
+        }
+    }
+
 }
