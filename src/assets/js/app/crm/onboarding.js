@@ -64,7 +64,7 @@ class Onboarding extends Master {
               5000,
               response.message || lang.undefined_error,
             );
-            return;
+            window.location.href = "/dashboard";
           }
 
           if (response && response.status && response.status == "error") {
