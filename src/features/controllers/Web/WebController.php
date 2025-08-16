@@ -55,6 +55,12 @@ class WebController
             return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
         }
     }
+
+    public function settings(YPRequest $request): mixed
+    {
+        return view('/crm/settings');
+    }
+
     public function clientActivities(YPRequest $request): mixed
     {
         try {

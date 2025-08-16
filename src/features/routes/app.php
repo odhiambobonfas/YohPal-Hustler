@@ -56,6 +56,7 @@ $router->req('POST', '/account/activate-account', [OnboardingController::class, 
 
 // Get started web routes
 $router->req('GET', '/get-started', [WebController::class, 'getStarted'], [AuthMiddleware::class]);
+$router->req('GET', '/settings', [WebController::class, 'settings'], [AuthMiddleware::class]);
 $router->req('POST', '/get-started/onboarding', [WebController::class, 'getStarted'], [AuthMiddleware::class]);
 $router->req('GET', '/search-engine', [WebController::class, 'searchEngine'], [AuthMiddleware::class]);
 $router->req("GET", "/onboarding/hustler", [WebController::class, 'onboardHustler'], [AuthMiddleware::class]);
