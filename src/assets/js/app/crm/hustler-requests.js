@@ -3,7 +3,6 @@ let filteredRequests = [];
 let selectedRequestId = null;
 
 // Show loading states initially
-requestsLoading.style.display = "block";
 detailsLoading.style.display = "block";
 if (acceptBtn) acceptBtn.disabled = true;
 if (rejectBtn) rejectBtn.disabled = true;
@@ -41,24 +40,21 @@ function rejectRequest() {
 fetch("/crm/hustler/job-requests")
   .then((r) => r.json())
   .then((d) => {
-    requestList = d.jobRequests;
-    filteredRequests = d.jobRequests;
+    requestList = d?.jobRequests ?? [];
+    filteredRequests = d?.jobRequests ?? [];
 
     displayRequestsList(filteredRequests);
 
-    if (d.jobHistory.length > 0) {
-      selectedRequestId = d.jobHistory[0].id;
-      displayDetails(d.jobHistory[0]);
+    if (filteredRequests.length > 0) {
+      selectedRequestId = filteredRequests[0].id;
+      displayDetails(filteredRequests[0]);
+      displayRequestsList(filteredRequests);
+      if (acceptBtn) acceptBtn.disabled = false;
+      if (rejectBtn) rejectBtn.disabled = false;
     }
   })
   .catch((e) => {
     console.error("ERR: ", e);
-  })
-  .finally(() => {
-    requestsLoading.style.display = "none";
-    detailsLoading.style.display = "none";
-    if (acceptBtn) acceptBtn.disabled = false;
-    if (rejectBtn) rejectBtn.disabled = false;
   });
 
 requestSearch.addEventListener("input", function (e) {

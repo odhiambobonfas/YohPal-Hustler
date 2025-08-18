@@ -131,6 +131,12 @@ return [
         'action' => 'Get a hustler"s job requests',
     ],
 
+    'get_hustler_job_history' => [
+        'method' => 'GET',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/hustler/job_history/{hustlerId}',
+        'action' => 'Get a hustler"s job requests',
+    ],
+
     // ==============================
     // COMMUNICATION
     // ==============================

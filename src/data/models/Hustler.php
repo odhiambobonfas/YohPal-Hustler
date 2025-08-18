@@ -85,6 +85,40 @@ class Hustler extends Model
             ];
         }
     }
+
+
+    /**
+     * @param array<int,mixed> $input
+     * @return mixed|array<string,mixed>
+     */
+    public function getHustlerJobHistory(array $input): array
+    {
+        try {
+            $endpoint = $this->util->getEndpoint('get_hustler_job_history');
+            $response = $this->client->get(api_url_parser($endpoint->route, $input), [
+                'headers' => [
+                    "Accept" => "application/json",
+                    "Authorization" => "Bearer $this->auth_token"
+                ]
+            ]);
+
+            $json = $response->getBody()->getContents();
+            $data = json_decode($json, true);
+
+            if (isset($data['jobHistory']) && is_array($data['jobHistory'])) {
+                return $data['jobHistory'];
+            }
+
+            return $data;
+        } catch (RequestException $error) {
+            return [
+                'error' => true,
+                'message' => $error->getMessage(),
+                'response' => $error->hasResponse() ? $error->getResponse()->getBody()->getContents() : null,
+            ];
+        }
+    }
+
     /**
      * @return null|array<string,mixed>
      */

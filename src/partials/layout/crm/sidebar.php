@@ -20,6 +20,11 @@ function isActive($href) {
             <i class="fas fa-th-large icon"></i> Profile
         </a>
 
+        <a href="<?= $jobs = auth()->hustlerStatus()->isHustler ? '/hustler/job-history' : '/client/activities' ?>"
+               class="sidebar-item d-flex align-items-center gap-2 text-decoration-none <?= isActive($jobs) ?>">
+                <i class="fas fa-briefcase icon"></i> My Jobs
+        </a>
+
         <?php if (!auth()->user()->hustlerStatus): ?>
             <a href="/onboarding/hustler"
                class="sidebar-item d-flex align-items-center gap-2 text-decoration-none text-danger <?= isActive('/onboarding/hustler') ?>">
@@ -33,6 +38,7 @@ function isActive($href) {
                 <i class="fas fa-briefcase icon"></i> Job Portal
             </a>
         <?php endif; ?>
+
     </div>
 
     <!-- Communication -->

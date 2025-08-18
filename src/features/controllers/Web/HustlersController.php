@@ -72,12 +72,30 @@ class HustlersController
         return view("crm/hustlers/job-requests");
     }
 
+    public function jobHistory(YPRequest $request): mixed
+    {
+        return view("crm/hustlers/job-history");
+    }
+
     public function getHustlerJobRequests(YPRequest $request): mixed
     {
         try {
             $user = auth()->user()->uid;
             $jobRequests = $this->hustler->getHustlerJobRequests(['hustlerId' => $user]);
             return $request->res(['status' => 'success', 'jobRequests' => $jobRequests]);
+        } catch (YPException $th) {
+            YPLogger::error($th);
+            return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
+        }
+    }
+
+
+    public function getHustlerJobHistory(YPRequest $request): mixed
+    {
+        try {
+            $user = auth()->user()->uid;
+            $jobRequests = $this->hustler->getHustlerJobHistory(['hustlerId' => $user]);
+            return $request->res(['status' => 'success', 'jobHistory' => $jobRequests]);
         } catch (YPException $th) {
             YPLogger::error($th);
             return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
@@ -127,14 +145,7 @@ class HustlersController
             // get the hustler's updated details
             $this->hustler->getHustlerProfile();
 
-            return $request->res(["status" => "success",
-                "data" => $input,
-                "location" => $primaryLocationPayload,
-                "avail" => $availabilityPayload,
-                "skills" => $skillsPayload,
-                "primarySkill" => $primarySkillPayload,
-                "profile" => $profilePayload,
-            ]);
+            return $request->res(["status" => "success","message" => ""]);
         } catch(YPException $th) {
             YPLogger::error($th);
             return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);

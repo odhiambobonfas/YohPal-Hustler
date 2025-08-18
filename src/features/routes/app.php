@@ -72,6 +72,7 @@ $router->req('GET', '/crm/job/details/[**:path]', [JobsController::class, 'getJo
 $router->req('GET', '/crm/users/hustlers', [HustlersController::class, 'getActiveHustlersByPrimarySkill'], [AuthMiddleware::class]);
 $router->req('GET', '/crm/services', [JobsController::class, 'getServices']);
 $router->req("GET", "/crm/hustler/job-requests", [HustlersController::class, "getHustlerJobRequests"], [AuthMiddleware::class]);
+$router->req("GET", "/crm/hustler/job-history", [HustlersController::class, "getHustlerJobHistory"], [AuthMiddleware::class]);
 $router->req("POST", "/crm/switch-acct", [ClientController::class, "toggleAccount"], [AuthMiddleware::class]);
 $router->req("GET", "/crm/user-job-history", [UsersController::class, "jobHistory"], [AuthMiddleware::class]);
 $router->req("GET", "/crm/client-activities", [ClientController::class, "getClientsJobHistory"], [AuthMiddleware::class]);
@@ -87,3 +88,4 @@ $router->req("GET",  "/client/activities", [ClientController::class, "clientActi
 $router->req("GET", "/hustler/dashboard", [HustlersController::class, "index"], [AuthMiddleware::class]);
 $router->req("GET", "/hustler/profile", [HustlersController::class, "profile"], [AuthMiddleware::class]);
 $router->req("GET",  "/hustler/requests", [HustlersController::class, "jobRequests"], [AuthMiddleware::class]);
+$router->req("GET",  "/hustler/job-history", [HustlersController::class, "jobHistory"], [AuthMiddleware::class]);
