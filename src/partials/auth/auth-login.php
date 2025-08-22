@@ -1,6 +1,6 @@
 <!-- login form sits in here -->
 <div class="vh-100 d-flex align-items-center justify-content-center">
-    <div class="row w-100 g-0 bg-white shadow-lg" style="max-width: 90%;">
+    <div class="row w-100 g-0 bg-white shadow-lg auth-card">
         <div class="col-md-6">
             <div class="card border-transparent border-0 rounded-0 h-100 p-5">
                 <div class="card-body">
