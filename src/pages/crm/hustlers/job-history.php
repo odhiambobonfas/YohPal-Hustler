@@ -29,6 +29,7 @@
                 <div class="w-100 d-flex align-items-center justify-content-center">
                     <input type="search" id="requestSearch" class="w-50 ml-10 p-3 rounded-pill border fs-5" placeholder="search"/>
                 </div>
+                <div id="statusFilters" class="w-100 d-flex align-items-center justify-content-center" style="margin-top: 0.7rem;"></div>
                 <div class="d-flex flex-row p-3" style="height:85svh;">
 
                     <div class="d-flex flex-column w-50 gap-2">

@@ -76,7 +76,7 @@ class Hustler extends Model
                 return $data['jobRequests'];
             }
 
-            return $data;
+            return [];
         } catch (RequestException $error) {
             return [
                 'error' => true,
@@ -109,7 +109,7 @@ class Hustler extends Model
                 return $data['jobHistory'];
             }
 
-            return $data;
+            return [];
         } catch (RequestException $error) {
             return [
                 'error' => true,

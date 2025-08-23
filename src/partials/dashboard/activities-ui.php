@@ -8,7 +8,9 @@
     </div>
 </aside>
 <div class="jobs-main-container">
-    <div class="jobs-sidebar">
+    <div id="filterControls" style="grid-area: controls;"></div>
+
+    <div class="jobs-sidebar" style="grid-area: sidebar;">
         <div class="jobs-sidebar-header">
             <h3 class="jobs-sidebar-title">Recent Activities</h3>
         </div>
@@ -19,8 +21,8 @@
             <p>No activities available.</p>
         </div>
     </div>
-    <div class="jobs-details-panel" id="jobs-details-content">
-    </div>
+
+    <div class="jobs-details-panel" id="jobs-details-content" style="grid-area: details;"></div>
 </div>
 
 <!-- Bootstrap Modal for Invoice -->
