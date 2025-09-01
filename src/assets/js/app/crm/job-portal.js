@@ -1,7 +1,3 @@
-/*
- * TODO:: (b1e70595885b)
- * Figure out why the one `localhost`, including this as an external file works but switching to `127.0.0.1` doesn't
- * */
 class JobPortal extends Master {
   constructor() {
     super();
@@ -107,87 +103,89 @@ class JobPortal extends Master {
   }
 
   renderCategoryHtmlFromCache(category) {
-    const subCategories = category.subcategory || [];
+    const subCategories = category.subcategories || [];
 
     let listItems = subCategories
       .map((subCat, index) => {
-        const slug = subCat.slug;
-        const jobs = Object.entries(subCat.sampleFields || {})
-          .map(
-            ([key, job]) => `
-                <li data-id="${key}" class="list-group-item job-list-group bg-transparent d-flex align-items-center ps-5 py-2">
-                    <span class="text-dark job-title-inner-html">${job}</span>
-                </li>`,
-          )
-          .join("");
-
+        const slug = subCat.toLowerCase().replace(/\s+/g, "-");
         return `
-            <li class="list-group-item p-0 border-0 mb-3">
-                <button class="btn btn-link text-decoration-none w-100 text-start d-flex justify-content-between align-items-center p-3" data-bs-toggle="collapse" data-bs-target="#subcat-${slug}">
-                    <div class="d-flex align-items-center justify-content-center">
-                        <span class="subcat-symbol d-flex align-items-center justify-content-center me-2 ${!subCat.icon ? "d-none" : ""}">
-                            <i class="${subCat.icon || ""} actual-icon m-0"></i>
-                        </span>
-                        <strong class="text-dark">${subCat.name}</strong>
-                    </div>
-                    <div class="col-2 d-flex justify-content-around align-items-center text-dark">
-                        <span class="job-roles-count">${Object.keys(subCat.sampleFields || {}).length} Job Roles</span>
-                        <i class="fas fa-chevron-down collapse-icon"></i>
-                    </div>
-                </button>
-                <div class="collapse dropdown-content" id="subcat-${slug}">
-                    <ul class="list-group list-group-flush">${jobs}</ul>
-                </div>
-            </li>`;
+          <li data-id="${index}" class="list-group-item job-list-group bg-transparent d-flex align-items-center ps-5 py-2">
+            <span class="text-dark job-title-inner-html">${subCat}</span>
+          </li>`;
       })
       .join("");
 
     return `
-        <div class="card bg-transparent border-0 mb-4">
-            <div class="card-header bg-white d-flex align-items-center justify-content-between border-0">
-                <div class="d-flex align-items-center justify-content-between w-100">
-                    <button class="btn btn-md btn-link me-2 text-nowrap backBtn">
-                        <i class="fas fa-arrow-left"></i> Back
-                    </button>
-                    <h5 class="mb-0 text-capitalize">${category.name}</h5>
-                </div>
-            </div>
-            <div class="card-body p-0 m-0 g-0 mt-3">
-                <ul class="list-group bg-transparent mb-2">${listItems}</ul>
-            </div>
-        </div>`;
+      <div class="card bg-transparent border-0 mb-4">
+        <div class="card-header bg-white d-flex align-items-center justify-content-between border-0">
+          <div class="d-flex align-items-center justify-content-between w-100">
+            <button class="btn btn-md btn-link me-2 text-nowrap backBtn">
+              <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <h5 class="mb-0 text-capitalize">${category.name}</h5>
+          </div>
+        </div>
+        <div class="card-body p-0 m-0 g-0 mt-3">
+          <ul class="list-group bg-transparent mb-2">${listItems}</ul>
+        </div>
+      </div>`;
   }
 }
 
-function getCategories() {
-  const cached = localStorage.getItem("categories");
-  if (cached) return JSON.parse(cached);
+async function getCategories() {
+  const updated = localStorage.getItem("updated") ?? null;
+  if (updated) {
+    const cached = localStorage.getItem("categories");
+    if (cached) return JSON.parse(cached);
+  }
 
-  fetch("/services")
-    .then((r) => r.json())
-    .then((d) => localStorage.setItem("categories", JSON.stringify(d.services)))
-    .catch(console.error);
-
-  return [];
+  try {
+    const response = await fetch("/crm/services");
+    const d = await response.json();
+    localStorage.setItem("categories", JSON.stringify(d.services));
+    return d.services;
+  } catch (e) {
+    console.error(`Fetch Services Err: ${e}`);
+    return [];
+  }
 }
 
-function loadJobCategories() {
+async function loadJobCategories() {
   const jobsEl = document.getElementById("jobs");
   const searchInput = document.getElementById("job-search-val");
-  const allCategories = getCategories();
+  const allCategories = await getCategories();
 
   if (!allCategories.length) return;
 
+  const pastelColors = [
+    "#FFD6D6",
+    "#FFEBCC",
+    "#D5E8D4",
+    "#CCE5FF",
+    "#FFF2CC",
+    "#FADBD8",
+    "#E8DAEF",
+    "#D6F5D6",
+    "#D6EAF8",
+    "#FDEBD0",
+    "#D1F2EB",
+    "#F5CBA7",
+    "#F6DDCC",
+    "#E8F8F5",
+  ];
+
   const render = (list) => {
-    console.log("job-portal?");
     jobsEl.innerHTML = list
-      .map(
-        (c) => `
+      .map((c, i) => {
+        const color =
+          pastelColors[Math.floor(Math.random() * pastelColors.length)];
+
+        return `
             <div class="job-category" data-id="${c.slug}">
-                <div class="job-bg"><p>${c.name}</p></div>
-                <p>${c.subcategory.length} job categories</p>
-            </div>`,
-      )
+                <div class="job-bg" style="background-color: ${color}"><p>${c.name}</p></div>
+                <p>${c.subcategories.length} job categories</p>
+            </div>`;
+      })
       .join("");
   };
 
@@ -198,10 +196,9 @@ function loadJobCategories() {
     if (!q) return render(allCategories);
 
     const filtered = allCategories.filter((c) =>
-      c.subcategory.some((sub) =>
-        sub.sampleFields?.some((field) => field.toLowerCase().includes(q)),
-      ),
+      c.subcategories.some((sub) => sub.toLowerCase().includes(q)),
     );
+
     render(filtered);
     dashboardInstance.bindCategories();
   };
@@ -216,5 +213,7 @@ function loadJobCategories() {
 }
 
 const dashboardInstance = new JobPortal();
-loadJobCategories();
-dashboardInstance.setupPage();
+(async () => {
+  await loadJobCategories();
+  dashboardInstance.setupPage();
+})();

@@ -63,7 +63,7 @@ class Category extends Model
 
         foreach ($superCategories as $category) {
             if ($category['slug'] == $slug) {
-                $subCategories = $category['subcategory'];
+                $subCategories = $category['subcategories'];
             }
         }
 
@@ -81,10 +81,8 @@ class Category extends Model
 
         $options = '<option value="" disabled>-- Select Skill --</option>';
         foreach ($categories as $category) {
-            foreach ($category["subcategory"] as $c) {
-                foreach ($c["sampleFields"] as $field) {
-                    $options .= '<option value="' . htmlspecialchars($field) . '">' . htmlspecialchars($field) . '</option>';
-                }
+            foreach ($category["subcategories"] as $field) {
+                $options .= '<option value="' . htmlspecialchars($field) . '">' . htmlspecialchars($field) . '</option>';
             }
         }
 
