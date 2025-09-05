@@ -39,7 +39,14 @@ class Hustler extends Model
             $data = json_decode($json, true);
 
             if (isset($data['hustlers']) && is_array($data['hustlers'])) {
-                return $data['hustlers'];
+                $hustlers = $data["hustlers"];
+                $userId = auth()->user()->uid;
+
+                $filteredHustlers = array_filter($hustlers, function($hustler) use ($userId) {
+                    return $hustler['id'] !== $userId;
+                });
+
+                return $filteredHustlers;
             }
 
             return $data;
