@@ -107,7 +107,6 @@ class JobPortal extends Master {
 
     let listItems = subCategories
       .map((subCat, index) => {
-        const slug = subCat.toLowerCase().replace(/\s+/g, "-");
         return `
           <li data-id="${index}" class="list-group-item job-list-group bg-transparent d-flex align-items-center ps-5 py-2">
             <span class="text-dark job-title-inner-html">${subCat}</span>
@@ -143,6 +142,7 @@ async function getCategories() {
     const response = await fetch("/crm/services");
     const d = await response.json();
     localStorage.setItem("categories", JSON.stringify(d.services));
+    localStorage.setItem("updated", true);
     return d.services;
   } catch (e) {
     console.error(`Fetch Services Err: ${e}`);
