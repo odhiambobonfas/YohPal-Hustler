@@ -480,7 +480,6 @@ function getUserJobHistory() {
     url: "/crm/user-job-history",
     method: "GET",
     success: function (data) {
-      // TODO(7d91210a1f91): should not work as data being sent back is json encoded
       const tableCard = document.getElementById("client-activities-preview");
       if (!tableCard) return;
       tableCard.innerHTML = data;

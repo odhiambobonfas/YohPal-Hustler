@@ -97,12 +97,6 @@ return [
         'action' => 'create hustler requests',
     ],
 
-    "create_job" => [
-        "method" => "POST",
-        "route" => "https://yohpal-hustler-apis-test.onrender.com/jobs/create",
-        "action" => "Create a job",
-
-    ],
 
     // ==============================
     // Job Service Categories
@@ -137,6 +131,46 @@ return [
         'action' => 'Get a hustler"s job requests',
     ],
 
+    'get_hustler_profile' => [
+        'method' => 'GET',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/hustler/profile/{hustlerId}',
+        'action' => "Get a hustler's profile",
+    ],
+
+    'get_hustler_live_location' => [
+        'method' => 'GET',
+        'route'  => 'https://yohpal-hustler-apis-test.onrender.com/hustler/live_location/{hustlerId}',
+        'action' => "Get a hustler's profile",
+    ],
+
+    // ==============================
+    // JOBS
+    // ==============================
+
+    "create_job" => [
+        "method" => "POST",
+        "route" => "https://yohpal-hustler-apis-test.onrender.com/jobs/create",
+        "action" => "Create a job",
+
+    ],
+
+    'get_job_details' => [
+        'method' => 'GET',
+        'route' =>  "https://yohpal-hustler-apis-test.onrender.com/jobs/get_details/{jobId}",
+        'action' => 'Get a job"s details',
+    ],
+
+    'hustler_reject_job' => [
+        'method' => 'PUT',
+        'route' => 'https://yohpal-hustler-apis-test.onrender.com/hustler/reject_request',
+        'action' => 'Reject a job'
+    ],
+
+    'hustler_accept_job' => [
+        'method' => 'PUT',
+        'route' => 'https://yohpal-hustler-apis-test.onrender.com/hustler/accept_request',
+        'action' => 'Accept a job'
+    ],
     // ==============================
     // COMMUNICATION
     // ==============================

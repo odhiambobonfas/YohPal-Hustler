@@ -130,7 +130,10 @@ class Hustler extends Model
             // return early
             if (isset($hustler) && is_array($hustler)) return null;
 
-            $endpoint = "https://yohpal-hustler-apis-test.onrender.com/hustler/profile/$user->uid";
+            /* $endpoint = "https://yohpal-hustler-apis-test.onrender.com/hustler/profile/$user->uid"; */
+
+            $endpoint = $this->util->getEndpoint('get_hustler_profile');
+            $endpoint = api_url_parser($endpoint->route, ["hustlerId" => $user->uid]);
             $response = $this->client->get($endpoint, [
                 'headers' => [
                     "Accept" => "application/json",
@@ -271,5 +274,38 @@ class Hustler extends Model
             ];
         }
     }
+    /**
+     * @param mixed $input
+     * @return array<string,mixed>
+     */
+    public function getHustlerLiveLocation(array $input): ?array
+    {
+        try{
+
+            $endpoint = $this->util->getEndpoint("get_hustler_live_location");
+            $endpoint = api_url_parser($endpoint->route, $input);
+            $response = $this->client->get($endpoint, [
+                'headers' => [
+                    "Authorization" => "Bearer $this->auth_token"
+                ]
+            ]);
+
+            $json = $response->getBody()->getContents();
+            $data = json_decode($json, true);
+
+            if (isset($data['location']) && is_array($data['location'])) {
+                return $data['location'];
+            }
+
+            return $data;
+        }catch(RequestException $error) {
+
+            return [
+                'error' => true,
+                'message' => $error->getMessage(),
+                'response' => $error->hasResponse() ? $error->getResponse()->getBody()->getContents() : null,
+            ];
+        }
+}
 
 }

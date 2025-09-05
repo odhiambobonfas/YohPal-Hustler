@@ -37,12 +37,11 @@ class HustlersController
         $this->hustler = new Hustler();
 
     }
-    public function index(YPRequest $request)
+    public function index(YPRequest $request): string
     {
         $hustlerStatus = Auth::get("hustlerStatus") ?? (object)["isHustler" => false];
         if (!$hustlerStatus->isHustler) {
             header("Location: /dashboard");
-            return;
         }
 
         return view("crm/hustlers/index");
@@ -150,5 +149,13 @@ class HustlersController
             YPLogger::error($th);
             return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);
         }
+    }
+    /**
+     * @param mixed $path
+     */
+    public function getHustlerLocation(YPRequest $request, $path): mixed {
+        $data = $this->hustler->getHustlerLiveLocation(["hustlerId" => $path[0]]);
+
+        return $request->res($data);
     }
 }

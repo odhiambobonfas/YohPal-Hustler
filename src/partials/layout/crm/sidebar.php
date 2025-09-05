@@ -20,6 +20,13 @@ function isActive($href) {
             <i class="fas fa-th-large icon"></i> Profile
         </a>
 
+        <?php if(auth()->hustlerStatus()->isHustler): ?>
+            <a href="/hustler/requests"
+                class="sidebar-item d-flex align-items-center gap-2 text-decoration-none <?= isActive("/hustler/requests") ?>">
+                <i class="fa-solid fa-network-wired"></i> My Requests
+            </a>
+        <?php endif; ?>
+
         <a href="<?= $jobs = auth()->hustlerStatus()->isHustler ? '/hustler/job-history' : '/client/activities' ?>"
                class="sidebar-item d-flex align-items-center gap-2 text-decoration-none <?= isActive($jobs) ?>">
                 <i class="fas fa-briefcase icon"></i> My Jobs

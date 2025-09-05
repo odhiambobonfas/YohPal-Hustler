@@ -11,9 +11,6 @@
     <div id="filterControls" style="grid-area: controls;"></div>
 
     <div class="jobs-sidebar" style="grid-area: sidebar;">
-        <div class="jobs-sidebar-header">
-            <h3 class="jobs-sidebar-title">Recent Activities</h3>
-        </div>
         <ul class="jobs-list" id="jobs-list">
             <!-- Activities will be loaded here dynamically -->
         </ul>

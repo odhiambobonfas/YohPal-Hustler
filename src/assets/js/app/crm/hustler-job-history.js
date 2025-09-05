@@ -7,6 +7,7 @@ let activeStatusFilter = "all"; // Track active status filter
 historyLoading.style.display = "block";
 jobDetailsLoading.style.display = "block";
 viewInvoice.disabled = true;
+viewOnMap.disabled = true;
 
 fetch("/crm/hustler/job-history")
   .then((r) => r.json())
@@ -85,7 +86,7 @@ function createStatusFilterPills() {
   // Get unique statuses from job history
   const uniqueStatuses = [...new Set(jobHistoryList.map((job) => job.status))];
 
-  // Create filter pills container (assuming you have a container element)
+  // Create filter pills container
   let statusFiltersHTML = `
     <div class="d-flex flex-row gap-2 mb-3 flex-wrap">
       <span class="badge rounded-pill ${activeStatusFilter === "all" ? "text-bg-primary" : "text-bg-secondary"} status-filter-pill"
@@ -108,8 +109,6 @@ function createStatusFilterPills() {
   statusFiltersHTML += `</div>`;
 
   // Insert the filter pills before the job history list
-  // Assuming you have a container element where you want to place the filters
-  // You'll need to adjust this based on your HTML structure
   const filtersContainer =
     document.getElementById("statusFilters") || document.createElement("div");
   filtersContainer.innerHTML = statusFiltersHTML;
@@ -176,7 +175,6 @@ function displayJobHistoryList(jobHistories) {
             <h2 class="fs-4 mb-0 text-muted">No jobs found</h2>
         </div>`;
   } else {
-    console.log("d", jobHistories);
     jobHistories.forEach((r) => {
       const isActive = selectedJobId === r.id ? "border-success" : "";
 
@@ -248,6 +246,18 @@ function displayDetails(r) {
         </div>
     </div>
     `;
+
+  if (r.status.toLowerCase() === "accepted") {
+    viewOnMap.disabled = false;
+    const eventCallback = function () {
+      window.location.href = `/job/location/${r.id}`;
+    };
+    viewOnMap.removeEventListener("click", eventCallback);
+    viewOnMap.addEventListener("click", eventCallback);
+  } else {
+    viewOnMap.disabled = true;
+  }
+
   jobHistoryDetails.innerHTML = html;
 }
 

@@ -80,5 +80,11 @@ class ClientController
         }
 
     }
+    /**
+     * @param mixed $path
+     */
+    public function showClientJobDetails(YPRequest $request, $path): string {
+        return view('crm/client/job-map-view');
+    }
 
 }

@@ -1,5 +1,5 @@
 <!-- header -->
-<?php include 'partials/layout/web/header.php'; ?>
+<?php include 'partials/layout/crm/header.php'; ?>
 <!-- /header -->
 
 <!-- styles -->

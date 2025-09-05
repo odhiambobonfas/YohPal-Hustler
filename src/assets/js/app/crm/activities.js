@@ -56,7 +56,7 @@ function createFilterControls() {
   // Create search and filter controls HTML - NO ICON, CLEAN INPUT
   const controlsHTML = `
     <div class="mb-3">
-      <input type="text" class="form-control" id="activitiesSearch" placeholder="Search activities, descriptions, companies...">
+      <input type="text" class="form-control" id="activitiesSearch" placeholder="Search activities, descriptions...">
     </div>
 
     <div class="d-flex flex-wrap gap-2 mb-3">
@@ -77,7 +77,7 @@ function createFilterControls() {
     </div>
   `;
 
-  // Put controls in YOUR filterControls container
+  // Put controls in filterControls container
   const filterControlsContainer = document.getElementById("filterControls");
   if (filterControlsContainer) {
     filterControlsContainer.innerHTML = controlsHTML;
@@ -143,8 +143,6 @@ function applyFilters() {
         activity.name.toLowerCase().includes(searchTerm) ||
         (activity.description &&
           activity.description.toLowerCase().includes(searchTerm)) ||
-        (activity.company &&
-          activity.company.toLowerCase().includes(searchTerm)) ||
         (activity.location &&
           activity.location.toLowerCase().includes(searchTerm)),
     );
@@ -218,13 +216,12 @@ function populateActivitiesList() {
 
     html += `<div data-index=${activity.id} class="border card ${isActive} d-flex flex-column gap-2 rounded-3 p-3 activity-card w-100" style="cursor: pointer;margin-bottom: 1rem;">
                 <h2 class="fs-5 fw-semibold mb-0">${activity.name}</h2>
-                <span>by <small><b>${activity.company ?? "Unknown Company"}</b></small></span>
                 <div class="d-flex flex-row gap-3" style="font-size:0.9rem;">
                     <span><i class="far fa-calendar"></i> ${new Date(activity.startTime._seconds * 1000).toLocaleDateString()}</span>
                     <span><i class="far fa-clock"></i> ${getDuration(activity.startTime, activity.endTime)}</span>
-                    <span><i class="fas fa-map-pin"></i> ${activity.location ?? "Unknown Location"}</span>
+                    <span><i class="fas fa-map-pin"></i> ${activity.location ?? "Unknown"}</span>
                 </div>
-                <span><i class="fas fa-file-alt"></i> ${trim(activity.description) || "No description available"}</span>
+                <span> ${trim(activity.description) || "No description available"}</span>
                 <span class="badge ${getStatusBadgeClass(activity.status)} rounded-pill" style="max-width:30%"> ${activity.status}</span>
             </div>`;
   });
@@ -566,21 +563,24 @@ function showDetails(id) {
     `;
   }
 
+  const disableBtn = activity.status !== "accepted" ? true : false;
+
   let content = `
     <div class="card border-0 shadow-sm">
       <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
         <div class="d-flex align-items-center gap-3">
-          <img src="../assets/store/images/app/company.png" alt="${activity.company || "Company"}"
-               class="rounded-circle" width="48" height="48">
-          <div>
             <h5 class="mb-1 fw-semibold">${activity.name}</h5>
-            <small class="text-muted">${activity.company || ""}</small>
-          </div>
         </div>
-        <button class="btn btn-danger rate-client fw-semibold"
-                data-bs-toggle="modal" data-bs-target="#invoiceModal" data-job-id="${id}">
-          <i class="fas fa-file-invoice me-2"></i>Invoice
-        </button>
+
+        <div class="d-flex">
+            <a class="btn btn-outline-secondary ${disableBtn ? "disabled" : ""} fw-semibold" disabled data-job-id="${id}" href="${disableBtn ? "#" : "/client/jobs/" + id + "?client=1"}">
+              <i class="fas fa-map me-2"></i>View Map
+            </a>
+            <button class="btn btn-danger rate-client fw-semibold"
+                    data-bs-toggle="modal" data-bs-target="#invoiceModal" data-job-id="${id}">
+              <i class="fas fa-file-invoice me-2"></i>Invoice
+            </button>
+        </div>
       </div>
 
       <div class="card-body">

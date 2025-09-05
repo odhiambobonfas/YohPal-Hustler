@@ -60,7 +60,7 @@ class ClientMap extends Master {
     this.targetMarker = new google.maps.Marker({
       position: this.clientPointOfWorkLocation,
       map: this.mapInstance,
-      // label: this.targetMarker,
+      label: this.targetMarker,
     });
 
     if (this.clientStartLocation) {
@@ -123,25 +123,27 @@ class ClientMap extends Master {
   `,
     });
 
-    targetInfoWindow.addListener("domready", () => {
-      const selectBtn = document.getElementById("show-job-direction");
-      if (selectBtn) {
-        selectBtn.addEventListener("click", () => {
-          this.clientDestinationLocation = this.clientPointOfWorkLocation;
-          this.getRoadRoute();
-          targetInfoWindow.close();
-        });
-      }
-    });
+    if (!jobData.client) {
+      targetInfoWindow.addListener("domready", () => {
+        const selectBtn = document.getElementById("show-job-direction");
+        if (selectBtn) {
+          selectBtn.addEventListener("click", () => {
+            this.clientDestinationLocation = this.clientPointOfWorkLocation;
+            this.getRoadRoute();
+            targetInfoWindow.close();
+          });
+        }
+      });
 
-    this.targetMarker.addListener("click", () => {
-      if (this.currentInfoWindow) {
-        this.currentInfoWindow.close();
-      }
-      this.currentInfoWindow = targetInfoWindow;
-      targetInfoWindow.open(this.mapInstance, this.targetMarker);
-      this.clientDestinationLocation = this.clientPointOfWorkLocation; // hustler's location
-    });
+      this.targetMarker.addListener("click", () => {
+        if (this.currentInfoWindow) {
+          this.currentInfoWindow.close();
+        }
+        this.currentInfoWindow = targetInfoWindow;
+        targetInfoWindow.open(this.mapInstance, this.targetMarker);
+        this.clientDestinationLocation = this.clientPointOfWorkLocation; // hustler's location
+      });
+    }
   }
 
   /**
@@ -272,16 +274,19 @@ class ClientMap extends Master {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  const path = window.location.href;
-  const jobId = path.split("/").pop();
+  const url = new URL(window.location.href);
+  const fromClient = url.searchParams.get("client") ? true : false;
+  const jobId = url.pathname.split("/").filter(Boolean).pop();
+
   if (!jobId) {
     console.error("Expected JobId");
   }
+
   fetch(`/crm/job/details/${jobId}`)
     .then((r) => r.json())
     .then((d) => {
       const master = new Master();
-      master.setMapOnPage([d.job]);
+      master.setMapOnPage([{ ...d.job, client: fromClient }]);
     })
     .catch((e) => console.error(e));
 });

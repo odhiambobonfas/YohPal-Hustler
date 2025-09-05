@@ -14,7 +14,7 @@ $histories = array_slice($sorted ?? [], 0, 5);
 function getStatusClass(string $status): string {
     return match(strtolower($status)) {
         'completed' => 'bg-success',
-        'open'   => 'bg-warning text-dark',
+        'open'      => 'bg-warning text-dark',
         'cancelled' => 'bg-danger',
         default     => 'bg-light text-dark',
     };
@@ -28,8 +28,8 @@ $maxDescLen = 25;
         <tr>
             <th>Title</th>
             <th>Description</th>
-            <th>Created At</th>
-            <th>Start Date</th>
+            <th class="d-none d-md-table-cell">Created At</th>
+            <th class="d-none d-md-table-cell">Start Date</th>
             <th>Status</th>
         </tr>
     </thead>
@@ -56,7 +56,7 @@ $maxDescLen = 25;
                         ?>
                     </td>
 
-                    <td>
+                    <td class="d-none d-md-table-cell">
                         <?php
                         $timestamp = $job['createdAt']['_seconds'] ?? null;
                         echo $timestamp
@@ -64,7 +64,7 @@ $maxDescLen = 25;
                             : '—';
                         ?>
                     </td>
-                    <td>
+                    <td class="d-none d-md-table-cell">
                         <?php
                         $timestamp = $job['startTime']['_seconds'] ?? null;
                         echo $timestamp

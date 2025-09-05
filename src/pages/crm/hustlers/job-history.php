@@ -64,8 +64,11 @@
                     </div>
 
                     <div class="d-flex flex-column h-auto gap-2 container-fluid p-3 card">
-
                         <div class="d-flex flex-row justify-content-end gap-3 align-items-center">
+                            <button id="viewOnMap" class="w-25 btn btn-outline-secondary rounded-3">
+                                <i class="fa-solid fa-map-location"></i>
+                                View Map
+                            </button>
                             <button id="viewInvoice" class="w-25 btn btn-danger rounded-3">
                                 <i class="fa-solid fa-receipt"></i>
                                 View Invoice

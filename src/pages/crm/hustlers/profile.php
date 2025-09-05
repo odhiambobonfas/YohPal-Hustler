@@ -34,7 +34,8 @@
                             </label>
                         </div>
                         <div class="profile-links">
-                            <a href="/hustler/requests">Jobs</a>
+                            <a href="/hustler/requests">Requests</a>
+                            <a href="/hustler/jobs">Jobs</a>
                             <a href="#">Transactions</a>
                             <a href="#">Reviews</a>
                         </div>

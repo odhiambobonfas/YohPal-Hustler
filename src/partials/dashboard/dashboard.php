@@ -206,21 +206,23 @@
          </a>
      </div>
 
-     <div class="card" id="client-activities-preview">
+     <div class="card table-responsive-md" id="client-activities-preview">
          <table class="table table-striped table-hover">
              <thead>
                  <tr>
                      <th>Title</th>
                      <th>Description</th>
-                     <th>Created At</th>
-                     <th>Start Date</th>
+                     <th class="d-none d-md-table-cell">Created At</th>
+                     <th class="d-none d-md-table-cell">Start Date</th>
                      <th>Status</th>
                  </tr>
              </thead>
-             <tr>
-                 <td colspan="5" style="text-align: center;">Loading...</td>
-             </tr>
              <tbody>
+                 <tr>
+                     <td colspan="3" class="d-md-none text-center">Loading...</td>
+                     <td colspan="5" class="d-none d-md-table-cell text-center">Loading...</td>
+                 </tr>
+             </tbody>
          </table>
      </div>
  </div>

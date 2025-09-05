@@ -489,15 +489,36 @@ class Master {
           let mapInstance = null;
 
           if (!hustlerData[0]) return;
+          const jobInfo = hustlerData[0];
 
-          if (hustlerData.length === 1 && hustlerData[0]?.jobSite) {
-            const jobInfo = hustlerData[0];
+          if (hustlerData.length === 1 && jobInfo?.client) {
+            let mapInstance = new ClientMap(map, "WALKING", "JobSite");
+            mapInstance.clientStartLocation = new google.maps.LatLng(
+              jobInfo.jobSite._latitude ?? positions.lat,
+              jobInfo.jobSite._longitude ?? positions.lng,
+            );
+
+            const acceptedHustler = Object.entries(jobInfo.hustlers).find(
+              ([_, hustler]) => hustler.accepted && hustler.requested,
+            )?.[0];
+
+            this.getHustlerLocation(acceptedHustler).then((loc) => {
+              let marker = "Hustler";
+              const _locations = {
+                latitude: loc._latitude,
+                longitude: loc._longitude,
+              };
+              mapInstance.layOutMapMarker(_locations, marker, jobInfo);
+              return;
+            });
+          } else if (hustlerData.length === 1 && jobInfo?.jobSite) {
             let mapInstance = new ClientMap(map);
             mapInstance.clientStartLocation = new google.maps.LatLng(
               positions.lat,
               positions.lng,
             );
-            let marker = "Client";
+
+            let marker = "";
             const _locations = {
               latitude: jobInfo.jobSite._latitude,
               longitude: jobInfo.jobSite._longitude,
@@ -531,6 +552,17 @@ class Master {
       this.refreshMap();
     } catch (error) {
       console.error("Geolocation JS API error: ", error.message);
+    }
+  }
+
+  /** @param{string} hustlerId */
+  async getHustlerLocation(hustlerId) {
+    try {
+      const res = await fetch(`/crm/hustler/get_location/${hustlerId}`);
+      const location = await res.json();
+      return location;
+    } catch (e) {
+      console.error(e);
     }
   }
 }
