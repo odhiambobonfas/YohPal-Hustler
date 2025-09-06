@@ -7,7 +7,7 @@
             <div class="d-flex align-items-center gap-4">
                 <i class="fas fa-bars text-secondary d-lg-none"></i>
                 <a class="navbar-brand d-flex align-items-center gap-2 mb-0" href="/">
-                    <img src="./assets/store/logos/logo_circular.png" alt="Logo" class="img-fluid logo-resize" style="height: 32px;">
+                    <img src="<?= asset_url('/store/logos/logo_circular.png') ?>" alt="YohPal Logo" class="img-fluid logo-resize" style="height: 32px;">
                     <span class="fw-bold mb-0 brandname"><?= env('APP_NAME') ?></span>
                 </a>
             </div>

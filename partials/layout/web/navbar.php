@@ -1,6 +1,6 @@
 <nav class="navbar">
     <div class="logo">
-        <img src="https://yohpals.com/img/favicon.png" alt="YohPal Logo">
+        <img src="<?= asset_url('/store/logos/logo_circular.png') ?>" alt="YohPal Logo">
         <span class="nav-name"><?= env('APP_NAME') ?></span>
     </div>
     <div class="interactions">
