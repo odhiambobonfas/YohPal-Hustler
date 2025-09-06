@@ -272,9 +272,42 @@ function getStatusClass(status) {
   return statusMap[status] || "";
 }
 
+const formatNumber = (value) => value.toLocaleString();
+
 async function loadInvoiceContent(jobId) {
   const modalBody = document.getElementById("invoiceModalBody");
   const activity = activities.find((a) => String(a.id) === String(jobId));
+
+  const hustler = Object.values(activity.hustlers).find(
+    (hustler) => hustler?.accepted === true || "reviews" in hustler,
+  );
+
+  // get the duration
+  const startTime = new Date(activity.startTime._seconds * 1000);
+  const endTime = new Date(activity.endTime._seconds * 1000);
+  const durationMs = endTime - startTime;
+
+  let units;
+  let unitLabel;
+
+  if (hustler.pricingType.toLowerCase() === "hourly") {
+    // convert to hours
+    units = Math.ceil(durationMs / (1000 * 60 * 60));
+    unitLabel = `${units} Hr${units !== 1 ? "s" : ""}`;
+  } else if (hustler.pricingType.toLowerCase() === "daily") {
+    // convert to hours
+    units = Math.ceil(durationMs / (1000 * 60 * 60 * 24));
+    unitLabel = `${units} Day${units !== 1 ? "s" : ""}`;
+  } else {
+    units = 1;
+    unitLabel = "1 Job";
+  }
+
+  const jobFee = Number(hustler.pricing) * units ?? 0;
+  const transportFee = 250;
+  const taxFee = 0.1 * (jobFee + transportFee);
+  const totalAmount = jobFee + transportFee + taxFee;
+
   try {
     modalBody.innerHTML = `
         <div class="card border-0">
@@ -286,8 +319,7 @@ async function loadInvoiceContent(jobId) {
               <div class="col-md-8">
                 <h6 class="text-muted">Job Information</h6>
                 <p class="mb-1"><strong>Job Title:</strong> ${activity.name}</p>
-                <p class="mb-1"><strong>Freelancer Name:</strong> David</p>
-                <p class="mb-1"><strong>Email:</strong> kamaudavid60@gmail.com</p>
+                <p class="mb-1"><strong>Freelancer Name:</strong> ${hustler.displayName}</p>
                 <p class="mb-0"><strong>Job ID:</strong> ${activity.id}</p>
               </div>
               <div class="col-md-4 text-end">
@@ -321,30 +353,30 @@ async function loadInvoiceContent(jobId) {
                     <div class="list-group-item d-flex justify-content-between align-items-center">
                       <div>
                         <i class="far fa-square me-2"></i>
-                        <span>Job Fee</span>
+                        <span>Job Fee ${unitLabel} @ KES ${formatNumber(hustler.pricing)} ${hustler.pricingType}</span>
                       </div>
-                      <span class="fw-semibold">KES 2,250</span>
+                      <span class="fw-semibold">KES ${formatNumber(jobFee)}</span>
                     </div>
                     <div class="list-group-item d-flex justify-content-between align-items-center">
                       <div>
                         <i class="far fa-check-square me-2 text-success"></i>
                         <span>Transport Fee</span>
                       </div>
-                      <span class="fw-semibold">KES 250</span>
+                      <span class="fw-semibold">KES ${formatNumber(transportFee)}</span>
                     </div>
                     <div class="list-group-item d-flex justify-content-between align-items-center">
                       <div>
                         <i class="far fa-square me-2"></i>
                         <span>Tax Fee</span>
                       </div>
-                      <span class="fw-semibold">KES 250</span>
+                      <span class="fw-semibold">KES ${formatNumber(taxFee)}</span>
                     </div>
                     <div class="list-group-item d-flex justify-content-between align-items-center bg-light">
                       <div>
                         <i class="far fa-square me-2"></i>
                         <strong>Total Payment</strong>
                       </div>
-                      <span class="fw-bold fs-5 text-success">KES 2,750</span>
+                      <span class="fw-bold fs-5 text-success">KES ${formatNumber(totalAmount)}</span>
                     </div>
                   </div>
                 </div>
