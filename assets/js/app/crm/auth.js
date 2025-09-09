@@ -6,8 +6,8 @@ function logout(btn) {
     headers: {
       "X-Requested-With": "XMLHttpRequest",
     },
-    success: function (response) {
-      console.log(response);
+    success: function (rawResponse) {
+      const response = JSON.parse(rawResponse);
       toggleButtonContent(btn, "", true);
       enableElement(btn);
 

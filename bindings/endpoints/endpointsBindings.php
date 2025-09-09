@@ -83,6 +83,20 @@ return [
     ],
 
     // ==============================
+    // Statistics
+    // ==============================
+    "get_client_dashboard_stats" => [
+        "method" => "GET",
+        "route"  => "https://yohpal-hustler-apis-test.onrender.com/statistics/dashboard/client/{userId}",
+        "action" => "Get's the client dashboard stats"
+    ],
+
+    "get_hustler_dashboard_stats" => [
+        "method" => "GET",
+        "route"  => "https://yohpal-hustler-apis-test.onrender.com/statistics/dashboard/hustler/{hustlerId}",
+        "action" => "Get's the client dashboard stats"
+    ],
+    // ==============================
     // Job Service Categories
     // ==============================
     'activate_client' => [

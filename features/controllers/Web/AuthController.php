@@ -192,7 +192,7 @@ class AuthController
     {
         try {
             Auth::logout();
-            return $request->res(["status" => 'success', "message" => "Succesfully logged out!", "route" => "login"]);
+            return $request->res(["status" => 'success', "message" => "Succesfully logged out!", "route" => "/login"]);
         } catch (YPException $th) {
             YPLogger::error($th->getMessage());
             return $request->res(["status" => 'error', "message" => ypLog($th, "An error occurred. Please try again!")]);

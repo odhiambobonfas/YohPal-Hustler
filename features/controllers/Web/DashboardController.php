@@ -6,6 +6,7 @@ use Yohpal\Application\YPRequest;
 use Yohpal\Application\Auth;
 use Yohpal\Application\YPLogger;
 use Yohpal\Application\YPException;
+use Yohpal\Models\Client;
 use Yohpal\Models\Hustler;
 use Yohpal\Models\Model;
 use Yohpal\Models\Authentication;
@@ -42,7 +43,15 @@ class DashboardController
     public function index(YPRequest $request): mixed
     {
         try {
+
+            // TODO:: (74521b09c75b) Handle redirects in a middleware func instead
+            $hustlerStatus = Auth::get("hustlerStatus") ?? (object)["isHustler" => false];
+            if ($hustlerStatus->isHustler) {
+                header("Location: /hustler/dashboard");
+            }
+
             $profile = auth()->user();
+            $clientModel = new Client();
 
             $clientHustleStatus = isset($profile->clientHustleStatus) ? $profile->clientHustleStatus : null;
             $client = isset($profile->role) && $profile->role == 'client' ? true : false;
@@ -52,6 +61,7 @@ class DashboardController
             $skillsetDropdownOptions = Job::skillsetDropdownOptions();
 
             $default_currency = "Ksh. ";
+            $statistics = $clientModel->getDashboardStats();
 
             if (!isAjaxRequest()) {
                 $hustleCategories = Category::hustleCategories();
@@ -64,10 +74,10 @@ class DashboardController
                     ['label' => 'Deleted Users', 'slug' => 'deleted_users', 'value' => '50', 'class' => 'deleted', 'dash' => '60'],
                 ];
 
-                return view('crm/dashboard/index', compact('client', 'profile', 'default_currency', 'clientHustleStatus', 'stats', 'hustleCategories', 'hustleCategoriesDropdown', 'skillsetDropdownOptions', 'pricingUnitsDropdownOptions'));
+                return view('crm/dashboard/index', compact('client', 'statistics', 'stats', 'profile', 'default_currency', 'clientHustleStatus', 'statistics', 'hustleCategories', 'hustleCategoriesDropdown', 'skillsetDropdownOptions', 'pricingUnitsDropdownOptions'));
             }
 
-            return view('crm/dashboard/index', compact('client', 'profile', 'default_currency', 'clientHustleStatus', 'skillsetDropdownOptions', 'pricingUnitsDropdownOptions'));
+            return view('crm/dashboard/index', compact('client', 'profile', 'statistics', 'default_currency', 'clientHustleStatus', 'skillsetDropdownOptions', 'pricingUnitsDropdownOptions'));
         }
         catch(\Throwable $th) {
             YPLogger::error($th);

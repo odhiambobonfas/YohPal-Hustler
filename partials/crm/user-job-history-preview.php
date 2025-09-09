@@ -8,7 +8,7 @@ usort($sorted, function($a, $b) {
     return $bTime - $aTime; // Descending order (newest first)
 });
 
-$histories = array_slice($sorted ?? [], 0, 5);
+$histories = array_slice($sorted ?? [], 0, 10);
 
 
 function getStatusClass(string $status): string {

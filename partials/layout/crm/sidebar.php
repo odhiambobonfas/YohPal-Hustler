@@ -8,8 +8,6 @@ function isActive($href) {
 <div class="sidebar" role="tablist">
     <!-- Core Navigation -->
     <div class="sidebar-section core-navigation">
-        <h1>Core</h1>
-
         <a href="<?= $dash = auth()->hustlerStatus()->isHustler ? '/hustler/dashboard' : '/dashboard' ?>"
            class="sidebar-item d-flex align-items-center gap-2 text-decoration-none <?= isActive($dash) ?>">
             <i class="fa-brands fa-windows"></i> Dashboard

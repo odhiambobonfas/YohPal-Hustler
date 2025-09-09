@@ -39,12 +39,14 @@ class HustlersController
     }
     public function index(YPRequest $request): string
     {
+        // TODO:: (74521b09c75b)
         $hustlerStatus = Auth::get("hustlerStatus") ?? (object)["isHustler" => false];
         if (!$hustlerStatus->isHustler) {
             header("Location: /dashboard");
         }
+        $statistics = $this->hustler->getDashboardStats();
 
-        return view("crm/hustlers/index");
+        return view("crm/hustlers/index", compact("statistics"));
     }
 
     public function profile(YPRequest $request): mixed {

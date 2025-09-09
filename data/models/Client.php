@@ -50,4 +50,68 @@ class Client extends Model
             ];
         }
     }
+
+    /**
+     * Gets the clients dashboard statistics
+     */
+    public function getDashboardStats(): mixed
+    {
+        try {
+            $endpoint = $this->util->getEndpoint("get_client_dashboard_stats");
+            $response = $this->client->get(api_url_parser($endpoint->route, ["userId" => auth()->user()->uid]));
+            $json = $response->getBody()->getContents();
+            $data = json_decode($json, true);
+            $stats = $data["statistics"];
+            $allJobs = $stats["allJobs"];
+            $openJobs = $stats["openJobs"];
+            $ongoingJobs = $stats["ongoingJobs"];
+            $cancelledJobs = $stats["cancelledJobs"];
+            $rating = $stats["rating"];
+
+            // TODO:: (fd48108cc914) probably move this to its own view instead
+            // of stringing it here
+            $stats_ui = "
+                <div class='stats-card'>
+                    <i class='fa-solid fa-business-time s-icon'></i>
+                    <div class='stats-card-row'>
+                        <span class='stats-info'>{$allJobs}</span>
+                        <span class='stats-title'>All Jobs</span>
+                    </div>
+                </div>
+                <div class='stats-card'>
+                    <i class='fa-solid fa-spinner s-icon' style='color: blue;'></i>
+                    <div class='stats-card-row'>
+                        <span class='stats-info'>{$ongoingJobs}</span>
+                        <span class='stats-title'>Ongoing Jobs</span>
+                    </div>
+                </div>
+                <div class='stats-card'>
+                    <i class='fa-solid fa-folder-open s-icon'></i>
+                    <div class='stats-card-row'>
+                        <span class='stats-info'>{$openJobs}</span>
+                        <span class='stats-title'>Open Jobs</span>
+                    </div>
+                </div>
+                <div class='stats-card'>
+                    <i class='fa-solid fa-ban s-icon' style='color: red;'></i>
+                    <div class='stats-card-row'>
+                        <span class='stats-info'>{$cancelledJobs}</span>
+                        <span class='stats-title'>Cancelled Jobs</span>
+                    </div>
+                </div>
+                <div class='stats-card'>
+                    <i class='fa-solid fa-star-half-stroke s-icon' style='color: orange;'></i>
+                    <div class='stats-card-row'>
+                        <span class='stats-info'>{$rating}</span>
+                        <span class='stats-title'>Overall Rating</span>
+                    </div>
+                </div>
+            ";
+
+            return $stats_ui;
+        } catch(RequestException $error) {
+            YPLogger::error($error->getMessage());
+            return "<h1>Why you dumb</h1>";
+        }
+    }
 }

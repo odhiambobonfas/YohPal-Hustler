@@ -137,7 +137,6 @@ class Hustler extends Model
             // return early
             if (isset($hustler) && is_array($hustler)) return null;
 
-            /* $endpoint = "https://yohpal-hustler-apis-test.onrender.com/hustler/profile/$user->uid"; */
 
             $endpoint = $this->util->getEndpoint('get_hustler_profile');
             $endpoint = api_url_parser($endpoint->route, ["hustlerId" => $user->uid]);
@@ -313,6 +312,67 @@ class Hustler extends Model
                 'response' => $error->hasResponse() ? $error->getResponse()->getBody()->getContents() : null,
             ];
         }
-}
+    }
+
+    public function getDashboardStats(): mixed
+    {
+        try {
+            $endpoint = $this->util->getEndpoint("get_hustler_dashboard_stats");
+            $response = $this->client->get(api_url_parser($endpoint->route, ["hustlerId" => auth()->user()->uid]));
+            $json = $response->getBody()->getContents();
+            $data = json_decode($json, true);
+            $stats = $data["statistics"];
+            $allJobs = $stats["allJobs"];
+            $openJobs = $stats["openJobs"];
+            $acceptedJobs = $stats["acceptedJobs"];
+            $rejectedJobs = $stats["rejectedJobs"];
+            $cancelledJobs = $stats["cancelledJobs"];
+            $rating = $stats["rating"];
+
+            // TODO:: (fd48108cc914)
+            $stats_ui = "
+                <div class='stats-card'>
+                    <i class='fa-solid fa-circle-check s-icon' style='color: green;'></i>
+                    <div class='stats-card-row'>
+                        <span class='stats-info'>{$acceptedJobs}</span>
+                        <span class='stats-title'>Accepted Jobs</span>
+                    </div>
+                </div>
+                <div class='stats-card'>
+                    <i class='fa-solid fa-folder-open s-icon'></i>
+                    <div class='stats-card-row'>
+                        <span class='stats-info'>{$openJobs}</span>
+                        <span class='stats-title'>Open Jobs</span>
+                    </div>
+                </div>
+                <div class='stats-card'>
+                    <i class='fa-solid fa-ban s-icon' style='color: red;'></i>
+                    <div class='stats-card-row'>
+                        <span class='stats-info'>{$cancelledJobs}</span>
+                        <span class='stats-title'>Cancelled Jobs</span>
+                    </div>
+                </div>
+                <div class='stats-card'>
+                    <i class='fa-solid fa-xmark s-icon' style='color: orange;'></i>
+                    <div class='stats-card-row'>
+                        <span class='stats-info'>{$rejectedJobs}</span>
+                        <span class='stats-title'>Rejected Jobs</span>
+                    </div>
+                </div>
+                <div class='stats-card'>
+                    <i class='fa-solid fa-star-half-stroke s-icon' style='color: orange;'></i>
+                    <div class='stats-card-row'>
+                        <span class='stats-info'>{$rating}</span>
+                        <span class='stats-title'>Overall Rating</span>
+                    </div>
+                </div>
+            ";
+
+            return $stats_ui;
+        } catch(RequestException $error) {
+            YPLogger::error($error->getMessage());
+            return "<h1>Why you dumb</h1>";
+        }
+    }
 
 }
