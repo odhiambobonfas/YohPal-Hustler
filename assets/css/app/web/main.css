@@ -1,0 +1,9 @@
+.auth-card {
+  max-width: 70%;
+}
+
+@media (max-width: 768px) {
+  .auth-card {
+    max-width: 95%;
+  }
+}
