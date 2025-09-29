@@ -10,7 +10,7 @@
      <div class="d-flex justify-content-between align-items-center my-2">
          <h2>Recent Activities</h2>
          <a class="btn btn-outline-danger btn-sm"
-             href="<?= auth()->hustlerStatus()->isHustler
+             href="<?= auth()->hustlerStatus()?->isHustler
              ? '/hustler/requests'
              : '/client/activities' ?>">
              View More
