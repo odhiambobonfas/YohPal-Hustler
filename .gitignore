@@ -18,4 +18,11 @@ partials/dashboard/onboarding_.php
 
 /api_integrations
 /david
+<<<<<<< HEAD
+=======
+*.zip
+vendor
+node_modules
+tests
+>>>>>>> 77da454 (chore: update env, gitignore & app config)
 update
