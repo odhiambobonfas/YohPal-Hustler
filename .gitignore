@@ -7,7 +7,7 @@ reports
 documentation
 vendor
 node_modules
-assets/store/logs/app.log
+assets/store/logs/*.log
 assets/css/app/web/main-orig.css
 assets/css/app/crm/main-orig.css
 assets/store/images/bg/WhatsApp Image 2025-07-05 at 12.26.54.jpeg
