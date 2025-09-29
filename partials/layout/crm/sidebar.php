@@ -8,36 +8,36 @@ function isActive($href) {
 <div class="sidebar" role="tablist">
     <!-- Core Navigation -->
     <div class="sidebar-section core-navigation">
-        <a href="<?= $dash = auth()->hustlerStatus()->isHustler ? '/hustler/dashboard' : '/dashboard' ?>"
+        <a href="<?= $dash = isset(auth()->hustlerStatus()->isHustler) ? '/hustler/dashboard' : '/dashboard' ?>"
            class="sidebar-item d-flex align-items-center gap-2 text-decoration-none <?= isActive($dash) ?>">
             <i class="fa-brands fa-windows"></i> Dashboard
         </a>
 
-        <a href="<?= $profile = auth()->hustlerStatus()->isHustler ? '/hustler/profile' : '/profile' ?>"
+        <a href="<?= $profile = isset(auth()->hustlerStatus()->isHustler) ? '/hustler/profile' : '/profile' ?>"
            class="sidebar-item d-flex align-items-center gap-2 text-decoration-none <?= isActive($profile) ?>">
             <i class="fas fa-th-large icon"></i> Profile
         </a>
 
-        <?php if(auth()->hustlerStatus()->isHustler): ?>
+        <?php if(isset(auth()->hustlerStatus()->isHustler)): ?>
             <a href="/hustler/requests"
                 class="sidebar-item d-flex align-items-center gap-2 text-decoration-none <?= isActive("/hustler/requests") ?>">
                 <i class="fa-solid fa-network-wired"></i> My Requests
             </a>
         <?php endif; ?>
 
-        <a href="<?= $jobs = auth()->hustlerStatus()->isHustler ? '/hustler/job-history' : '/client/activities' ?>"
+        <a href="<?= $jobs = isset(auth()->hustlerStatus()->isHustler) ? '/hustler/job-history' : '/client/activities' ?>"
                class="sidebar-item d-flex align-items-center gap-2 text-decoration-none <?= isActive($jobs) ?>">
                 <i class="fas fa-briefcase icon"></i> My Jobs
         </a>
 
-        <?php if (!auth()->user()->hustlerStatus): ?>
+        <?php if (!isset(auth()->user()->hustlerStatus)): ?>
             <a href="/onboarding/hustler"
                class="sidebar-item d-flex align-items-center gap-2 text-decoration-none text-danger <?= isActive('/onboarding/hustler') ?>">
                 <i class="fa-solid fa-user-nurse"></i> Become A Hustler
             </a>
         <?php endif; ?>
 
-        <?php if (!auth()->hustlerStatus()->isHustler): ?>
+        <?php if (!isset(auth()->hustlerStatus()->isHustler)): ?>
             <a href="/job-portal"
                class="sidebar-item d-flex align-items-center gap-2 text-decoration-none <?= isActive('/job-portal') ?>">
                 <i class="fas fa-briefcase icon"></i> Job Portal
@@ -63,7 +63,7 @@ function isActive($href) {
     <div class="sidebar-section policies">
         <h3>Policies</h3>
 
-        <?php if (!auth()->hustlerStatus()->isHustler): ?>
+        <?php if (!isset(auth()->hustlerStatus()->isHustler)): ?>
 
         <a href="/terms/client"
             class="sidebar-item d-flex align-items-center gap-2 text-decoration-none <?= isActive('/terms/client') ?>">

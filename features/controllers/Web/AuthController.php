@@ -64,8 +64,10 @@ class AuthController
                 throw new YPException('An error occurred while trying to log you in, please try again!!');
             }
 
+            $user['uid'] = $user['user']['uid'];
+
             Auth::create('auth_token', ['token' => $user['token']]);
-            Auth::create("uid", $user["uid"]);
+            Auth::create("uid", isset($user["uid"]) ? $user["uid"] : null);
             // /AUTHENTICATE USER
 
             // GET USER PROFILE

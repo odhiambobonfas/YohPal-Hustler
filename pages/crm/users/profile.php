@@ -27,10 +27,10 @@
                 <!-- Profile start -->
                 <div class="card bg-white border-0 rounded mb-3">
                     <div class="profile-container">
-                        <?php if (auth()->user()->hustlerStatus): ?>
+                        <?php if (isset(auth()->user()->hustlerStatus)): ?>
                         <div class="switch-c">
                             <label class="switch">
-                                <input type="checkbox" <?= auth()->hustlerStatus()->isHustler ? 'checked' : '' ?> onchange="toggleAccount(this)">
+                                <input type="checkbox" <?= auth()->hustlerStatus()?->isHustler ? 'checked' : '' ?> onchange="toggleAccount(this)">
                                 <span class="slider round"></span>
                             </label>
                         </div>

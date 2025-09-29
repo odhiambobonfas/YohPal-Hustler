@@ -1,17 +1,28 @@
+.env
+*.zip
 .vscode
-src/tests
+tests
 .DS_Store
-src/reports
-src/documentation
-src/node_modules
-src/assets/store/logs/app.log
-src/assets/css/app/web/main-orig.css
-src/assets/css/app/crm/main-orig.css
-src/assets/store/images/bg/WhatsApp Image 2025-07-05 at 12.26.54.jpeg
-src/assets/store/images/bg/WhatsApp Image 2025-07-05 at 12.26.54(1).jpeg
-src/assets/store/images/bg/WhatsApp Image 2025-07-05 at 12.26.54(2).jpeg
-src/pages/auth/auth.php
-src/partials/dashboard/onboarding_.php
+reports
+documentation
+vendor
+node_modules
+assets/store/logs/*.log
+assets/css/app/web/main-orig.css
+assets/css/app/crm/main-orig.css
+assets/store/images/bg/WhatsApp Image 2025-07-05 at 12.26.54.jpeg
+assets/store/images/bg/WhatsApp Image 2025-07-05 at 12.26.54(1).jpeg
+assets/store/images/bg/WhatsApp Image 2025-07-05 at 12.26.54(2).jpeg
+pages/auth/auth.php
+partials/dashboard/onboarding_.php
 
 /api_integrations
 /david
+<<<<<<< HEAD
+=======
+*.zip
+vendor
+node_modules
+tests
+>>>>>>> 77da454 (chore: update env, gitignore & app config)
+update

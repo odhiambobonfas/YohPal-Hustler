@@ -123,7 +123,7 @@ If you prefer not to use Composer:
 * Extract the following asset bundles manually inside the `assets/` folder:
 
   * `assets/bootstrap/` → from `bootstrap.zip`
-  * `assets/vendor_modules/` → from `vendor_modules.zip`
+  * `vendor/` → from `vendor_modules.zip`
   * `assets/build/` → from `build.zip`
 
 Classes will autoload via the custom PHP autoloader.

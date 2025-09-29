@@ -114,7 +114,7 @@ function require_autoload()
     try {
         // require vendor autoload for composer libs management
         if (config('COMPOSER_NAMESPACING', 'system')) {
-            require_once getcwd() . "/assets/vendor_modules/autoload.php";
+            require_once getcwd() . "/vendor/autoload.php";
         }
 
         if (!config('COMPOSER_NAMESPACING', 'system')) {

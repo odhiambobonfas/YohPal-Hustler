@@ -1,5 +1,4 @@
-<?php
-print_r(env("APP_DOMAIN"));
+<?php 
 
 return [
     /**
@@ -27,7 +26,7 @@ return [
      *
      * Use http://127.0.0.1 or http://localhost
      */
-    'APP_DOMAIN' => "http://127.0.0.1:8000",
+    'APP_DOMAIN' => "http://127.0.0.1:8200",
 
     /**
      * APP DEBUG.

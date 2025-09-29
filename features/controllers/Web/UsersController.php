@@ -69,7 +69,7 @@ class UsersController
 
             $userId = Auth::user()->uid;
             $data = [];
-            if ($hustlerStatus->isHustler) {
+            if ($hustlerStatus?->isHustler) {
                 $data = $hustlerModel->getHustlerJobRequests(["hustlerId", $userId]);
             } else {
                 $data = $clientModel->getJobHistory(["ownerId" => $userId]);
