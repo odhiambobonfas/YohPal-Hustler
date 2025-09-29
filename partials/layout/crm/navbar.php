@@ -28,7 +28,7 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownToggle">
                 <li>
-                    <a class="dropdown-item" href="<?= auth()->hustlerStatus()->isHustler ? '/hustler/profile': '/profile' ?>">
+                    <a class="dropdown-item" href="<?= isset(auth()->hustlerStatus()->isHustler) ? '/hustler/profile': '/profile' ?>">
                     <i class="fas fa-user me-2"></i>Profile</a>
                 </li>
                 <li><a class="dropdown-item" href="/settings"><i class="bi bi-gear me-2"></i>Settings</a></li>
@@ -74,7 +74,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li>
-                            <a class="dropdown-item" href="<?= auth()->hustlerStatus()->isHustler ? '/hustler/profile': '/profile' ?>">
+                            <a class="dropdown-item" href="<?= isset(auth()->hustlerStatus()->isHustler) ? '/hustler/profile': '/profile' ?>">
                                 <i class="fas fa-user me-2"></i>Profile</a>
                         </li>
                         <li><a class="dropdown-item" href="/settings"><i class="fa-solid fa-gear me-2"></i>Settings</a></li>
