@@ -1,15 +1,15 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const dropdown = document.getElementById('skillsDropdown');
     const selectedSkillsContainer = document.getElementById('selectedSkills');
     const skillsInput = document.getElementById('skillsInput');
     let selectedSkills = [];
 
     // Load existing skills if any
-    const existingSkills = <?= json_encode(!empty(auth()->hustler()->skills) && is_array(auth()->hustler()->skills) ? auth()->hustler()->skills : []) ?>;
-    selectedSkills = [...existingSkills];
+    const existingSkills = JSON.parse('<?= json_encode(!empty(auth()->hustler()->skills) && is_array(auth()->hustler()->skills) ? auth()->hustler()->skills : []) ?>');
+    selectedSkills = [];
     updateSkillsDisplay();
 
-    dropdown.addEventListener('change', function() {
+    dropdown.addEventListener('change', function () {
         const selectedValue = this.value;
         const selectedText = this.options[this.selectedIndex].text;
 
@@ -28,15 +28,14 @@ document.addEventListener('DOMContentLoaded', function() {
         selectedSkills.forEach(skill => {
             const tag = document.createElement('span');
             tag.className = 'badge bg-danger opacity-75 p-2 d-inline-flex align-items-center gap-1';
-            tag.innerHTML = `
-${skill}
-<button type="button" class="btn-close btn-close-white" style="font-size: 0.7em;" onclick="removeSkill('${skill}')"></button>
-`;
+            tag.innerHTML = `${skill}
+                    <button type="button" class="btn-close btn-close-white" style="font-size: 0.7em;" onclick="removeSkill('${skill}')"></button>
+                `;
             selectedSkillsContainer.appendChild(tag);
         });
     }
 
-    window.removeSkill = function(skill) {
+    window.removeSkill = function (skill) {
         selectedSkills = selectedSkills.filter(s => s !== skill);
         updateSkillsDisplay();
     };
@@ -60,11 +59,10 @@ ${skill}
                 input.value = '1';
             }
         });
-    });
-    ;
+    });;
 });
 
-editProfileForm.addEventListener('submit', function(e) {
+editProfileForm.addEventListener('submit', function (e) {
     e.preventDefault();
 
     const formData = new FormData(editProfileForm);
@@ -75,12 +73,12 @@ editProfileForm.addEventListener('submit', function(e) {
     saveBtn.textContent = 'Saving...';
 
     fetch(editProfileForm.action, {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest'
-        }
-    })
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);

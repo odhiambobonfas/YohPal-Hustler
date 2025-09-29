@@ -15,17 +15,15 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "license": "MIT",
-    "config": {
-        "vendor-dir": "assets/vendor_modules"
-    },
+    "license": "MIT", 
     "require": { 
         "php": "^8.1", 
         "altorouter/altorouter": "1.1.0",
         "sp-datatables/sp-datatables": "^1.6",
         "monolog/monolog": "^3.9",
         "guzzlehttp/guzzle": "^7.9",
-        "nesbot/carbon": "^3.9"
+        "nesbot/carbon": "^3.9",
+        "rms-api/rms-api": "^1.0"
     },
     "require-dev": { 
         "vlucas/phpdotenv": "^5.1"
@@ -33,7 +31,7 @@
     "autoload": {
         "psr-4": {
             "App\\": "/",
-            "Vendor\\Package\\": "assets/vendor_modules",
+            "Vendor\\Package\\": "vendor",
             "Yohpal\\Application\\": "utils/config/app",
             "Yohpal\\Models\\": "data/models",
             "Yohpal\\Utils\\": "utils/Http",

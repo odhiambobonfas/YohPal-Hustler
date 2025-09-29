@@ -39,14 +39,20 @@
         "datatables": "^1.10.18",
         "dotenv": "^16.4.7",
         "flatpickr": "^4.6.13",
+        "fs-extra": "^11.3.1",
+        "gulp": "^5.0.1",
+        "gulp-javascript-obfuscator": "^1.1.6",
+        "gulp-sourcemaps": "^3.0.0",
         "jquery": "^3.7.1",
+        "minimist": "^1.2.8",
         "module-alias": "^2.2.3",
         "nouislider": "^15.8.1",
         "popper.js": "^1.16.1",
         "print-js": "^1.6.0",
         "select2": "^4.1.0-rc.0",
         "sweetalert2": "^11.17.2",
-        "toastr": "^2.1.4"
+        "toastr": "^2.1.4",
+        "vinyl-sourcemaps-apply": "^0.2.1"
     },
     "devDependencies": {
         "@babel/core": "^7.26.10",

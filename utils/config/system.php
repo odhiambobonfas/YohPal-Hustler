@@ -18,7 +18,7 @@ return [
      */
     'SPL_NAMESPACING' => [
         'App\\' => 'features/',
-        'Vendor\\Package\\' => 'assets/vendor_modules/',
+        'Vendor\\Package\\' => 'vendor/',
         'Yohpal\\Application\\' => 'utils/config/app/',
         'Yohpal\\Models\\' => 'data/models/',
         'Yohpal\\Utils\\' => 'utils/Http/',
