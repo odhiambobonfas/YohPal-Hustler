@@ -1,0 +1,98 @@
+/* Mobile-First Responsive Design */
+
+/* Base styles for all devices */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Images responsive by default */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Touch-friendly buttons */
+button, .btn, a {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* Mobile: 320px - 767px */
+@media (max-width: 767px) {
+    body {
+        font-size: 14px;
+    }
+    
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    /* Stack columns on mobile */
+    .col-md-2, .col-md-3, .col-md-4, .col-md-6, .col-md-9 {
+        width: 100% !important;
+        margin-bottom: 15px;
+    }
+    
+    /* Hide sidebar on mobile by default */
+    #sidebar {
+        display: none !important;
+    }
+    
+    /* Full width content on mobile */
+    .crm-section main {
+        width: 100% !important;
+    }
+    
+    /* Responsive tables */
+    table {
+        font-size: 12px;
+    }
+    
+    /* Touch-friendly form inputs */
+    input, select, textarea {
+        font-size: 16px !important; /* Prevents zoom on iOS */
+        padding: 12px;
+    }
+}
+
+/* Tablet: 768px - 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+/* Desktop: 1024px and up */
+@media (min-width: 1024px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+/* Map responsive */
+.geomap {
+    width: 100% !important;
+    height: 400px !important;
+    min-height: 300px;
+}
+
+@media (min-width: 768px) {
+    .geomap {
+        height: 600px !important;
+    }
+}
+
+/* Performance: Reduce animations on low-end devices */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
