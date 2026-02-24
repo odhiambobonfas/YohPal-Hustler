@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Invoice</title>
+    <title>Job Invoice - YohPal Hustle</title>
     <style>
        
 
@@ -134,13 +133,13 @@
 
         <div class="job-header">
             <div class="job-info">
-                <p><strong>Job Title:</strong> Crop Consultant</p>
-                <p><strong>Freelancer Name:</strong> Cookie@254</p>
-                <p><strong>Email:</strong> onyangoje123@gmail.com</p>
-                <p><strong>Job ID:</strong> 1ScsfaYA4sdOSl4tjoZN</p>
+                <p><strong>Job Title:</strong> <span id="jobTitle">Loading...</span></p>
+                <p><strong>Freelancer Name:</strong> <span id="freelancerName">Loading...</span></p>
+                <p><strong>Email:</strong> <span id="freelancerEmail">Loading...</span></p>
+                <p><strong>Job ID:</strong> <span id="jobId">Loading...</span></p>
             </div>
             <div>
-                <p><strong>Job Status:</strong> <span class="job-status">open</span></p>
+                <p><strong>Job Status:</strong> <span class="job-status" id="jobStatus">Loading</span></p>
             </div>
         </div>
 
@@ -148,15 +147,15 @@
         <div class="timeline">
             <div class="timeline-item">
                 <span class="timeline-label">Start</span>
-                <span>9:35 AM</span>
+                <span id="startTime">--</span>
             </div>
             <div class="timeline-item">
                 <span class="timeline-label">End</span>
-                <span>9:35 AM</span>
+                <span id="endTime">--</span>
             </div>
             <div class="timeline-item">
                 <span class="timeline-label">Date</span>
-                <span>Jul 8, 2025</span>
+                <span id="jobDate">--</span>
             </div>
         </div>
 
@@ -164,35 +163,36 @@
             <h2>Payment Breakdown</h2>
 
             <div class="payment-item">
-                <span><input type="checkbox" class="checkbox" disabled> Job Fee</span>
-                <span>KES 2,250</span>
+                <span><input type="checkbox" class="checkbox" id="jobFeeCheck" disabled> <span id="jobFeeLabel">Job Fee</span></span>
+                <span id="jobFee" style="white-space: pre-line; text-align: right;">KES 0.00</span>
             </div>
             <div class="payment-item">
-                <span><input type="checkbox" class="checkbox" checked disabled> Transport Fee</span>
-                <span>KES 250</span>
+                <span><input type="checkbox" class="checkbox" id="transportFeeCheck" disabled> Transport Fee</span>
+                <span id="transportFee">KES 0.00</span>
             </div>
             <div class="payment-item">
-                <span><input type="checkbox" class="checkbox" disabled> Tax Fee</span>
-                <span>KES 250</span>
+                <span><input type="checkbox" class="checkbox" id="taxFeeCheck" disabled> Tax Fee</span>
+                <span id="taxFee">KES 0.00</span>
             </div>
 
             <div class="payment-item payment-total">
                 <span><input type="checkbox" class="checkbox" disabled> Total Payment</span>
-                <span>KES 2,750</span>
+                <span id="totalFee">KES 0.00</span>
             </div>
         </div>
 
         <div class="job-description">
             <h3>JOB DESCRIPTION</h3>
-            <p>Details about the crop consultation job would appear here...</p>
+            <p id="jobDescription">Loading job description...</p>
         </div>
 
         <div class="footer">
-            <p><strong>Hmklo</strong></p>
-            <a href="#" class="btn">Report Issue</a>
-            <a href="#" class="btn">Get Invoice</a>
+            <p><strong>YohPal Hustle</strong></p>
+            <a href="#" class="btn" id="reportBtn">Report Issue</a>
+            <a href="#" class="btn" id="downloadBtn" onclick="window.print(); return false;">Download Invoice</a>
         </div>
     </div>
-</body>
 
+    <script type="module" src="/assets/js/app/crm/hustle-invoice.js"></script>
+</body>
 </html>

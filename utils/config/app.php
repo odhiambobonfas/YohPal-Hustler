@@ -26,7 +26,7 @@ return [
      *
      * Use http://127.0.0.1 or http://localhost
      */
-    'APP_DOMAIN' => "http://127.0.0.1:8200",
+    'APP_DOMAIN' => "http://localhost:8200",
 
     /**
      * APP DEBUG.
@@ -49,7 +49,7 @@ return [
      *
      * Use the loaded url upon browser navigations.
      */
-    'AUTO_ROUTE' => false,
+    'AUTO_ROUTE' => true,
 
     /**
      * APP SECRET

@@ -5,6 +5,7 @@ use App\Controllers\Web\ClientController;
 use App\Controllers\Web\ContactsController;
 use App\Controllers\Web\DashboardController;
 use App\Controllers\Web\HustlersController;
+use App\Controllers\Web\InvoiceController;
 use App\Controllers\Web\JobsController;
 use App\Controllers\Web\OnboardingController;
 use App\Controllers\Web\PaymentController;
@@ -91,3 +92,7 @@ $router->req("GET", "/hustler/dashboard", [HustlersController::class, "index"], 
 $router->req("GET", "/hustler/profile", [HustlersController::class, "profile"], [AuthMiddleware::class]);
 $router->req("GET",  "/hustler/requests", [HustlersController::class, "jobRequests"], [AuthMiddleware::class]);
 $router->req("GET",  "/hustler/job-history", [HustlersController::class, "jobHistory"], [AuthMiddleware::class]);
+
+// Invoice routes
+$router->req("GET", "/invoice", [InvoiceController::class, "show"], [AuthMiddleware::class]);
+$router->req("GET", "/invoice/job-data", [InvoiceController::class, "getJobData"], [AuthMiddleware::class]);
