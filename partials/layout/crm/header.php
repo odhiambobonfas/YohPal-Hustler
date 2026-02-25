@@ -3,7 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="role" content="<?= !empty(auth()->user()) ? auth()->user()->role : 'client' ?>">
     <title><?= env('APP_NAME') ?></title>
 
@@ -37,9 +41,14 @@
     <!-- Local custom css -->
     <link href="<?= asset_url('/css/global/props.css') ?>" rel="stylesheet" type="text/css" />
     <link href="<?= asset_url('/css/global/master.css') ?>" rel="stylesheet" type="text/css" />
+    <link href="<?= asset_url('/css/global/responsive.css') ?>" rel="stylesheet" type="text/css" />
+    <link href="<?= asset_url('/css/global/mobile-fixes.css') ?>" rel="stylesheet" type="text/css" />
 
     <!-- flatpicker css -->
     <link rel="stylesheet" href="<?= asset_url('/build/flatpickr/css/flatpickr.min.css') ?>"> 
+    
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=<?= env('GOOGLE_MAP_API_KEY') ?>&libraries=geometry,places&callback=googleMapsReady" async defer></script>
 </head>
 
 <body>

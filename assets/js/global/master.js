@@ -7,6 +7,25 @@
  *
  * Here for YohPal forever!
  */
+
+// Wait for Google Maps to load
+window.googleMapsReady = function() {
+  console.log('Google Maps ready for use');
+  
+  // Initialize services that depend on Google Maps
+  if (typeof window.GeocodingService !== 'undefined') {
+    window.geocodingService = new window.GeocodingService();
+    console.log('GeocodingService initialized');
+  }
+  
+  if (typeof window.PolylineRenderer !== 'undefined') {
+    console.log('PolylineRenderer available');
+  }
+  
+  // Dispatch custom event for other components
+  window.dispatchEvent(new Event('googleMapsLoaded'));
+};
+
 class Master {
   constructor() {
     // Any constructor logic applicable
@@ -41,6 +60,9 @@ class Master {
 
     // Map & Mappings
     this.refreshMapBtn = document.querySelectorAll(".refresh-map-btn");
+    
+    // Initialize mobile menu
+    this.initMobileMenu();
   }
 
   navigateStepper(direction = "next") {
@@ -267,15 +289,19 @@ class Master {
   }
 
   /**
-   * Accepts selector element to clone and duplicate...
+   * Accepts selector string to clone and duplicate...
    *
-   * @param {HTMLElement} selector
+   * @param {string} selector
    */
   addNewUploadSection(selector) {
+    if (!selector || typeof selector !== 'string') {
+      console.warn("Invalid selector passed to addNewUploadSection");
+      return;
+    }
+
     const btn = document.querySelector(selector);
 
-    if (!documentContains(btn)) {
-      console.warn("Invalid selector element passed to addNewUploadSection");
+    if (!btn || !documentContains(btn)) {
       return;
     }
 
@@ -434,30 +460,31 @@ class Master {
   getGeolocationPositions(params = undefined) {
     return new Promise((resolve, reject) => {
       if (!navigator.geolocation) {
-        alert("Your browser does not support geolocation.");
-        reject("unsupported");
+        console.warn("Browser does not support geolocation");
+        resolve({ lat: -1.286389, lng: 36.817223, accuracy: 1000 });
         return;
       }
 
+      const options = {
+        enableHighAccuracy: false,
+        timeout: 10000,
+        maximumAge: 60000
+      };
+
       navigator.geolocation.getCurrentPosition(
         (position) => {
+          console.log(`Location acquired: ${position.coords.latitude}, ${position.coords.longitude}`);
           resolve({
             lat: position.coords.latitude,
             lng: position.coords.longitude,
+            accuracy: position.coords.accuracy
           });
         },
         (error) => {
-          if (error.code === error.PERMISSION_DENIED) {
-            alert(
-              "Location access is required to continue.\n\n" +
-                "Please enable location permissions in your browser settings and reload the page.",
-            );
-            reject("denied");
-          } else {
-            alert("Error getting location: " + error.message);
-            reject("error");
-          }
+          console.warn('Using fallback location due to:', error.code, error.message);
+          resolve({ lat: -1.286389, lng: 36.817223, accuracy: 1000 });
         },
+        options
       );
     });
   }
@@ -471,6 +498,12 @@ class Master {
    */
   async setMapOnPage(hustlerData = [], domSection = ".geomap") {
     try {
+      // Check if Google Maps is loaded
+      if (typeof google === 'undefined' || typeof google.maps === 'undefined') {
+        console.warn('Google Maps API not loaded yet');
+        return;
+      }
+
       let locations = undefined;
       let mapHtmlSelectors = document.querySelectorAll(domSection);
 
@@ -563,6 +596,77 @@ class Master {
       return location;
     } catch (e) {
       console.error(e);
+    }
+  }
+
+  /**
+   * Initialize mobile menu toggle functionality
+   */
+  initMobileMenu() {
+    const hamburger = document.querySelector('.hamburger');
+    const interactions = document.querySelector('.interactions');
+    const body = document.body;
+
+    if (hamburger && interactions) {
+      hamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        interactions.classList.toggle('mobile-open');
+        hamburger.classList.toggle('active');
+        body.classList.toggle('menu-open');
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!hamburger.contains(e.target) && !interactions.contains(e.target)) {
+          interactions.classList.remove('mobile-open');
+          hamburger.classList.remove('active');
+          body.classList.remove('menu-open');
+        }
+      });
+
+      // Close menu when clicking a link
+      const menuLinks = interactions.querySelectorAll('a');
+      menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          interactions.classList.remove('mobile-open');
+          hamburger.classList.remove('active');
+          body.classList.remove('menu-open');
+        });
+      });
+    }
+
+    // Toggle sidebar on mobile (CRM)
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
+
+    if (menuToggle && sidebar) {
+      menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sidebar.classList.toggle('active');
+        body.classList.toggle('sidebar-open');
+      });
+
+      // Close sidebar when clicking outside or on overlay
+      document.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768 && 
+            sidebar.classList.contains('active') &&
+            !menuToggle.contains(e.target) && 
+            !sidebar.contains(e.target)) {
+          sidebar.classList.remove('active');
+          body.classList.remove('sidebar-open');
+        }
+      });
+
+      // Close sidebar when clicking on a link
+      const sidebarLinks = sidebar.querySelectorAll('a, .sidebar-item');
+      sidebarLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth <= 768) {
+            sidebar.classList.remove('active');
+            body.classList.remove('sidebar-open');
+          }
+        });
+      });
     }
   }
 }

@@ -81,6 +81,14 @@
 <!-- footer -->
 <?php include 'partials/layout/crm/footer.php'; ?>
 <!-- /footer -->
+
+<!-- Load new location services for advanced features -->
+<script type="text/javascript" src="<?= asset_url('js/app/web/services/location-service.js') ?>"></script>
+<script type="text/javascript" src="<?= asset_url('js/app/web/services/geocoding-service.js') ?>"></script>
+<script type="text/javascript" src="<?= asset_url('js/app/web/services/realtime-location.js') ?>"></script>
+<script type="text/javascript" src="<?= asset_url('js/app/web/utils/distance-calculator.js') ?>"></script>
+<script type="text/javascript" src="<?= asset_url('js/app/web/utils/polyline-renderer.js') ?>"></script>
+
 <!-- xtra scripts -->
 <script type="text/javascript" src="<?= asset_url('js/app/crm/auth.js') ?>"></script>
 <script type="text/javascript" src="<?= asset_url('js/app/crm/dashboard.js') ?>"></script>
