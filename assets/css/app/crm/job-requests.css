@@ -1,0 +1,25 @@
+.request-card {
+  transition: all 0.2s ease;
+}
+
+.request-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.request-card.border-success {
+  background-color: #f0f9ff;
+}
+
+.nav-tabs .nav-link {
+  color: #6c757d;
+}
+
+.nav-tabs .nav-link.active {
+  color: #198754;
+  font-weight: 600;
+}
+
+#requestDetails, #activitiesList {
+  max-height: 65vh;
+}

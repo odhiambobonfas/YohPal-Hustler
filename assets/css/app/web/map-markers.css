@@ -1,0 +1,41 @@
+/**
+ * Map Marker Styles
+ * Custom styles for map markers including blinking user location
+ */
+
+/* Blinking animation for user location marker */
+@keyframes blink-marker {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.3;
+        transform: scale(1.1);
+    }
+}
+
+.user-location-marker {
+    animation: blink-marker 1.5s ease-in-out infinite;
+}
+
+/* Pulse effect for user marker */
+@keyframes pulse-ring {
+    0% {
+        transform: scale(0.5);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+.user-marker-pulse {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #ff0000;
+    border-radius: 50%;
+    animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}

@@ -1,0 +1,137 @@
+/* Enhanced Responsive Design for All Devices */
+
+/* Ensure sidebar is always accessible on all devices */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .sidebar {
+        width: 220px;
+    }
+    
+    .main-content {
+        margin-left: 220px;
+    }
+    
+    .page-header {
+        margin-left: 220px;
+        width: calc(100% - 220px);
+    }
+}
+
+/* Tablet Portrait and Mobile Landscape */
+@media (max-width: 768px) {
+    /* Ensure sidebar is visible when toggled */
+    .sidebar {
+        display: block !important;
+        width: 280px;
+        max-width: 85vw;
+    }
+    
+    /* Prevent body scroll when sidebar is open */
+    body.sidebar-open {
+        overflow: hidden;
+    }
+    
+    /* Improve touch targets */
+    .sidebar-item {
+        min-height: 48px;
+        padding: 14px 20px;
+    }
+    
+    /* Better spacing for mobile */
+    .crm-section {
+        padding: 0;
+    }
+    
+    /* Full width tables on mobile */
+    .job-table-section {
+        width: 100%;
+        overflow-x: auto;
+    }
+    
+    .job-table {
+        min-width: 600px;
+    }
+    
+    /* Stack widgets vertically */
+    .widget-section {
+        width: 100%;
+        flex-direction: column;
+    }
+    
+    .widget-card {
+        width: 100% !important;
+        max-width: 100%;
+    }
+    
+    /* Improve chart visibility */
+    .chart-card {
+        overflow-x: auto;
+    }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+    .sidebar {
+        width: 260px;
+    }
+    
+    .sidebar-item {
+        font-size: 13px;
+        padding: 12px 16px;
+    }
+    
+    .sidebar h3 {
+        font-size: 9px;
+    }
+    
+    /* Compact navbar */
+    .navbar {
+        padding: 0.5rem 0.75rem;
+    }
+    
+    .brandname {
+        font-size: 14px;
+    }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 900px) and (orientation: landscape) {
+    .sidebar {
+        width: 240px;
+    }
+    
+    .main-content {
+        padding-top: 70px;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .sidebar-item {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* Print styles */
+@media print {
+    .sidebar,
+    .navbar,
+    .menu-toggle,
+    .page-header {
+        display: none !important;
+    }
+    
+    .main-content {
+        margin-left: 0 !important;
+        padding: 0 !important;
+    }
+}
+
+/* Accessibility: Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .sidebar,
+    .main-content,
+    .page-header {
+        transition: none !important;
+    }
+}
