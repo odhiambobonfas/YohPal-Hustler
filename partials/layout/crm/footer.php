@@ -30,6 +30,7 @@
         <script src="<?= asset_url('/build/flatpickr/js/flatpickr.min.js') ?>"></script>
 
         <!-- Custom scripts for all pages -->
+        <script type="text/javascript" src="<?= asset_url('js/app/crm/sidebar-toggle.js') ?>"></script>
         <script type="text/javascript" src="<?= asset_url('js/lang/en.js') ?>"></script>
         <script type="text/javascript" src="<?= asset_url('js/global/funcs.js') ?>"></script>
         <script type="text/javascript" src="<?= asset_url('js/global/master.js') ?>"></script>

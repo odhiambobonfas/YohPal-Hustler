@@ -18,7 +18,7 @@
 <div class="crm-section">
     <div class="d-flex gap-3">
         <!-- Sidebar -->
-        <aside class="col-md-2 d-none d-md-block" id="sidebar">
+        <aside class="col-md-2" id="sidebar">
             <div class="card bg-transparent border-0">
                 <?php include 'partials/layout/crm/sidebar.php'; ?>
             </div>
@@ -44,6 +44,7 @@
 <!-- /footer -->
 
 <!-- Load new location services -->
+<script type="text/javascript" src="<?= asset_url('js/app/web/services/device-info.js') ?>"></script>
 <script type="text/javascript" src="<?= asset_url('js/app/web/services/location-service.js') ?>"></script>
 <script type="text/javascript" src="<?= asset_url('js/app/web/services/geocoding-service.js') ?>"></script>
 <script type="text/javascript" src="<?= asset_url('js/app/web/services/realtime-location.js') ?>"></script>
@@ -62,6 +63,12 @@
 <script>
 document.addEventListener('DOMContentLoaded', async function() {
     console.log('Job Location Page Loaded');
+    
+    // Initialize device info
+    const deviceInfo = new window.DeviceInfoService();
+    deviceInfo.logDeviceInfo();
+    const deviceReport = await deviceInfo.getFullDeviceReport();
+    console.log('Device capabilities:', deviceReport);
     
     // Wait for Google Maps
     if (typeof google === 'undefined') {
@@ -99,17 +106,37 @@ async function initJobTracking() {
     const distanceCalculator = window.DistanceCalculator;
     const polylineRenderer = new window.PolylineRenderer(null);
     
-    // Get user's location
-    let userPosition = { lat: -1.286389, lng: 36.817223 };
+    // Get user's location with continuous updates
+    let userPosition = null;
     
-    if (navigator.geolocation) {
+    try {
+        userPosition = await new Promise((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(
+                (pos) => {
+                    console.log('✓ User location obtained:', pos.coords.latitude, pos.coords.longitude);
+                    resolve({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+                },
+                (error) => {
+                    console.error('✗ Location error:', error.code, error.message);
+                    reject(error);
+                },
+                { enableHighAccuracy: false, timeout: 30000, maximumAge: 60000 }
+            );
+        });
+    } catch (error) {
+        console.error('Location failed:', error);
         userPosition = await new Promise((resolve) => {
             navigator.geolocation.getCurrentPosition(
                 (pos) => resolve({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
-                () => resolve(userPosition),
-                { enableHighAccuracy: true }
+                () => resolve(null),
+                { enableHighAccuracy: false, timeout: 30000, maximumAge: 300000 }
             );
         });
+        
+        if (!userPosition) {
+            alert('Unable to get your location. Please check browser settings.');
+            return;
+        }
     }
     
     console.log('User position:', userPosition);
@@ -123,21 +150,74 @@ async function initJobTracking() {
     
     polylineRenderer.setMap(map);
     
-    // Add user marker
+    // Add user marker with Google Maps native style
+    console.log('Creating user marker at:', userPosition);
+    
+    // Create accuracy circle (like Google Maps)
+    const accuracyCircle = new google.maps.Circle({
+        map: map,
+        center: { lat: userPosition.lat, lng: userPosition.lng },
+        radius: 50,
+        fillColor: '#4285F4',
+        fillOpacity: 0.2,
+        strokeColor: '#4285F4',
+        strokeOpacity: 0.4,
+        strokeWeight: 1,
+        zIndex: 1
+    });
+    
+    // Create pulsing outer circle
+    const pulseCircle = new google.maps.Circle({
+        map: map,
+        center: { lat: userPosition.lat, lng: userPosition.lng },
+        radius: 20,
+        fillColor: '#4285F4',
+        fillOpacity: 0.3,
+        strokeColor: 'transparent',
+        strokeWeight: 0,
+        zIndex: 2
+    });
+    
+    // Create blue dot marker
     const userMarker = new google.maps.Marker({
-        position: userPosition,
+        position: new google.maps.LatLng(userPosition.lat, userPosition.lng),
         map: map,
         title: 'Your Location',
         icon: {
             path: google.maps.SymbolPath.CIRCLE,
-            scale: 10,
-            fillColor: '#2563eb',
+            scale: 8,
+            fillColor: '#4285F4',
             fillOpacity: 1,
-            strokeColor: '#ffffff',
+            strokeColor: '#FFFFFF',
             strokeWeight: 2
         },
-        zIndex: 1000
+        zIndex: 10000
     });
+    console.log('✓ User marker created');
+    
+    // Animate pulse effect
+    let pulseRadius = 20;
+    let pulseDirection = 1;
+    setInterval(() => {
+        pulseRadius += pulseDirection * 2;
+        if (pulseRadius >= 40 || pulseRadius <= 20) pulseDirection *= -1;
+        pulseCircle.setRadius(pulseRadius);
+    }, 100);
+    
+    // Watch user position continuously
+    console.log('Starting continuous location watch...');
+    const userWatchId = realtimeService.startWatchingMyLocation((location) => {
+        console.log('User position updated:', location);
+        userPosition = location;
+        const newPos = new google.maps.LatLng(location.lat, location.lng);
+        userMarker.setPosition(newPos);
+        accuracyCircle.setCenter(newPos);
+        pulseCircle.setCenter(newPos);
+        if (location.accuracy) {
+            accuracyCircle.setRadius(location.accuracy);
+        }
+    });
+    console.log('Watch ID:', userWatchId);
     
     // Fetch job details
     let jobData = null;

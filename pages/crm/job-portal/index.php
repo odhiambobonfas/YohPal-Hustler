@@ -14,8 +14,8 @@
 <!-- Main CRM Section -->
 <div class="crm-section">
     <div class="d-flex gap-3">
-        <!-- Sidebar -->
-        <aside class="col-md-2 d-none d-md-block" id="sidebar">
+        <!-- Sidebar - Always present, toggleable on mobile -->
+        <aside class="col-md-2" id="sidebar">
             <div class="card bg-transparent border-0">
                 <?php include 'partials/layout/crm/sidebar.php'; ?>
             </div>
@@ -83,6 +83,7 @@
 <!-- /footer -->
 
 <!-- Load new location services for advanced features -->
+<script type="text/javascript" src="<?= asset_url('js/app/web/services/hustler-loader-api.js') ?>"></script>
 <script type="text/javascript" src="<?= asset_url('js/app/web/services/location-service.js') ?>"></script>
 <script type="text/javascript" src="<?= asset_url('js/app/web/services/geocoding-service.js') ?>"></script>
 <script type="text/javascript" src="<?= asset_url('js/app/web/services/realtime-location.js') ?>"></script>

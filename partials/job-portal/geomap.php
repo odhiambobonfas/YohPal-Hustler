@@ -5,10 +5,10 @@
     
     <!-- Hustler Overlay Container - positioned above markers when selected -->
     <div id="hustler-overlay" class="position-absolute d-none" style="z-index: 1000; top: 20px; left: 50%; transform: translateX(-50%);">
-        <div class="card shadow-lg border-0" style="width: 280px; min-height: 100px;">
+        <div class="card shadow-lg border-0" style="width: 320px; min-height: 100px;">
             <div class="card-body p-3">
                 <div class="d-flex align-items-center mb-2">
-                    <img id="overlay-avatar" src="" class="rounded-circle me-2" style="width: 40px; height: 40px; object-fit: cover;" alt="">
+                    <img id="overlay-avatar" src="" class="rounded-circle me-2" style="width: 50px; height: 50px; object-fit: cover; border: 2px solid #4285F4;" alt="">
                     <div>
                         <h6 class="mb-0" id="overlay-name">Hustler Name</h6>
                         <small class="text-muted" id="overlay-skill">Primary Skill</small>
@@ -20,8 +20,8 @@
                 <div class="mb-2 text-muted small">
                     <i class="fas fa-road"></i> <span id="overlay-distance">0 m</span> away
                 </div>
-                <div class="mb-2 text-muted small">
-                    <i class="fas fa-walking"></i> <span id="overlay-eta">0 min</span> walking time
+                <div class="mb-2 text-muted" style="font-size: 10px;">
+                    <div id="overlay-eta">Calculating...</div>
                 </div>
                 <button class="btn btn-primary btn-sm w-100" id="overlay-request-btn">Request</button>
             </div>

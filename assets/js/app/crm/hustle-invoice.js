@@ -38,17 +38,36 @@ async function loadInvoice() {
         // Use actual job rates from Firebase, fallback to config
         const hourlyRate = job.hourlyRate || job.rate || HOURLY_RATE;
         const transportFee = job.transportFee || TRANSPORT_FEE;
+        const materialsFee = job.materialsCost || 0;
+        const additionalFee = job.additionalFees || 0;
         const taxPercentage = job.taxPercentage || TAX_PERCENTAGE;
+        const discount = job.discount || 0;
         
         const jobFee = hoursWorked * hourlyRate;
-        const taxFee = jobFee * taxPercentage;
-        const totalFee = jobFee + transportFee + taxFee;
+        const subtotal = jobFee + transportFee + materialsFee + additionalFee;
+        const taxFee = subtotal * taxPercentage;
+        const totalFee = subtotal + taxFee - discount;
 
-        $("jobTitle").textContent = job.name || "N/A";
-        $("freelancerName").textContent = job.ownerName || "N/A";
-        $("freelancerEmail").textContent = job.ownerEmail || "N/A";
+        // Generate invoice number
+        const invoiceNumber = `INV-${jobId.substring(0, 8).toUpperCase()}`;
+        $("invoiceNumber").textContent = invoiceNumber;
+        
+        $("jobTitle").textContent = job.name || job.title || "N/A";
+        $("jobCategory").textContent = job.category || "N/A";
         $("jobId").textContent = jobId;
         $("jobStatus").textContent = job.status || "pending";
+        $("paymentStatus").textContent = job.paymentStatus || "Pending";
+
+        // Client information
+        $("clientName").textContent = job.clientName || job.ownerName || "N/A";
+        $("clientEmail").textContent = job.clientEmail || job.ownerEmail || "N/A";
+        $("clientPhone").textContent = job.clientPhone || job.ownerPhone || "N/A";
+        $("jobLocation").textContent = job.location || job.address || "N/A";
+
+        // Hustler information
+        $("freelancerName").textContent = job.hustlerName || job.assignedHustlerName || "N/A";
+        $("freelancerEmail").textContent = job.hustlerEmail || job.assignedHustlerEmail || "N/A";
+        $("freelancerPhone").textContent = job.hustlerPhone || job.assignedHustlerPhone || "N/A";
 
         $("startTime").textContent = start.toLocaleString();
         $("endTime").textContent = end.toLocaleString();
@@ -56,13 +75,28 @@ async function loadInvoice() {
 
         $("jobFee").textContent = `${hoursWorked} Hrs @ KES ${hourlyRate.toLocaleString()} Hourly\nKES ${jobFee.toLocaleString()}`;
         $("transportFee").textContent = `KES ${transportFee.toLocaleString()}`;
+        $("materialsFee").textContent = `KES ${materialsFee.toLocaleString()}`;
+        $("additionalFee").textContent = `KES ${additionalFee.toLocaleString()}`;
         $("taxFee").textContent = `KES ${taxFee.toLocaleString()}`;
+        
+        if (discount > 0) {
+            $("discountRow").style.display = "flex";
+            $("discountFee").textContent = `- KES ${discount.toLocaleString()}`;
+            $("discountCheck").checked = true;
+        }
+        
         $("totalFee").textContent = `KES ${totalFee.toLocaleString()}`;
+
+        // Payment details
+        $("paymentMethod").textContent = job.paymentMethod || "--";
+        $("transactionId").textContent = job.transactionId || job.paymentReference || "--";
 
         $("jobDescription").textContent = job.description || "No description provided";
 
         $("jobFeeCheck").checked = true;
-        $("transportFeeCheck").checked = true;
+        $("transportFeeCheck").checked = transportFee > 0;
+        $("materialsFeeCheck").checked = materialsFee > 0;
+        $("additionalFeeCheck").checked = additionalFee > 0;
         $("taxFeeCheck").checked = true;
 
     } catch (err) {

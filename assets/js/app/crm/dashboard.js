@@ -17,11 +17,30 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector(".sidebar-item.active")?.getAttribute("data-tab") ||
     "dashboard";
 
+  // Mobile sidebar toggle with overlay
+  function toggleSidebar() {
+    if (sidebar) {
+      sidebar.classList.toggle("active");
+      document.body.classList.toggle("sidebar-open");
+    }
+  }
+
+  // Close sidebar when clicking overlay
+  document.addEventListener("click", function(e) {
+    if (document.body.classList.contains("sidebar-open") && 
+        !sidebar.contains(e.target) && 
+        !e.target.closest(".menu-toggle")) {
+      toggleSidebar();
+    }
+  });
+
   // Function to bind sidebar event listeners
   function bindSidebarEvents() {
     if (menuToggle && sidebar) {
-      menuToggle.addEventListener("click", () => {
-        sidebar.classList.toggle("active");
+      menuToggle.removeEventListener("click", toggleSidebar);
+      menuToggle.addEventListener("click", function(e) {
+        e.stopPropagation();
+        toggleSidebar();
       });
     }
 
@@ -64,8 +83,8 @@ document.addEventListener("DOMContentLoaded", function () {
         breadcrumb.textContent = `Home → ${tabName.toLowerCase()}`;
       }
 
-      if (window.innerWidth <= 768 && sidebar.classList.contains("active")) {
-        sidebar.classList.remove("active");
+      if (window.innerWidth <= 768) {
+        toggleSidebar();
       }
     });
 

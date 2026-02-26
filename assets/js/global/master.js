@@ -460,20 +460,20 @@ class Master {
   getGeolocationPositions(params = undefined) {
     return new Promise((resolve, reject) => {
       if (!navigator.geolocation) {
-        console.warn("Browser does not support geolocation");
-        resolve({ lat: -1.286389, lng: 36.817223, accuracy: 1000 });
+        console.error('Browser does not support geolocation');
+        reject(new Error('Geolocation not supported'));
         return;
       }
 
       const options = {
         enableHighAccuracy: false,
-        timeout: 10000,
+        timeout: 30000,
         maximumAge: 60000
       };
 
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          console.log(`Location acquired: ${position.coords.latitude}, ${position.coords.longitude}`);
+          console.log(`✓ Location acquired: ${position.coords.latitude}, ${position.coords.longitude}`);
           resolve({
             lat: position.coords.latitude,
             lng: position.coords.longitude,
@@ -481,8 +481,8 @@ class Master {
           });
         },
         (error) => {
-          console.warn('Using fallback location due to:', error.code, error.message);
-          resolve({ lat: -1.286389, lng: 36.817223, accuracy: 1000 });
+          console.error('✗ Geolocation error:', error.code, error.message);
+          reject(error);
         },
         options
       );
@@ -498,75 +498,127 @@ class Master {
    */
   async setMapOnPage(hustlerData = [], domSection = ".geomap") {
     try {
-      // Check if Google Maps is loaded
       if (typeof google === 'undefined' || typeof google.maps === 'undefined') {
         console.warn('Google Maps API not loaded yet');
         return;
       }
 
-      let locations = undefined;
       let mapHtmlSelectors = document.querySelectorAll(domSection);
 
-      mapHtmlSelectors.forEach((selector) => {
-        if (!documentContains(selector)) return;
+      for (const selector of mapHtmlSelectors) {
+        if (!documentContains(selector)) continue;
 
-        this.getGeolocationPositions().then((positions) => {
-          let map = new google.maps.Map(selector, {
-            zoom: 12,
-            center: {
-              lat: positions.lat,
-              lng: positions.lng,
-            },
-            mapId: "hustle-map",
-          });
-          let mapInstance = null;
+        let positions;
+        try {
+          positions = await this.getGeolocationPositions();
+          console.log('✓ Using position:', positions);
+        } catch (error) {
+          console.error('✗ Failed to get location, using default');
+          positions = { lat: -1.286389, lng: 36.817223, accuracy: 1000 };
+        }
+          
+        let map = new google.maps.Map(selector, {
+          zoom: 12,
+          center: { lat: positions.lat, lng: positions.lng },
+          mapId: "hustle-map",
+        });
 
-          if (!hustlerData[0]) return;
-          const jobInfo = hustlerData[0];
+        // Add user location marker (blue pulsing dot)
+        const userAccuracyCircle = new google.maps.Circle({
+          map: map,
+          center: { lat: positions.lat, lng: positions.lng },
+          radius: positions.accuracy || 50,
+          fillColor: '#4285F4',
+          fillOpacity: 0.2,
+          strokeColor: '#4285F4',
+          strokeOpacity: 0.4,
+          strokeWeight: 1,
+          zIndex: 1
+        });
+        
+        const userPulseCircle = new google.maps.Circle({
+          map: map,
+          center: { lat: positions.lat, lng: positions.lng },
+          radius: 20,
+          fillColor: '#4285F4',
+          fillOpacity: 0.3,
+          strokeColor: 'transparent',
+          strokeWeight: 0,
+          zIndex: 2
+        });
+        
+        const userMarker = new google.maps.Marker({
+          position: new google.maps.LatLng(positions.lat, positions.lng),
+          map: map,
+          title: 'Your Location',
+          icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 8,
+            fillColor: '#4285F4',
+            fillOpacity: 1,
+            strokeColor: '#FFFFFF',
+            strokeWeight: 2
+          },
+          zIndex: 10000
+        });
+        
+        // Animate pulse
+        let pulseRadius = 20;
+        let pulseDirection = 1;
+        setInterval(() => {
+          pulseRadius += pulseDirection * 2;
+          if (pulseRadius >= 40 || pulseRadius <= 20) pulseDirection *= -1;
+          userPulseCircle.setRadius(pulseRadius);
+        }, 100);
 
-          if (hustlerData.length === 1 && jobInfo?.client) {
-            let mapInstance = new ClientMap(map, "WALKING", "JobSite");
-            mapInstance.clientStartLocation = new google.maps.LatLng(
-              jobInfo.jobSite._latitude ?? positions.lat,
-              jobInfo.jobSite._longitude ?? positions.lng,
-            );
+        if (!hustlerData[0]) continue;
+        const jobInfo = hustlerData[0];
 
-            const acceptedHustler = Object.entries(jobInfo.hustlers).find(
-              ([_, hustler]) => hustler.accepted && hustler.requested,
-            )?.[0];
+        if (hustlerData.length === 1 && jobInfo?.client) {
+          let mapInstance = new ClientMap(map, "WALKING", "JobSite");
+          mapInstance.clientStartLocation = new google.maps.LatLng(
+            jobInfo.jobSite._latitude ?? positions.lat,
+            jobInfo.jobSite._longitude ?? positions.lng,
+          );
 
-            this.getHustlerLocation(acceptedHustler).then((loc) => {
+          const acceptedHustler = Object.entries(jobInfo.hustlers).find(
+            ([_, hustler]) => hustler.accepted && hustler.requested,
+          )?.[0];
+
+          if (acceptedHustler) {
+            const loc = await this.getHustlerLocation(acceptedHustler);
+            if (loc) {
               let marker = "Hustler";
               const _locations = {
                 latitude: loc._latitude,
                 longitude: loc._longitude,
               };
               mapInstance.layOutMapMarker(_locations, marker, jobInfo);
-              return;
-            });
-          } else if (hustlerData.length === 1 && jobInfo?.jobSite) {
-            let mapInstance = new ClientMap(map);
-            mapInstance.clientStartLocation = new google.maps.LatLng(
-              positions.lat,
-              positions.lng,
-            );
+            }
+          }
+        } else if (hustlerData.length === 1 && jobInfo?.jobSite) {
+          let mapInstance = new ClientMap(map);
+          mapInstance.clientStartLocation = new google.maps.LatLng(
+            positions.lat,
+            positions.lng,
+          );
 
-            let marker = "";
-            const _locations = {
-              latitude: jobInfo.jobSite._latitude,
-              longitude: jobInfo.jobSite._longitude,
-            };
-            mapInstance.layOutMapMarker(_locations, marker, jobInfo);
-          } else {
-            mapInstance = new HustleMap(map, "WALKING", "You");
+          let marker = "";
+          const _locations = {
+            latitude: jobInfo.jobSite._latitude,
+            longitude: jobInfo.jobSite._longitude,
+          };
+          mapInstance.layOutMapMarker(_locations, marker, jobInfo);
+        } else {
+          let mapInstance = new HustleMap(map, "WALKING", "You");
+          mapInstance.clientStartLocation = new google.maps.LatLng(
+            positions.lat,
+            positions.lng,
+          );
 
-            mapInstance.clientStartLocation = new google.maps.LatLng(
-              positions.lat,
-              positions.lng,
-            );
-
-            hustlerData.forEach((hustler) => {
-              locations = hustler.liveLocation;
+          hustlerData.forEach((hustler) => {
+            const locations = hustler.liveLocation;
+            if (locations) {
               let marker = hustler.displayName || "You";
               const _locations = {
                 latitude: locations._latitude,
@@ -577,10 +629,10 @@ class Master {
                 marker,
                 hustler,
               );
-            });
-          }
-        });
-      });
+            }
+          });
+        }
+      }
 
       this.refreshMap();
     } catch (error) {

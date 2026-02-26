@@ -43,11 +43,24 @@
     <link href="<?= asset_url('/css/global/master.css') ?>" rel="stylesheet" type="text/css" />
     <link href="<?= asset_url('/css/global/responsive.css') ?>" rel="stylesheet" type="text/css" />
     <link href="<?= asset_url('/css/global/mobile-fixes.css') ?>" rel="stylesheet" type="text/css" />
+    <link href="<?= asset_url('/css/app/crm/responsive-enhanced.css') ?>" rel="stylesheet" type="text/css" />
 
     <!-- flatpicker css -->
     <link rel="stylesheet" href="<?= asset_url('/build/flatpickr/css/flatpickr.min.css') ?>"> 
     
     <!-- Google Maps API -->
+    <script>
+        // Prevent Google Maps callback error
+        window.googleMapsReady = function() {
+            window.googleMapsLoaded = true;
+            console.log('Google Maps loaded');
+        };
+        // Handle auth failures
+        window.gm_authFailure = function() {
+            console.error('Google Maps API authentication failed');
+        };
+    </script>
+    <script src="<?= asset_url('js/app/web/map-error-handler.js') ?>"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=<?= env('GOOGLE_MAP_API_KEY') ?>&libraries=geometry,places&callback=googleMapsReady" async defer></script>
 </head>
 

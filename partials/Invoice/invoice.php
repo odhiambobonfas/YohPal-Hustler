@@ -133,13 +133,50 @@
 
         <div class="job-header">
             <div class="job-info">
+                <p><strong>Invoice #:</strong> <span id="invoiceNumber">Loading...</span></p>
                 <p><strong>Job Title:</strong> <span id="jobTitle">Loading...</span></p>
-                <p><strong>Freelancer Name:</strong> <span id="freelancerName">Loading...</span></p>
-                <p><strong>Email:</strong> <span id="freelancerEmail">Loading...</span></p>
+                <p><strong>Category:</strong> <span id="jobCategory">Loading...</span></p>
                 <p><strong>Job ID:</strong> <span id="jobId">Loading...</span></p>
             </div>
             <div>
                 <p><strong>Job Status:</strong> <span class="job-status" id="jobStatus">Loading</span></p>
+                <p><strong>Payment Status:</strong> <span class="job-status" id="paymentStatus">Pending</span></p>
+            </div>
+        </div>
+
+        <h2>CLIENT INFORMATION</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <span class="timeline-label">Name:</span>
+                <span id="clientName">--</span>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-label">Email:</span>
+                <span id="clientEmail">--</span>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-label">Phone:</span>
+                <span id="clientPhone">--</span>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-label">Location:</span>
+                <span id="jobLocation">--</span>
+            </div>
+        </div>
+
+        <h2>HUSTLER INFORMATION</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <span class="timeline-label">Name:</span>
+                <span id="freelancerName">--</span>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-label">Email:</span>
+                <span id="freelancerEmail">--</span>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-label">Phone:</span>
+                <span id="freelancerPhone">--</span>
             </div>
         </div>
 
@@ -171,13 +208,34 @@
                 <span id="transportFee">KES 0.00</span>
             </div>
             <div class="payment-item">
+                <span><input type="checkbox" class="checkbox" id="materialsFeeCheck" disabled> Materials Cost</span>
+                <span id="materialsFee">KES 0.00</span>
+            </div>
+            <div class="payment-item">
+                <span><input type="checkbox" class="checkbox" id="additionalFeeCheck" disabled> Additional Charges</span>
+                <span id="additionalFee">KES 0.00</span>
+            </div>
+            <div class="payment-item">
                 <span><input type="checkbox" class="checkbox" id="taxFeeCheck" disabled> Tax Fee</span>
                 <span id="taxFee">KES 0.00</span>
+            </div>
+            <div class="payment-item" id="discountRow" style="display: none;">
+                <span><input type="checkbox" class="checkbox" id="discountCheck" disabled> Discount</span>
+                <span id="discountFee" style="color: green;">- KES 0.00</span>
             </div>
 
             <div class="payment-item payment-total">
                 <span><input type="checkbox" class="checkbox" disabled> Total Payment</span>
                 <span id="totalFee">KES 0.00</span>
+            </div>
+            
+            <div class="payment-item" style="border: none;">
+                <span><strong>Payment Method:</strong></span>
+                <span id="paymentMethod">--</span>
+            </div>
+            <div class="payment-item" style="border: none;">
+                <span><strong>Transaction ID:</strong></span>
+                <span id="transactionId">--</span>
             </div>
         </div>
 

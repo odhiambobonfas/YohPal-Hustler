@@ -16,8 +16,8 @@
 <!-- Main CRM Section -->
 <div class="crm-section">
     <div class="d-flex gap-3">
-        <!-- Sidebar -->
-        <aside class="col-md-2 d-none d-md-block" id="sidebar">
+        <!-- Sidebar - Always present, toggleable on mobile -->
+        <aside class="col-md-2" id="sidebar">
             <div class="card bg-transparent border-0">
                 <?php include 'partials/layout/crm/sidebar.php'; ?>
             </div>

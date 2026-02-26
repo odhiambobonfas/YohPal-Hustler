@@ -9,6 +9,9 @@ class JobPortal extends Master {
     this.jobsListing = document.querySelector(".jobs-listing");
     this.mapSection = document.querySelector(".mapping-section");
     this.selected_job = undefined;
+    this.hustlerLoader = null;
+    this.currentMap = null;
+    this.userLocation = null;
   }
 
   setupPage() {
@@ -87,7 +90,7 @@ class JobPortal extends Master {
             );
             dashboardInstance.mapSection.classList.remove("d-none");
             dashboardInstance.hideOverlay();
-            dashboardInstance.getActiveHustlers?.();
+            dashboardInstance.getActiveHustlers();
           } else {
             toast("error", 5000, res.message || lang.undefined_error);
           }
@@ -128,6 +131,135 @@ class JobPortal extends Master {
           <ul class="list-group bg-transparent mb-2">${listItems}</ul>
         </div>
       </div>`;
+  }
+
+  async getActiveHustlers() {
+    try {
+      // Wait for Google Maps
+      if (typeof google === 'undefined' || !google.maps) {
+        toast("info", 3000, "Waiting for Google Maps...");
+        await this.waitForGoogleMaps();
+      }
+
+      if (!this.hustlerLoader) {
+        // Try API version first (no Firebase needed)
+        if (typeof HustlerLoaderServiceAPI !== 'undefined') {
+          this.hustlerLoader = new HustlerLoaderServiceAPI();
+        } else {
+          // Load API version
+          await this.loadScript('/assets/js/app/web/services/hustler-loader-api.js');
+          this.hustlerLoader = new HustlerLoaderServiceAPI();
+        }
+      }
+
+      if (!this.userLocation) {
+        toast("info", 2000, "Getting your location...");
+        this.userLocation = await this.getUserLocation();
+      }
+
+      if (!this.currentMap) {
+        toast("info", 2000, "Initializing map...");
+        this.currentMap = await this.initializeMap();
+      }
+
+      this.hustlerLoader.setMap(this.currentMap);
+      this.hustlerLoader.setUserLocation(this.userLocation.lat, this.userLocation.lng);
+
+      toast("info", 2000, "Loading available hustlers...");
+      await this.hustlerLoader.loadAllHustlers();
+      this.hustlerLoader.displayHustlersOnMap();
+
+      toast("success", 3000, `Found ${this.hustlerLoader.hustlers.length} available hustlers`);
+    } catch (error) {
+      console.error("Error loading hustlers:", error);
+      toast("error", 5000, error.message || "Failed to load available hustlers");
+    }
+  }
+
+  waitForGoogleMaps() {
+    return new Promise((resolve, reject) => {
+      let attempts = 0;
+      const maxAttempts = 20;
+      
+      const checkGoogle = setInterval(() => {
+        attempts++;
+        if (typeof google !== 'undefined' && google.maps) {
+          clearInterval(checkGoogle);
+          resolve();
+        } else if (attempts >= maxAttempts) {
+          clearInterval(checkGoogle);
+          reject(new Error("Google Maps failed to load"));
+        }
+      }, 500);
+    });
+  }
+
+  loadScript(src) {
+    return new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = src;
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.appendChild(script);
+    });
+  }
+
+  async getUserLocation() {
+    return new Promise((resolve, reject) => {
+      if (!navigator.geolocation) {
+        reject(new Error("Geolocation not supported"));
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          resolve({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          });
+        },
+        (error) => reject(error),
+        { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
+      );
+    });
+  }
+
+  async initializeMap() {
+    const mapElement = document.getElementById("services-map");
+    if (!mapElement) throw new Error("Map element not found");
+
+    // Hide loading indicator
+    const loadingIndicator = document.getElementById("map-loading");
+    if (loadingIndicator) loadingIndicator.style.display = "none";
+
+    const map = new google.maps.Map(mapElement, {
+      zoom: 14,
+      center: { lat: this.userLocation.lat, lng: this.userLocation.lng },
+      mapId: "hustle-map",
+      disableDefaultUI: false,
+      zoomControl: true,
+      mapTypeControl: false,
+      streetViewControl: false,
+      fullscreenControl: true
+    });
+
+    // Add user marker
+    new google.maps.Marker({
+      position: { lat: this.userLocation.lat, lng: this.userLocation.lng },
+      map: map,
+      title: "Your Location",
+      icon: {
+        path: google.maps.SymbolPath.CIRCLE,
+        scale: 10,
+        fillColor: "#4285F4",
+        fillOpacity: 1,
+        strokeColor: "#FFFFFF",
+        strokeWeight: 3
+      },
+      zIndex: 10000
+    });
+
+    return map;
   }
 }
 
@@ -213,7 +345,45 @@ async function loadJobCategories() {
 }
 
 const dashboardInstance = new JobPortal();
+
+// Global function to select hustler
+window.selectHustler = function(hustlerId) {
+  const hustler = dashboardInstance.hustlerLoader?.getHustlerById(hustlerId);
+  if (!hustler) {
+    toast("error", 3000, "Hustler not found");
+    return;
+  }
+
+  console.log("Selected hustler:", hustler);
+  toast("success", 3000, `Requesting ${hustler.displayName || hustler.name}...`);
+  
+  // Hide overlay
+  const overlay = document.getElementById("hustler-overlay");
+  if (overlay) overlay.classList.add("d-none");
+  
+  // TODO: Implement job request logic
+  // This should create a job request with the selected hustler
+};
+
 (async () => {
   await loadJobCategories();
   dashboardInstance.setupPage();
+  
+  // Refresh map button
+  const refreshBtn = document.getElementById("refreshMapBtn");
+  if (refreshBtn) {
+    refreshBtn.addEventListener("click", async () => {
+      refreshBtn.disabled = true;
+      refreshBtn.querySelector("i").classList.add("fa-spin");
+      
+      try {
+        await dashboardInstance.getActiveHustlers();
+      } catch (error) {
+        console.error("Refresh error:", error);
+      } finally {
+        refreshBtn.disabled = false;
+        refreshBtn.querySelector("i").classList.remove("fa-spin");
+      }
+    });
+  }
 })();

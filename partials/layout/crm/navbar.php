@@ -5,7 +5,7 @@
         <div class="d-flex align-items-center w-100 gap-3">
             <!-- Brand and Icon -->
             <div class="d-flex align-items-center gap-4">
-                <i class="fas fa-bars text-secondary d-lg-none menu-toggle" style="cursor: pointer;"></i>
+                <i class="fas fa-bars text-dark menu-toggle" style="cursor: pointer; font-size: 24px; padding: 10px;"></i>
                 <a class="navbar-brand d-flex align-items-center gap-2 mb-0" href="/">
                     <img src="<?= asset_url('/store/logos/logo_circular.png') ?>" alt="YohPal Logo" class="img-fluid logo-resize" style="height: 32px;">
                     <span class="fw-bold mb-0 brandname"><?= env('APP_NAME') ?></span>
