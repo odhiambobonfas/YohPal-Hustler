@@ -30,3 +30,12 @@ update
 *.pem
 server.log
 stunnel.conf
+HTTPS_SETUP.txt
+MAP_FIX.txt
+mobile-test.html
+openstreetmap-demo.html
+quick-start.sh
+start-https.sh
+test-google-maps.html
+test-location.html
+test-sidebar.html
