@@ -84,6 +84,7 @@
 
 <!-- Load new location services for advanced features -->
 <script type="text/javascript" src="<?= asset_url('js/app/web/services/hustler-loader-api.js') ?>"></script>
+<script type="module" src="<?= asset_url('js/app/web/services/hustler-loader.js') ?>"></script>
 <script type="text/javascript" src="<?= asset_url('js/app/web/services/location-service.js') ?>"></script>
 <script type="text/javascript" src="<?= asset_url('js/app/web/services/geocoding-service.js') ?>"></script>
 <script type="text/javascript" src="<?= asset_url('js/app/web/services/realtime-location.js') ?>"></script>

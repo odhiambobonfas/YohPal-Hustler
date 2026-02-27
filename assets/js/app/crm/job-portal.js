@@ -142,13 +142,21 @@ class JobPortal extends Master {
       }
 
       if (!this.hustlerLoader) {
-        // Try API version first (no Firebase needed)
-        if (typeof HustlerLoaderServiceAPI !== 'undefined') {
-          this.hustlerLoader = new HustlerLoaderServiceAPI();
-        } else {
-          // Load API version
-          await this.loadScript('/assets/js/app/web/services/hustler-loader-api.js');
-          this.hustlerLoader = new HustlerLoaderServiceAPI();
+        // Try Firebase version first
+        try {
+          const { default: HustlerLoaderService } = await import('/assets/js/app/web/services/hustler-loader.js');
+          this.hustlerLoader = new HustlerLoaderService();
+          console.log('Using Firebase hustler loader');
+        } catch (error) {
+          console.warn('Firebase loader failed, falling back to API:', error);
+          // Fallback to API version
+          if (typeof HustlerLoaderServiceAPI !== 'undefined') {
+            this.hustlerLoader = new HustlerLoaderServiceAPI();
+          } else {
+            await this.loadScript('/assets/js/app/web/services/hustler-loader-api.js');
+            this.hustlerLoader = new HustlerLoaderServiceAPI();
+          }
+          console.log('Using API hustler loader');
         }
       }
 
