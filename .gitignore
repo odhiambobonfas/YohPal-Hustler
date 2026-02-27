@@ -26,3 +26,7 @@ node_modules
 tests
 >>>>>>> 77da454 (chore: update env, gitignore & app config)
 update
+*.md
+*.pem
+server.log
+stunnel.conf
